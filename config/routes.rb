@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   get "/docs" => "page#docs", as: :docs
   get "/community" => "page#community", as: :community
 
+  get "/search" => "gems#search", as: :gems_search
+
   resources :gems, only: [:index, :show]
 end

@@ -6,4 +6,10 @@ class GemsController < ApplicationController
   def show
     @gem = Gemspec.find(params[:id]).metadata
   end
+
+  def search
+    puts params.inspect
+
+    @result = GemSearch.search(params[:name])
+  end
 end

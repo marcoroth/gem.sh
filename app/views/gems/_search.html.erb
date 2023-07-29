@@ -1,0 +1,30 @@
+<%= form_tag(gems_search_path, method: :get, data: { controller: "search", action: "keydown->search#submit", turbo_stream: "true" }) do %>
+  <div class="mt-6" data-action="click->search#open">
+    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Search for gem</label>
+    <div class="relative mt-2 rounded-full shadow-sm">
+      <input type="text" id="name" class="block w-full rounded-full border-0 py-1.5 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="rake">
+      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+        <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative z-10 hidden" role="dialog" aria-modal="true" data-search-target="result">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-25 transition-opacity"></div>
+
+    <div class="fixed inset-0 z-10 overflow-y-auto p-4 sm:p-6 md:p-20">
+      <div class="mx-auto max-w-xl transform overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all">
+        <div class="relative">
+          <svg class="pointer-events-none absolute left-4 top-3.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+          </svg>
+          <input type="text" name="name" class="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm" placeholder="Search..." role="combobox" aria-expanded="false" aria-controls="options">
+        </div>
+
+        <%= render partial: "search_result", locals: { result: [] } %>
+      </div>
+    </div>
+  </div>
+<% end %>
