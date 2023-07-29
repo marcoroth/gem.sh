@@ -1,6 +1,10 @@
 class Gemspec
   BASE = "https://rubygems.org/api/v2"
 
+  extend Forwardable
+
+  def_delegators :metadata, :files
+
   def self.latest_version_for(name)
     Gem.latest_spec_for(name).version
   end
@@ -101,5 +105,9 @@ class Gemspec
     system("tar xvf #{download_filename} --directory #{unpack_path}")
     system("tar xvf #{unpack_data_archive} --directory #{unpack_data_path}")
     system("gunzip #{unpack_metadata_archive}")
+  end
+
+  def info
+    GemInfo.new(self)
   end
 end
