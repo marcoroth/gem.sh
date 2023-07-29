@@ -1,25 +1,51 @@
-<div>
-  <div class="px-4 sm:px-0">
-    <h3 class="text-base font-semibold leading-7 text-gray-900"><%= @gem.name %></h3>
-    <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500"><%= @gem.description %></p>
-  </div>
+<div class="mx-auto grid grid-cols-6 w-full items-start gap-x-8 px-4 py-10 sm:px-6 lg:px-8">
+  <aside class="block truncate col-span-2">
+    <div class="border-b border-gray-200 pb-5 mb-6">
+      <h3 class="text-base font-semibold leading-6 text-gray-900">Files</h3>
+    </div>
 
-  <div class="mt-6 border-t border-gray-100">
-    <dl class="divide-y divide-gray-100">
-      <% @gem.instance_variables.each do |var| %>
-        <% value = @gem.instance_variable_get(var) %>
-        <% next if value.blank? %>
-
-        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-medium leading-6 text-gray-900">
-            <%= var.to_s.gsub("@", "").humanize %>
-          </dt>
-
-          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-            <%= value.to_s %>
-          </dd>
-        </div>
+    <% @gem.info.files.sort.each do |file| %>
+      <%= link_to gem_path(@gem.name) do %>
+        <pre><%= file %></pre>
       <% end %>
-    </dl>
-  </div>
+    <% end %>
+  </aside>
+
+  <main class="flex-1 col-span-3">
+    <div class="border-b border-gray-200 pb-5 mb-6">
+      <h3 class="text-base font-semibold leading-6 text-gray-900">
+        <pre><%= @gem.metadata.name %></pre>
+      </h3>
+    </div>
+
+    <div class="mt-6 border-t border-gray-100">
+      <dl class="divide-y divide-gray-100">
+        <% @gem.metadata.instance_variables.each do |var| %>
+          <% value = @gem.metadata.instance_variable_get(var) %>
+          <% next if value.blank? %>
+
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">
+              <%= var.to_s.gsub("@", "").humanize %>
+            </dt>
+
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <%= value.to_s %>
+            </dd>
+          </div>
+        <% end %>
+      </dl>
+  </main>
+
+  <aside class="block truncate col-span-1">
+    <div class="border-b border-gray-200 pb-5 mb-6">
+      <h3 class="text-base font-semibold leading-6 text-gray-900">Constants</h3>
+    </div>
+
+    <% @gem.info.analyzer.consts.sort.each do |const| %>
+      <%= link_to gem_path(@gem.name) do %>
+        <pre><%= const %></pre>
+      <% end %>
+    <% end %>
+  </aside>
 </div>

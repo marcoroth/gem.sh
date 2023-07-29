@@ -4,7 +4,7 @@ class GemsController < ApplicationController
   end
 
   def show
-    @gem = Gemspec.find(params[:id]).metadata
+    @gem = Gemspec.find(params[:id])
   end
 
   def search
