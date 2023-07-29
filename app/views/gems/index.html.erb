@@ -4,18 +4,23 @@
 
 <%= render partial: "gems/search" %>
 
-<div class="max-w-screen-xl mx-auto mt-12">
+<div class="max-w-screen-xl mx-auto mt-6">
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     <% @gems.each do |gem| %>
-      <div class="block w-full">
-        <div class="p-3 h-full border border-gray-300 dark:border-gray-700 rounded flex flex-col justify-between">
-          <div>
-            <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200"><%= gem.name %></h2>
-            <p class="py-1 dark:text-gray-400"><%= gem.description.to_s.truncate(50) %></p>
+      <%= link_to gem_path(gem.name), class: "block w-full" do %>
+        <div class="p-3 h-full border border-gray-200 hover:bg-gray-50 hover:border-gray-300 rounded-lg flex flex-col justify-between">
+          <div class="divide-y divide-gray-100">
+            <div class="text-sm font-semibold text-gray-800 mb-2 flex justify-between">
+              <pre><%= gem.name %></pre>
+              <div class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-gray-700 bg-gray-50 ring-gray-600/10">
+                <%= gem.version %>
+              </div>
+            </div>
+
+            <p class="py-1 text-gray-500 text-sm truncate"><%= gem.description.to_s.truncate(50) %></p>
           </div>
-          <div><a class="text-blue-400 hover:underline" href="<%= gem_path(gem.name) %>">Read more</a></div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
