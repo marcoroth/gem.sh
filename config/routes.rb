@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root "page#home"
 
-  # Defines the root path route ("/")
-  root "gems#index"
+  get "/home" => "page#home", as: :home
+  get "/docs" => "page#docs", as: :docs
+  get "/community" => "page#community", as: :community
 
   resources :gems, only: [:index, :show]
 end
