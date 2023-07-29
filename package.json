@@ -1,4 +1,19 @@
 {
   "name": "app",
-  "private": "true"
+  "private": "true",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.1",
+    "@hotwired/turbo": "^7.3.0",
+    "@hotwired/turbo-rails": "^7.3.0",
+    "@rails/actioncable": "^7.0.6",
+    "autoprefixer": "^10.4.14",
+    "esbuild": "^0.18.17",
+    "esbuild-rails": "^1.0.7",
+    "postcss": "^8.4.27",
+    "tailwindcss": "^3.3.3"
+  },
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+  }
 }
