@@ -4,6 +4,6 @@ class GemsController < ApplicationController
   end
 
   def show
-    @gem = Gem.latest_spec_for(params[:id])
+    @gem = Gemspec.find(params[:id]).metadata
   end
 end
