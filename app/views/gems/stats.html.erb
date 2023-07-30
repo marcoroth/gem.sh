@@ -1,3 +1,16 @@
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @classes, class_methods: @class_methods, instance_methods: @instance_methods) do %>
-
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:max-w-none">
+      <dl class="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-2">
+        <div class="flex flex-col bg-gray-400/5 p-8">
+          <dt class="text-sm font-semibold leading-6 text-gray-600">Downloads</dt>
+          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900"><%= number_to_human(@gem.downloads) %></dd>
+        </div>
+        <div class="flex flex-col bg-gray-400/5 p-8">
+          <dt class="text-sm font-semibold leading-6 text-gray-600">Versions</dt>
+          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900"><%= @gem.versions.count %></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
 <% end %>

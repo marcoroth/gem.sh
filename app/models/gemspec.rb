@@ -37,6 +37,10 @@ class Gemspec
     @version_info["version"]
   end
 
+  def downloads
+    @version_info["downloads"]
+  end
+
   def versions
     url = "https://rubygems.org/api/v1/versions/#{name}.json"
 

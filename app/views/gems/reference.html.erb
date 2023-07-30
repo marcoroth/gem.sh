@@ -1,3 +1,31 @@
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @classes, class_methods: @class_methods, instance_methods: @instance_methods) do %>
+  <%= render Layout::Subheading.new(title: "Featured Classes") %>
 
+  <div class="grid grid-cols-4 gap-4">
+    <% @gem.classes.sample(8).each do |klass| %>
+      <%= link_to gem_class_path(@gem.name, @gem.version, klass.qualified_name) do %>
+        <%= render Layout::Card.new(title: klass.name, description: klass.namespace, label: klass.object_name) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= render Layout::Subheading.new(title: "All Classes") %>
+
+  <div class="grid grid-cols-4 gap-4">
+    <% @gem.classes.each do |klass| %>
+      <%= link_to gem_class_path(@gem.name, @gem.version, klass.qualified_name) do %>
+        <%= render Layout::Card.new(title: klass.name, description: klass.namespace, label: klass.object_name) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= render Layout::Subheading.new(title: "All Modules") %>
+
+  <div class="grid grid-cols-4 gap-4">
+    <% @gem.modules.each do |klass| %>
+      <%= link_to gem_class_path(@gem.name, @gem.version, klass.qualified_name) do %>
+        <%= render Layout::Card.new(title: klass.name, description: klass.namespace, label: klass.object_name) %>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
