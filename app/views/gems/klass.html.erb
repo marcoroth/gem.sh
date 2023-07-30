@@ -1,17 +1,22 @@
-<div class="">
-  <%= render partial: "breadcrumb" %>
-  <%= render Layout::Heading.new(title: @gem.name) %>
+<div class="grid grid-cols-4 gap-12">
+  <div class="col-span-3">
+    <%= render partial: "breadcrumb" %>
 
-  <div class="grid grid-cols-5 gap-x-8">
-    <%= render Superclass.new(superclass: @klass.superclass, gem: @gem) %>
-    <%= render ModulesList.new(modules: @klass.included_modules, title: "Included Modules", gem: @gem) %>
-    <%= render ModulesList.new(modules: @klass.extended_modules, title: "Extended Modules", gem: @gem) %>
-    <%= render ClassMethodsList.new(class_methods: @klass.class_methods, gem: @gem) %>
-    <%= render InstanceMethodsList.new(instance_methods: @klass.instance_methods, gem: @gem) %>
+    <%= render Layout::Heading.new(title: @klass) %>
+
+    <div class="grid grid-cols-4 gap-x-8">
+      <% comment = @klass.comments.map { |comment| comment.value.delete_prefix("#").strip+"\n\n" }.join("\n") %>
+
+      <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
+      <%== h.convert(comment) %>
+    </div>
   </div>
 
-  <% comment = @klass.comments.map { |comment| comment.value.delete_prefix("#").strip+"\n\n" }.join("\n") %>
-
-  <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
-  <%== h.convert(comment) %>
+  <div class="col-span-1">
+    <%= render Superclass.new(superclass: @klass.superclass, gem: @gem) %>
+    <%= render ModulesList.new(modules: @klass.included_modules, title: "Included Modules", gem: @gem) if @klass.included_modules.any? %>
+    <%= render ModulesList.new(modules: @klass.extended_modules, title: "Extended Modules", gem: @gem) if @klass.extended_modules.any? %>
+    <%= render ClassMethodsList.new(class_methods: @klass.class_methods, gem: @gem) if @klass.class_methods.any? %>
+    <%= render InstanceMethodsList.new(instance_methods: @klass.instance_methods, gem: @gem) if @klass.instance_methods.any? %>
+  </div>
 </div>

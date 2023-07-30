@@ -2,7 +2,7 @@
   <div class="col-span-3">
     <%= render partial: "breadcrumb" %>
 
-    <%= render Layout::Heading.new(title: @gem.name) %>
+    <%= render Layout::Heading.new(title: @namespace) %>
 
     <div class="grid grid-cols-4 gap-x-8">
 
@@ -10,13 +10,14 @@
   </div>
 
   <div class="col-span-1">
-    <%= render ModulesList.new(modules: @namespaces, gem: @gem) %>
-    <%= render ClassesList.new(classes: @classes, gem: @gem) %>
     <%= render ClassMethodsList.new(class_methods: @class_methods, gem: @gem) %>
     <%= render InstanceMethodsList.new(instance_methods: @instance_methods, gem: @gem) %>
 
+    <%= render ClassesList.new(classes: @classes, gem: @gem) %>
+
+
     <%#= render Superclass.new(superclass: object.superclass, gem: @gem) %>
-    <%#= render ModulesList.new(modules: object.included_modules, title: "Included Modules", gem: @gem) %>
-    <%#= render ModulesList.new(modules: object.extended_modules, title: "Extended Modules", gem: @gem) %>
+    <%= render ModulesList.new(modules: @namespace.included_modules, title: "Included Modules", gem: @gem) %>
+    <%= render ModulesList.new(modules: @namespace.extended_modules, title: "Extended Modules", gem: @gem) %>
   </div>
 </div>
