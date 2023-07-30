@@ -1,11 +1,9 @@
 <aside class="block truncate col-span-1 mb-12">
-  <div class="border-b border-gray-200 pb-5 mb-6">
-    <h3 class="text-base font-semibold leading-6 text-gray-900"><%= @title %></h3>
-  </div>
+  <%= render Layout::Subheading.new(title: @title) %>
 
   <ul class="list code">
-  <% @modules.each do |m| %>
-    <li><%= link_to m.qualified_name, gem_module_path(@gem.name, @gem.version, m.qualified_name) %></li>
-  <% end %>
+    <% @modules.each do |m| %>
+      <li><%= link_to m.qualified_name, gem_module_path(@gem.name, @gem.version, m.qualified_name) %></li>
+    <% end %>
   </ul>
 </aside>

@@ -1,7 +1,5 @@
 <aside class="block truncate col-span-1 mb-12">
-  <div class="">
-    <h4 class="paragraph text-base font-semibold leading-6 text-gray-900"><%= @prefix %> Methods</h4>
-  </div>
+  <%= render Layout::Subheading.new(title: "#{@prefix} Methods") %>
 
   <ul class="list code">
   <% @con_methods.each do |method| %>
