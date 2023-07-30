@@ -6,6 +6,8 @@ class Gemspec
   def_delegators :metadata, :files
 
   def self.latest_version_for(name)
+    return if name.blank?
+
     Gem.latest_spec_for(name).version
   end
 

@@ -20,7 +20,7 @@
       </div>
     </aside>
 
-    <%= render ClassMethodsList.new(class_methods: @klass.class_methods, gem: @gem.name) %>
-    <%= render InstanceMethodsList.new(instance_methods: @klass.instance_methods, gem: @gem.name) %>
+    <%= render ClassMethodsList.new(class_methods: @klass.class_methods, gem: @gem) %>
+    <%= render InstanceMethodsList.new(instance_methods: @klass.instance_methods, gem: @gem) %>
   </div>
 </div>

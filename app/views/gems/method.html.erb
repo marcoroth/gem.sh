@@ -25,8 +25,8 @@
     </div>
 
     <div class="col-span-1">
-      <%= render ClassMethodsList.new(class_methods: object.class_methods, gem: @gem.name) %>
-      <%= render InstanceMethodsList.new(instance_methods: object.instance_methods, gem: @gem.name) %>
+      <%= render ClassMethodsList.new(class_methods: object.class_methods, gem: @gem) %>
+      <%= render InstanceMethodsList.new(instance_methods: object.instance_methods, gem: @gem) %>
     </div>
   </div>
 </div>
