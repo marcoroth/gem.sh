@@ -1,0 +1,121 @@
+/* components.css */
+:root {
+  /* Core Colors */
+  --accent-color:#1C6BFF;
+  --accent-hover-color:#195BD6;
+  --text-color:#000;
+  --link-color:#1C6BFF;
+  --heading-color:#333;
+  --footer-text-color:#6B7280;
+  --inline-code-color:#333;
+  --inline-code-bg-color:#E1E1E1;
+  --bg-color:#FAFAFA;
+  --menu-bg-color:#EBEBEB;
+  --highlight-color:#E1E1E1;
+
+  /* Dark Colors */
+  --dark-accent-color:#1C6BFF;
+  --dark-accent-hover-color:#195BD6;
+  --dark-text-color:#FFF;
+  --dark-link-color:#1C6BFF;
+  --dark-heading-color:#EFEFEF;
+  --dark-footer-text-color:#6B7280;
+  --dark-inline-code-color:#333;
+  --dark-inline-code-bg-color:#3A414A;
+  --dark-bg-color:#252836;
+  --dark-menu-bg-color:#101217;
+  --dark-highlight-color:#E1E1E1;
+}
+:root {
+  --color-link: var(--link-color);
+}
+:root {
+  /* Button colors */
+  --button--text-color:white;
+  --button--border-color:transparent;
+  --button--bg-color:var(--accent-color);
+  --button--text-hover-color:white;
+  --button--border-hover-color:transparent;
+  --button--bg-hover-color:var(--accent-hover-color);
+
+  --button-plain--text-color:#333333;
+  --button-plain--border-color:black;
+  --button-plain--bg-color:#F3F3F3;
+  --button-plain--text-hover-color:#333333;
+  --button-plain--border-hover-color:black;
+  --button-plain--bg-hover-color:#E1E1E1;
+
+  --button-naked--text-color:var(--accent-color);
+  --button-naked--border-color:black;
+  --button-naked--bg-color:transparent;
+  --button-naked--text-hover-color:var(--accent-color);
+  --button-naked--border-hover-color:black;
+  --button-naked--bg-hover-color:#F3F3F3;
+
+  --button-outline--text-color:white;
+  --button-outline--border-color:black;
+  --button-outline--bg-color:white;
+  --button-outline--text-hover-color:white;
+  --button-outline--bg-hover-color:white;
+
+  --button-outline-accent--text-color:white;
+  --button-outline-accent--text-hover-color:white;
+  --button-outline-accent--border-color:black;
+  --button-outline-accent--bg-color:white;
+  --button-outline-accent--bg-hover-color:white;
+
+  --button--line-height:;
+  --button--font-size:;
+  --button--padding-x:var(--space-s);
+  --button--padding-y:var(--space-2xs);
+  --button--border-radius:0.5rem;
+  --button--border-width:0.125rem;
+
+}
+
+/* Buttons */
+.button {
+  display:inline-block;
+  padding:calc(var(--button--padding-y) - var(--button--border-width) ) var(--button--padding-x);
+  text-align:center;
+  color:var(--button--text-color);
+  background-color:var(--button--bg-color);
+  border-radius:var(--button--border-radius);
+  border-color:var(--button--border-color);
+  border-width:2px;
+  line-height:1.25em;
+  margin-left:var(--space-3xs);
+  margin-right:var(--space-3xs);
+  box-sizing: border-box;
+}
+.button:hover {
+  color:var(--button--text-hover-color);
+  border-color:var(--button--border-hover-color);
+  background-color:var(--button--bg-hover-color);
+}
+
+.button.plain {
+  color:           var(--button-plain--text-color);
+  background-color:var(--button-plain--bg-color);
+}
+.button.plain:hover {
+  color:           var(--button-plain--text-hover-color);
+  background-color:var(--button-plain--bg-hover-color);
+}
+
+.button.naked {
+  color:           var(--button-naked--text-color);
+  background-color:var(--button-naked--bg-color);
+}
+.button.naked:hover {
+  color:           var(--button-naked--text-hover-color);
+  background-color:var(--button-naked--bg-hover-color);
+}
+
+/* Pills */
+
+/* Lists */
+
+/* List Links */
+
+/* Code Pockets */

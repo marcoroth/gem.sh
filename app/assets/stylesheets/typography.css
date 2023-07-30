@@ -1,0 +1,277 @@
+/* Typography */
+:root {
+  --base-font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --monspace-font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+body {
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 1em;
+  color: #333;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  font-family: var(--base-font-family);
+  font-feature-settings: normal;
+  font-variation-settings:normal;
+}
+
+/* Typeface Scale */
+
+/* Type Sizes, use in font-size, example: font-size: var(--step-0); */
+:root {
+
+  --step-4: clamp(3.00rem, calc(2.65rem + 1.74vw), 4.00rem);/* Step 3: 48.00px → 64.00px */
+  --step-3: clamp(2.25rem, calc(1.99rem + 1.30vw), 3.00rem);/* Step 2: 36.00px → 48.00px */
+  --step-2: clamp(1.69rem, calc(1.49rem + 0.98vw), 2.25rem);/* Step 1: 27.00px → 36.00px */
+  --step-1: clamp(1.13rem, calc(0.99rem + 0.65vw), 1.50rem);/* Step 1: 18.00px → 24.00px */
+  --step-0: clamp(0.94rem, calc(0.87rem + 0.33vw), 1.13rem);/* Step 0: 15.00px → 18.00px */
+  --step--1: clamp(0.88rem, calc(0.83rem + 0.22vw), 1.00rem);/* Step -1: 14.00px → 16.00px */
+  --step--2: clamp(0.75rem, calc(0.71rem + 0.22vw), 0.88rem);/* Step -2: 12.00px → 14.00px */
+
+  --step-xxl: var(--step-4);
+  --step-xl:  var(--step-3);
+  --step-l:   var(--step-2);
+  --step-m:   var(--step-1);
+  --step-s:   var(--step-0);
+  --step-xs:  var(--step--1);
+  --step-xxs:   var(--step--2);
+}
+body {
+  font-size: var(--step-0);
+}
+
+.fs-step-4 { font-size: var(--step-4 );}
+.fs-step-3 { font-size: var(--step-3 );}
+.fs-step-2 { font-size: var(--step-2 );}
+.fs-step-1 { font-size: var(--step-1 );}
+.fs-step-0 { font-size: var(--step-0 );}
+.fs-step--1 { font-size: var(--step--1 );}
+.fs-step--2 { font-size: var(--step--2 );}
+
+
+/* Line Height pairings, use in line-height */
+:root {
+  --lh-heading:    1.2em;
+  --lh-copy:       1.333em;
+  --lh-small-copy: 1.5em;
+}
+
+.lh-heading    { line-height: var(--lh-heading);}
+.lh-copy       { line-height: var(--lh-copy);}
+.lh-small-copy { line-height: var(--lh-small-copy);}
+
+/*  font-weight pairs for types of things. */
+:root {
+  --fw-heading:      700;
+  --fw-copy-bold:    600;
+  --fw-soft-heading: 500;
+  --fw-link:         600;
+  --fw-copy:         400;
+}
+
+.fw-heading      { font-weight: var(--fw-heading);}
+.fw-copy-bold    { font-weight: var(--fw-copy-bold);}
+.fw-soft-heading { font-weight: var(--fw-soft-heading);}
+.fw-link         { font-weight: var(--fw-link);}
+.fw-copy         { font-weight: var(--fw-copy);}
+
+
+
+/*  Type size pairings, use in font, example: font: var(--font-0); */
+:root {
+  --fpair-heading:           var(--fw-heading)      var(--step-4)  / var(--lh-heading)     ui-sans-serif;
+  --fpair-sub-heading:       var(--fw-heading)      var(--step-3)  / var(--lh-heading)     ui-sans-serif;
+  --fpair-section-heading:   var(--fw-heading)      var(--step-2)  / var(--lh-heading)     ui-sans-serif;
+  --fpair-paragraph-heading: var(--fw-soft-heading) var(--step-1)  / var(--lh-copy)        ui-sans-serif;
+  --fpair-copy:              var(--fw-copy)         var(--step-0)  / var(--lh-copy)        ui-sans-serif;
+  --fpair-interface-copy:    var(--fw-copy)         var(--step--1) / var(--lh-small-copy)  ui-sans-serif;
+  --fpair-caption-copy:      var(--fw-copy)         var(--step--2) / var(--lh-small-copy)  ui-sans-serif;
+}
+
+/*font-weight overrides*/
+.fw-100 {font-weight: 100;}
+.fw-200 {font-weight: 200;}
+.fw-300 {font-weight: 300;}
+.fw-400 {font-weight: 400;}
+.fw-500 {font-weight: 500;}
+.fw-600 {font-weight: 600;}
+.fw-700 {font-weight: 700;}
+.fw-800 {font-weight: 800;}
+.fw-900 {font-weight: 900;}
+
+:root {
+  --heading-color: black;
+  --text-color: black;
+  --link-color: blue;
+
+  --font-size-heading:           var(--step-4);
+  --font-size-subheading:        var(--step-3);
+  --font-size-section-heading:   var(--step-2);
+  --font-size-paragraph-heading: var(--step-1);
+  --font-size-paragraph:         var(--step-0);
+  --font-size-interface-text:    var(--step--1);
+  --font-size-caption-text:      var(--step--2);
+  --font-size-blockquote:        var(--step-1);
+  --font-size-excerpt:           var(--step-0);
+  --font-size-monospace:         var(--step--1);
+
+  --line-height-heading:           var(--lh-heading);
+  --line-height-subheading:        var(--lh-heading);
+  --line-height-section-heading:   var(--lh-heading);
+  --line-height-paragraph-heading: var(--lh-copy);
+  --line-height-paragraph:         var(--lh-copy);
+  --line-height-interface-text:    var(--lh-copy);
+  --line-height-caption-text:      var(--lh-small-copy);
+  --line-height-blockquote:        var(--lh-heading);
+  --line-height-excerpt:           var(--lh-copy);
+  --line-height-monospace:         var(--lh-small-copy);
+
+  /*
+  // font-weight standard values:
+  // black: 900;
+  // extra bold: 800;
+  // bold: 700;
+  // semi-bold: 600;
+  // medium: 500;
+  // regular: 400;
+  // light: 300;
+  // extra light: 200;
+  // thin: 100;
+  */
+
+  --font-weight-heading: 600;
+  --font-weight-subheading: 600;
+  --font-weight-section-heading: 600;
+  --font-weight-interface-text: 500;
+  --font-weight-accessory-text: 400;
+  --font-weight-paragraph: 500;
+  --font-weight-interface-text: 500;
+  --font-weight-blockquote: 600;
+  --font-weight-excerpt: 600;
+
+  --font-weight-heading:           var(--fw-heading);
+  --font-weight-subheading:        var(--fw-heading);
+  --font-weight-section-heading:   var(--fw-heading);
+  --font-weight-paragraph-heading: var(--fw-soft-heading);
+  --font-weight-paragraph:         var(--fw-copy);
+  --font-weight-interface-text:    var(--fw-copy);
+  --font-weight-caption-text:      var(--fw-copy);
+  --font-weight-blockquote:        var(--fw-heading);
+  --font-weight-excerpt:           var(--fw-soft-heading);
+
+
+
+  /* Font family */
+  --font-family-heading: var(--base-font-family);
+  --font-family-accessory-text: var(--base-font-family);
+  --font-family-excerpt: var(--base-font-family);
+  --font-family-paragraph: var(--base-font-family);
+  --font-family-blockquote: var(--base-font-family);
+
+  /* Text conditions modifiers */
+  /* for headings: */
+  --text-mod-headings-emphasis: italic;
+  --text-mod-headings-strong: 700;
+  /* for text: */
+  --text-mod-emphasis: italic;
+  --text-mod-strong: 600;
+  /* for lighter text */
+  --text-mod-lighter-emphasis: italic;
+  --text-mod-lighter-strong: 500;
+}
+
+a, a:visited  {
+  color: var(--color-link);
+  font-weight: 600;
+  &:hover {
+      text-decoration: none;
+  }
+}
+
+.heading, h1 {
+  font-family: var(--font-family-heading);
+  letter-spacing: 0.03em;
+  font-size: var(--font-size-heading);
+  line-height: var(--line-height-heading);
+  font-weight: var(--font-weight-heading);
+  letter-spacing:-0.03em;
+}
+.subheading, h2 {
+  font-family: var(--font-family-heading);
+  letter-spacing: 0.03em;
+  font-size: var(--font-size-subheading);
+  line-height: var(--line-height-subheading);
+  font-weight: var(--font-weight-subheading);
+  letter-spacing:-0.03em;
+}
+.section-heading, h3 {
+  font-family: var(--font-family-heading);
+  letter-spacing: 0.03em;
+  font-size: var(--font-size-section-heading);
+  line-height: var(--line-height-section-heading);
+  font-weight: var(--font-weight-section-heading);
+  letter-spacing:-0.03em;
+}
+.paragraph-heading, h4 {
+  font-family: var(--font-family-heading);
+  letter-spacing: 0.03em;
+  font-size: var(--font-size-paragraph-heading);
+  line-height: var(--line-height-paragraph-heading);
+  font-weight: var(--font-weight-paragraph-heading);
+  letter-spacing:-0.03em;
+}
+/* For all the headings. */
+.heading, h1, .subheading, h2, .section-heading, h3, .paragraph-heading, h4 {margin-bottom:0.25em;}
+
+.interface-text {
+  font-family: var(--base-font-family);
+  font-size: var(--font-size-interface-text);
+  line-height: var(--line-height-interface-text);
+  font-weight: var(--font-weight-interface-text);
+}
+.paragraph, ul li {
+  font-family: var(--base-font-family);
+  font-size:   var(--font-size-paragraph);
+  line-height: var(--line-height-paragraph);
+  font-weight: var(--font-weight-paragraph);
+}
+.blockquote {
+  font-family: var(--base-font-family);
+  font-size: var(--font-size-blockquote);
+  line-height: var(--line-height-blockquote);
+  font-weight: var(--font-weight-blockquote);
+}
+.excerpt {
+  font-family: var(--base-font-family);
+  font-size: var(--font-size-excerpt);
+  line-height: var(--line-height-excerpt);
+  font-weight: var(--font-weight-excerpt);
+}
+pre, code {
+  font-family: var(--monspace-font-family);
+  font-size: var(--font-size-monospace);
+  line-height: var(--line-height-monospace);
+  font-weight: 500;
+  padding: 0.25em 0.75em;
+  border-radius:0.5rem;
+}
+
+/* for in between paragraphs and content type stuff. */
+.interface-text, .paragraph, ul li, .blockquote, .excerpt, p {
+  margin-block-start:1em;
+  margin-block-end:1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+/* heading - Subheading pairing*/
+/* .heading + .sub-heading,
+.heading + h2,
+h1 + .sub-heading,
+h1 + h2 {
+  margin-top: 0;
+} */
+
+/* Modifiers for text and stuff */
+.txt-center { text-align:center; }

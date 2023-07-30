@@ -1,3 +1,7 @@
+@import url("bulma.css");
+@import url("typography.css");
+@import url("modifiers.css");
+@import url("components.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
