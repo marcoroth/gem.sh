@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         get "/" => "gems#namespace", as: :gem_module
       end
 
+      get "/instance_method/:name" => "gems#instance_method", as: :gem_instance_method
       get "/" => "gems#show", as: :gem_version
     end
 

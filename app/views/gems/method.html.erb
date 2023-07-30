@@ -12,7 +12,9 @@
       </div>
 
       <%= render Layout::CodeBlock.new do %>
+        <%- if object.is_a?(ModuleDefinition) || object.is_a?(ClassDefinition) -%>
         <%= object.object_name %> <%= object.qualified_name %>
+        <%- end -%>
           <%- if @method.instance_method? -%>
           def <%= @method.name %>(...)
           <%- else -%>
@@ -20,7 +22,9 @@
           <%- end -%>
             # ...
           end
+        <%- if object.is_a?(ModuleDefinition) || object.is_a?(ClassDefinition) -%>
         end
+        <%- end -%>
       <% end %>
     </div>
 

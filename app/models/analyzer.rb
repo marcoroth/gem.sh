@@ -19,6 +19,18 @@ class Analyzer
     @visitor = Visitor.new(self)
   end
 
+  def qualified_name
+    "global"
+  end
+
+  def object_name
+    "global"
+  end
+
+  def to_s
+    "global"
+  end
+
   def analyze(path)
     code = File.read(path)
     program = SyntaxTree.parse(code)
