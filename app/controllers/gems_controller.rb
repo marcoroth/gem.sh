@@ -63,7 +63,7 @@ class GemsController < ApplicationController
       @method = @namespace.class_methods.find { |class_method| class_method.name == params[:name] }
     else
       @namespace = @gem.info.analyzer
-      @method = @namespace.class_methods.find { |class_method| class_method.name == params[:name] }  
+      @method = @namespace.class_methods.find { |class_method| class_method.name == params[:name] }
     end
 
     render :method
