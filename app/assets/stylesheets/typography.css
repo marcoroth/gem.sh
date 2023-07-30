@@ -259,10 +259,10 @@ pre, p code {
 
 /* for in between paragraphs and content type stuff. */
 .interface-text, .paragraph, content ul li, .content ul li, .blockquote, .excerpt, p {
-  margin-block-start:1em;
+  /* margin-block-start:1em;
   margin-block-end:1em;
   margin-top: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 1em; */
 }
 
 /* heading - Subheading pairing*/
@@ -275,3 +275,18 @@ h1 + h2 {
 
 /* Modifiers for text and stuff */
 .txt-center { text-align:center; }
+
+.small-code-thing {
+  width: 100%;
+  border: 1px solid #A4A4A4;
+  background-color:#F3F3F3;
+  font-size:var(--step--2);
+  border-radius: 0.5em;
+  padding:var(--space-2xs) var(--space-s);
+  overflow:scroll;
+  margin-top:var(--space-xs);
+  margin-bottom:var(--space-xs);
+}
+.metadata_headers {
+ margin-bottom: var(--space-3xs);
+}

@@ -137,9 +137,19 @@ ul.list.code li a {
   /* display: block; */
   /* padding: 0.125rem 0.75rem; */
   /* border-radius: 0.5rem; */
+  font-weight: 500;
 }
 ul.list.code li a:hover {
   color: var(--accent-color);
+}
+
+.list-header {
+  font-size: var(--step--0);
+  font-weight: 500;
+  font-family: var(--base-font-family);
+  margin-bottom: 0;
+  line-height: 2em;
+  padding-left:10px;
 }
 
 /* List Links */
