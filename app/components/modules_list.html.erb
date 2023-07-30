@@ -1,9 +1,9 @@
 <aside class="block truncate col-span-1 mb-12">
-  <%= render Layout::Subheading.new(title: @title) %>
+  <%= render Layout::Subheading.new(title: "Modules") %>
 
   <ul class="list code">
     <% @modules.each do |m| %>
-      <li><%= link_to m.qualified_name, gem_module_path(@gem.name, @gem.version, m.qualified_name) %></li>
+      <li><pre><%= link_to m.qualified_name, gem_module_path(@gem.name, @gem.version, m.qualified_name) %></pre></li>
     <% end %>
   </ul>
 </aside>

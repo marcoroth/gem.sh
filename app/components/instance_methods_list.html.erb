@@ -3,7 +3,7 @@
 
   <ul class="list code">
     <% @instance_methods.each do |instance_method| %>
-      <li><%= link_to instance_method, instance_method.url(@gem) %></li>
+      <li><pre><%= link_to instance_method, instance_method.url(@gem) %></pre></li>
     <% end %>
   </ul>
 </aside>
