@@ -133,6 +133,13 @@ ul.list.code li {
 ul.list.code li:hover {
   background-color: #F0F0F0;
 }
+ul.list.code li.active {
+  background-color: #555555;
+  color: #F0F0F0;
+}
+ul.list.code li.active:hover {
+  background-color: #474747;
+}
 ul.list.code li a {
   /* display: block; */
   /* padding: 0.125rem 0.75rem; */
@@ -156,3 +163,9 @@ ul.list.code li a:hover {
 
 /* Code Pockets */
 
+
+
+/* Card */
+.card--title {
+  line-height: 1.7em;
+}

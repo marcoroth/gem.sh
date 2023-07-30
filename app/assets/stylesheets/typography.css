@@ -1,8 +1,11 @@
 /* Typography */
 :root {
   --base-font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  --monspace-font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --monospace-font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+
+.base-font-family { font-family:var(--base-font-family);}
+.monospace-font-family { font-family:var(--monospace-font-family);}
 
 body {
   line-height: 1.5;
@@ -230,6 +233,12 @@ a {
   line-height: var(--line-height-interface-text);
   font-weight: var(--font-weight-interface-text);
 }
+.caption-text {
+  font-family: var(--base-font-family);
+  font-size: var(--font-size-caption-text);
+  line-height: var(--line-height-caption-text);
+  font-weight: var(--font-weight-caption-text);
+}
 .paragraph, ul li {
   font-family: var(--base-font-family);
   font-size:   var(--font-size-paragraph);
@@ -249,7 +258,7 @@ a {
   font-weight: var(--font-weight-excerpt);
 }
 pre, p code {
-  font-family: var(--monspace-font-family);
+  font-family: var(--monospace-font-family);
   font-size: var(--font-size-monospace);
   line-height: var(--line-height-monospace);
   font-weight: 500;
