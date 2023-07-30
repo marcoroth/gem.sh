@@ -5,7 +5,7 @@
 
   <%= render partial: "gems/search" %>
 
-  <div class="max-w-screen-xl mx-auto mt-6">
+  <div class="mx-auto mt-6">
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       <% @gems.each do |gem| %>
         <%= link_to gem_path(gem.name), class: "block w-full" do %>
