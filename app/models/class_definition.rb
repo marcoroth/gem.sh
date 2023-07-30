@@ -1,5 +1,5 @@
 class ClassDefinition < OpenStruct
-  def initialize(namespace: nil, name: nil, qualified_name: nil, instance_methods: [], class_methods: [])
+  def initialize(namespace: nil, name: nil, qualified_name: nil, node: nil, instance_methods: [], class_methods: [])
     super
   end
 

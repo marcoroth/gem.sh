@@ -17,7 +17,7 @@ class Visitor < SyntaxTree::Visitor
     class_definition = @analyzer.classes.find { |m| m.qualified_name == qualified_name }
 
     if class_definition.nil?
-      class_definition = ClassDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name)
+      class_definition = ClassDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node)
       @analyzer.classes << class_definition
     end
 
@@ -36,7 +36,7 @@ class Visitor < SyntaxTree::Visitor
     module_definition = @analyzer.modules.find { |m| m.qualified_name == qualified_name }
 
     if module_definition.nil?
-      module_definition = ModuleDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name)
+      module_definition = ModuleDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node)
       @analyzer.modules << module_definition
     end
 
