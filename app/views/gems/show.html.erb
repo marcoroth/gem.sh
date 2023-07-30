@@ -49,7 +49,7 @@
       </div>
 
       <% @instance_methods.each do |instance_method| %>
-        <pre><%= link_to instance_method.name, gem_instance_method_path(@gem.name, instance_method.name) %></pre>
+        <pre><%= link_to instance_method.name, instance_method.url(@gem.name) %></pre>
       <% end %>
     </aside>
 
