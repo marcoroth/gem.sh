@@ -26,8 +26,6 @@ class GemsController < ApplicationController
 
     @instance_methods = Array.wrap(@namespace && @namespace.instance_methods)
     @class_methods = Array.wrap(@namespace && @namespace.class_methods)
-
-    render :show
   end
 
   def klass
