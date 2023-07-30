@@ -1,15 +1,12 @@
 <div class="">
   <%= render partial: "breadcrumb" %>
-  <%= render Layout::Heading.new(title: @gem.name) %>
 
   <div class="grid grid-cols-4 gap-12">
     <% object = (@klass || @namespace) %>
 
     <div class="col-span-3">
-      <div class="border-b border-gray-300 pb-5 mb-6 sm:flex sm:items-center sm:justify-between">
-        <h3 class="section-heading font-semibold leading-6 text-gray-900 font-mono">
-          <%= @method %>
-        </h3>
+      <div class="mt-6 mb-12">
+        <%= render Layout::Heading.new(title: @method) %>
       </div>
 
       <div class="mb-6">
@@ -43,8 +40,8 @@
     <div class="col-span-1">
       <% if object.is_a?(ClassDefinition) %>
         <%= render Superclass.new(superclass: object.superclass, gem: @gem) %>
-        <%= render ModulesList.new(modules: object.included_modules, title: "Included Modules", gem: @gem) %>
-        <%= render ModulesList.new(modules: object.extended_modules, title: "Extended Modules", gem: @gem) %>
+        <%= render ModulesList.new(modules: object.included_modules, title: "Included Modules", gem: @gem) if object.included_modules.any? %>
+        <%= render ModulesList.new(modules: object.extended_modules, title: "Extended Modules", gem: @gem) if object.extended_modules.any? %>
       <% end %>
 
       <%= render MethodsList.new(con_methods: object.class_methods, gem: @gem, prefix: "Class") %>
