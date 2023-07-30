@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>gem.sh</title>
+  <g id="gem.sh" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <rect fill="#FFFFFF" x="0" y="0" width="48" height="48"></rect>
+    <g id="Group" transform="translate(4, 4)" stroke="#D60000" stroke-width="5">
+      <path d="M20,2.88675135 L34.8205081,11.4433757 L34.8205081,28.5566243 L20,37.1132487 L5.17949192,28.5566243 L5.17949192,11.4433757 L20,2.88675135 Z" id="Polygon"></path>
+      <path d="M20,12.8867513 L26.160254,16.4433757 L26.160254,23.5566243 L20,27.1132487 L13.839746,23.5566243 L13.839746,16.4433757 L20,12.8867513 Z" id="Polygon"></path>
+    </g>
+  </g>
+</svg>

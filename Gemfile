@@ -63,6 +63,9 @@ gem "syntax_tree", "~> 6.1"
 # A pure Ruby code highlighter that is compatible with Pygments
 gem "rouge", "~> 4.1"
 
+# Embed SVG documents in your Rails views and style them with CSS
+gem "inline_svg", "~> 1.9"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

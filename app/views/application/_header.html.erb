@@ -1,12 +1,12 @@
-<header class="absolute inset-x-0 top-0 z-50">
-  <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+<header class="z-50">
+  <nav class="flex items-center justify-between" aria-label="Global">
     <div class="flex lg:flex-1">
       <a href="<%= root_path %>" class="-m-1.5 p-1.5">
         <span class="sr-only">gem.sh</span>
-        <span class="h-8 w-auto text-2xl text-red-500">⬡</span>
+        <%= inline_svg_tag "logo.svg", class: '-m-1.5 p-1.5' %>
       </a>
     </div>
-    <div class="flex gap-x-4 lg:gap-x-12">
+    <div class="flex gap-x-4 lg:gap-x-6">
       <a href="<%= root_path %>" class="text-sm font-semibold leading-6 text-gray-900">Home</a>
       <a href="<%= gems_path %>" class="text-sm font-semibold leading-6 text-gray-900">Gems</a>
       <a href="<%= docs_path %>" class="text-sm font-semibold leading-6 text-gray-900">Docs</a>

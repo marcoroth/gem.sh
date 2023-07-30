@@ -12,14 +12,14 @@
   </head>
 
   <body>
-    <%= render partial: "header" %>
+    <%= render Layout::Container.new do %>
+      <%= render partial: "header" %>
 
-    <div class="bg-white">
-      <div class="relative isolate px-6 pt-14 lg:px-8">
+      <div class="bg-white pt-8">
         <%= yield %>
       </div>
-    </div>
 
-    <%= render partial: "footer" %>
+      <%= render partial: "footer" %>
+    <% end %>
   </body>
 </html>
