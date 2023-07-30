@@ -141,6 +141,8 @@ GEM
       racc (~> 1.4)
     pg (1.5.3)
     prettier_print (1.2.1)
+    psych (5.1.0)
+      stringio
     public_suffix (5.0.3)
     puma (5.6.6)
       nio4r (~> 2.0)
@@ -177,6 +179,8 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    rdoc (6.5.0)
+      psych (>= 4.0.0)
     redis (4.8.1)
     regexp_parser (2.8.1)
     reline (0.3.7)
@@ -197,6 +201,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    stringio (3.0.7)
     syntax_tree (6.1.1)
       prettier_print (>= 1.2.0)
     thor (1.2.2)
@@ -246,6 +251,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
+  rdoc
   redis (~> 4.0)
   rouge (~> 4.1)
   selenium-webdriver
