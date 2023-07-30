@@ -3,7 +3,7 @@
 
   <ul class="list code mb-12">
     <% @classes.each do |klass| %>
-      <%= active_link_to klass.name, gem_class_path(@gem.name, @gem.version, klass.qualified_name), wrap_tag: :li %>
+      <%= active_link_to klass.qualified_name, gem_class_path(@gem.name, @gem.version, klass.qualified_name), wrap_tag: :li %>
         <code>
         <% if klass.namespace.present? && false %>
           <span class="text-gray-400 hover:text-blue-300">

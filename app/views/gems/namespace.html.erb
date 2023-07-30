@@ -4,8 +4,14 @@
 
     <%= render Layout::Heading.new(title: @namespace) %>
 
-    <div class="grid grid-cols-4 gap-x-8">
+    <div class="grid divide-y">
+      <% @namespace.class_methods.each do |class_method| %>
+        <%= render MethodDetails.new(object: class_method, parent: @namespace, gem: @gem) %>
+      <% end %>
 
+      <% @namespace.instance_methods.each do |instance_method| %>
+        <%= render MethodDetails.new(object: instance_method, parent: @namespace, gem: @gem) %>
+      <% end %>
     </div>
   </div>
 

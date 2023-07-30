@@ -3,7 +3,7 @@
 
   <ul class="list code">
     <% if @superclass && @gem.classes.find { |klass| klass.qualified_name == @superclass.qualified_name } %>
-      <li><%= link_to @superclass.qualified_name, gem_class_path(@gem.name, @gem.version, @superclass.qualified_name) %></li>
+      <%= active_link_to @superclass.qualified_name, gem_class_path(@gem.name, @gem.version, @superclass.qualified_name), wrap_tag: :li %>
     <% elsif @superclass %>
       <li><%= @superclass.qualified_name %></li>
     <% end %>

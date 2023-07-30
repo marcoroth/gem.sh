@@ -5,6 +5,7 @@
     <% object = (@klass || @namespace) %>
 
     <div class="col-span-3">
+      <%= render Layout::Heading.new(title: object) %>
       <%= render MethodDetails.new(object: @method, parent: object, gem: @gem) %>
     </div>
 

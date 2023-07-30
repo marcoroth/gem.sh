@@ -10,6 +10,16 @@
       <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
       <%== h.convert(comment) %>
     </div>
+
+    <div class="grid divide-y">
+      <% @klass.class_methods.each do |class_method| %>
+        <%= render MethodDetails.new(object: class_method, parent: @namespace, gem: @gem) %>
+      <% end %>
+
+      <% @klass.instance_methods.each do |instance_method| %>
+        <%= render MethodDetails.new(object: instance_method, parent: @namespace, gem: @gem) %>
+      <% end %>
+    </div>
   </div>
 
   <div class="col-span-1">
