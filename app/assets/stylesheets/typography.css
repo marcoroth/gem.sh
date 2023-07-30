@@ -191,35 +191,35 @@ a {
 
 .heading, h1 {
   font-family: var(--font-family-heading);
-  letter-spacing: 0.03em;
+  /* letter-spacing: 0.03em; */
   font-size: var(--font-size-heading);
   line-height: var(--line-height-heading);
   font-weight: var(--font-weight-heading);
-  letter-spacing:-0.03em;
+  /* letter-spacing:-0.03em; */
 }
 .subheading, h2 {
   font-family: var(--font-family-heading);
-  letter-spacing: 0.03em;
+  /* letter-spacing: 0.03em; */
   font-size: var(--font-size-subheading);
   line-height: var(--line-height-subheading);
   font-weight: var(--font-weight-subheading);
-  letter-spacing:-0.03em;
+  /* letter-spacing:-0.03em; */
 }
 .section-heading, h3 {
   font-family: var(--font-family-heading);
-  letter-spacing: 0.03em;
+  /* letter-spacing: 0.03em; */
   font-size: var(--font-size-section-heading);
   line-height: var(--line-height-section-heading);
   font-weight: var(--font-weight-section-heading);
-  letter-spacing:-0.03em;
+  /* letter-spacing:-0.03em; */
 }
 .paragraph-heading, h4 {
   font-family: var(--font-family-heading);
-  letter-spacing: 0.03em;
+  /* letter-spacing: 0.03em; */
   font-size: var(--font-size-paragraph-heading);
   line-height: var(--line-height-paragraph-heading);
   font-weight: var(--font-weight-paragraph-heading);
-  letter-spacing:-0.03em;
+  /* letter-spacing:-0.03em; */
 }
 /* For all the headings. */
 .heading, h1, .subheading, h2, .section-heading, h3, .paragraph-heading, h4 {margin-bottom:0.25em;}
@@ -282,7 +282,7 @@ h1 + h2 {
   background-color:#F3F3F3;
   font-size:var(--step--2);
   border-radius: 0.5em;
-  padding:var(--space-2xs) var(--space-s);
+  padding:var(--space-3xs);
   overflow:scroll;
   margin-top:var(--space-xs);
   margin-bottom:var(--space-xs);
