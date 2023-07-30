@@ -5,36 +5,7 @@
     <% object = (@klass || @namespace) %>
 
     <div class="col-span-3">
-      <div class="mt-6 mb-12">
-        <%= render Layout::Heading.new(title: @method) %>
-      </div>
-
-      <div class="mb-6">
-        <% comment = @method.comments.each.map { |comment| comment.value.strip.gsub("#", "").strip+"<br>" }.join("\n") %>
-
-        <%#== YARD::Templates::Helpers::Markup::RDocMarkup.new(comment).to_html %>
-
-        <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
-        <%== h.convert(comment) %>
-      </div>
-
-      <%= render Layout::CodeBlock.new do %>
-        <%- if object.is_a?(ClassDefinition) -%>
-        <%= object.object_name %> <%= object.qualified_name %> < <%= object.superclass.qualified_name %>
-        <%- elsif object.is_a?(ModuleDefinition) -%>
-        <%= object.object_name %> <%= object.qualified_name %>
-        <%- end -%>
-          <%- if @method.instance_method? -%>
-          def <%= @method.name %>(...)
-          <%- else -%>
-          def self.<%= @method.name %>(...)
-          <%- end -%>
-            # ...
-          end
-        <%- if object.is_a?(ModuleDefinition) || object.is_a?(ClassDefinition) -%>
-        end
-        <%- end -%>
-      <% end %>
+      <%= render MethodDetails.new(object: @method, parent: object, gem: @gem) %>
     </div>
 
     <div class="col-span-1">

@@ -1,0 +1,30 @@
+<div class="mt-6 mb-12">
+  <%= render Layout::Heading.new(title: @object) %>
+</div>
+
+<div class="mb-6">
+  <% comment = @object.comments.each.map { |comment| comment.value.strip.gsub("#", "").strip+"<br>" }.join("\n") %>
+
+  <%#== YARD::Templates::Helpers::Markup::RDocMarkup.new(comment).to_html %>
+
+  <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
+  <%== h.convert(comment) %>
+</div>
+
+<%= render Layout::CodeBlock.new do %>
+  <%- if @parent.is_a?(ClassDefinition) -%>
+  <%= @parent.object_name %> <%= @parent.qualified_name %> < <%= @parent.superclass.qualified_name %>
+  <%- elsif @parent.is_a?(ModuleDefinition) -%>
+  <%= @parent.object_name %> <%= @parent.qualified_name %>
+  <%- end -%>
+    <%- if @object.instance_method? -%>
+    def <%= @object.name %>(...)
+    <%- else -%>
+    def self.<%= @object.name %>(...)
+    <%- end -%>
+      # ...
+    end
+  <%- if @parent.is_a?(ModuleDefinition) || @parent.is_a?(ClassDefinition) -%>
+  end
+  <%- end -%>
+<% end %>
