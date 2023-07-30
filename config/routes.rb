@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       end
 
       get "/instance_method/:name" => "gems#instance_method", as: :gem_instance_method
+      get "/class_method/:name" => "gems#class_method", as: :gem_class_method
       get "/" => "gems#show", as: :gem_version
     end
 

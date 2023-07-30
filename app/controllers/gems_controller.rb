@@ -61,6 +61,9 @@ class GemsController < ApplicationController
     elsif params[:module]
       @namespace = @gem.modules.find { |namespace| namespace.qualified_name == params[:module] }
       @method = @namespace.class_methods.find { |class_method| class_method.name == params[:name] }
+    else
+      @namespace = @gem.info.analyzer
+      @method = @namespace.class_methods.find { |class_method| class_method.name == params[:name] }  
     end
 
     render :method
