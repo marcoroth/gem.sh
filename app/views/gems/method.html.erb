@@ -33,7 +33,8 @@
     <div class="col-span-1">
       <% if object.is_a?(ClassDefinition) %>
         <%= render Superclass.new(superclass: object.superclass, gem: @gem) %>
-        <%= render ModulesList.new(modules: [], title: "Included Modules", gem: @gem) %>
+        <%= render ModulesList.new(modules: object.included_modules, title: "Included Modules", gem: @gem) %>
+        <%= render ModulesList.new(modules: object.extended_modules, title: "Extended Modules", gem: @gem) %>
       <% end %>
 
       <%= render ClassMethodsList.new(class_methods: object.class_methods, gem: @gem) %>

@@ -98,32 +98,31 @@ class Visitor < SyntaxTree::Visitor
     super
   end
 
-  # def visit_program(node)
-  #   puts node.class
-  #
-  #   super
-  # end
+  def visit_command(node)
+    name = node.message.value
 
-  # def visit_defined(node)
-  #   puts node.class
-  #
-  #   super
-  # end
+    return if @current_class.nil?
 
-  # def visit_command(node)
-  #   @analyzer.instance_methods << node.message.value
-  #
-  #   super
-  # end
+    if name == "include"
+      node.arguments.parts.each do |part|
+        module_namespace = part.try(:parent).try(:value).try(:value)
+        module_name = part.try(:constant).try(:value) || part.try(:value).try(:value)
+        module_qualified_name = [module_namespace, module_name].reject(&:blank?).join("::")
 
-  # def visit_call(node)
-  #   puts node.inspect
-  #   super
-  # end
+        @current_class.included_modules << ModuleDefinition.new(namespace: module_namespace, name: module_name, qualified_name: module_qualified_name, node: part)
+      end
+    end
 
-  # def visit_vcall(node)
-  #   @analyzer.locals << node.value.value
-  #
-  #   super
-  # end
+    if name == "extend"
+      node.arguments.parts.each do |part|
+        module_namespace = part.try(:parent).try(:value).try(:value)
+        module_name = part.try(:constant).try(:value) || part.try(:value).try(:value)
+        module_qualified_name = [module_namespace, module_name].reject(&:blank?).join("::")
+
+        @current_class.extended_modules << ModuleDefinition.new(namespace: module_namespace, name: module_name, qualified_name: module_qualified_name, node: part)
+      end
+    end
+
+    super
+  end
 end
