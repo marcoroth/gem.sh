@@ -14,9 +14,14 @@ class Visitor < SyntaxTree::Visitor
     name = node.constant.constant.value
     qualified_name = [namespace, name].reject(&:blank?).join("::")
 
-    @current_class = ClassDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name)
+    class_definition = @analyzer.classes.find { |m| m.qualified_name == qualified_name }
 
-    @analyzer.classes << @current_class
+    if class_definition.nil?
+      class_definition = ClassDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name)
+      @analyzer.classes << class_definition
+    end
+
+    @current_class = class_definition
 
     super
 
@@ -27,9 +32,13 @@ class Visitor < SyntaxTree::Visitor
     namespace = @namespace.map(&:name).compact.join("::")
     name = node.constant.constant.value
     qualified_name = [namespace, name].reject(&:blank?).join("::")
-    module_definition = ModuleDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name)
 
-    @analyzer.modules << module_definition
+    module_definition = @analyzer.modules.find { |m| m.qualified_name == qualified_name }
+
+    if module_definition.nil?
+      module_definition = ModuleDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name)
+      @analyzer.modules << module_definition
+    end
 
     @namespace << module_definition
 
