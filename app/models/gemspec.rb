@@ -57,6 +57,10 @@ class Gemspec
     info.analyzer.class_methods.sort_by(&:name)
   end
 
+  def readme_content
+    File.read("#{unpack_data_path}/#{info.readme}")
+  end
+
   def download_path
     "tmp/gems/#{name}".tap do |path|
       FileUtils.mkdir_p(path)

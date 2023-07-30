@@ -18,6 +18,18 @@ class GemInfo
       .select { |file| file.start_with?("lib/") || file.start_with?("app/") }
   end
 
+  def markdown_files
+    @gemspec.files.select { |x| x.end_with?(".md") }
+  end
+
+  def readme
+    readme = markdown_files.find { |x| x.downcase.include?("readme") }
+
+    readme = docs.first if readme.nil?
+
+    readme
+  end
+
   def classes
     @analyzer.classes
   end
