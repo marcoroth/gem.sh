@@ -1,52 +1,81 @@
-<div class="">
-  <%= render partial: "breadcrumb" %>
+<div class="grid grid-cols-4 gap-12">
+  <div class="col-span-3">
+    <%= render partial: "breadcrumb" %>
 
-  <%= render Layout::Heading.new(title: @gem.name) %>
+    <%= render Layout::Heading.new(title: @gem.name) %>
 
-  <%= render GemMetadata.new(gem: @gem) %>
+    <%= render GemMetadata.new(gem: @gem) %>
 
-  <%= render Layout::Subheading.new(title: "Featured Classes") %>
+    <%= render partial: "gem_navigation" %>
 
-  <div class="grid grid-cols-4 gap-8">
-    <% @gem.classes.sample(8).each do |klass| %>
-      <%= link_to gem_class_path(@gem.name, @gem.version, klass.qualified_name) do %>
-        <%= render Layout::Card.new(title: klass.name, description: klass.namespace, label: klass.object_name) %>
+
+    <%= render Layout::Subheading.new(title: "Featured Classes") %>
+
+    <div class="grid grid-cols-4 gap-8">
+      <% @gem.classes.sample(8).each do |klass| %>
+        <%= link_to gem_class_path(@gem.name, @gem.version, klass.qualified_name) do %>
+          <%= render Layout::Card.new(title: klass.name, description: klass.namespace, label: klass.object_name) %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+
+    <div class="grid grid-cols-4 gap-x-8">
+      <% if false %>
+        <aside class="block truncate col-span-1">
+          <%= render Layout::Subheading.new(title: "Files") %>
+
+          <% @gem.info.files.sort.each do |file| %>
+            <%= link_to gem_path(@gem.name) do %>
+              <pre><%= file %></pre>
+            <% end %>
+          <% end %>
+        </aside>
+      <% end %>
+
+      <% if false %>
+        <main class="flex-1 col-span-1">
+          <%= render Layout::Subheading.new(title: @gem.metadata.name) %>
+
+          <div class="mt-6 border-t border-gray-100">
+            <dl class="divide-y divide-gray-100">
+              <% @gem.metadata.instance_variables.each do |var| %>
+                <% value = @gem.metadata.instance_variable_get(var) %>
+                <% next if value.blank? %>
+
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <dt class="text-sm font-medium leading-6 text-gray-900">
+                    <%= var.to_s.gsub("@", "").humanize %>
+                  </dt>
+
+                  <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                    <%= value.to_s %>
+                  </dd>
+                </div>
+              <% end %>
+            </dl>
+          </div>
+        </main>
+      <% end %>
+    </div>
   </div>
 
-  <div class="grid grid-cols-4 gap-x-8">
-    <% if false %>
-      <aside class="block truncate col-span-1">
-        <%= render Layout::Subheading.new(title: "Files") %>
+  <div class="col-span-1">
+    <%= render Layout::Subheading.new(title: "Modules") %>
 
-        <% @gem.info.files.sort.each do |file| %>
-          <%= link_to gem_path(@gem.name) do %>
-            <pre><%= file %></pre>
-          <% end %>
-        <% end %>
-      </aside>
-    <% end %>
+    <ul class="list code mb-12">
+      <% @namespaces.each do |namespace| %>
+        <li><%= link_to namespace.qualified_name, gem_module_path(@gem.name, @version, namespace.qualified_name) %></li>
+      <% end %>
+    </ul>
 
-    <aside class="block truncate col-span-1">
-      <%= render Layout::Subheading.new(title: "Modules") %>
+    <%= render Layout::Subheading.new(title: "Classes") %>
 
-      <ul class="list code">
-        <% @namespaces.each do |namespace| %>
-          <li><%= link_to namespace.qualified_name, gem_module_path(@gem.name, @version, namespace.qualified_name) %></li>
-        <% end %>
-      </ul>
-    </aside>
-
-    <aside class="block truncate col-span-1">
-      <%= render Layout::Subheading.new(title: "Classes") %>
-
-      <ul class="list code">
+    <ul class="list code mb-12">
       <% @classes.each do |klass| %>
         <li>
           <%= link_to klass.name, gem_class_path(@gem.name, @version, klass.qualified_name) %>
 
-          <% if klass.namespace.present? %>
+          <% if klass.namespace.present? && false %>
             <span class="text-gray-400 hover:text-blue-300">
               (<%= link_to klass.qualified_name, gem_module_path(@gem.name, @version, klass.namespace) %>)
             </span>
@@ -54,35 +83,13 @@
 
         </li>
       <% end %>
-      </ul>
-    </aside>
+    </ul>
 
     <%= render ClassMethodsList.new(class_methods: @class_methods, gem: @gem) %>
     <%= render InstanceMethodsList.new(instance_methods: @instance_methods, gem: @gem) %>
 
-    <% if false %>
-      <main class="flex-1 col-span-1">
-        <%= render Layout::Subheading.new(title: @gem.metadata.name) %>
-
-        <div class="mt-6 border-t border-gray-100">
-          <dl class="divide-y divide-gray-100">
-            <% @gem.metadata.instance_variables.each do |var| %>
-              <% value = @gem.metadata.instance_variable_get(var) %>
-              <% next if value.blank? %>
-
-              <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt class="text-sm font-medium leading-6 text-gray-900">
-                  <%= var.to_s.gsub("@", "").humanize %>
-                </dt>
-
-                <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  <%= value.to_s %>
-                </dd>
-              </div>
-            <% end %>
-          </dl>
-        </div>
-      </main>
-    <% end %>
+    <%#= render Superclass.new(superclass: object.superclass, gem: @gem) %>
+    <%#= render ModulesList.new(modules: object.included_modules, title: "Included Modules", gem: @gem) %>
+    <%#= render ModulesList.new(modules: object.extended_modules, title: "Extended Modules", gem: @gem) %>
   </div>
 </div>

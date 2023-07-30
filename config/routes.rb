@@ -23,6 +23,18 @@ Rails.application.routes.draw do
 
       get "/instance_method/:name" => "gems#instance_method", as: :gem_instance_method
       get "/class_method/:name" => "gems#class_method", as: :gem_class_method
+
+      get "/source" => "gems#show", as: :gem_source
+      get "/guides" => "gems#show", as: :gem_guides
+      get "/tutorials" => "gems#show", as: :gem_tutorials
+      get "/wiki" => "gems#show", as: :gem_wiki
+      get "/reference" => "gems#show", as: :gem_reference
+      get "/videos" => "gems#show", as: :gem_videos
+      get "/articles" => "gems#show", as: :gem_articles
+      get "/types" => "gems#show", as: :gem_types
+      get "/community" => "gems#show", as: :gem_community
+      get "/stats" => "gems#show", as: :gem_stats
+      get "/announements" => "gems#show", as: :gem_announements
       get "/" => "gems#show", as: :gem_version
     end
 
