@@ -40,7 +40,7 @@ class Gemspec
   end
 
   def classes
-    info.analyzer.classes.sort_by(&:qualified_name)
+    info.analyzer.classes.sort_by(&:name)
   end
 
   def modules

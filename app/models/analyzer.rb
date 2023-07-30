@@ -3,7 +3,7 @@
 require "syntax_tree"
 
 class Analyzer
-  attr_accessor :classes, :modules, :consts, :instance_methods
+  attr_accessor :classes, :modules, :consts, :instance_methods, :class_methods
 
   def self.call(source)
     new.analyze(source)
@@ -14,6 +14,7 @@ class Analyzer
     @modules = Set.new
     @consts = Set.new
     @instance_methods = Set.new
+    @class_methods = Set.new
 
     @visitor = Visitor.new(self)
   end

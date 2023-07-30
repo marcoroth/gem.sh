@@ -4,8 +4,8 @@ class GemsController < ApplicationController
   end
 
   def show
-    @gem = Gemspec.find(params[:id])
-    @namespaces = @gem.modules
+    @gem = Gemspec.find(params[:gem])
+    @namespaces = @gem.modules.select { |namespace| namespace.namespace.split("::").count <= 1 }
     @classes = @gem.classes
   end
 
@@ -14,11 +14,22 @@ class GemsController < ApplicationController
   end
 
   def namespace
-    @gem = Gemspec.find(params[:id])
-    @namespace = params[:namespace]
-    @namespaces = @gem.modules.filter { |namespace| namespace.qualified_name.start_with?(@namespace) }
-    @classes = @gem.classes.filter { |namespace| namespace.qualified_name.start_with?("#{@namespace}::") }
+    @gem = Gemspec.find(params[:gem])
+    @namespace = params[:name]
+    @namespaces = @gem.modules.select { |namespace| namespace.namespace == @namespace }
+    @classes = @gem.classes.select { |namespace| namespace.namespace == @namespace }
 
     render :show
+  end
+
+  def klass
+    @gem = Gemspec.find(params[:gem])
+    @klass = @gem.classes.find { |klass| klass.qualified_name == params[:name] }
+  end
+
+  def instance_method
+    @gem = Gemspec.find(params[:gem])
+    @klass = @gem.classes.find { |klass| klass.qualified_name == params[:class] }
+    @instance_method = params[:name]
   end
 end

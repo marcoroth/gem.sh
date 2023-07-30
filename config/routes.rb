@@ -7,7 +7,10 @@ Rails.application.routes.draw do
 
   get "/search" => "gems#search", as: :gems_search
 
-  get "/gems/:id/module/:namespace" => "gems#namespace", as: :gem_namespace
+  get "/gems/:gem" => "gems#show", as: :gem
+  get "/gems/:gem/module/:name" => "gems#namespace", as: :gem_namespace
+  get "/gems/:gem/class/:name" => "gems#klass", as: :gem_class
+  get "/gems/:gem/class/:class/instance_method/:name" => "gems#klass", as: :gem_instance_method
 
-  resources :gems, only: [:index, :show]
+  resources :gems, only: [:index]
 end

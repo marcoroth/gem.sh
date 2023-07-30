@@ -1,0 +1,24 @@
+<div class="mx-auto grid grid-cols-3 w-full items-start gap-x-8 px-4 py-10 sm:px-6 lg:px-8">
+  included Modules<br/>
+  parent class<br/>
+
+  <aside class="block truncate col-span-1">
+    <div class="border-b border-gray-200 pb-5 mb-6">
+      <h3 class="text-base font-semibold leading-6 text-gray-900">Class Methods</h3>
+    </div>
+
+    <% @klass.class_methods.each do |class_method| %>
+      <pre><%= link_to class_method, gem_class_path(@gem.name, class_method.name) %></pre>
+    <% end %>
+  </aside>
+
+  <aside class="block truncate col-span-1">
+    <div class="border-b border-gray-200 pb-5 mb-6">
+      <h3 class="text-base font-semibold leading-6 text-gray-900">Instance Methods</h3>
+    </div>
+
+    <% @klass.instance_methods.each do |instance_method| %>
+      <pre><%= link_to instance_method, gem_instance_method_path(@gem.name, instance_method) %></pre>
+    <% end %>
+  </aside>
+</div>
