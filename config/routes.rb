@@ -14,5 +14,8 @@ Rails.application.routes.draw do
   get "/gems/:gem/class/:class/instance_method/:name" => "gems#instance_method", as: :gem_class_instance_method
   get "/gems/:gem/module/:module/instance_method/:name" => "gems#instance_method", as: :gem_module_instance_method
 
+  get "/gems/:gem/class/:class/class_method/:name" => "gems#class_method", as: :gem_class_class_method
+  get "/gems/:gem/module/:module/class_method/:name" => "gems#class_method", as: :gem_module_class_method
+
   resources :gems, only: [:index]
 end

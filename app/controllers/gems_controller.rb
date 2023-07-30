@@ -47,4 +47,17 @@ class GemsController < ApplicationController
       @instance_method = @namespace.instance_methods.find { |instance_method| instance_method.name == params[:name] }
     end
   end
+
+  def class_method
+    @gem = Gemspec.find(params[:gem])
+
+    if params[:class]
+      @klass = @gem.classes.find { |klass| klass.qualified_name == params[:class] }
+      @namespace = @gem.modules.find { |namespace| namespace.qualified_name == @klass.namespace }
+      @class_method = @klass.class_methods.find { |class_method| class_method.name == params[:name] }
+    elsif params[:module]
+      @namespace = @gem.modules.find { |namespace| namespace.qualified_name == params[:module] }
+      @class_method = @namespace.class_methods.find { |class_method| class_method.name == params[:name] }
+    end
+  end
 end

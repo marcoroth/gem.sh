@@ -26,7 +26,7 @@
       </div>
 
       <% @klass.class_methods.each do |class_method| %>
-        <pre><%= link_to class_method.name, gem_class_path(@gem.name, class_method.name) %></pre>
+        <pre><%= link_to class_method.name, class_method.url(@gem.name) %></pre>
       <% end %>
     </aside>
 
