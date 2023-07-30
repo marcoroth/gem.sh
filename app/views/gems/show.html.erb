@@ -3,5 +3,6 @@
     <% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true) %>
 
     <%== markdown.render(@gem.readme_content) %>
+
   </div>
 <% end %>
