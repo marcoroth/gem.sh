@@ -17,9 +17,7 @@
     </div>
 
     <% @namespaces.each do |namespace| %>
-      <%= link_to gem_path(@gem.name) do %>
-        <pre><%= link_to namespace.qualified_name, gem_namespace_path(@gem.name, namespace.qualified_name) %></pre>
-      <% end %>
+      <pre><%= link_to namespace.qualified_name, gem_namespace_path(@gem.name, namespace.qualified_name) %></pre>
     <% end %>
   </aside>
 
@@ -29,9 +27,14 @@
     </div>
 
     <% @classes.each do |klass| %>
-      <%= link_to gem_path(@gem.name) do %>
-        <pre><%= link_to klass.name, gem_class_path(@gem.name, klass.qualified_name) %></pre>
-      <% end %>
+      <code>
+        <%= link_to klass.name, gem_class_path(@gem.name, klass.qualified_name) %>
+
+        <% if klass.namespace.present? %>
+          <span class="text-gray-400 hover:text-blue-300">(<%= link_to klass.namespace, gem_namespace_path(@gem.name, klass.namespace) %>)
+        <% end %>
+
+      </code><br/>
     <% end %>
   </aside>
 
