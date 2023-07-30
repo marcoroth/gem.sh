@@ -140,7 +140,7 @@ body {
   // thin: 100;
   */
 
-  --font-weight-heading: 600;
+  /* --font-weight-heading: 600;
   --font-weight-subheading: 600;
   --font-weight-section-heading: 600;
   --font-weight-interface-text: 500;
@@ -148,7 +148,7 @@ body {
   --font-weight-paragraph: 500;
   --font-weight-interface-text: 500;
   --font-weight-blockquote: 600;
-  --font-weight-excerpt: 600;
+  --font-weight-excerpt: 600; */
 
   --font-weight-heading:           var(--fw-heading);
   --font-weight-subheading:        var(--fw-heading);
@@ -248,7 +248,7 @@ a {
   line-height: var(--line-height-excerpt);
   font-weight: var(--font-weight-excerpt);
 }
-pre, code {
+pre, p code {
   font-family: var(--monspace-font-family);
   font-size: var(--font-size-monospace);
   line-height: var(--line-height-monospace);
@@ -258,7 +258,7 @@ pre, code {
 }
 
 /* for in between paragraphs and content type stuff. */
-.interface-text, .paragraph, ul li, .blockquote, .excerpt, p {
+.interface-text, .paragraph, content ul li, .content ul li, .blockquote, .excerpt, p {
   margin-block-start:1em;
   margin-block-end:1em;
   margin-top: 1em;
