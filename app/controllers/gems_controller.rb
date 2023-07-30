@@ -4,15 +4,18 @@ class GemsController < ApplicationController
     @version = @gem.version
   end
 
+  before_action only: [:show, :source, :metadata, :guides, :tutorials, :wiki, :reference, :videos, :articles, :types, :community, :stats, :announcements] do
+    @namespaces = @gem.modules.select { |namespace| namespace.namespace.split("::").count <= 1 }
+    @classes = @gem.classes
+    @instance_methods = @gem.instance_methods
+    @class_methods = @gem.class_methods
+  end
+
   def index
     @gems = Gem::Specification.all.sort_by { |gem| gem.name }
   end
 
   def show
-    @namespaces = @gem.modules.select { |namespace| namespace.namespace.split("::").count <= 1 }
-    @classes = @gem.classes
-    @instance_methods = @gem.instance_methods
-    @class_methods = @gem.class_methods
   end
 
   def search

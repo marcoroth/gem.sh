@@ -1,0 +1,28 @@
+<%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @classes, class_methods: @class_methods, instance_methods: @instance_methods) do %>
+  <%= render Layout::Subheading.new(title: @gem.metadata.name) %>
+
+  <div class="mt-6 border-t border-gray-100">
+    <dl class="divide-y divide-gray-100">
+      <% @gem.metadata.instance_variables.each do |var| %>
+        <% value = @gem.metadata.instance_variable_get(var) %>
+        <% next if value.blank? %>
+
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-medium leading-6 text-gray-900">
+            <%= var.to_s.gsub("@", "").humanize %>
+          </dt>
+
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            <% if value.is_a?(String) %>
+              <%= value.to_s %>
+            <% elsif value.is_a?(Array) %>
+              <%= value.join("<br/>").html_safe %>
+            <% else %>
+              <%= value.to_s %>
+            <% end %>
+          </dd>
+        </div>
+      <% end %>
+    </dl>
+  </div>
+<% end %>
