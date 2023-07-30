@@ -2,7 +2,7 @@
   <div class="col-span-3">
     <%= render partial: "breadcrumb" %>
 
-    <%= render Layout::Heading.new(title: @gem.name) %>
+    <%= render Layout::GemHeading.new(title: @gem.name) %>
 
     <%= render GemMetadata.new(gem: @gem) %>
 
