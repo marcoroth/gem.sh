@@ -12,7 +12,7 @@ class ClassDefinition < OpenStruct
   end
 
   def to_s
-    "#{object_name} #{qualified_name}#{superclass ? " < #{superclass.qualified_name}" : nil}"
+    "#{object_name} #{qualified_name}"
   end
 
   def to_param

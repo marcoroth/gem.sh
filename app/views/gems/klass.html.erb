@@ -13,7 +13,8 @@
   </div>
 
   <div class="col-span-1">
-    <%= render Superclass.new(superclass: @klass.superclass, gem: @gem) %>
+    <%= render Superclass.new(superclass: @namespace, gem: @gem, title: "Module") if @namespace %>
+    <%= render Superclass.new(superclass: @klass.superclass, gem: @gem, title: "Parent class") if @klass.superclass %>
     <%= render ModulesList.new(modules: @klass.included_modules, title: "Included Modules", gem: @gem) if @klass.included_modules.any? %>
     <%= render ModulesList.new(modules: @klass.extended_modules, title: "Extended Modules", gem: @gem) if @klass.extended_modules.any? %>
     <%= render ClassMethodsList.new(class_methods: @klass.class_methods, gem: @gem) if @klass.class_methods.any? %>
