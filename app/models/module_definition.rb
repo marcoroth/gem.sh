@@ -10,4 +10,8 @@ class ModuleDefinition < OpenStruct
   def object_name
     "module"
   end
+
+  def to_param
+    qualified_name
+  end
 end

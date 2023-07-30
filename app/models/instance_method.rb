@@ -18,4 +18,8 @@ class InstanceMethod < OpenStruct
   def object_name
     "Instance Method"
   end
+
+  def to_param
+    name
+  end
 end

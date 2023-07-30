@@ -10,4 +10,8 @@ class ClassDefinition < OpenStruct
   def object_name
     "class"
   end
+
+  def to_param
+    qualified_name
+  end
 end

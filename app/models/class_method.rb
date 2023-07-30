@@ -18,4 +18,8 @@ class ClassMethod < OpenStruct
   def object_name
     "Class Method"
   end
+
+  def to_param
+    name
+  end
 end
