@@ -1,5 +1,6 @@
 <div class="">
   <%= render partial: "breadcrumb" %>
+  <%= render Layout::Heading.new(title: @gem.name) %>
 
   <div class="grid grid-cols-5 gap-x-8">
     <%= render Superclass.new(superclass: @klass.superclass, gem: @gem) %>

@@ -1,6 +1,10 @@
 <div class="">
   <%= render partial: "breadcrumb" %>
 
+  <%= render Layout::Heading.new(title: @gem.name) %>
+
+  <%= render GemMetadata.new(gem: @gem) %>
+
   <div class="grid grid-cols-4 gap-x-8">
     <% if false %>
       <aside class="block truncate col-span-1">
@@ -21,9 +25,9 @@
         <h3 class="text-base font-semibold leading-6 text-gray-900">Modules</h3>
       </div>
       <ul class="list code">
-      <% @namespaces.each do |namespace| %>
-        <li><%= link_to namespace.qualified_name, gem_module_path(@gem.name, @version, namespace.qualified_name) %></li>
-      <% end %>
+        <% @namespaces.each do |namespace| %>
+          <li><%= link_to namespace.qualified_name, gem_module_path(@gem.name, @version, namespace.qualified_name) %></li>
+        <% end %>
       </ul>
     </aside>
 

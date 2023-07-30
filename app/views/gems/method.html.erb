@@ -1,5 +1,6 @@
 <div class="">
   <%= render partial: "breadcrumb" %>
+  <%= render Layout::Heading.new(title: @gem.name) %>
 
   <div class="grid grid-cols-4 gap-12">
     <% object = (@klass || @namespace) %>
