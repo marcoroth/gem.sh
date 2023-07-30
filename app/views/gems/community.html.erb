@@ -1,3 +1,19 @@
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @classes, class_methods: @class_methods, instance_methods: @instance_methods) do %>
+  <div class="max-w-2xl mb-12">
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Meet our contributors</h2>
+  </div>
 
+  <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-3 sm:gap-y-16 xl:col-span-2">
+    <% Gem::Specification.all.map(&:authors).flatten.sample(6).each do |author| %>
+      <li>
+        <div class="flex items-center gap-x-6">
+          <img class="h-16 w-16 rounded-full" src="https://randomuser.me/api/portraits/<%= ["men", "women"].sample %>/<%= (1..100).to_a.sample %>.jpg" alt="">
+          <div>
+            <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900"><%= author %></h3>
+            <p class="text-sm font-semibold leading-6 text-gray-600"><%= ["Author", "Contributor", "Library Author", "Developer"].sample %></p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
