@@ -5,7 +5,7 @@
     <% @classes.each do |klass| %>
       <li>
         <code>
-          <%= link_to klass.name, gem_class_path(@gem.name, @gem.version, klass.qualified_name) %>
+          <%= active_link_to klass.name, gem_class_path(@gem.name, @gem.version, klass.qualified_name) %>
 
           <% if klass.namespace.present? && false %>
             <span class="text-gray-400 hover:text-blue-300">

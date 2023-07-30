@@ -3,7 +3,7 @@
 
   <ul class="list code">
     <% @modules.each do |m| %>
-      <li><pre><%= link_to m.qualified_name, gem_module_path(@gem.name, @gem.version, m.qualified_name) %></pre></li>
+      <li><%= active_link_to m.qualified_name, gem_module_path(@gem.name, @gem.version, m.qualified_name) %></li>
     <% end %>
   </ul>
 </aside>
