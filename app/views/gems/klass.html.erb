@@ -3,10 +3,10 @@
     <%= render partial: "breadcrumb" %>
 
     <div class="mt-6 mb-6">
-    <%= render Layout::Heading.new(title: @klass) %>
+      <%= render Layout::Heading.new(title: @klass) %>
     </div>
 
-    <div class="grid grid-cols-4 gap-x-8">
+    <div class="">
       <% comment = @klass.comments.map { |comment| comment.value.delete_prefix("#").strip+"\n\n" }.join("\n") %>
 
       <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
