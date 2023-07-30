@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       get "/types" => "gems#types", as: :gem_types
       get "/community" => "gems#community", as: :gem_community
       get "/stats" => "gems#stats", as: :gem_stats
-      get "/announements" => "gems#announements", as: :gem_announements
+      get "/announcements" => "gems#announcements", as: :gem_announcements
       get "/" => "gems#show", as: :gem_version
     end
 
