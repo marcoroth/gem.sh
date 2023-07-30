@@ -1,69 +1,95 @@
-<div class="mx-auto grid grid-cols-3 w-full items-start gap-x-8 px-4 py-10 sm:px-6 lg:px-8">
-  <aside class="block truncate col-span-1">
-    <div class="border-b border-gray-200 pb-5 mb-6">
-      <h3 class="text-base font-semibold leading-6 text-gray-900">Files</h3>
-    </div>
+<div class="mx-auto w-full items-start px-4 py-10 sm:px-6 lg:px-8">
+  <%= render partial: "breadcrumb" %>
 
-    <% @gem.info.files.sort.each do |file| %>
-      <%= link_to gem_path(@gem.name) do %>
-        <pre><%= file %></pre>
-      <% end %>
-    <% end %>
-  </aside>
-
-  <aside class="block truncate col-span-1">
-    <div class="border-b border-gray-200 pb-5 mb-6">
-      <h3 class="text-base font-semibold leading-6 text-gray-900">Modules</h3>
-    </div>
-
-    <% @namespaces.each do |namespace| %>
-      <pre><%= link_to namespace.qualified_name, gem_namespace_path(@gem.name, namespace.qualified_name) %></pre>
-    <% end %>
-  </aside>
-
-  <aside class="block truncate col-span-1">
-    <div class="border-b border-gray-200 pb-5 mb-6">
-      <h3 class="text-base font-semibold leading-6 text-gray-900">Classes</h3>
-    </div>
-
-    <% @classes.each do |klass| %>
-      <code>
-        <%= link_to klass.name, gem_class_path(@gem.name, klass.qualified_name) %>
-
-        <% if klass.namespace.present? %>
-          <span class="text-gray-400 hover:text-blue-300">(<%= link_to klass.namespace, gem_namespace_path(@gem.name, klass.namespace) %>)
-        <% end %>
-
-      </code><br/>
-    <% end %>
-  </aside>
-
-  <% if false %>
-    <main class="flex-1 col-span-1">
+  <div class="grid grid-cols-5 gap-x-8">
+    <aside class="block truncate col-span-1">
       <div class="border-b border-gray-200 pb-5 mb-6">
-        <h3 class="text-base font-semibold leading-6 text-gray-900">
-          <pre><%= @gem.metadata.name %></pre>
-        </h3>
+        <h3 class="text-base font-semibold leading-6 text-gray-900">Files</h3>
       </div>
 
-      <div class="mt-6 border-t border-gray-100">
-        <dl class="divide-y divide-gray-100">
-          <% @gem.metadata.instance_variables.each do |var| %>
-            <% value = @gem.metadata.instance_variable_get(var) %>
-            <% next if value.blank? %>
+      <% @gem.info.files.sort.each do |file| %>
+        <%= link_to gem_path(@gem.name) do %>
+          <pre><%= file %></pre>
+        <% end %>
+      <% end %>
+    </aside>
 
-            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-              <dt class="text-sm font-medium leading-6 text-gray-900">
-                <%= var.to_s.gsub("@", "").humanize %>
-              </dt>
+    <aside class="block truncate col-span-1">
+      <div class="border-b border-gray-200 pb-5 mb-6">
+        <h3 class="text-base font-semibold leading-6 text-gray-900">Modules</h3>
+      </div>
 
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                <%= value.to_s %>
-              </dd>
-            </div>
+      <% @namespaces.each do |namespace| %>
+        <pre><%= link_to namespace.qualified_name, gem_namespace_path(@gem.name, namespace.qualified_name) %></pre>
+      <% end %>
+    </aside>
+
+    <aside class="block truncate col-span-1">
+      <div class="border-b border-gray-200 pb-5 mb-6">
+        <h3 class="text-base font-semibold leading-6 text-gray-900">Classes</h3>
+      </div>
+
+      <% @classes.each do |klass| %>
+        <code>
+          <%= link_to klass.name, gem_class_path(@gem.name, klass.qualified_name) %>
+
+          <% if klass.namespace.present? %>
+            <span class="text-gray-400 hover:text-blue-300">
+              (<%= link_to klass.namespace, gem_namespace_path(@gem.name, klass.namespace) %>)
+            </span>
           <% end %>
-        </dl>
+
+        </code><br/>
+      <% end %>
+    </aside>
+
+    <aside class="block truncate col-span-1">
+      <div class="border-b border-gray-200 pb-5 mb-6">
+        <h3 class="text-base font-semibold leading-6 text-gray-900">Instance Methods</h3>
       </div>
-    </main>
-  <% end %>
+
+      <% @instance_methods.each do |instance_method| %>
+        <pre><%= link_to instance_method.name, gem_instance_method_path(@gem.name, instance_method.name) %></pre>
+      <% end %>
+    </aside>
+
+    <aside class="block truncate col-span-1">
+      <div class="border-b border-gray-200 pb-5 mb-6">
+        <h3 class="text-base font-semibold leading-6 text-gray-900">Class Methods</h3>
+      </div>
+
+      <% @class_methods.each do |instance_method| %>
+        <pre><%= link_to instance_method.name, gem_instance_method_path(@gem.name, instance_method.name) %></pre>
+      <% end %>
+    </aside>
+
+    <% if false %>
+      <main class="flex-1 col-span-1">
+        <div class="border-b border-gray-200 pb-5 mb-6">
+          <h3 class="text-base font-semibold leading-6 text-gray-900">
+            <pre><%= @gem.metadata.name %></pre>
+          </h3>
+        </div>
+
+        <div class="mt-6 border-t border-gray-100">
+          <dl class="divide-y divide-gray-100">
+            <% @gem.metadata.instance_variables.each do |var| %>
+              <% value = @gem.metadata.instance_variable_get(var) %>
+              <% next if value.blank? %>
+
+              <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt class="text-sm font-medium leading-6 text-gray-900">
+                  <%= var.to_s.gsub("@", "").humanize %>
+                </dt>
+
+                <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  <%= value.to_s %>
+                </dd>
+              </div>
+            <% end %>
+          </dl>
+        </div>
+      </main>
+    <% end %>
+  </div>
 </div>

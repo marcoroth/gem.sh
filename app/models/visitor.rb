@@ -10,11 +10,11 @@ class Visitor < SyntaxTree::Visitor
   end
 
   def visit_class(node)
-    namespace = @namespace.compact.join("::")
+    namespace = @namespace.map(&:name).compact.join("::")
     name = node.constant.constant.value
     qualified_name = [namespace, name].reject(&:blank?).join("::")
 
-    @current_class = OpenStruct.new(namespace: namespace, name: name, qualified_name: qualified_name, instance_methods: [], class_methods: [])
+    @current_class = ClassDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name)
 
     @analyzer.classes << @current_class
 
@@ -24,13 +24,14 @@ class Visitor < SyntaxTree::Visitor
   end
 
   def visit_module(node)
-    namespace = @namespace.compact.join("::")
+    namespace = @namespace.map(&:name).compact.join("::")
     name = node.constant.constant.value
     qualified_name = [namespace, name].reject(&:blank?).join("::")
+    module_definition = ModuleDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name)
 
-    @analyzer.modules << OpenStruct.new(namespace: namespace, name: name, qualified_name: qualified_name)
+    @analyzer.modules << module_definition
 
-    @namespace << name
+    @namespace << module_definition
 
     super
 
@@ -38,7 +39,7 @@ class Visitor < SyntaxTree::Visitor
   end
 
   def visit_const(node)
-    @analyzer.consts << [*@namespace, node.value].compact.join("::")
+    @analyzer.consts << [*@namespace.map(&:name), node.value].compact.join("::")
 
     super
   end
@@ -49,15 +50,21 @@ class Visitor < SyntaxTree::Visitor
 
     if @current_class
       if target == "self"
-        @current_class.class_methods << method_name
+        @current_class.class_methods << ClassMethod.new(name: method_name, target: @current_class, node: node)
       else
-        @current_class.instance_methods << method_name
+        @current_class.instance_methods << InstanceMethod.new(name: method_name, target: @current_class, node: node)
+      end
+    elsif @namespace.any?
+      if target == "self"
+        @namespace.last.class_methods << ClassMethod.new(name: method_name, target: @namespace.last, node: node)
+      else
+        @namespace.last.instance_methods << InstanceMethod.new(name: method_name, target: @namespace.last, node: node)
       end
     else
       if target == "self"
-        @analyzer.class_methods << method_name
+        @analyzer.class_methods << ClassMethod.new(name: method_name, target: @current_class, node: node)
       else
-        @analyzer.instance_methods << method_name
+        @analyzer.instance_methods << InstanceMethod.new(name: method_name, target: @current_class, node: node)
       end
     end
 

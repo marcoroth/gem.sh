@@ -7,6 +7,8 @@ class GemsController < ApplicationController
     @gem = Gemspec.find(params[:gem])
     @namespaces = @gem.modules.select { |namespace| namespace.namespace.split("::").count <= 1 }
     @classes = @gem.classes
+    @instance_methods = @gem.instance_methods
+    @class_methods = @gem.class_methods
   end
 
   def search
@@ -15,9 +17,12 @@ class GemsController < ApplicationController
 
   def namespace
     @gem = Gemspec.find(params[:gem])
-    @namespace = params[:name]
-    @namespaces = @gem.modules.select { |namespace| namespace.namespace == @namespace }
-    @classes = @gem.classes.select { |namespace| namespace.namespace == @namespace }
+    @namespace = @gem.modules.find { |namespace| namespace.qualified_name == params[:name] }
+    @namespaces = @gem.modules.select { |namespace| namespace.namespace == params[:name] }
+    @classes = @gem.classes.select { |namespace| namespace.namespace == params[:name] }
+
+    @instance_methods = Array.wrap(@namespace && @namespace.instance_methods)
+    @class_methods = Array.wrap(@namespace && @namespace.class_methods)
 
     render :show
   end
@@ -25,11 +30,15 @@ class GemsController < ApplicationController
   def klass
     @gem = Gemspec.find(params[:gem])
     @klass = @gem.classes.find { |klass| klass.qualified_name == params[:name] }
+    @namespace = @gem.modules.find { |namespace| namespace.qualified_name == @klass.namespace }
+    @instance_methods = @klass.instance_methods
+    @class_methods = @klass.class_methods
   end
 
   def instance_method
     @gem = Gemspec.find(params[:gem])
     @klass = @gem.classes.find { |klass| klass.qualified_name == params[:class] }
-    @instance_method = params[:name]
+    @namespace = @gem.modules.find { |namespace| namespace.qualified_name == @klass.namespace }
+    @instance_method = @klass.instance_methods.find { |instance_method| instance_method.name == params[:name] }
   end
 end

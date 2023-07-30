@@ -47,6 +47,14 @@ class Gemspec
     info.analyzer.modules.sort_by(&:qualified_name)
   end
 
+  def instance_methods
+    info.analyzer.instance_methods.sort_by(&:name)
+  end
+
+  def class_methods
+    info.analyzer.class_methods.sort_by(&:name)
+  end
+
   def download_path
     "tmp/gems/#{name}".tap do |path|
       FileUtils.mkdir_p(path)
