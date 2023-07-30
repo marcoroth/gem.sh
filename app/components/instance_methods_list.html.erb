@@ -1,0 +1,9 @@
+<aside class="block truncate col-span-1 mb-12">
+  <div class="border-b border-gray-200 pb-5 mb-6">
+    <h3 class="text-base font-semibold leading-6 text-gray-900">Instance Methods</h3>
+  </div>
+
+  <% @instance_methods.each do |instance_method| %>
+    <pre><%= link_to instance_method, instance_method.url(@gem) %></pre>
+  <% end %>
+</aside>

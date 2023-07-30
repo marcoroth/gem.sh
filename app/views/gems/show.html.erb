@@ -45,25 +45,8 @@
       <% end %>
     </aside>
 
-    <aside class="block truncate col-span-1">
-      <div class="border-b border-gray-200 pb-5 mb-6">
-        <h3 class="text-base font-semibold leading-6 text-gray-900">Instance Methods</h3>
-      </div>
-
-      <% @instance_methods.each do |instance_method| %>
-        <pre><%= link_to instance_method.name, instance_method.url(@gem.name) %></pre>
-      <% end %>
-    </aside>
-
-    <aside class="block truncate col-span-1">
-      <div class="border-b border-gray-200 pb-5 mb-6">
-        <h3 class="text-base font-semibold leading-6 text-gray-900">Class Methods</h3>
-      </div>
-
-      <% @class_methods.each do |instance_method| %>
-        <pre><%= link_to instance_method.name, instance_method.url(@gem.name) %></pre>
-      <% end %>
-    </aside>
+    <%= render ClassMethodsList.new(class_methods: @class_methods, gem: @gem.name) %>
+    <%= render InstanceMethodsList.new(instance_methods: @instance_methods, gem: @gem.name) %>
 
     <% if false %>
       <main class="flex-1 col-span-1">
