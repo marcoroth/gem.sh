@@ -3,7 +3,7 @@
 
   <ul class="list code">
     <% @con_methods.each do |method| %>
-      <li><%= active_link_to method, method.url(@gem) %></li>
+      <%= active_link_to method, method.url(@gem), wrap_tag: :li %>
     <% end %>
   <ul>
 </aside>
