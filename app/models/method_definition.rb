@@ -12,7 +12,7 @@ class MethodDefinition < OpenStruct
   end
 
   def eql?(other)
-    target.qualified_name == other.target.qualified_name
+    name == other.name && target.qualified_name == other.target.qualified_name
   end
 
   def to_s
