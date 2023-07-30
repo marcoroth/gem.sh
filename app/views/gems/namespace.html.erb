@@ -10,14 +10,10 @@
   </div>
 
   <div class="col-span-1">
+    <%= render ModulesList.new(modules: @namespace.included_modules, title: "Included Modules", gem: @gem) if @namespace.included_modules %>
+    <%= render ModulesList.new(modules: @namespace.extended_modules, title: "Extended Modules", gem: @gem) if @namespace.extended_modules %>
     <%= render ClassMethodsList.new(class_methods: @class_methods, gem: @gem) %>
     <%= render InstanceMethodsList.new(instance_methods: @instance_methods, gem: @gem) %>
-
     <%= render ClassesList.new(classes: @classes, gem: @gem) %>
-
-
-    <%#= render Superclass.new(superclass: object.superclass, gem: @gem) %>
-    <%= render ModulesList.new(modules: @namespace.included_modules, title: "Included Modules", gem: @gem) %>
-    <%= render ModulesList.new(modules: @namespace.extended_modules, title: "Extended Modules", gem: @gem) %>
   </div>
 </div>
