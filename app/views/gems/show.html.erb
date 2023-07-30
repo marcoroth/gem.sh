@@ -18,7 +18,7 @@
 
     <% @namespaces.each do |namespace| %>
       <%= link_to gem_path(@gem.name) do %>
-        <pre><%= link_to namespace.qualified_name, gem_namespace_path(@gem.name, namespace) %></pre>
+        <pre><%= link_to namespace.qualified_name, gem_namespace_path(@gem.name, namespace.qualified_name) %></pre>
       <% end %>
     <% end %>
   </aside>
@@ -30,7 +30,7 @@
 
     <% @classes.each do |klass| %>
       <%= link_to gem_path(@gem.name) do %>
-        <pre><%= link_to klass.name, gem_namespace_path(@gem.name, klass) %></pre>
+        <pre><%= link_to klass.name, gem_class_path(@gem.name, klass.qualified_name) %></pre>
       <% end %>
     <% end %>
   </aside>

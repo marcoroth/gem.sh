@@ -19,6 +19,6 @@ class GemsController < ApplicationController
     @namespaces = @gem.info.analyzer.modules.sort_by(&:qualified_name).filter { |namespace| namespace.qualified_name.start_with?(@namespace) }
     @classes = @gem.info.analyzer.classes.sort_by(&:qualified_name).filter { |namespace| namespace.qualified_name.start_with?("#{@namespace}::") }
 
-    render view: :show
+    render :show
   end
 end
