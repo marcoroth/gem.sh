@@ -25,7 +25,7 @@ class GemInfo
   def readme
     readme = markdown_files.find { |x| x.downcase.include?("readme") }
 
-    readme = docs.first if readme.nil?
+    readme = markdown_files.first if readme.nil?
 
     readme
   end

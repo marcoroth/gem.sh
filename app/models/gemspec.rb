@@ -70,7 +70,11 @@ class Gemspec
   end
 
   def readme_content
-    File.read("#{unpack_data_path}/#{info.readme}")
+    if info.readme
+      File.read("#{unpack_data_path}/#{info.readme}")
+    else
+      "No README"
+    end
   end
 
   def download_path
