@@ -6,17 +6,18 @@
 
     <%= render GemMetadata.new(gem: @gem) %>
 
-    <%= render partial: "gem_navigation" %>
-
     <%= render Layout::Subheading.new(title: "Featured Classes") %>
 
-    <div class="grid grid-cols-4 gap-8">
+    <div class="grid grid-cols-4 gap-4">
       <% @gem.classes.sample(8).each do |klass| %>
         <%= link_to gem_class_path(@gem.name, @gem.version, klass.qualified_name) do %>
           <%= render Layout::Card.new(title: klass.name, description: klass.namespace, label: klass.object_name) %>
         <% end %>
       <% end %>
     </div>
+
+    <%= render partial: "gem_navigation" %>
+
 
     <div class="grid grid-cols-4 gap-x-8">
       <% if false %>
