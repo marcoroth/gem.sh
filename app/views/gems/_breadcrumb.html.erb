@@ -15,8 +15,8 @@
             <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
           </svg>
 
-          <%= link_to gem_namespace_path(@gem.name, @namespace.qualified_name), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" do %>
-            <pre><%= @namespace.object_name %> <%= @namespace.qualified_name %></pre>
+          <%= link_to gem_module_path(@gem.name, @namespace.qualified_name), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" do %>
+            <pre><%= @namespace %></pre>
           <% end %>
         </div>
       </li>
@@ -29,7 +29,7 @@
             <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
           </svg>
           <%= link_to gem_class_path(@gem.name, @klass.qualified_name), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" do %>
-            <pre><%= @klass.object_name %> <%= @klass.qualified_name %></pre>
+            <pre><%= @klass %></pre>
           <% end %>
         </div>
       </li>
@@ -42,7 +42,7 @@
             <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
           </svg>
           <%= link_to @class_method.url(@gem.name), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" do %>
-            <pre><%= @class_method.object_name %> `<%= @class_method.name %>`</pre>
+            <pre><%= @class_method %></pre>
           <% end %>
         </div>
       </li>
@@ -55,7 +55,7 @@
             <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
           </svg>
           <%= link_to @instance_method.url(@gem.name), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" do %>
-            <pre><%= @instance_method.object_name %> `<%= @instance_method.name %>`</pre>
+            <pre><%= @instance_method %></pre>
           <% end %>
         </div>
       </li>
