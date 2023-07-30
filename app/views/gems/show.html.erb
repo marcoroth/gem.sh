@@ -1,18 +1,20 @@
 <div class="mx-auto w-full items-start px-4 py-10 sm:px-6 lg:px-8">
   <%= render partial: "breadcrumb" %>
 
-  <div class="grid grid-cols-5 gap-x-8">
-    <aside class="block truncate col-span-1">
-      <div class="border-b border-gray-200 pb-5 mb-6">
-        <h3 class="text-base font-semibold leading-6 text-gray-900">Files</h3>
-      </div>
+  <div class="grid grid-cols-4 gap-x-8">
+    <% if false %>
+      <aside class="block truncate col-span-1">
+        <div class="border-b border-gray-200 pb-5 mb-6">
+          <h3 class="text-base font-semibold leading-6 text-gray-900">Files</h3>
+        </div>
 
-      <% @gem.info.files.sort.each do |file| %>
-        <%= link_to gem_path(@gem.name) do %>
-          <pre><%= file %></pre>
+        <% @gem.info.files.sort.each do |file| %>
+          <%= link_to gem_path(@gem.name) do %>
+            <pre><%= file %></pre>
+          <% end %>
         <% end %>
-      <% end %>
-    </aside>
+      </aside>
+    <% end %>
 
     <aside class="block truncate col-span-1">
       <div class="border-b border-gray-200 pb-5 mb-6">
