@@ -12,7 +12,9 @@
       </div>
 
       <%= render Layout::CodeBlock.new do %>
-        <%- if object.is_a?(ModuleDefinition) || object.is_a?(ClassDefinition) -%>
+        <%- if object.is_a?(ClassDefinition) -%>
+        <%= object.object_name %> <%= object.qualified_name %> < <%= object.superclass.qualified_name %>
+        <%- elsif object.is_a?(ModuleDefinition) -%>
         <%= object.object_name %> <%= object.qualified_name %>
         <%- end -%>
           <%- if @method.instance_method? -%>
@@ -29,6 +31,11 @@
     </div>
 
     <div class="col-span-1">
+      <% if object.is_a?(ClassDefinition) %>
+        <%= render Superclass.new(superclass: object.superclass, gem: @gem) %>
+        <%= render ModulesList.new(modules: [], title: "Included Modules", gem: @gem) %>
+      <% end %>
+
       <%= render ClassMethodsList.new(class_methods: object.class_methods, gem: @gem) %>
       <%= render InstanceMethodsList.new(instance_methods: object.instance_methods, gem: @gem) %>
     </div>

@@ -1,5 +1,5 @@
 class ClassDefinition < OpenStruct
-  def initialize(namespace: nil, name: nil, qualified_name: nil, node: nil, instance_methods: [], class_methods: [])
+  def initialize(namespace: nil, name: nil, qualified_name: nil, node: nil, superclass: nil, instance_methods: [], class_methods: [])
     super
   end
 
@@ -12,7 +12,7 @@ class ClassDefinition < OpenStruct
   end
 
   def to_s
-    "#{object_name} #{qualified_name}"
+    "#{object_name} #{qualified_name}#{superclass ? " < #{superclass.qualified_name}" : nil}"
   end
 
   def to_param

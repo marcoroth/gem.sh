@@ -16,8 +16,26 @@ class Visitor < SyntaxTree::Visitor
 
     class_definition = @analyzer.classes.find { |m| m.qualified_name == qualified_name }
 
+    if node.superclass
+      superclass_namespace = node.superclass.try(:parent).try(:value).try(:value)
+      superclass_name = node.superclass.try(:constant).try(:value) || node.superclass.try(:value).try(:value)
+      superclass_qualified_name = [superclass_namespace, superclass_name].reject(&:blank?).join("::")
+
+      superclass_definition = ClassDefinition.new(
+        namespace: superclass_namespace,
+        name: superclass_name,
+        qualified_name: superclass_qualified_name,
+        node: node.superclass
+      )
+    else
+      superclass_definition = ClassDefinition.new(
+        name: "Object",
+        qualified_name: "Object"
+      )
+    end
+
     if class_definition.nil?
-      class_definition = ClassDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node)
+      class_definition = ClassDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node, superclass: superclass_definition)
       @analyzer.classes << class_definition
     end
 
