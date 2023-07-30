@@ -6,7 +6,7 @@
 
     <div class="col-span-3">
       <div class="border-b border-gray-300 pb-5 mb-6 sm:flex sm:items-center sm:justify-between">
-        <h3 class="text-xl font-semibold leading-6 text-gray-900 font-mono font-bold">
+        <h3 class="section-heading font-semibold leading-6 text-gray-900 font-mono">
           <%= @method %>
         </h3>
       </div>
@@ -46,8 +46,8 @@
         <%= render ModulesList.new(modules: object.extended_modules, title: "Extended Modules", gem: @gem) %>
       <% end %>
 
-      <%= render ClassMethodsList.new(class_methods: object.class_methods, gem: @gem) %>
-      <%= render InstanceMethodsList.new(instance_methods: object.instance_methods, gem: @gem) %>
+      <%= render MethodsList.new(con_methods: object.class_methods, gem: @gem, prefix: "Class") %>
+      <%= render MethodsList.new(con_methods: object.instance_methods, gem: @gem, prefix: "Instance") %>
     </div>
   </div>
 </div>

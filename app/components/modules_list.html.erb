@@ -3,7 +3,9 @@
     <h3 class="text-base font-semibold leading-6 text-gray-900"><%= @title %></h3>
   </div>
 
+  <ul class="list code">
   <% @modules.each do |m| %>
-    <pre><%= link_to m.qualified_name, gem_module_path(@gem.name, @gem.version, m.qualified_name) %></pre>
+    <li><%= link_to m.qualified_name, gem_module_path(@gem.name, @gem.version, m.qualified_name) %></li>
   <% end %>
+  </ul>
 </aside>
