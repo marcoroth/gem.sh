@@ -1,5 +1,5 @@
 <pre class="rouge border border-gray-300 rounded">
-  <%== formatter.format(lexer.lex(content)) %>
+  <%== formatter.format(lexer.lex(content.gsub("        ", "  "))) %>
 </pre>
 
 <style type="text/css">
