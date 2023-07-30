@@ -1,0 +1,32 @@
+<div class="">
+  <%= render partial: "breadcrumb" %>
+
+  <div class="grid grid-cols-4 gap-12">
+    <% object = (@klass || @namespace) %>
+
+    <div class="col-span-3">
+      <div class="border-b border-gray-300 pb-5 mb-6 sm:flex sm:items-center sm:justify-between">
+        <h3 class="text-xl font-semibold leading-6 text-gray-900 font-mono font-bold">
+          <%= @method %>
+        </h3>
+      </div>
+
+      <%= render Layout::CodeBlock.new do %>
+        <%= object.object_name %> <%= object.qualified_name %>
+          <%- if @method.instance_method? -%>
+          def <%= @method.name %>(...)
+          <%- else -%>
+          def self.<%= @method.name %>(...)
+          <%- end -%>
+            # ...
+          end
+        end
+      <% end %>
+    </div>
+
+    <div class="col-span-1">
+      <%= render ClassMethodsList.new(class_methods: object.class_methods, gem: @gem.name) %>
+      <%= render InstanceMethodsList.new(instance_methods: object.instance_methods, gem: @gem.name) %>
+    </div>
+  </div>
+</div>
