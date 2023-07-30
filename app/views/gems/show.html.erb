@@ -22,7 +22,7 @@
       </div>
 
       <% @namespaces.each do |namespace| %>
-        <pre><%= link_to namespace.qualified_name, gem_namespace_path(@gem.name, namespace.qualified_name) %></pre>
+        <pre><%= link_to namespace.qualified_name, gem_module_path(@gem.name, namespace.qualified_name) %></pre>
       <% end %>
     </aside>
 
@@ -37,7 +37,7 @@
 
           <% if klass.namespace.present? %>
             <span class="text-gray-400 hover:text-blue-300">
-              (<%= link_to klass.namespace, gem_namespace_path(@gem.name, klass.namespace) %>)
+              (<%= link_to klass.qualified_name, gem_module_path(@gem.name, klass.namespace) %>)
             </span>
           <% end %>
 
