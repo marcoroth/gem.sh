@@ -2,11 +2,11 @@
   <%= render partial: "breadcrumb" %>
   <% object = (@klass || @namespace) %>
 
-  <pre>
+  <%= render Layout::CodeBlock.new do %>
     <%= object.object_name %> <%= object.qualified_name %>
       def <%= @instance_method.name %>(...)
         # ...
       end
     end
-  </pre>
+  <% end %>
 </div>
