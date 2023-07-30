@@ -11,6 +11,15 @@
         </h3>
       </div>
 
+      <div class="mb-6">
+        <% comment = @method.comments.each.map { |comment| comment.value.strip.gsub("#", "").strip+"<br>" }.join("\n") %>
+
+        <%#== YARD::Templates::Helpers::Markup::RDocMarkup.new(comment).to_html %>
+
+        <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
+        <%== h.convert(comment) %>
+      </div>
+
       <%= render Layout::CodeBlock.new do %>
         <%- if object.is_a?(ClassDefinition) -%>
         <%= object.object_name %> <%= object.qualified_name %> < <%= object.superclass.qualified_name %>

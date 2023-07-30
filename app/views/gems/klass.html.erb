@@ -8,4 +8,9 @@
     <%= render ClassMethodsList.new(class_methods: @klass.class_methods, gem: @gem) %>
     <%= render InstanceMethodsList.new(instance_methods: @klass.instance_methods, gem: @gem) %>
   </div>
+
+  <% comment = @klass.comments.map { |comment| comment.value.delete_prefix("#").strip+"\n\n" }.join("\n") %>
+
+  <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
+  <%== h.convert(comment) %>
 </div>

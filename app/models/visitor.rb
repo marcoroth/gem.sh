@@ -6,6 +6,7 @@ class Visitor < SyntaxTree::Visitor
   def initialize(analyzer)
     @analyzer = analyzer
     @namespace = []
+    @comments = []
     @current_class = nil
   end
 
@@ -35,10 +36,11 @@ class Visitor < SyntaxTree::Visitor
     end
 
     if class_definition.nil?
-      class_definition = ClassDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node, superclass: superclass_definition)
+      class_definition = ClassDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node, superclass: superclass_definition, comments: @comments)
       @analyzer.classes << class_definition
     end
 
+    @comments = []
     @current_class = class_definition
 
     super
@@ -54,10 +56,11 @@ class Visitor < SyntaxTree::Visitor
     module_definition = @analyzer.modules.find { |m| m.qualified_name == qualified_name }
 
     if module_definition.nil?
-      module_definition = ModuleDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node)
+      module_definition = ModuleDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node, comments: @comments)
       @analyzer.modules << module_definition
     end
 
+    @comments = []
     @namespace << module_definition
 
     super
@@ -75,27 +78,33 @@ class Visitor < SyntaxTree::Visitor
     method_name = node.name.value
     target = node.target&.value&.value
 
+    super
+
     if @current_class
       if target == "self"
-        @current_class.class_methods << ClassMethod.new(name: method_name, target: @current_class, node: node)
+        @current_class.class_methods << ClassMethod.new(name: method_name, target: @current_class, node: node, comments: @comments)
       else
-        @current_class.instance_methods << InstanceMethod.new(name: method_name, target: @current_class, node: node)
+        @current_class.instance_methods << InstanceMethod.new(name: method_name, target: @current_class, node: node, comments: @comments)
       end
     elsif @namespace.any?
       if target == "self"
-        @namespace.last.class_methods << ClassMethod.new(name: method_name, target: @namespace.last, node: node)
+        @namespace.last.class_methods << ClassMethod.new(name: method_name, target: @namespace.last, node: node, comments: @comments)
       else
-        @namespace.last.instance_methods << InstanceMethod.new(name: method_name, target: @namespace.last, node: node)
+        @namespace.last.instance_methods << InstanceMethod.new(name: method_name, target: @namespace.last, node: node, comments: @comments)
       end
     else
       if target == "self"
-        @analyzer.class_methods << ClassMethod.new(name: method_name, target: @current_class, node: node)
+        @analyzer.class_methods << ClassMethod.new(name: method_name, target: @current_class, node: node, comments: @comments)
       else
-        @analyzer.instance_methods << InstanceMethod.new(name: method_name, target: @current_class, node: node)
+        @analyzer.instance_methods << InstanceMethod.new(name: method_name, target: @current_class, node: node, comments: @comments)
       end
     end
 
-    super
+    @comments = []
+  end
+
+  def visit_comment(node)
+    @comments << node
   end
 
   def visit_command(node)
