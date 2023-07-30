@@ -1,20 +1,31 @@
 <div class="grid grid-cols-6 gap-8 mb-6">
   <div class="bg-gray-50 rounded p-3">
+    <h4>Version</h4>
+    <p><%= @gem.version %></p>
+  </div>
+  <div class="bg-gray-50 rounded p-3">
+    <h4>Authors</h4>
+    <p><%= @gem.metadata.authors.to_sentence %></p>
+  </div>
+  <div class="bg-gray-50 rounded p-3">
+    <h4>Runtime Dependencies</h4>
+    <p><%= @gem.metadata.inspect %></p>
+    <% deps = @gem.metadata.dependencies %>
+    <p>
+    <% deps.each do |dep| %>
+      <bold><%= dep.name  %></bold>, <%= dep.requirements  %><br>
+    <% end %></p>
+  </div>
+  <div class="bg-gray-50 rounded p-3">
+    <h4>Quick Start</h4>
+    <code>gem install camping; bundle add camping</code>
+  </div>
+  <div class="bg-gray-50 rounded p-3">
+    <h4>Version</h4>
     1
   </div>
   <div class="bg-gray-50 rounded p-3">
-    1
-  </div>
-  <div class="bg-gray-50 rounded p-3">
-    1
-  </div>
-  <div class="bg-gray-50 rounded p-3">
-    1
-  </div>
-  <div class="bg-gray-50 rounded p-3">
-    1
-  </div>
-  <div class="bg-gray-50 rounded p-3">
+    <h4>Version</h4>
     1
   </div>
 </div>
