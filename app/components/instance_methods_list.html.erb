@@ -3,7 +3,9 @@
     <h3 class="text-base font-semibold leading-6 text-gray-900">Instance Methods</h3>
   </div>
 
+  <ul class="list code">
   <% @instance_methods.each do |instance_method| %>
-    <pre><%= link_to instance_method, instance_method.url(@gem) %></pre>
+    <li><%= link_to instance_method, instance_method.url(@gem) %></li>
   <% end %>
+  </ul>
 </aside>

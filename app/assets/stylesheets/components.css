@@ -115,6 +115,32 @@
 /* Pills */
 
 /* Lists */
+ul.list {}
+ul.list.code li {
+  font-family: var(--monspace-font-family);
+  font-size: var(--step--1);
+  font-weight: 600;
+  line-height: 1.5em;
+  color:black;
+  display: block;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-top: 0em;
+  margin-bottom: 0em;
+  border-radius:0.5rem;
+  padding: 0.125rem 0.75rem;
+}
+ul.list.code li:hover {
+  background-color: #F0F0F0;
+}
+ul.list.code li a {
+  /* display: block; */
+  /* padding: 0.125rem 0.75rem; */
+  /* border-radius: 0.5rem; */
+}
+ul.list.code li a:hover {
+  color: var(--accent-color);
+}
 
 /* List Links */
 

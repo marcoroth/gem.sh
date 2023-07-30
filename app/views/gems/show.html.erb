@@ -20,10 +20,11 @@
       <div class="border-b border-gray-200 pb-5 mb-6">
         <h3 class="text-base font-semibold leading-6 text-gray-900">Modules</h3>
       </div>
-
+      <ul class="list code">
       <% @namespaces.each do |namespace| %>
-        <pre><%= link_to namespace.qualified_name, gem_module_path(@gem.name, @version, namespace.qualified_name) %></pre>
+        <li><%= link_to namespace.qualified_name, gem_module_path(@gem.name, @version, namespace.qualified_name) %></li>
       <% end %>
+      </ul>
     </aside>
 
     <aside class="block truncate col-span-1">
@@ -31,8 +32,9 @@
         <h3 class="text-base font-semibold leading-6 text-gray-900">Classes</h3>
       </div>
 
+      <ul class="list code">
       <% @classes.each do |klass| %>
-        <code>
+        <li>
           <%= link_to klass.name, gem_class_path(@gem.name, @version, klass.qualified_name) %>
 
           <% if klass.namespace.present? %>
@@ -41,8 +43,9 @@
             </span>
           <% end %>
 
-        </code><br/>
+        </li>
       <% end %>
+      </ul>
     </aside>
 
     <%= render ClassMethodsList.new(class_methods: @class_methods, gem: @gem) %>

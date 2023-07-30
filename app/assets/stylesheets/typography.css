@@ -181,7 +181,7 @@ body {
   --text-mod-lighter-strong: 500;
 }
 
-a, a:visited  {
+a {
   color: var(--color-link);
   font-weight: 600;
   &:hover {

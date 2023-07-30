@@ -3,7 +3,9 @@
     <h3 class="text-base font-semibold leading-6 text-gray-900">Class Methods</h3>
   </div>
 
+  <ul class="list code">
   <% @class_methods.each do |class_method| %>
-    <pre><%= link_to class_method, class_method.url(@gem) %></pre>
+    <li><%= link_to class_method, class_method.url(@gem) %></li>
   <% end %>
+  <ul>
 </aside>
