@@ -5,8 +5,8 @@ class GemsController < ApplicationController
 
   def show
     @gem = Gemspec.find(params[:id])
-    @namespaces = @gem.info.analyzer.modules.sort_by(&:qualified_name)
-    @classes = @gem.info.analyzer.classes.sort_by(&:qualified_name)
+    @namespaces = @gem.modules
+    @classes = @gem.classes
   end
 
   def search
@@ -16,8 +16,8 @@ class GemsController < ApplicationController
   def namespace
     @gem = Gemspec.find(params[:id])
     @namespace = params[:namespace]
-    @namespaces = @gem.info.analyzer.modules.sort_by(&:qualified_name).filter { |namespace| namespace.qualified_name.start_with?(@namespace) }
-    @classes = @gem.info.analyzer.classes.sort_by(&:qualified_name).filter { |namespace| namespace.qualified_name.start_with?("#{@namespace}::") }
+    @namespaces = @gem.modules.filter { |namespace| namespace.qualified_name.start_with?(@namespace) }
+    @classes = @gem.classes.filter { |namespace| namespace.qualified_name.start_with?("#{@namespace}::") }
 
     render :show
   end

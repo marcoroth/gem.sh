@@ -39,6 +39,14 @@ class Gemspec
     @version_info["gem_uri"]
   end
 
+  def classes
+    info.analyzer.classes.sort_by(&:qualified_name)
+  end
+
+  def modules
+    info.analyzer.modules.sort_by(&:qualified_name)
+  end
+
   def download_path
     "tmp/gems/#{name}".tap do |path|
       FileUtils.mkdir_p(path)
