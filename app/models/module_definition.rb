@@ -7,6 +7,10 @@ class ModuleDefinition < OpenStruct
     qualified_name == other.qualified_name
   end
 
+  def url(gem)
+    Router.gem_module_path(gem, self)
+  end
+
   def object_name
     "module"
   end
