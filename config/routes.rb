@@ -7,5 +7,7 @@ Rails.application.routes.draw do
 
   get "/search" => "gems#search", as: :gems_search
 
+  get "/gems/:id/:namespace" => "gems#namespace", as: :gem_namespace
+
   resources :gems, only: [:index, :show]
 end

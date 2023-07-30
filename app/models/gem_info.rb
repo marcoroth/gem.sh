@@ -13,7 +13,7 @@ class GemInfo
   end
 
   def files
-    @gemspec.files.select { |file| file.ends_with?(".rb") }
+    @gemspec.files.select { |file| file.ends_with?(".rb") }.select { |file| file.start_with?("lib/") || file.start_with?("app/") }
   end
 
   def classes
