@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get "/metadata" => "gems#metadata", as: :gem_metadata
       get "/source" => "gems#source", as: :gem_source
       get "/guides" => "gems#guides", as: :gem_guides
+      get "/versions" => "gems#versions", as: :gem_versions
       get "/tutorials" => "gems#tutorials", as: :gem_tutorials
       get "/wiki" => "gems#wiki", as: :gem_wiki
       get "/reference" => "gems#reference", as: :gem_reference

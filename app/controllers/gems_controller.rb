@@ -4,7 +4,7 @@ class GemsController < ApplicationController
     @version = @gem.version
   end
 
-  before_action only: [:show, :source, :metadata, :guides, :tutorials, :wiki, :reference, :videos, :articles, :types, :community, :stats, :announcements] do
+  before_action only: [:show, :source, :metadata, :versions, :guides, :tutorials, :wiki, :reference, :videos, :articles, :types, :community, :stats, :announcements] do
     @namespaces = @gem.modules.select { |namespace| namespace.namespace.split("::").count <= 1 }
     @classes = @gem.classes
     @instance_methods = @gem.instance_methods

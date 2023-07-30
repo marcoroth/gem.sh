@@ -37,6 +37,14 @@ class Gemspec
     @version_info["version"]
   end
 
+  def versions
+    url = "https://rubygems.org/api/v1/versions/#{name}.json"
+
+    result = HTTParty.get(url)
+
+    JSON.parse(result.response.body)
+  end
+
   def gem_uri
     @version_info["gem_uri"]
   end
@@ -98,6 +106,7 @@ class Gemspec
         Gem::Dependency,
         Gem::Requirement,
         Gem::Specification,
+        Gem::Version::Requirement,
         Gem::Version,
         Time,
         Symbol

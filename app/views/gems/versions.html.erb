@@ -1,0 +1,9 @@
+<%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @classes, class_methods: @class_methods, instance_methods: @instance_methods) do %>
+  <div class="grid grid-cols-4 gap-8">
+    <% @gem.versions.each do |version| %>
+      <%= link_to gem_version_path(@gem.name, version["number"]), class: "#{@gem.version == version["number"] ? "bg-gray-100" : nil}" do %>
+        <%= render Layout::Card.new(title: version["number"], description: "Released on: #{DateTime.parse(version["created_at"]).to_date}", label: Gemspec.latest_version_for(@gem.name) == version["number"] ? "Latest" : nil) %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
