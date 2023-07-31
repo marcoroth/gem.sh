@@ -16,7 +16,7 @@ export default class extends Controller {
   }
 
   open() {
-    this.resultTarget.classList.remove("hidden")
+    this.backdropElement.classList.remove("hidden")
   }
 
   submit() {
@@ -32,7 +32,7 @@ export default class extends Controller {
   }
 
   close() {
-    this.resultTarget.classList.add("hidden")
+    this.backdropElement.classList.add("hidden")
   }
 
   clickOutside(event) {
@@ -41,5 +41,9 @@ export default class extends Controller {
 
   disconnect() {
     document.removeEventListener("keydown", this.escapeHandler)
+  }
+
+  get backdropElement() {
+    return this.resultTarget.closest("[role=dialog]")
   }
 }
