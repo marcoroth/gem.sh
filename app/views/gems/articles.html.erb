@@ -1,15 +1,14 @@
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @classes, class_methods: @class_methods, instance_methods: @instance_methods) do %>
   <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-    <% frameworks = ["Rails", "Roda", "Turbo", "Stimulus", "Bridgetown", "Camping", "Sinatra", "JavaScript", "ImageMagick, Paperclip, Stripe, Turbo, Stimulus"] %>
+    <% tools = ["Rails", "Roda", "Turbo", "Stimulus", "Bridgetown", "Camping", "Sinatra", "JavaScript", "ImageMagick", "Paperclip", "Stripe", "Hatchbox", "DigitalOcean"] %>
 
     <% titles = [
       "Getting started with #{@gem.name}",
       "New features in #{@gem.name} v#{@gem.version}",
-      "How to use #{@gem.name} in #{frameworks.sample}",
-      "Integrating #{@gem.name} with #{frameworks.sample}",
+      "How to use #{@gem.name} in #{tools.sample}",
+      "Integrating #{@gem.name} with #{tools.sample}",
       "Building Authentication from Scratch for #{@gem.name}",
-      "Phlexing for #{["everyone", "squares", "jerks", "stubborn folks"].sample}",
-      "Making #{frameworks.sample} work with #{@gem.name}",
+      "Making #{tools.sample} work with #{@gem.name}",
       "Making #{@gem.name} work for you",
     ] %>
 
