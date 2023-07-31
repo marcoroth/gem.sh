@@ -78,6 +78,9 @@ gem "active_link_to", "~> 1.0"
 # The safe Markdown parser, reloaded.
 gem "redcarpet", "~> 3.6"
 
+# Sanitizing HTML fragments in Rails applications
+gem "rails-html-sanitizer", "~> 1.6"
+
 # Easily configure styles and apply them as classes.
 gem "class_variants", "~> 0.0.6"
 

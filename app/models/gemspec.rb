@@ -71,7 +71,7 @@ class Gemspec
 
   def readme_content
     if info.readme
-      File.read("#{unpack_data_path}/#{info.readme}")
+      Rails::HTML5::FullSanitizer.new.sanitize(File.read("#{unpack_data_path}/#{info.readme}"))
     else
       "No README"
     end
