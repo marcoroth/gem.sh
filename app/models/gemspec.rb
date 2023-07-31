@@ -114,12 +114,16 @@ class Gemspec
         Gem::Dependency,
         Gem::Requirement,
         Gem::Specification,
-        Gem::Version::Requirement,
         Gem::Version,
+        Gem::Version::Requirement, # TODO: not sure why Psych still complains about DisallowedClass for `Gem::Version::Requirement`
         Time,
         Symbol
       ]
     )
+  rescue Psych::DisallowedClass => e
+    puts e.inspect
+
+    OpenStruct.new(files: [], dependencies: [], authors: [], error: e)
   end
 
   def download_filename
