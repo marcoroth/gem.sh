@@ -2,7 +2,7 @@
 
 class ModulesList < ViewComponent::Base
   def initialize(modules:, gem:, title: "Modules")
-    @modules = Array.wrap(modules).sort_by(&:qualified_name)
+    @modules = Array.wrap(modules)
     @gem = gem
     @title = title
   end

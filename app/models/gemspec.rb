@@ -54,7 +54,7 @@ class Gemspec
   end
 
   def classes
-    info.analyzer.classes.sort_by(&:name)
+    info.analyzer.classes.sort_by(&:qualified_name)
   end
 
   def modules
@@ -62,11 +62,11 @@ class Gemspec
   end
 
   def instance_methods
-    info.analyzer.instance_methods.sort_by(&:name)
+    info.analyzer.instance_methods.sort_by(&:qualified_name)
   end
 
   def class_methods
-    info.analyzer.class_methods.sort_by(&:name)
+    info.analyzer.class_methods.sort_by(&:qualified_name)
   end
 
   def readme_content
