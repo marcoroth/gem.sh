@@ -28,7 +28,7 @@
 
   <div class="bg-gray-50 rounded p-3 text-center border justify-center flex-col flex">
     <p class="excerpt metadata_headers">Authors</p>
-    <p><%= @gem.metadata.authors.to_sentence %></p>
+    <p><%= helpers.to_short_sentence(@gem.metadata.authors) %></p>
   </div>
 
   <div class="bg-gray-50 rounded p-3 text-center border justify-center flex-col flex">
