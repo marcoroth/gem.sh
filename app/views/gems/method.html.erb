@@ -16,8 +16,8 @@
         <%= render ModulesList.new(modules: object.extended_modules, title: "Extended Modules", gem: @gem) if object.extended_modules.any? %>
       <% end %>
 
-      <%= render MethodsList.new(con_methods: object.class_methods, gem: @gem, prefix: "Class") if object.class_methods.any? %>
-      <%= render MethodsList.new(con_methods: object.instance_methods, gem: @gem, prefix: "Instance") if object.instance_methods.any? %>
+      <%= render MethodsList.new(methods: object.class_methods, gem: @gem, prefix: "Class") if object.class_methods.any? %>
+      <%= render MethodsList.new(methods: object.instance_methods, gem: @gem, prefix: "Instance") if object.instance_methods.any? %>
     </div>
   </div>
 </div>
