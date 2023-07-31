@@ -46,7 +46,7 @@ class Gemspec
 
     result = HTTParty.get(url)
 
-    JSON.parse(result.response.body)
+    JSON.parse(result.response.body).uniq { |version| version["number"] }
   end
 
   def gem_uri
