@@ -23,6 +23,35 @@
   </div>
 
   <div class="bg-gray-50 rounded p-3 text-center border justify-center flex-col flex">
+    <ul role="list" class="grid md:grid-cols-2 gap-y-4">
+      <li class="relative flex items-center justify-center">
+        <div class="flex items-center gap-x-3">
+          <%= render Layout::Status.new(status: @gem.files.select { |file| file.end_with?(".rbs") }.any? ? :green : :default) %>
+          <div class="rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 w-20">Types</div>
+        </div>
+      </li>
+      <li class="relative flex items-center justify-center">
+        <div class="flex items-center gap-x-3">
+          <%= render Layout::Status.new(status: @gem.metadata.dependencies.map(&:name).include?("zeitwerk") ? :green : :default) %>
+          <div class="rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 w-20">Zeitwerk</div>
+        </div>
+      </li>
+      <li class="relative flex items-center justify-center">
+        <div class="flex items-center gap-x-3">
+          <%= render Layout::Status.new(status: @gem.info.markdown_files.count > 2 ? :green : :default) %>
+          <div class="rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 w-20">Docs</div>
+        </div>
+      </li>
+      <li class="relative flex items-center justify-center">
+        <div class="flex items-center gap-x-3">
+          <%= render Layout::Status.new(status: :default) %>
+          <div class="rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 w-20">Guides</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="bg-gray-50 rounded p-3 text-center border justify-center flex-col flex">
     <p class="excerpt metadata_headers">Quick Start</p>
     <pre class="small-code-thing">bundle add <%= @gem.name %></pre>
   </div>
