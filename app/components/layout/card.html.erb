@@ -8,6 +8,10 @@
           <%= @label %>
         </div>
       <% end %>
+
+      <% if badge? %>
+        <%= badge %>
+      <% end %>
     </div>
 
     <p class="caption-text truncate"><%= @description %></p>

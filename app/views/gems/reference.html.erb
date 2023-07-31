@@ -6,7 +6,9 @@
   <div class="grid grid-cols-4 gap-4 mb-12">
     <% @gem.classes.sample(8).each do |klass| %>
       <%= link_to gem_class_path(@gem.name, @gem.version, klass.qualified_name) do %>
-        <%= render Layout::Card.new(title: klass.name, description: klass.namespace, label: klass.object_name) %>
+        <%= render Layout::Card.new(title: klass.name, description: klass.namespace) do |card| %>
+          <%= card.with_badge(label: klass.object_name) %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
@@ -18,7 +20,9 @@
   <div class="grid grid-cols-4 gap-4 mb-12">
     <% @gem.classes.each do |klass| %>
       <%= link_to gem_class_path(@gem.name, @gem.version, klass.qualified_name) do %>
-        <%= render Layout::Card.new(title: klass.name, description: klass.namespace, label: klass.object_name) %>
+        <%= render Layout::Card.new(title: klass.name, description: klass.namespace) do |card| %>
+          <%= card.with_badge(label: klass.object_name) %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
@@ -30,7 +34,9 @@
   <div class="grid grid-cols-4 gap-4 mb-12">
     <% @gem.modules.each do |klass| %>
       <%= link_to gem_class_path(@gem.name, @gem.version, klass.qualified_name) do %>
-        <%= render Layout::Card.new(title: klass.name, description: klass.namespace, label: klass.object_name) %>
+        <%= render Layout::Card.new(title: klass.name, description: klass.namespace) do |card| %>
+          <%= card.with_badge(label: klass.object_name) %>
+        <% end %>
       <% end %>
     <% end %>
   </div>

@@ -1,8 +1,24 @@
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @classes, class_methods: @class_methods, instance_methods: @instance_methods) do %>
   <div class="grid grid-cols-4 gap-8">
     <% @gem.versions.each do |version| %>
-      <%= link_to gem_version_path(@gem.name, version["number"]), class: "#{@gem.version == version["number"] ? "bg-gray-100" : nil}" do %>
-        <%= render Layout::Card.new(title: version["number"], description: "Released on: #{DateTime.parse(version["created_at"]).to_date}", label: Gemspec.latest_version_for(@gem.name) == version["number"] ? "Latest" : nil) %>
+      <%= link_to gem_version_path(@gem.name, version["number"]), class: "#{@gem.version == version["number"] ? "bg-gray-100 rounded-md" : nil}" do %>
+        <%= render Layout::Card.new(title: version["number"], description: "Released on: #{DateTime.parse(version["created_at"]).to_date}") do |card| %>
+          <% if Gemspec.latest_version_for(@gem.name) == version["number"] %>
+            <%= card.with_badge(label: "Latest", style: :gray) %>
+          <% end %>
+
+          <% if version["number"].include?("rc") %>
+            <%= card.with_badge(label: "RC", style: :purple) %>
+          <% end %>
+
+          <% if version["number"].include?("pre") %>
+            <%= card.with_badge(label: "Pre", style: :green) %>
+          <% end %>
+
+          <% if version["number"].include?("beta") %>
+            <%= card.with_badge(label: "Beta", style: :yellow) %>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
