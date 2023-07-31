@@ -1,23 +1,28 @@
-<div class="grid grid-cols-4 gap-8 mb-6">
-  <div class="bg-gray-50 rounded p-3 text-center">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-6">
+  <div class="bg-gray-50 rounded p-3 text-center border justify-center flex-col flex">
     <p class="excerpt metadata_headers">Version</p>
     <p><%= @gem.version %></p>
   </div>
-  <div class="bg-gray-50 rounded p-3 text-center">
+
+  <div class="bg-gray-50 rounded p-3 text-center border justify-center flex-col flex">
     <p class="excerpt metadata_headers">Authors</p>
     <p><%= @gem.metadata.authors.to_sentence %></p>
   </div>
-  <div class="bg-gray-50 rounded p-3 text-center">
+
+  <div class="bg-gray-50 rounded p-3 text-center border justify-center flex-col flex">
     <p class="excerpt metadata_headers">Runtime Dependencies</p>
-    <p><% @gem.metadata.inspect %></p>
-    <% deps = @gem.metadata.dependencies %>
     <p>
-      <%= deps.map { |dep| %>
-        <% dep.name + " " + dep.requirement.requirements.join(' ')  %>
-      <% }.join("\n").truncate(60, omission: '...')  %>
+      <% deps = @gem.metadata.dependencies %>
+
+      <% deps.each do |dep| %>
+        <span class="font-mono"><%= link_to(dep.name, gem_path(dep.name)) %></span><% if deps.last != dep %>, <% end %>
+      <% end %>
+
+      <% if deps.none? %>- <% end %>
     </p>
   </div>
-  <div class="bg-gray-50 rounded p-3 text-center">
+
+  <div class="bg-gray-50 rounded p-3 text-center border justify-center flex-col flex">
     <p class="excerpt metadata_headers">Quick Start</p>
     <pre class="small-code-thing">bundle add <%= @gem.name %></pre>
   </div>
