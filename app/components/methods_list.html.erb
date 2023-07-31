@@ -2,7 +2,7 @@
   <h3 class="list-header"> <%= @prefix %> Methods</h3>
 
   <ul class="list code">
-    <% @con_methods.each do |method| %>
+    <% @methods.each do |method| %>
       <%= active_link_to method, method.url(@gem), wrap_tag: :li %>
     <% end %>
   <ul>

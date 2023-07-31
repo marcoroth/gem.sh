@@ -2,7 +2,7 @@
 
 class ClassMethodsList < ViewComponent::Base
   def initialize(class_methods:, gem:)
-    @class_methods = class_methods.sort_by(&:name)
+    @class_methods = class_methods.sort_by(&:qualified_name)
     @gem = gem
   end
 end
