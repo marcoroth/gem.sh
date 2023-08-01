@@ -1,6 +1,12 @@
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @classes, class_methods: @class_methods, instance_methods: @instance_methods) do %>
-  <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Announcements</h2>
-  <p class="mt-2 text-lg leading-8 text-gray-600">Announcements from the gem authors</p>
+  <div class="pb-5 flex justify-between">
+    <%= render Layout::Subheading.new(title: "Announcements") %>
+    <%= render Layout::Badge.new(label: "Demo") %>
+  </div><hr>
+
+  <p class="mt-12 mb-6 text-lg text-slate-600">
+    Announcements from the gem authors
+  </p>
 
   <div class="mt-10 space-y-16">
     <% [

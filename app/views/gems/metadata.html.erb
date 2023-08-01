@@ -1,7 +1,9 @@
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @classes, class_methods: @class_methods, instance_methods: @instance_methods) do %>
-  <%= render Layout::Subheading.new(title: @gem.metadata.name) %>
+  <div class="pb-5 flex justify-between">
+    <%= render Layout::Subheading.new(title: "Metadata") %>
+  </div><hr>
 
-  <div class="mt-6 border-t border-gray-100">
+  <div class="mt-12 border-t border-gray-100">
     <dl class="divide-y divide-gray-100">
       <% @gem.metadata.instance_variables.each do |var| %>
         <% value = @gem.metadata.instance_variable_get(var) %>

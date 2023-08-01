@@ -1,5 +1,10 @@
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @classes, class_methods: @class_methods, instance_methods: @instance_methods) do %>
-  <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+  <div class="pb-5 flex justify-between">
+    <%= render Layout::Subheading.new(title: "Articles") %>
+    <%= render Layout::Badge.new(label: "Demo") %>
+  </div><hr>
+
+  <div class="mt-12 mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
     <% tools = ["Rails", "Roda", "Turbo", "Stimulus", "Bridgetown", "Camping", "Sinatra", "JavaScript", "ImageMagick", "Paperclip", "Stripe", "Hatchbox", "DigitalOcean"] %>
 
     <% titles = [

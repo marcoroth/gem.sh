@@ -1,7 +1,9 @@
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @classes, class_methods: @class_methods, instance_methods: @instance_methods) do %>
-  <div class="block truncate col-span-1">
-    <h3 class="list-header fs-step-2">Files</h3>
+  <div class="pb-5 flex justify-between">
+    <%= render Layout::Subheading.new(title: "Source Files") %>
+  </div><hr>
 
+  <div class="mt-12 block truncate col-span-1">
     <ul class="list code mb-12">
     <% @gem.info.files.sort.each do |file| %>
       <%= link_to gem_path(@gem.name) do %>

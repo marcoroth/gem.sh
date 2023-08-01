@@ -1,5 +1,9 @@
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @classes, class_methods: @class_methods, instance_methods: @instance_methods) do %>
-  <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+  <div class="pb-5 flex justify-between">
+    <%= render Layout::Subheading.new(title: "Versions") %>
+  </div><hr>
+
+  <div class="mt-12 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
     <% @gem.versions.each do |version| %>
       <%= link_to gem_version_path(@gem.name, version["number"]), class: "#{@gem.version == version["number"] ? "bg-gray-100 rounded-md" : nil}" do %>
         <%= render Layout::Card.new(title: version["number"], description: "Released on: #{DateTime.parse(version["created_at"]).to_date.to_fs(:long) }") do |card| %>

@@ -5,9 +5,10 @@ class Layout::Status < ViewComponent::Base
     "flex-none rounded-full p-1 ",
     variants: {
       status: {
-        default: "text-gray-500 bg-gray-100/10",
-        green: "text-green-400 bg-green-400/10",
-        red: "text-rose-400 bg-rose-400/10",
+        default: "text-gray-500",
+        orange: "text-orange-400",
+        green: "text-green-400",
+        red: "text-rose-400",
       }
     },
     defaults: {

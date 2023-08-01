@@ -1,3 +1,6 @@
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @classes, class_methods: @class_methods, instance_methods: @instance_methods) do %>
-
+  <div class="pb-5 flex justify-between">
+    <%= render Layout::Subheading.new(title: "Types") %>
+    <%= render Layout::Badge.new(label: "Demo") %>
+  </div><hr>
 <% end %>
