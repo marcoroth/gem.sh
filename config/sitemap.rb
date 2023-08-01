@@ -24,13 +24,46 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), lastmod: article.updated_at
   #   end
 
-  add "/", changefreq: "daily"
-
-  Gem::Specification.all.sort_by { |gem| gem.name }.each do |gem|
-    add(gem_version_path(gem.name, gem.version), changefreq: "weekly", lastmod: gem.date)
-  end
-
+  add "/", changefreq: "weekly"
   add gems_path, changefreq: "daily"
   add docs_path, changefreq: "weekly"
   add community_path, changefreq: "weekly"
+
+  Gem::Specification.all.each do |gem|
+    add(gem_version_path(gem.name, gem.version), changefreq: "weekly", lastmod: gem.date)
+
+    spec = Gemspec.find(gem.name, gem.version)
+
+    spec.classes.each do |klass|
+      add(gem_class_path(spec.name, spec.version, klass.qualified_name), changefreq: "weekly", lastmod: gem.date)
+
+      # spec.instance_methods.each do |method|
+      #   add(gem_class_instance_method_path(spec.name, spec.version, klass.qualified_name, method.name), changefreq: "weekly", lastmod: gem.date)
+      # end
+
+      # spec.class_methods.each do |method|
+      #   add(gem_class_class_method_path(spec.name, spec.version, klass.qualified_name, method.name), changefreq: "weekly", lastmod: gem.date)
+      # end
+    end
+
+    spec.modules.each do |mod|
+      add(gem_module_path(spec.name, spec.version, mod.qualified_name), changefreq: "weekly", lastmod: gem.date)
+
+      # spec.instance_methods.each do |method|
+      #   add(gem_module_instance_method_path(spec.name, spec.version, mod.qualified_name, method.name), changefreq: "weekly", lastmod: gem.date)
+      # end
+
+      # spec.class_methods.each do |method|
+      #   add(gem_module_class_method_path(spec.name, spec.version, mod.qualified_name, method.name), changefreq: "weekly", lastmod: gem.date)
+      # end
+    end
+
+    spec.instance_methods.each do |method|
+      add(gem_instance_method_path(spec.name, spec.version, method.name), changefreq: "weekly", lastmod: gem.date)
+    end
+
+    spec.class_methods.each do |method|
+      add(gem_class_method_path(spec.name, spec.version, method.name), changefreq: "weekly", lastmod: gem.date)
+    end
+  end
 end
