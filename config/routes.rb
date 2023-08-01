@@ -24,19 +24,22 @@ Rails.application.routes.draw do
       get "/instance_method/:name" => "gems#instance_method", as: :gem_instance_method
       get "/class_method/:name" => "gems#class_method", as: :gem_class_method
 
-      get "/metadata" => "gems#metadata", as: :gem_metadata
-      get "/source" => "gems#source", as: :gem_source
-      get "/guides" => "gems#guides", as: :gem_guides
-      get "/versions" => "gems#versions", as: :gem_versions
-      get "/tutorials" => "gems#tutorials", as: :gem_tutorials
-      get "/wiki" => "gems#wiki", as: :gem_wiki
-      get "/reference" => "gems#reference", as: :gem_reference
-      get "/videos" => "gems#videos", as: :gem_videos
-      get "/articles" => "gems#articles", as: :gem_articles
-      get "/types" => "gems#types", as: :gem_types
-      get "/community" => "gems#community", as: :gem_community
-      get "/stats" => "gems#stats", as: :gem_stats
       get "/announcements" => "gems#announcements", as: :gem_announcements
+      get "/articles" => "gems#articles", as: :gem_articles
+      get "/changelogs" => "gems#changelogs", as: :gem_changelogs
+      get "/community" => "gems#community", as: :gem_community
+      get "/guides" => "gems#guides", as: :gem_guides
+      get "/metadata" => "gems#metadata", as: :gem_metadata
+      get "/playground" => "gems#playground", as: :gem_playground
+      get "/reference" => "gems#reference", as: :gem_reference
+      get "/source" => "gems#source", as: :gem_source
+      get "/stats" => "gems#stats", as: :gem_stats
+      get "/tutorials" => "gems#tutorials", as: :gem_tutorials
+      get "/types" => "gems#types", as: :gem_types
+      get "/versions" => "gems#versions", as: :gem_versions
+      get "/videos" => "gems#videos", as: :gem_videos
+      get "/wiki" => "gems#wiki", as: :gem_wiki
+
       get "/" => "gems#show", as: :gem_version
     end
 
