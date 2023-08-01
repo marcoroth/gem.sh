@@ -87,6 +87,9 @@ gem "class_variants", "~> 0.0.6"
 # Framework-agnostic XML Sitemap generator
 gem "sitemap_generator", "~> 6.3"
 
+# Search Engine Optimization (SEO) for Ruby on Rails applications.
+gem "meta-tags"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

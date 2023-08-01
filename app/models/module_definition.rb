@@ -22,4 +22,8 @@ class ModuleDefinition < OpenStruct
   def to_param
     qualified_name
   end
+
+  def title
+    qualified_name
+  end
 end

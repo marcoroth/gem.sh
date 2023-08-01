@@ -16,4 +16,8 @@ class InstanceMethod < MethodDefinition
   def instance_method?
     true
   end
+
+  def title
+    "#{name} (#{target.qualified_name})"
+  end
 end

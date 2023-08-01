@@ -22,4 +22,8 @@ class MethodDefinition < OpenStruct
   def to_param
     name
   end
+
+  def title
+    "#{name} (#{target.qualified_name})"
+  end
 end
