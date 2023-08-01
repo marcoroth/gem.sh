@@ -25,8 +25,8 @@
     </button>
   </div>
 
-  <div class="pt-2 grid md:grid-cols-3 gap-6">
-    <div class="col-span-2">
+  <div class="pt-2 grid xl:grid-cols-3 gap-6">
+    <div class="xl:col-span-2 pr-4">
       <%= render Layout::CodeBlock.new do %>
 puts "Hello from #{RUBY_ENGINE} #{RUBY_VERSION} 👋"
 puts <%= (@gem.modules + @gem.classes).map { |m| m.qualified_name.split("::") }.flatten.tally.sort_by(&:last).last.first %>::VERSION
@@ -41,7 +41,7 @@ puts <%= (@gem.modules + @gem.classes).map { |m| m.qualified_name.split("::") }.
     </div>
 
     <div class="col-span-1">
-      <pre class="mr-2 p-4 h-94 rounded-lg font-mono whitespace-pre-wrap break-word bg-black text-white dark:bg-gray-900">
+      <pre class="mr-2 p-4 rounded-lg font-mono whitespace-pre-wrap break-word bg-black text-white dark:bg-gray-900">
 "<%= "Hello from #{RUBY_ENGINE} #{RUBY_VERSION} 👋" %>"
 "<%= @gem.version %>"
 

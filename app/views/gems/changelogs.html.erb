@@ -10,7 +10,7 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mt-12 gap-4">
         <div class="">
-          <h3 class="list-header">Modules</h3>
+          <h3 class="list-header">Module Changes</h3>
 
           <ul role="list" class="mt-6">
             <% @gem.modules.sample((2..7).to_a.sample).each do |m| %>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="">
-          <h3 class="list-header">Classes</h3>
+          <h3 class="list-header">Class Changes</h3>
 
           <ul role="list" class="mt-6">
             <% @gem.classes.sample((2..7).to_a.sample).each do |c| %>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="">
-          <h3 class="list-header">Methods</h3>
+          <h3 class="list-header">Method Changes</h3>
 
           <ul role="list" class="mt-6">
             <% @gem.classes.map(&:instance_methods).flatten.compact.sample((2..7).to_a.sample).each do |method| %>
