@@ -24,6 +24,10 @@ class MethodDefinition < OpenStruct
   end
 
   def title
-    "#{name} (#{target.qualified_name})"
+    if target
+      name
+    else
+      "#{name} (#{target.qualified_name})"
+    end
   end
 end

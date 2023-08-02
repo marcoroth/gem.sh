@@ -16,8 +16,4 @@ class ClassMethod < MethodDefinition
   def class_method?
     true
   end
-
-  def title
-    "#{name} (#{target.qualified_name})"
-  end
 end
