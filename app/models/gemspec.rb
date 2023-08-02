@@ -6,13 +6,19 @@ class Gemspec
   def_delegators :metadata, :files
 
   def self.latest_version_for(name)
-    return if name.blank?
+    return nil if name.blank?
 
-    Gem.latest_spec_for(name).version
+    spec = Gem.latest_spec_for(name)
+
+    return nil if spec.nil?
+
+    spec.version
   end
 
   def self.find(name, version = nil)
     version = latest_version_for(name) if version.nil?
+
+    raise "Gem or version not found" if version.nil?
 
     version_info_url = "#{BASE}/rubygems/#{name}/versions/#{version}.json"
     version_info = HTTParty.get(version_info_url)

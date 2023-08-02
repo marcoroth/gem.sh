@@ -1,18 +1,9 @@
 class GemsController < ApplicationController
-  before_action except: :index do
-    @gem = Gemspec.find(params[:gem], params[:version])
-    @version = @gem.version
-  end
-
-  before_action only: [:show, :source, :metadata, :versions, :guides, :tutorials, :wiki, :reference, :videos, :articles, :types, :community, :stats, :announcements, :playground, :changelogs] do
-    @namespaces = @gem.modules.select { |namespace| namespace.namespace.split("::").count <= 1 }
-    @classes = @gem.classes
-    @instance_methods = @gem.instance_methods
-    @class_methods = @gem.class_methods
-  end
+  before_action :set_gem, except: :index
+  before_action :set_namespaces, except: :index
 
   def index
-    @gems = Gem::Specification.all.sort_by { |gem| gem.name }
+    @gems = Gem::Specification.all.sort_by(&:name)
   end
 
   def show
@@ -24,18 +15,14 @@ class GemsController < ApplicationController
 
   def namespace
     @namespace = @gem.modules.find { |namespace| namespace.qualified_name == params[:module] }
-    @namespaces = @gem.modules.select { |namespace| namespace.namespace == params[:module] }
     @classes = @gem.classes.select { |namespace| namespace.namespace == params[:module] }
 
-    @instance_methods = Array.wrap(@namespace && @namespace.instance_methods)
-    @class_methods = Array.wrap(@namespace && @namespace.class_methods)
+    redirect_to gem_version_path(@gem.name, @gem.version) if @namespace.nil?
   end
 
   def klass
     @klass = @gem.classes.find { |klass| klass.qualified_name == params[:class] }
     @namespace = @gem.modules.find { |namespace| namespace.qualified_name == @klass.namespace }
-    @instance_methods = @klass.instance_methods
-    @class_methods = @klass.class_methods
   end
 
   def instance_method
@@ -68,5 +55,22 @@ class GemsController < ApplicationController
     end
 
     render :method
+  end
+
+  private
+
+  def set_gem
+    @gem = Gemspec.find(params[:gem], params[:version])
+
+    redirect_to gems_path if @gem.nil?
+
+    @version = @gem.version
+
+  rescue StandardError
+    redirect_to gems_path
+  end
+
+  def set_namespaces
+    @namespaces = @gem.modules.select { |namespace| namespace.namespace.split("::").count <= 1 }
   end
 end
