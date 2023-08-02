@@ -1,10 +1,6 @@
 class Gemspec
   BASE = "https://rubygems.org/api/v2"
 
-  extend Forwardable
-
-  def_delegators :metadata, :files
-
   def self.latest_version_for(name)
     return nil if name.blank?
 
@@ -75,8 +71,26 @@ class Gemspec
     info.analyzer.class_methods.sort_by(&:qualified_name)
   end
 
+  def files
+    metadata.files
+      .select { |file| file.ends_with?(".rb") }
+      .select { |file| file.start_with?("lib/") || file.start_with?("app/") }
+  end
+
+  def markdown_files
+    metadata.files.select { |file| file.end_with?(".md") }
+  end
+
+  def type_files
+    metadata.files.select { |file| file.end_with?(".rbs") }
+  end
+
+  def readme
+    markdown_files.find { |file| file.downcase.include?("readme") } || markdown_files.first
+  end
+
   def readme_content
-    if info.readme
+    if readme
       Rails::HTML5::FullSanitizer.new.sanitize(File.read("#{unpack_data_path}/#{info.readme}"))
     else
       "No README"
@@ -114,7 +128,7 @@ class Gemspec
   end
 
   def metadata
-    YAML.load_file(
+    @metadata ||= YAML.load_file(
       unpack_metadata_file,
       permitted_classes: [
         Gem::Dependency,

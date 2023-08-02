@@ -5,7 +5,7 @@
 
   <div class="mt-12 block truncate col-span-1">
     <ul class="list code mb-12">
-    <% @gem.info.files.sort.each do |file| %>
+    <% @gem.files.sort.each do |file| %>
       <%= link_to gem_path(@gem.name) do %>
         <li><%= file %></li>
       <% end %>

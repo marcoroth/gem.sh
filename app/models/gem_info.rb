@@ -12,30 +12,12 @@ class GemInfo
     analyze
   end
 
-  def files
-    @gemspec.files
-      .select { |file| file.ends_with?(".rb") }
-      .select { |file| file.start_with?("lib/") || file.start_with?("app/") }
-  end
-
-  def markdown_files
-    @gemspec.files.select { |x| x.end_with?(".md") }
-  end
-
-  def readme
-    readme = markdown_files.find { |x| x.downcase.include?("readme") }
-
-    readme = markdown_files.first if readme.nil?
-
-    readme
-  end
-
   def classes
     @analyzer.classes
   end
 
   def analyze
-    files.each do |file|
+    @gemspec.files.each do |file|
       path = "#{@gemspec.unpack_data_path}/#{file}"
 
       @analyzer.analyze(path)
