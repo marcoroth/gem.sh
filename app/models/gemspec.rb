@@ -151,6 +151,6 @@ class Gemspec
   end
 
   def info
-    GemInfo.new(self)
+    @info ||= GemInfo.new(self)
   end
 end
