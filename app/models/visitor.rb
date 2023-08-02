@@ -3,11 +3,14 @@
 require "syntax_tree"
 
 class Visitor < SyntaxTree::Visitor
+  attr_accessor :current_path
+
   def initialize(analyzer)
     @analyzer = analyzer
     @namespace = []
     @comments = []
     @current_class = nil
+    @current_path = nil
   end
 
   def visit_class(node)
@@ -16,6 +19,8 @@ class Visitor < SyntaxTree::Visitor
     qualified_name = [namespace, name].reject(&:blank?).join("::")
 
     class_definition = @analyzer.classes.find { |m| m.qualified_name == qualified_name }
+
+    reopen = NamespaceReopen.new(path: current_path, location: node.location)
 
     if node.superclass
       superclass_namespace = node.superclass.try(:parent).try(:value).try(:value)
@@ -36,8 +41,10 @@ class Visitor < SyntaxTree::Visitor
     end
 
     if class_definition.nil?
-      class_definition = ClassDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node, superclass: superclass_definition, comments: @comments)
+      class_definition = ClassDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node, superclass: superclass_definition, comments: @comments, defined_files: [reopen])
       @analyzer.classes << class_definition
+    else
+      class_definition.defined_files << reopen
     end
 
     @comments = []
@@ -54,10 +61,13 @@ class Visitor < SyntaxTree::Visitor
     qualified_name = [namespace, name].reject(&:blank?).join("::")
 
     module_definition = @analyzer.modules.find { |m| m.qualified_name == qualified_name }
+    reopen = NamespaceReopen.new(path: current_path, location: node.location)
 
     if module_definition.nil?
-      module_definition = ModuleDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node, comments: @comments)
+      module_definition = ModuleDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node, comments: @comments, defined_files: [reopen])
       @analyzer.modules << module_definition
+    else
+      module_definition.defined_files << reopen
     end
 
     @comments = []
@@ -112,13 +122,15 @@ class Visitor < SyntaxTree::Visitor
 
     return if @current_class.nil?
 
+    reference = ConstantReference.new(path: current_path, location: node.location)
+
     if name == "include"
       node.arguments.parts.each do |part|
         module_namespace = part.try(:parent).try(:value).try(:value)
         module_name = part.try(:constant).try(:value) || part.try(:value).try(:value)
         module_qualified_name = [module_namespace, module_name].reject(&:blank?).join("::")
 
-        @current_class.included_modules << ModuleDefinition.new(namespace: module_namespace, name: module_name, qualified_name: module_qualified_name, node: part)
+        @current_class.included_modules << ModuleDefinition.new(namespace: module_namespace, name: module_name, qualified_name: module_qualified_name, node: part, referenced_files: [reference])
       end
     end
 
@@ -128,7 +140,7 @@ class Visitor < SyntaxTree::Visitor
         module_name = part.try(:constant).try(:value) || part.try(:value).try(:value)
         module_qualified_name = [module_namespace, module_name].reject(&:blank?).join("::")
 
-        @current_class.extended_modules << ModuleDefinition.new(namespace: module_namespace, name: module_name, qualified_name: module_qualified_name, node: part)
+        @current_class.extended_modules << ModuleDefinition.new(namespace: module_namespace, name: module_name, qualified_name: module_qualified_name, node: part, referenced_files: [reference])
       end
     end
 

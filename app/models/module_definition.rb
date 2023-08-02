@@ -1,5 +1,5 @@
 class ModuleDefinition < OpenStruct
-  def initialize(namespace: nil, name: nil, qualified_name: nil, node: nil, instance_methods: [], class_methods: [], comments: [])
+  def initialize(namespace: nil, name: nil, qualified_name: nil, node: nil, instance_methods: [], class_methods: [], comments: [], defined_files: [], referenced_files: [])
     super
   end
 

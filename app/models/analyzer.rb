@@ -35,6 +35,7 @@ class Analyzer
     code = File.read(path)
     program = SyntaxTree.parse(code)
 
+    @visitor.current_path = path
     @visitor.visit(program)
 
     self
