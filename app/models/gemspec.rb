@@ -130,6 +130,7 @@ class Gemspec
   def metadata
     @metadata ||= YAML.load_file(
       unpack_metadata_file,
+      aliases: true,
       permitted_classes: [
         Gem::Dependency,
         Gem::Requirement,
