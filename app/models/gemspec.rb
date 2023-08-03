@@ -86,7 +86,7 @@ class Gemspec
   end
 
   def readme
-    markdown_files.find { |file| file.downcase.include?("readme") } || markdown_files.first
+    markdown_files.find { |file| file.downcase.include?("readme") } || markdown_files.first
   end
 
   def readme_content
