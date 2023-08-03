@@ -23,5 +23,6 @@
     <%= render ClassMethodsList.new(class_methods: @namespace.class_methods, gem: @gem) if Array.wrap(@namespace.class_methods).any? %>
     <%= render InstanceMethodsList.new(instance_methods: @namespace.instance_methods, gem: @gem) if Array.wrap(@namespace.instance_methods).any? %>
     <%= render ClassesList.new(classes: @classes, gem: @gem) if @classes.any? %>
+    <%= render FilesList.new(files: @namespace.defined_files, gem: @gem, title: "Defined in") if @namespace.defined_files.any? %>
   </div>
 </div>

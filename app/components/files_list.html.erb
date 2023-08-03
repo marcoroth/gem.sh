@@ -1,0 +1,11 @@
+<aside class="block truncate col-span-1 mb-12">
+  <h3 class="list-header"><%= @title %></h3>
+
+  <ul class="list code">
+    <% @files.each do |file| %>
+      <li>
+        <%= file.path.delete_prefix("#{@gem.unpack_data_path}/") %>
+      </li>
+    <% end %>
+  </ul>
+</aside>

@@ -33,5 +33,6 @@
     <%= render ModulesList.new(modules: @klass.extended_modules, title: "Extended Modules", gem: @gem) if @klass.extended_modules.any? %>
     <%= render ClassMethodsList.new(class_methods: @klass.class_methods, gem: @gem) if @klass.class_methods.any? %>
     <%= render InstanceMethodsList.new(instance_methods: @klass.instance_methods, gem: @gem) if @klass.instance_methods.any? %>
+    <%= render FilesList.new(files: @klass.defined_files, gem: @gem, title: "Defined in") if @klass.defined_files.any? %>
   </div>
 </div>
