@@ -1,6 +1,6 @@
 class GemsController < ApplicationController
-  before_action :set_gem, except: :index
-  before_action :set_namespaces, except: :index
+  before_action :set_gem, except: [:index, :search]
+  before_action :set_namespaces, except: [:index, :search]
 
   def index
     @gems = Gem::Specification.all.sort_by(&:name)
