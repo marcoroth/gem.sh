@@ -3,9 +3,7 @@
 
   <ul class="list code">
     <% @files.each do |file| %>
-      <li>
-        <%= file.path.delete_prefix("#{@gem.unpack_data_path}/") %>
-      </li>
+      <%= active_link_to file.path.delete_prefix("#{@gem.unpack_data_path}/"), gem_file_path(@gem.name, @gem.version, file.path.delete_prefix("#{@gem.unpack_data_path}/")), wrap_tag: :li %>
     <% end %>
   </ul>
 </aside>

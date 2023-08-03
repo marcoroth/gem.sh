@@ -24,6 +24,9 @@ Rails.application.routes.draw do
       get "/instance_method/:name" => "gems#instance_method", as: :gem_instance_method
       get "/class_method/:name" => "gems#class_method", as: :gem_class_method
 
+      get "/files" => "gems#source", as: :gem_source
+      get "/files/:file" => "gems#source", file: /.*/, as: :gem_file
+
       get "/announcements" => "gems#announcements", as: :gem_announcements
       get "/articles" => "gems#articles", as: :gem_articles
       get "/changelogs" => "gems#changelogs", as: :gem_changelogs
@@ -32,7 +35,6 @@ Rails.application.routes.draw do
       get "/metadata" => "gems#metadata", as: :gem_metadata
       get "/playground" => "gems#playground", as: :gem_playground
       get "/reference" => "gems#reference", as: :gem_reference
-      get "/source" => "gems#source", as: :gem_source
       get "/stats" => "gems#stats", as: :gem_stats
       get "/tutorials" => "gems#tutorials", as: :gem_tutorials
       get "/types" => "gems#types", as: :gem_types

@@ -57,6 +57,15 @@ class GemsController < ApplicationController
     render :method
   end
 
+  def source
+    if params[:file] && @gem.files.include?(params[:file])
+      @file = OpenStruct.new(
+        path: params[:file],
+        content: File.read("#{@gem.unpack_data_path}/#{params[:file]}")
+      )
+    end
+  end
+
   private
 
   def set_gem

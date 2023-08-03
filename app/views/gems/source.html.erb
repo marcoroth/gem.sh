@@ -3,5 +3,16 @@
     <%= render Layout::Subheading.new(title: "Source Files") %>
   </div><hr><br>
 
-  <%= render FilesList.new(files: @gem.files.map { |file| OpenStruct.new(path: file) }, title: "", gem: @gem) %>
+  <div class="grid grid-cols-3 gap-4">
+    <div class="col-span-1">
+      <%= render FilesList.new(files: @gem.files.map { |file| OpenStruct.new(path: file) }, title: "", gem: @gem) %>
+    </div>
+    <div class="col-span-2">
+      <% if @file %>
+        <%= render Layout::CodeBlock.new.with_content(@file.content.html_safe) %>
+      <% else %>
+        <div class="rouge border border-gray-300 bg-gray-100 rounded h-96"></div>
+      <% end %>
+    </div>
+  </div>
 <% end %>
