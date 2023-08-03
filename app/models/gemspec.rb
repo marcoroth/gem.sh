@@ -39,6 +39,10 @@ class Gemspec
     @version_info["version"]
   end
 
+  def released_at
+    Date.parse(@version_info["version_created_at"])
+  end
+
   def downloads
     @version_info["downloads"]
   end
