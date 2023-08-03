@@ -15,7 +15,7 @@
       <%== h.convert(comment) %>
     </div>
 
-    <div class="grid divide-y">
+    <div class="grid">
       <% @klass.class_methods.each do |class_method| %>
         <%= render MethodDetails.new(object: class_method, parent: @namespace, gem: @gem) %>
       <% end %>
