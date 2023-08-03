@@ -1,15 +1,7 @@
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
     <%= render Layout::Subheading.new(title: "Source Files") %>
-  </div><hr>
+  </div><hr><br>
 
-  <div class="mt-12 block truncate col-span-1">
-    <ul class="list code mb-12">
-    <% @gem.files.sort.each do |file| %>
-      <%= link_to gem_path(@gem.name) do %>
-        <li><%= file %></li>
-      <% end %>
-    <% end %>
-    </ul>
-  </div>
+  <%= render FilesList.new(files: @gem.files.map { |file| OpenStruct.new(path: file) }, title: "", gem: @gem) %>
 <% end %>
