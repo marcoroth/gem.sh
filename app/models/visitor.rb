@@ -92,21 +92,21 @@ class Visitor < SyntaxTree::Visitor
 
     if @current_class
       if target == "self"
-        @current_class.class_methods << ClassMethod.new(name: method_name, target: @current_class, node: node, comments: @comments)
+        @current_class.class_methods << ClassMethod.new(name: method_name, target: @current_class, node: node, comments: @comments, defined_files: [current_path])
       else
-        @current_class.instance_methods << InstanceMethod.new(name: method_name, target: @current_class, node: node, comments: @comments)
+        @current_class.instance_methods << InstanceMethod.new(name: method_name, target: @current_class, node: node, comments: @comments, defined_files: [current_path])
       end
     elsif @namespace.any?
       if target == "self"
-        @namespace.last.class_methods << ClassMethod.new(name: method_name, target: @namespace.last, node: node, comments: @comments)
+        @namespace.last.class_methods << ClassMethod.new(name: method_name, target: @namespace.last, node: node, comments: @comments, defined_files: [current_path])
       else
-        @namespace.last.instance_methods << InstanceMethod.new(name: method_name, target: @namespace.last, node: node, comments: @comments)
+        @namespace.last.instance_methods << InstanceMethod.new(name: method_name, target: @namespace.last, node: node, comments: @comments, defined_files: [current_path])
       end
     else
       if target == "self"
-        @analyzer.class_methods << ClassMethod.new(name: method_name, target: @current_class, node: node, comments: @comments)
+        @analyzer.class_methods << ClassMethod.new(name: method_name, target: @current_class, node: node, comments: @comments, defined_files: [current_path])
       else
-        @analyzer.instance_methods << InstanceMethod.new(name: method_name, target: @current_class, node: node, comments: @comments)
+        @analyzer.instance_methods << InstanceMethod.new(name: method_name, target: @current_class, node: node, comments: @comments, defined_files: [current_path])
       end
     end
 

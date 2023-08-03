@@ -1,5 +1,5 @@
 class MethodDefinition < OpenStruct
-  def initialize(name: nil, target: nil, node: nil, comments: [])
+  def initialize(name: nil, target: nil, node: nil, comments: [], defined_files: [])
     super
   end
 
@@ -29,5 +29,9 @@ class MethodDefinition < OpenStruct
     else
       name
     end
+  end
+
+  def code
+    @code ||= NodeToContent.new(defined_files.first, node)
   end
 end
