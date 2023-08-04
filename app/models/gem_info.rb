@@ -2,7 +2,7 @@ class GemInfo
   attr_accessor :analyzer
 
   def self.for(name)
-    new(Gemspec.find(name))
+    new(GemSpec.find(name))
   end
 
   def initialize(gemspec)

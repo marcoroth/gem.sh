@@ -1,9 +1,9 @@
 class PageController < ApplicationController
   def home
     @featured_gems = [
-      Gemspec.find("nokogiri"),
-      Gemspec.find("async"),
-      Gemspec.find("roda"),
+      GemSpec.find("nokogiri"),
+      GemSpec.find("async"),
+      GemSpec.find("roda"),
     ]
 
     @images = [

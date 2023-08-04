@@ -1,4 +1,4 @@
-class Gemspec
+class GemSpec
   BASE = "https://rubygems.org/api/v2"
 
   def self.latest_version_for(name)
@@ -66,11 +66,11 @@ class Gemspec
   end
 
   def instance_methods
-    info.analyzer.instance_methods.sort_by(&:qualified_name)
+    info.analyzer.instance_methods.sort_by(&:name)
   end
 
   def class_methods
-    info.analyzer.class_methods.sort_by(&:qualified_name)
+    info.analyzer.class_methods.sort_by(&:name)
   end
 
   def files

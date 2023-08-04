@@ -7,7 +7,7 @@
     <% @gem.versions.each do |version| %>
       <%= link_to gem_version_path(@gem.name, version["number"]), class: "#{@gem.version == version["number"] ? "bg-gray-100 rounded-md" : nil}" do %>
         <%= render Layout::Card.new(title: version["number"], description: "Released on: #{DateTime.parse(version["created_at"]).to_date.to_fs(:long) }") do |card| %>
-          <% if Gemspec.latest_version_for(@gem.name) == version["number"] %>
+          <% if GemSpec.latest_version_for(@gem.name) == version["number"] %>
             <%= card.with_badge(label: "Latest", style: :gray) %>
           <% end %>
 

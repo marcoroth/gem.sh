@@ -60,7 +60,7 @@ class GemsController < ApplicationController
   end
 
   def set_gem
-    @gem = Gemspec.find(params[:gem], params[:version]) || redirect_to(gems_path)
+    @gem = GemSpec.find(params[:gem], params[:version]) || redirect_to(gems_path)
   end
 
   def set_target
