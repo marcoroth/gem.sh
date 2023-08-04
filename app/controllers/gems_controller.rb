@@ -4,6 +4,14 @@ class GemsController < ApplicationController
   before_action :set_namespaces, except: [:index, :search]
   before_action :set_guides
 
+  rescue_from "GemNotFoundError" do
+    redirect_to gems_path
+  end
+
+  rescue_from "GemConstantNotFoundError" do
+    redirect_to gem_version_path(@gem.name, @gem.version)
+  end
+
   def index
     @gems = Gem::Specification.all.sort_by(&:name)
   end
@@ -22,12 +30,12 @@ class GemsController < ApplicationController
   end
 
   def namespace
-    @namespace = find_module(params[:module]) || go_back
-    @classes = @gem.classes.select { |namespace| namespace.namespace == params[:module] }
+    @namespace = find_module(params[:module])
+    @classes = @gem.classes.select { |namespace| namespace.namespace == @namespace.qualified_name }
   end
 
   def klass
-    @klass = find_class(params[:class]) || go_back
+    @klass = find_class(params[:class])
     @namespace = find_module(@klass.namespace)
   end
 
@@ -55,34 +63,30 @@ class GemsController < ApplicationController
   private
 
   def find_class(name)
-    @gem.classes.find { |klass| klass.qualified_name == name }
+    @gem.classes.find { |klass| klass.qualified_name == name } || raise(GemConstantNotFoundError, "Couldn't find class '#{name}'")
   end
 
   def find_module(name)
-    @gem.modules.find { |namespace| namespace.qualified_name == name }
-  end
-
-  def go_back
-    redirect_to gem_version_path(@gem.name, @gem.version)
-  end
-
-  def set_gem
-    @gem = GemSpec.find(params[:gem], params[:version]) || redirect_to(gems_path)
-  end
-
-  def set_target
-    if params[:class]
-      @target = find_class(params[:class]) || go_back
-      @namespace = find_module(@target.namespace)
-    elsif params[:module]
-      @target = find_module(params[:module]) || go_back
-    else
-      @target = @gem.info.analyzer
-    end
+    @gem.modules.find { |namespace| namespace.qualified_name == name } || raise(GemConstantNotFoundError, "Couldn't find module '#{name}'")
   end
 
   def set_namespaces
     @namespaces = @gem.modules.select { |namespace| namespace.namespace.split("::").count <= 1 }
+  end
+
+  def set_gem
+    @gem = GemSpec.find(params[:gem], params[:version]) || raise(GemNotFoundError, "Couldn't find gem '#{params[:gem]}' with version '#{params[:version]}'")
+  end
+
+  def set_target
+    if params[:class]
+      @target = find_class(params[:class])
+      @namespace = find_module(@target.namespace)
+    elsif params[:module]
+      @target = find_module(params[:module])
+    else
+      @target = @gem.info.analyzer
+    end
   end
 
   def set_guides

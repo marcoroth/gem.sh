@@ -29,7 +29,7 @@
     <div class="xl:col-span-2 pr-4">
       <%= render Layout::CodeBlock.new do %>
 puts "Hello from #{RUBY_ENGINE} #{RUBY_VERSION} 👋"
-puts <%= (@gem.modules + @gem.classes).map { |m| m.qualified_name.split("::") }.flatten.tally.sort_by(&:last).last.first %>::VERSION
+puts <%= @gem.most_used_constant %>::VERSION
 
 
 

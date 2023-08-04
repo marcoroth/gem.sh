@@ -93,6 +93,9 @@ gem "meta-tags"
 # Ruby wrapper for the RubyGems.org API
 gem "gems", "~> 1.2"
 
+# Performances & exceptions monitoring for Ruby on Rails applications
+gem "rorvswild", "~> 1.6"
+
 # View helpers for the beautiful hand-crafted SVG icons, Heroicons.
 gem "heroicon", "~> 1.0"
 

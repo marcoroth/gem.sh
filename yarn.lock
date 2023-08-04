@@ -325,6 +325,11 @@ cssesc@^3.0.0:
   resolved "https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
 
+current.js@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/current.js/-/current.js-0.2.0.tgz#2caa7ccf9d76c3071270e420ad88f7159b8ef68e"
+  integrity sha512-WIKjQe6U9mPix/NFFDiYZjJ4xl96fPfu0UPIcjO0J24KT6eyeneyPlnY5Mu4wJhXQWA7BSEk2Bw5/4X80D+rWQ==
+
 didyoumean@^1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/didyoumean/-/didyoumean-1.2.2.tgz"
