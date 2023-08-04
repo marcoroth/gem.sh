@@ -16,7 +16,7 @@
             <% @gem.modules.sample((2..7).to_a.sample).each do |m| %>
               <li class="flex gap-x-4 py-1 text-sm font-semibold leading-6 text-gray-900">
                 <%= render Layout::Status.new(status: [:orange, :green, :red].sample) %>
-                <code><%= m.qualified_name %></code>
+                <code><%= link_to m.qualified_name, m.url(@gem) %></code>
               </li>
             <% end %>
           </ul>
@@ -29,7 +29,7 @@
             <% @gem.classes.sample((2..7).to_a.sample).each do |c| %>
               <li class="flex gap-x-4 py-1 text-sm font-semibold leading-6 text-gray-900">
                 <%= render Layout::Status.new(status: [:orange, :green, :red].sample) %>
-                <code><span class="text-gray-400"><%= c.namespace %>::</span><%= c.name %></code>
+                <code><span class="text-gray-400"><%= c.namespace %>::</span><%= link_to c.name, c.url(@gem) %></code>
 
               </li>
             <% end %>
@@ -43,7 +43,7 @@
             <% @gem.classes.map(&:instance_methods).flatten.compact.sample((2..7).to_a.sample).each do |method| %>
               <li class="flex gap-x-4 py-1 text-sm font-semibold leading-6 text-gray-900">
                 <%= render Layout::Status.new(status: [:orange, :green, :red].sample) %>
-                <code><span class="text-gray-400"><%= method.target.qualified_name %></span>#<%= method.name %></code>
+                <code><span class="text-gray-400"><%= method.target.qualified_name %></span>#<%= link_to method.name, method.url(@gem) %></code>
               </li>
             <% end %>
           </ul>
