@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       get "/guides" => "gems#guides", as: :gem_guides
       get "/metadata" => "gems#metadata", as: :gem_metadata
       get "/playground" => "gems#playground", as: :gem_playground
+      get "/readme" => "gems#readme", as: :gem_readme
       get "/reference" => "gems#reference", as: :gem_reference
       get "/stats" => "gems#stats", as: :gem_stats
       get "/tutorials" => "gems#tutorials", as: :gem_tutorials

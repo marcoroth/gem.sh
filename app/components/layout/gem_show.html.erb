@@ -62,13 +62,13 @@
 
           <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
             <% titles = [
-              "README",
-              "Getting Started",
-              "Installation",
-              "Upgrade Guide",
-            ].each do |title| %>
+              ["README", gem_readme_path(@gem.name, @gem.version)],
+              ["Getting Started", gem_guide_path(@gem.name, @gem.version, title)],
+              ["Installation", gem_guide_path(@gem.name, @gem.version, title)],
+              ["Upgrade Guide", gem_guide_path(@gem.name, @gem.version, title)],
+            ].each do |title, url| %>
               <li>
-                <%= active_link_to gem_version_path(@gem.name, @gem.version, q: title), active: :exact, class_active: "block border-l pl-4 -ml-px text-sky-500 border-current font-semibold dark:text-sky-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+                <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-sky-500 border-current font-semibold dark:text-sky-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
                   <%= title %>
                 <% end %>
               </li>
