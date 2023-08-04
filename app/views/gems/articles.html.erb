@@ -17,7 +17,7 @@
       "Making #{@gem.name} work for you",
     ] %>
 
-    <% titles.sample(3).each_with_index do |title, index| %>
+    <% titles.each_with_index do |title, index| %>
       <article class="flex max-w-xl flex-col items-start justify-between">
         <div class="flex items-center gap-x-4 text-xs">
           <time class="text-gray-500"><%= (Date.today - (1..(index + 1 * 100)).to_a.sample.days).to_fs(:long) %></time>
