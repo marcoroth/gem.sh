@@ -1,5 +1,6 @@
 class GemsController < ApplicationController
   before_action :set_gem, except: [:index, :search]
+  before_action :set_target, only: [:instance_method, :class_method]
   before_action :set_namespaces, except: [:index, :search]
 
   def index
@@ -14,69 +15,63 @@ class GemsController < ApplicationController
   end
 
   def namespace
-    @namespace = @gem.modules.find { |namespace| namespace.qualified_name == params[:module] }
+    @namespace = find_module(params[:module]) || go_back
     @classes = @gem.classes.select { |namespace| namespace.namespace == params[:module] }
-
-    redirect_to gem_version_path(@gem.name, @gem.version) if @namespace.nil?
   end
 
   def klass
-    @klass = @gem.classes.find { |klass| klass.qualified_name == params[:class] }
-    @namespace = @gem.modules.find { |namespace| namespace.qualified_name == @klass.namespace }
+    @klass = find_class(params[:class]) || go_back
+    @namespace = find_module(@klass.namespace)
   end
 
   def instance_method
-    if params[:class]
-      @klass = @gem.classes.find { |klass| klass.qualified_name == params[:class] }
-      @namespace = @gem.modules.find { |namespace| namespace.qualified_name == @klass.namespace }
-      @method = @klass.instance_methods.find { |instance_method| instance_method.name == params[:name] }
-    elsif params[:module]
-      @namespace = @gem.modules.find { |namespace| namespace.qualified_name == params[:module] }
-      @method = @namespace.instance_methods.find { |instance_method| instance_method.name == params[:name] }
-    else
-      @namespace = @gem.info.analyzer
-      @method = @namespace.instance_methods.find { |instance_method| instance_method.name == params[:name] }
-    end
+    @method = @target.instance_methods.find { |instance_method| instance_method.name == params[:name] }
 
     render :method
   end
 
   def class_method
-    if params[:class]
-      @klass = @gem.classes.find { |klass| klass.qualified_name == params[:class] }
-      @namespace = @gem.modules.find { |namespace| namespace.qualified_name == @klass.namespace }
-      @method = @klass.class_methods.find { |class_method| class_method.name == params[:name] }
-    elsif params[:module]
-      @namespace = @gem.modules.find { |namespace| namespace.qualified_name == params[:module] }
-      @method = @namespace.class_methods.find { |class_method| class_method.name == params[:name] }
-    else
-      @namespace = @gem.info.analyzer
-      @method = @namespace.class_methods.find { |class_method| class_method.name == params[:name] }
-    end
+    @method = @target.class_methods.find { |class_method| class_method.name == params[:name] }
 
     render :method
   end
 
   def source
-    if params[:file] && @gem.files.include?(params[:file])
-      @file = OpenStruct.new(
-        path: params[:file],
-        content: File.read("#{@gem.unpack_data_path}/#{params[:file]}")
-      )
+    file = params[:file]
+    source_path = "#{@gem.unpack_data_path}/#{file}"
+
+    if file && @gem.files.include?(file) && File.exist?(source_path)
+      @file = OpenStruct.new(path: file, content: File.read(source_path))
     end
   end
 
   private
 
+  def find_class(name)
+    @gem.classes.find { |klass| klass.qualified_name == name }
+  end
+
+  def find_module(name)
+    @gem.modules.find { |namespace| namespace.qualified_name == name }
+  end
+
+  def go_back
+    redirect_to gem_version_path(@gem.name, @gem.version)
+  end
+
   def set_gem
-    @gem = Gemspec.find(params[:gem], params[:version])
+    @gem = Gemspec.find(params[:gem], params[:version]) || redirect_to(gems_path)
+  end
 
-    redirect_to gems_path if @gem.nil?
-
-    @version = @gem.version
-
-  rescue StandardError
-    redirect_to gems_path
+  def set_target
+    if params[:class]
+      @target = find_class(params[:class]) || go_back
+      @namespace = find_module(@target.namespace)
+    elsif params[:module]
+      @target = find_module(params[:module]) || go_back
+    else
+      @target = @gem.info.analyzer
+    end
   end
 
   def set_namespaces

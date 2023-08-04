@@ -4,22 +4,20 @@
   <%= render partial: "breadcrumb" %>
 
   <div class="grid grid-cols-4 gap-12">
-    <% object = (@klass || @namespace) %>
-
     <div class="col-span-3">
-      <%= render Layout::Heading.new(title: object) %>
-      <%= render MethodDetails.new(object: @method, parent: object, gem: @gem) %>
+      <%= render Layout::Heading.new(title: @target) %>
+      <%= render MethodDetails.new(object: @method, parent: @target, gem: @gem) %>
     </div>
 
     <div class="col-span-1">
-      <% if object.is_a?(ClassDefinition) %>
+      <% if @target.is_a?(ClassDefinition) %>
         <%= render Superclass.new(superclass: @klass, gem: @gem, title: "Class") if @klass %>
-        <%= render ModulesList.new(modules: object.included_modules, title: "Included Modules", gem: @gem) if object.included_modules.any? %>
-        <%= render ModulesList.new(modules: object.extended_modules, title: "Extended Modules", gem: @gem) if object.extended_modules.any? %>
+        <%= render ModulesList.new(modules: @target.included_modules, title: "Included Modules", gem: @gem) if @target.included_modules.any? %>
+        <%= render ModulesList.new(modules: @target.extended_modules, title: "Extended Modules", gem: @gem) if @target.extended_modules.any? %>
       <% end %>
 
-      <%= render MethodsList.new(methods: object.class_methods, gem: @gem, prefix: "Class") if object.class_methods.any? %>
-      <%= render MethodsList.new(methods: object.instance_methods, gem: @gem, prefix: "Instance") if object.instance_methods.any? %>
+      <%= render MethodsList.new(methods: @target.class_methods, gem: @gem, prefix: "Class") if @target.class_methods.any? %>
+      <%= render MethodsList.new(methods: @target.instance_methods, gem: @gem, prefix: "Instance") if @target.instance_methods.any? %>
     </div>
   </div>
 </div>

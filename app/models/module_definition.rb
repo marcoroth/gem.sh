@@ -3,12 +3,12 @@ class ModuleDefinition < OpenStruct
     super
   end
 
-  def eql?(other)
-    qualified_name == other.qualified_name
+  def url(gem)
+    Router.gem_module_path(gem.name, gem.version, self)
   end
 
-  def url(gem)
-    Router.gem_module_path(gem, self)
+  def eql?(other)
+    qualified_name == other.qualified_name
   end
 
   def object_name

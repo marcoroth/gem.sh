@@ -3,6 +3,10 @@ class ClassDefinition < OpenStruct
     super
   end
 
+  def url(gem)
+    Router.gem_class_path(gem.name, gem.version, qualified_name)
+  end
+
   def eql?(other)
     qualified_name == other.qualified_name
   end

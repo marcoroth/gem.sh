@@ -14,10 +14,12 @@ class Gemspec
   def self.find(name, version = nil)
     version = latest_version_for(name) if version.nil?
 
-    raise "Gem or version not found" if version.nil?
+    return nil if version.nil?
 
     version_info_url = "#{BASE}/rubygems/#{name}/versions/#{version}.json"
     version_info = HTTParty.get(version_info_url)
+
+    return nil unless version_info.ok?
 
     new(version_info)
   end
