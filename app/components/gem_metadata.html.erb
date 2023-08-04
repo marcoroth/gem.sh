@@ -7,7 +7,7 @@
   <%= render Layout::StatusBadge.new(label: "Optimized", status: optimized_status, tooltip: optimized_tooltip) %>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-8 mb-6">
+<div class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-8 mb-6">
   <div class="bg-gray-50 rounded p-3 text-center border justify-center flex-col flex">
     <p class="excerpt metadata_headers">Version</p>
     <p><%= @gem.version %></p>

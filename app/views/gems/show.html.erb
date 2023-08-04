@@ -1,9 +1,26 @@
 <% title @gem.name %>
 
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
-  <div class="grid prose max-w-full">
-    <% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true) %>
+  <%#= render partial: "gem_navigation" %>
 
-    <%== markdown.render(@gem.readme_content) %>
+  <header class="border-b mb-10">
+    <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl"><%= @gem.name %></h1>
+    <p class="mt-2 text-lg text-gray-800 mb-3"><%= @gem.description || @gem.summary %></p>
+  </header>
+
+  <%= render GemMetadata.new(gem: @gem) %>
+
+  <hr class="pb-10">
+
+  <div>
+    <div class="space-y-10 md:space-y-16">
+      <%= render partial: "gems/getting_started" %>
+      <%= render partial: "gems/playground" %>
+    </div>
+  </div>
+
+  <div class="grid prose max-w-full">
+    <%# markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true) %>
+    <%#== markdown.render(@gem.readme_content) %>
   </div>
 <% end %>

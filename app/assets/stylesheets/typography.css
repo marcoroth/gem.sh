@@ -184,13 +184,13 @@ body {
   --text-mod-lighter-strong: 500;
 }
 
-a {
+/* a {
   color: var(--color-link);
   font-weight: 600;
   &:hover {
       text-decoration: none;
   }
-}
+} */
 
 .heading, h1 {
   font-family: var(--font-family-heading);
@@ -239,7 +239,7 @@ a {
   line-height: var(--line-height-caption-text);
   font-weight: var(--font-weight-caption-text);
 }
-.paragraph, ul li {
+.paragraph ul li {
   font-family: var(--base-font-family);
   font-size:   var(--font-size-paragraph);
   line-height: var(--line-height-paragraph);

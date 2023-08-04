@@ -1,0 +1,36 @@
+<div>
+  <h2 id="playground" class="scroll-mt-24">
+    <a class="group relative text-xl font-bold text-gray-800" href="#playground">
+      Playground
+    </a>
+  </h2>
+
+  <p class="mt-1 text-gray-600">Test, play and inspect the gem for yourself</p>
+
+  <div class="mt-5 space-y-4">
+    <div class="grid gap-y-6">
+      <a class="group bg-white border rounded-xl p-4 hover:bg-gray-50 hover:shadow-sm transition sm:p-6" href="<%= gem_playground_path(@gem.name, @gem.version) %>">
+        <div class="sm:flex sm:items-center">
+          <div class="flex-shrink-0 rounded-xl sm:max-w-[13rem]">
+            <pre class="bg-gray-800 rounded-xl shadow-md h-full w-full text-white">
+irb(main):001:0>
+
+            </pre>
+          </div>
+          <div class="mt-4 sm:mt-0 sm:ml-7">
+            <h3 class="text-lg font-semibold">Playground</h3>
+
+            <p class="mt-2 text-gray-800">Run a Ruby playground with the <code><%= @gem.name %></code> gem pre-installed</p>
+
+            <p class="mt-3 inline-flex justify-center items-center gap-2 text-sm font-semibold text-blue-500 hover:text-blue-700">
+              Play
+              <svg class="w-2.5 h-2.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition" width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.07107 12.2509C1.68054 12.6414 1.04738 12.6414 0.656854 12.2509C0.26633 11.8604 0.26633 11.2272 0.656854 10.8367L9.2028 2.29072L1.71751 2.29072C1.16523 2.29072 0.717514 1.84301 0.717514 1.29072C0.717514 0.738439 1.16523 0.290724 1.71751 0.290724L11.367 0.290724C12.0574 0.290725 12.617 0.85037 12.617 1.54072L12.617 11.1902C12.617 11.7425 12.1693 12.1902 11.617 12.1902C11.0647 12.1902 10.617 11.7425 10.617 11.1902V3.70494L2.07107 12.2509Z" fill="currentColor"></path>
+              </svg>
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

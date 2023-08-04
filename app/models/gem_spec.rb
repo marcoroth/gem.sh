@@ -41,6 +41,14 @@ class GemSpec
     @version_info["version"]
   end
 
+  def summary
+    @version_info["summary"]
+  end
+
+  def description
+    @version_info["description"]
+  end
+
   def released_at
     Date.parse(@version_info["version_created_at"])
   end
