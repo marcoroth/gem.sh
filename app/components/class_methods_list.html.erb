@@ -1,9 +1,0 @@
-<aside class="block truncate col-span-1 mb-12">
-  <h3 class="list-header">Class Methods</h3>
-
-  <ul class="list code">
-    <% @class_methods.each do |class_method| %>
-      <%= active_link_to class_method, class_method.url(@gem), wrap_tag: :li %>
-    <% end %>
-  </ul>
-</aside>

@@ -18,11 +18,11 @@
   </div>
 
   <div class="col-span-1">
+    <%= render ClassesList.new(classes: @classes, gem: @gem) if @classes.any? %>
     <%= render ModulesList.new(modules: @namespace.included_modules, title: "Included Modules", gem: @gem) if Array.wrap(@namespace.included_modules).any? %>
     <%= render ModulesList.new(modules: @namespace.extended_modules, title: "Extended Modules", gem: @gem) if Array.wrap(@namespace.extended_modules).any? %>
-    <%= render ClassMethodsList.new(class_methods: @namespace.class_methods, gem: @gem) if Array.wrap(@namespace.class_methods).any? %>
-    <%= render InstanceMethodsList.new(instance_methods: @namespace.instance_methods, gem: @gem) if Array.wrap(@namespace.instance_methods).any? %>
-    <%= render ClassesList.new(classes: @classes, gem: @gem) if @classes.any? %>
+    <%= render MethodsList.new(methods: @namespace.class_methods, gem: @gem, prefix: "Class") if Array.wrap(@namespace.class_methods).any? %>
+    <%= render MethodsList.new(methods: @namespace.instance_methods, gem: @gem, prefix: "Instance") if Array.wrap(@namespace.instance_methods).any? %>
     <%= render FilesList.new(files: @namespace.defined_files, gem: @gem, title: "Defined in") if @namespace.defined_files.any? %>
   </div>
 </div>

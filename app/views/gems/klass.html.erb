@@ -31,8 +31,8 @@
     <%= render Superclass.new(superclass: @klass.superclass, gem: @gem, title: "Parent class") if @klass.superclass %>
     <%= render ModulesList.new(modules: @klass.included_modules, title: "Included Modules", gem: @gem) if @klass.included_modules.any? %>
     <%= render ModulesList.new(modules: @klass.extended_modules, title: "Extended Modules", gem: @gem) if @klass.extended_modules.any? %>
-    <%= render ClassMethodsList.new(class_methods: @klass.class_methods, gem: @gem) if @klass.class_methods.any? %>
-    <%= render InstanceMethodsList.new(instance_methods: @klass.instance_methods, gem: @gem) if @klass.instance_methods.any? %>
+    <%= render MethodsList.new(methods: @klass.class_methods, gem: @gem, prefix: "Class") if @klass.class_methods.any? %>
+    <%= render MethodsList.new(methods: @klass.instance_methods, gem: @gem, prefix: "Instance") if @klass.instance_methods.any? %>
     <%= render FilesList.new(files: @klass.defined_files, gem: @gem, title: "Defined in") if @klass.defined_files.any? %>
   </div>
 </div>
