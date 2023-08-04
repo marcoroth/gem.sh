@@ -49,16 +49,12 @@ class Gemspec
     @version_info["downloads"]
   end
 
-  def versions
-    url = "https://rubygems.org/api/v1/versions/#{name}.json"
-
-    result = HTTParty.get(url)
-
-    JSON.parse(result.response.body).uniq { |version| version["number"] }
-  end
-
   def gem_uri
     @version_info["gem_uri"]
+  end
+
+  def versions
+    Gems.versions(name).uniq { |version| version["number"] }
   end
 
   def classes
