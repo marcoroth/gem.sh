@@ -2,12 +2,19 @@ class GemsController < ApplicationController
   before_action :set_gem, except: [:index, :search]
   before_action :set_target, only: [:instance_method, :class_method]
   before_action :set_namespaces, except: [:index, :search]
+  before_action :set_guides
 
   def index
     @gems = Gem::Specification.all.sort_by(&:name)
   end
 
   def show
+    @getting_started = [
+      OpenStruct.new(title: "Installation", url: Router.gem_guides_path(@gem.name, @gem.version), description: "Learn more about how to install and configure the gem", icon: "arrow-down-tray"),
+      OpenStruct.new(title: "Documentation", url: Router.gem_guides_path(@gem.name, @gem.version), description: "Learn more about the details", icon: "book-open"),
+      OpenStruct.new(title: "Guides", url: Router.gem_guides_path(@gem.name, @gem.version), description: "Learn more about the gem in the written guides", icon: "document-text"),
+      OpenStruct.new(title: "Reference", url: Router.gem_reference_path(@gem.name, @gem.version), description: "Learn more about the classes and modules", icon: "code-bracket"),
+    ]
   end
 
   def search
@@ -76,5 +83,19 @@ class GemsController < ApplicationController
 
   def set_namespaces
     @namespaces = @gem.modules.select { |namespace| namespace.namespace.split("::").count <= 1 }
+  end
+
+  def set_guides
+    @guides = [
+      "Basics",
+      "Migrations",
+      "Validations",
+      "Callbacks",
+      "Authentication",
+      "Persistence",
+      "Patterns",
+      "Deployment",
+      "Troubleshooting",
+    ]
   end
 end

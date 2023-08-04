@@ -91,7 +91,7 @@
               "Troubleshooting",
             ].each do |title| %>
               <li>
-                <%= active_link_to gem_guides_path(@gem.name, @gem.version, q: title), active: :exact, class_active: "block border-l pl-4 -ml-px text-sky-500 border-current font-semibold dark:text-sky-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+                <%= active_link_to gem_guide_path(@gem.name, @gem.version, title), active: :exact, class_active: "block border-l pl-4 -ml-px text-sky-500 border-current font-semibold dark:text-sky-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
                   <%= title %>
                 <% end %>
               </li>

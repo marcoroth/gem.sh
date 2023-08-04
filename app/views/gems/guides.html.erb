@@ -4,35 +4,13 @@
     <%= render Layout::Badge.new(label: "Demo") %>
   </div><hr>
 
-  <div class="mt-12 grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-3">
-    <% titles = [
-      "#{@gem.name.camelize} Basics",
-      "#{@gem.name.camelize} Migrations",
-      "#{@gem.name.camelize} Validations",
-      "#{@gem.name.camelize} Callbacks",
-      "#{@gem.name.camelize} Authentication",
-      "#{@gem.name.camelize} Persistence",
-      "#{@gem.name.camelize} Patterns",
-      "#{@gem.name.camelize} Deployment",
-      "#{@gem.name.camelize} Troubleshooting",
-    ] %>
-
-    <% titles.each do |title| %>
-      <article class="flex max-w-xl flex-col items-start justify-between">
-        <div class="flex items-center gap-x-4 text-xs">
-          <a href="#" class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Guide</a>
-        </div>
-        <div class="group relative">
-          <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              <%= title %>
-            </a>
-          </h3>
-          <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
-        </div>
-
-      </article>
+  <div class="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
+    <% @guides.each do |title| %>
+      <%= link_to gem_guide_path(@gem.name, @gem.version, title) do %>
+        <%= render Layout::Card.new(title: title, description: "Learn more about #{title} in #{@gem.name}") do |card| %>
+          <%= card.with_badge(label: "Guide") %>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 <% end %>
