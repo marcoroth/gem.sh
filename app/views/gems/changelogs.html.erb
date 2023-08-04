@@ -9,7 +9,7 @@
       <%= render Layout::Subheading.new(title: version["number"]) %>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mt-12 gap-4">
-        <div class="">
+        <div class="truncate">
           <h3 class="list-header">Module Changes</h3>
 
           <ul role="list" class="mt-6">
@@ -22,7 +22,7 @@
           </ul>
         </div>
 
-        <div class="">
+        <div class="truncate">
           <h3 class="list-header">Class Changes</h3>
 
           <ul role="list" class="mt-6">
@@ -36,7 +36,7 @@
           </ul>
         </div>
 
-        <div class="">
+        <div class="truncate">
           <h3 class="list-header">Method Changes</h3>
 
           <ul role="list" class="mt-6">
