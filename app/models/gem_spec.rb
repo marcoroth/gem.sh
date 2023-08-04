@@ -73,6 +73,12 @@ class GemSpec
     info.analyzer.class_methods.sort_by(&:name)
   end
 
+  def most_used_constant
+    constant = (modules + classes).map { |const| const.qualified_name.split("::").first }.flatten.tally.sort_by(&:last).last
+
+    constant ? constant.first : name.capitalize
+  end
+
   def files
     metadata.files
       .select { |file| file.ends_with?(".rb") }
