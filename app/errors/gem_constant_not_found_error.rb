@@ -1,0 +1,2 @@
+class GemConstantNotFoundError < StandardError
+end
