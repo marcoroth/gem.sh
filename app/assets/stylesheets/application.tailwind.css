@@ -1,6 +1,9 @@
 @import url("typography.css");
 @import url("modifiers.css");
 @import url("components.css");
+
+@import url("tippy.js/dist/tippy.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
