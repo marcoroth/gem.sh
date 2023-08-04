@@ -34,7 +34,7 @@ class GemMetadata < ViewComponent::Base
   end
 
   def zeitwerk_tooltip
-    zeitwerk_status == :green ? "This gem conform to the Zeitwerk conventions" : "This gem doesn't seem to conform to the Zeitwerk conventions"
+    zeitwerk_status == :green ? "This gem conforms to the Zeitwerk conventions" : "This gem doesn't seem to conform to the Zeitwerk conventions"
   end
 
   def namespace_status
