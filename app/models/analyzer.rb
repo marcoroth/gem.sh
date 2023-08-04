@@ -27,6 +27,10 @@ class Analyzer
     "global"
   end
 
+  def url(gem)
+    Router.gem_version_path(gem.name, gem.version)
+  end
+
   def to_s
     "global"
   end
