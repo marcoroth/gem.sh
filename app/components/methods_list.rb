@@ -2,7 +2,7 @@
 
 class MethodsList < ViewComponent::Base
   def initialize(methods:, gem:, prefix:)
-    @methods = methods
+    @methods = methods.sort_by(&:name)
     @gem = gem
     @prefix = prefix
   end

@@ -2,7 +2,7 @@
 
 class ClassesList < ViewComponent::Base
   def initialize(classes:, gem:)
-    @classes = classes
+    @classes = classes.sort_by(&:qualified_name)
     @gem = gem
   end
 end

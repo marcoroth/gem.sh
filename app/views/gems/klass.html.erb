@@ -16,11 +16,11 @@
     </div>
 
     <div class="grid">
-      <% @klass.class_methods.each do |class_method| %>
+      <% @klass.class_methods.sort_by(&:name).each do |class_method| %>
         <%= render MethodDetails.new(object: class_method, parent: @namespace, gem: @gem) %>
       <% end %>
 
-      <% @klass.instance_methods.each do |instance_method| %>
+      <% @klass.instance_methods.sort_by(&:name).each do |instance_method| %>
         <%= render MethodDetails.new(object: instance_method, parent: @namespace, gem: @gem) %>
       <% end %>
     </div>

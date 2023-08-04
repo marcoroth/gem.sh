@@ -7,11 +7,11 @@
     <%= render Layout::Heading.new(title: @namespace) %>
 
     <div class="grid">
-      <% @namespace.class_methods.each do |class_method| %>
+      <% @namespace.class_methods.sort_by(&:name).each do |class_method| %>
         <%= render MethodDetails.new(object: class_method, parent: @namespace, gem: @gem) %>
       <% end %>
 
-      <% @namespace.instance_methods.each do |instance_method| %>
+      <% @namespace.instance_methods.sort_by(&:name).each do |instance_method| %>
         <%= render MethodDetails.new(object: instance_method, parent: @namespace, gem: @gem) %>
       <% end %>
     </div>
