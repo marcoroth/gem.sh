@@ -1,27 +1,19 @@
 class GemSpec
-  BASE = "https://rubygems.org/api/v2"
-
   def self.latest_version_for(name)
     return nil if name.blank?
 
-    spec = Gem.latest_spec_for(name)
-
-    return nil if spec.nil?
-
-    spec.version
+    Gem.latest_spec_for(name).try(:version)
   end
 
-  def self.find(name, version = nil)
-    version = latest_version_for(name) if version.nil?
-
+  def self.find(name, version = latest_version_for(name))
+    return nil if name.nil?
     return nil if version.nil?
 
-    version_info_url = "#{BASE}/rubygems/#{name}/versions/#{version}.json"
-    version_info = HTTParty.get(version_info_url)
+    info = Gems::V2.info(name, version)
 
-    return nil unless version_info.ok?
+    return nil if info.nil?
 
-    new(version_info)
+    new(info)
   end
 
   def initialize(version_info)
