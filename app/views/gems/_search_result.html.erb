@@ -1,5 +1,4 @@
 <div id="search-result">
-  <!-- Default state, show/hide based on command palette state -->
   <% if params[:name].blank? %>
     <div class="border-t border-gray-100 px-6 pt-8 pb-14 text-center text-sm sm:px-14">
       <p class="mt-2 font-semibold text-gray-900">Search gems</p>
@@ -12,9 +11,12 @@
       <li>
         <h2 class="bg-gray-100 px-4 py-2.5 text-xs font-semibold text-gray-900">Gems</h2>
         <ul class="mt-2 text-sm text-gray-800">
-          <% result.each do |name| %>
-            <li class="cursor-default select-none px-4 py-2 hover:bg-gray-200" role="option" tabindex="-1">
-              <%= link_to name, gem_path(name), class: "" %>
+          <% result.each do |gem| %>
+            <li class="cursor-default select-none px-4 py-2 hover:bg-gray-100" role="option" tabindex="-1">
+              <%= link_to gem_version_path(gem["name"], gem["version"]), class: "flex justify-between items-center" do %>
+                <code><%= gem["name"] %></code>
+                <%= render Layout::Badge.new(label: gem["version"]) %>
+              <% end %>
             </li>
           <% end %>
         </ul>
