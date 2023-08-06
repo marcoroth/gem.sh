@@ -9,14 +9,14 @@ class Visitor < SyntaxTree::Visitor
     super()
 
     @analyzer = analyzer
-    @namespace = []
+    @modules = []
     @comments = []
     @current_class = nil
     @current_path = nil
   end
 
   def visit_class(node)
-    namespace = @namespace.map(&:name).compact.join("::")
+    namespace = @modules.map(&:name).compact.join("::")
     name = node.constant.constant.value
     qualified_name = [namespace, name].compact_blank.join("::")
 
@@ -71,7 +71,7 @@ class Visitor < SyntaxTree::Visitor
   end
 
   def visit_module(node)
-    namespace = @namespace.map(&:name).compact.join("::")
+    namespace = @modules.map(&:name).compact.join("::")
     name = node.constant.constant.value
     qualified_name = [namespace, name].compact_blank.join("::")
 
@@ -97,15 +97,15 @@ class Visitor < SyntaxTree::Visitor
     end
 
     @comments = []
-    @namespace << module_definition
+    @modules << module_definition
 
     super
 
-    @namespace.pop
+    @modules.pop
   end
 
   def visit_const(node)
-    @analyzer.consts << [*@namespace.map(&:name), node.value].compact.join("::")
+    @analyzer.consts << [*@modules.map(&:name), node.value].compact.join("::")
 
     super
   end
@@ -118,8 +118,8 @@ class Visitor < SyntaxTree::Visitor
 
     context = if @current_class
                @current_class
-             elsif @namespace.any?
-               @namespace.last
+             elsif @modules.any?
+               @modules.last
              else
                @analyzer
              end
