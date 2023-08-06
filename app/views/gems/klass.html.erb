@@ -27,8 +27,8 @@
   </div>
 
   <div class="col-span-1">
-    <%= render Superclass.new(superclass: @namespace, gem: @gem, title: "Module") if @namespace %>
-    <%= render Superclass.new(superclass: @klass.superclass, gem: @gem, title: "Parent class") if @klass.superclass %>
+    <%= render ConstantDefinition.new(definition: @namespace, name: "#{@namespace.object_name} #{@namespace.qualified_name}", gem: @gem, title: "Namespace") if @namespace %>
+    <%= render ConstantDefinition.new(definition: @klass.superclass, gem: @gem, title: "Parent class") if @klass.superclass %>
     <%= render ModulesList.new(modules: @klass.included_modules, title: "Included Modules", gem: @gem) if @klass.included_modules.any? %>
     <%= render ModulesList.new(modules: @klass.extended_modules, title: "Extended Modules", gem: @gem) if @klass.extended_modules.any? %>
     <%= render MethodsList.new(methods: @klass.class_methods, gem: @gem, prefix: "Class") if @klass.class_methods.any? %>

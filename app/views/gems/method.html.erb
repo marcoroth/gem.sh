@@ -11,7 +11,7 @@
 
     <div class="col-span-1">
       <% if @target.is_a?(ClassDefinition) %>
-        <%= render Superclass.new(superclass: @klass, gem: @gem, title: "Class") if @klass %>
+        <%= render ConstantDefinition.new(definition: @klass, gem: @gem, title: "Class") if @klass %>
         <%= render ModulesList.new(modules: @target.included_modules, title: "Included Modules", gem: @gem) if @target.included_modules.any? %>
         <%= render ModulesList.new(modules: @target.extended_modules, title: "Extended Modules", gem: @gem) if @target.extended_modules.any? %>
       <% end %>
