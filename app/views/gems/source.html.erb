@@ -5,7 +5,7 @@
 
   <div class="grid grid-cols-3 gap-4">
     <div class="col-span-1">
-      <%= render FilesList.new(files: @gem.files.map { |file| OpenStruct.new(path: file) }, title: "", gem: @gem) %>
+      <%= render Layout::CodeList.new(items: @gem.files.map { |file| OpenStruct.new(path: file) }, title: "", gem: @gem) %>
     </div>
     <div class="col-span-2">
       <% if @file %>
