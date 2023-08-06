@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       scope "/module/:module" do
         get "/instance_method/:name" => "gems#instance_method", as: :gem_module_instance_method
         get "/class_method/:name" => "gems#class_method", as: :gem_module_class_method
-        get "/" => "gems#namespace", as: :gem_module
+        get "/" => "gems#nodule", as: :gem_module
       end
 
       get "/instance_method/:name" => "gems#instance_method", as: :gem_instance_method

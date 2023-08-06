@@ -23,9 +23,9 @@ class GemsController < ApplicationController
     @result = GemSearch.search(params[:name])
   end
 
-  def namespace
-    @namespace = find_module!(params[:module])
-    @classes = @gem.classes.select { |klass| klass.namespace == @namespace.qualified_name }
+  def nodule
+    @module = find_module!(params[:module])
+    @classes = @gem.classes.select { |klass| klass.namespace == @module.qualified_name }
   end
 
   def klass
