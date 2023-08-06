@@ -38,11 +38,15 @@ class GemsController < ApplicationController
   def instance_method
     @method = @target.instance_methods.find { |instance_method| instance_method.name == params[:name] }
 
+    raise(GemConstantNotFoundError, "Instance method '#{params[:name]}' not found on '#{@target.try(:qualified_name)}'") if @method.nil?
+
     render :method
   end
 
   def class_method
     @method = @target.class_methods.find { |class_method| class_method.name == params[:name] }
+
+    raise(GemConstantNotFoundError, "Class method '#{params[:name]}' not found on '#{@target.try(:qualified_name)}'") if @method.nil?
 
     render :method
   end
