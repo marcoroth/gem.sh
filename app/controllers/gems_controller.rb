@@ -3,7 +3,7 @@ class GemsController < ApplicationController
   before_action :set_target, only: [:instance_method, :class_method]
   before_action :set_namespaces, except: [:index, :search]
 
-  rescue_from "GemNotFoundError" do
+  rescue_from "GemNotFoundError", "Gems::NotFound" do
     redirect_to gems_path
   end
 
