@@ -116,17 +116,17 @@ class Visitor < SyntaxTree::Visitor
 
     super
 
-    if @current_class
-      parent = @current_class
-    elsif @namespace.any?
-      parent = @namespace.last
-    else
-      parent = @analyzer
-    end
+    context = if @current_class
+               @current_class
+             elsif @namespace.any?
+               @namespace.last
+             else
+               @analyzer
+             end
 
     method_definition_args = {
       name: method_name,
-      target: parent,
+      target: context,
       location: node.location,
       # node: node,
       comments: @comments,
@@ -134,9 +134,9 @@ class Visitor < SyntaxTree::Visitor
     }
 
     if target == "self"
-      parent.class_methods << ClassMethod.new(**method_definition_args)
+      context.class_methods << ClassMethod.new(**method_definition_args)
     else
-      parent.instance_methods << InstanceMethod.new(**method_definition_args)
+      context.instance_methods << InstanceMethod.new(**method_definition_args)
     end
 
     @comments = []
@@ -156,30 +156,15 @@ class Visitor < SyntaxTree::Visitor
       location: node.location,
     )
 
-    if name == "include"
+    if ["include", "extend"].include?(name)
+      modules = (name == "include") ? @current_class.included_modules : @current_class.extended_modules
+
       node.arguments.parts.each do |part|
         module_namespace = part.try(:parent).try(:value).try(:value)
         module_name = part.try(:constant).try(:value) || part.try(:value).try(:value)
         module_qualified_name = [module_namespace, module_name].compact_blank.join("::")
 
-        @current_class.included_modules << ModuleDefinition.new(
-          namespace: module_namespace,
-          name: module_name,
-          qualified_name: module_qualified_name,
-          location: node.location,
-          # node: part,
-          referenced_files: [reference],
-        )
-      end
-    end
-
-    if name == "extend"
-      node.arguments.parts.each do |part|
-        module_namespace = part.try(:parent).try(:value).try(:value)
-        module_name = part.try(:constant).try(:value) || part.try(:value).try(:value)
-        module_qualified_name = [module_namespace, module_name].compact_blank.join("::")
-
-        @current_class.extended_modules << ModuleDefinition.new(
+        modules << ModuleDefinition.new(
           namespace: module_namespace,
           name: module_name,
           qualified_name: module_qualified_name,

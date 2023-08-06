@@ -7,10 +7,10 @@ class GemSpec
     Gem.latest_spec_for(name).try(:version)
   end
 
-  def self.find(name, version = latest_version_for(name))
+  def self.find(name, version = nil)
     return nil if name.nil?
 
-    version = latest_version_for(name) if version.nil?
+    version ||= latest_version_for(name)
 
     return nil if version.nil?
 
