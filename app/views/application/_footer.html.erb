@@ -16,6 +16,11 @@
       <div class="pb-6">
         <%= link_to "Monitoring", "https://www.rorvswild.com/applications/136042/requests?utm_medium=referral&utm_source=gem.sh", target: "_blank", class: "text-sm leading-6 text-gray-600 hover:text-gray-900" %>
       </div>
+      <% if Rails.env.development? %>
+        <div class="pb-6">
+          <%= link_to "Open on gem.sh", request.url.gsub("http://localhost:3000", "https://gem.sh"), target: "_blank", class: "text-sm leading-6 text-gray-600 hover:text-gray-900" %>
+        </div>
+      <% end %>
     </nav>
 
     <div class="mt-8 flex justify-center space-x-6">

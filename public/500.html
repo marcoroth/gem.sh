@@ -52,6 +52,19 @@
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
   </style>
+
+  <script type="module">
+    const a = document.createElement("a")
+    const br = document.createElement("br")
+    const p = document.querySelector("p")
+
+    a.href = window.location.href.replace(`${window.location.protocol}//${window.location.host}`, "http://localhost:3000")
+    a.innerText = "Debug on localhost"
+    a.target = "_blank"
+
+    p.appendChild(br)
+    p.appendChild(a)
+  </script>
 </head>
 
 <body class="rails-default-error-page">
