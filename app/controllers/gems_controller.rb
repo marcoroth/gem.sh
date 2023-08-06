@@ -30,7 +30,8 @@ class GemsController < ApplicationController
 
   def klass
     @klass = find_class!(params[:class])
-    @namespace = find_namespace!(@klass.namespace)
+    @namespace = find_namespace(@klass.namespace)
+    @classes = @gem.classes.select { |klass| klass.namespace == @klass.qualified_name }
   end
 
   def instance_method
@@ -73,7 +74,11 @@ class GemsController < ApplicationController
   end
 
   def find_namespace(name)
-    find_class(name) || find_module(name) || raise(GemConstantNotFoundError, "Couldn't find namespace '#{name}'")
+    find_module(name) || find_class(name)
+  end
+
+  def find_namespace!(name)
+    find_namespace(name) || raise(GemConstantNotFoundError, "Couldn't find namespace '#{name}'")
   end
 
   def set_gem
@@ -83,7 +88,7 @@ class GemsController < ApplicationController
   def set_target
     if params[:class]
       @target = find_class!(params[:class])
-      @namespace = find_module!(@target.namespace)
+      @namespace = find_namespace(@target.namespace)
     elsif params[:module]
       @target = find_module!(params[:module])
     else

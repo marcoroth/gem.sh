@@ -28,6 +28,7 @@
 
   <div class="col-span-1">
     <%= render ConstantDefinition.new(definition: @namespace, name: "#{@namespace.object_name} #{@namespace.qualified_name}", gem: @gem, title: "Namespace") if @namespace %>
+    <%= render ClassesList.new(classes: @classes, gem: @gem, title: "Classes in this namespace") if @classes.any? %>
     <%= render ConstantDefinition.new(definition: @klass.superclass, gem: @gem, title: "Parent class") if @klass.superclass %>
     <%= render ModulesList.new(modules: @klass.included_modules, title: "Included Modules", gem: @gem) if @klass.included_modules.any? %>
     <%= render ModulesList.new(modules: @klass.extended_modules, title: "Extended Modules", gem: @gem) if @klass.extended_modules.any? %>
