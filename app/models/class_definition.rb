@@ -1,5 +1,18 @@
 class ClassDefinition < OpenStruct
-  def initialize(namespace: nil, name: nil, qualified_name: nil, node: nil, superclass: nil, instance_methods: [], class_methods: [], extended_modules: [], included_modules: [], comments: [], defined_files: [], referenced_files: [])
+  def initialize(
+    namespace: nil,
+    name: nil,
+    qualified_name: nil,
+    node: nil,
+    superclass: nil,
+    instance_methods: [],
+    class_methods: [],
+    extended_modules: [],
+    included_modules: [],
+    comments: [],
+    defined_files: [],
+    referenced_files: []
+  )
     super
   end
 

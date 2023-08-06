@@ -1,5 +1,11 @@
 class MethodDefinition < OpenStruct
-  def initialize(name: nil, target: nil, node: nil, comments: [], defined_files: [])
+  def initialize(
+    name: nil,
+    target: nil,
+    node: nil,
+    comments: [],
+    defined_files: []
+  )
     super
   end
 
