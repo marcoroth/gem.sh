@@ -26,6 +26,7 @@ class GemsController < ApplicationController
   def nodule
     @module = find_module!(params[:module])
     @classes = @gem.classes.select { |klass| klass.namespace == @module.qualified_name }
+    @modules = @gem.modules.select { |nodule| nodule.namespace == @module.qualified_name }
   end
 
   def klass

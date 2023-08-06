@@ -15,6 +15,40 @@
         <%= render MethodDetails.new(object: instance_method, parent: @module, gem: @gem) %>
       <% end %>
     </div>
+
+    <% if @module.class_methods.none? && @module.instance_methods.none? %>
+      <% if @modules.any? %>
+        <div class="mt-12">
+          <%= render Layout::Subheading.new(title: "Modules in this namespace") %>
+
+          <div class="mt-6 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+            <% @modules.each do |nodule| %>
+              <%= link_to nodule.url(@gem) do %>
+                <%= render Layout::Card.new(title: nodule.name, description: "in #{nodule.namespace}") do |card|%>
+                  <% card.with_badge(label: "module") %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @classes.any? %>
+        <div class="mt-12">
+          <%= render Layout::Subheading.new(title: "Classes in this namespace") %>
+
+          <div class="mt-6 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+            <% @classes.each do |klass| %>
+              <%= link_to klass.url(@gem) do %>
+                <%= render Layout::Card.new(title: klass.name, description: "in #{klass.namespace}") do |card|%>
+                  <% card.with_badge(label: "class") %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="col-span-1">
