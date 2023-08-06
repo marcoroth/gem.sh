@@ -11,7 +11,7 @@ class Visitor < SyntaxTree::Visitor
     @analyzer = analyzer
     @modules = []
     @comments = []
-    @current_class = nil
+    @classes = []
     @current_path = nil
   end
 
@@ -63,11 +63,11 @@ class Visitor < SyntaxTree::Visitor
     end
 
     @comments = []
-    @current_class = class_definition
+    @classes << class_definition
 
     super
 
-    @current_class = nil
+    @classes.pop
   end
 
   def visit_module(node)
@@ -116,8 +116,8 @@ class Visitor < SyntaxTree::Visitor
 
     super
 
-    context = if @current_class
-               @current_class
+    context = if @classes.any?
+               @classes.last
              elsif @modules.any?
                @modules.last
              else
@@ -147,9 +147,10 @@ class Visitor < SyntaxTree::Visitor
   end
 
   def visit_command(node)
-    name = node.message.value
+    return if @classes.none?
 
-    return if @current_class.nil?
+    klass = @classes.last
+    name = node.message.value
 
     reference = ConstantReference.new(
       path: current_path,
@@ -157,7 +158,7 @@ class Visitor < SyntaxTree::Visitor
     )
 
     if ["include", "extend"].include?(name)
-      modules = (name == "include") ? @current_class.included_modules : @current_class.extended_modules
+      modules = (name == "include") ? klass.included_modules : klass.extended_modules
 
       node.arguments.parts.each do |part|
         module_namespace = part.try(:parent).try(:value).try(:value)
