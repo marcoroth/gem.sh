@@ -34,7 +34,8 @@ class Visitor < SyntaxTree::Visitor
         namespace: superclass_namespace,
         name: superclass_name,
         qualified_name: superclass_qualified_name,
-        node: node.superclass
+        location: node.location,
+        # node: node.superclass
       )
     else
       superclass_definition = ClassDefinition.new(
@@ -48,7 +49,8 @@ class Visitor < SyntaxTree::Visitor
         namespace: namespace,
         name: name,
         qualified_name: qualified_name,
-        node: node,
+        location: node.location,
+        # node: node,
         superclass: superclass_definition,
         comments: @comments,
         defined_files: [reopen]
@@ -82,7 +84,8 @@ class Visitor < SyntaxTree::Visitor
         namespace: namespace,
         name: name,
         qualified_name: qualified_name,
-        node: node,
+        location: node.location,
+        # node: node,
         comments: @comments,
         defined_files: [reopen]
       )
@@ -116,7 +119,8 @@ class Visitor < SyntaxTree::Visitor
         @current_class.class_methods << ClassMethod.new(
           name: method_name,
           target: @current_class,
-          node: node,
+          location: node.location,
+          # node: node,
           comments: @comments,
           defined_files: [current_path]
         )
@@ -124,7 +128,8 @@ class Visitor < SyntaxTree::Visitor
         @current_class.instance_methods << InstanceMethod.new(
           name: method_name,
           target: @current_class,
-          node: node,
+          location: node.location,
+          # node: node,
           comments: @comments,
           defined_files: [current_path]
         )
@@ -134,7 +139,8 @@ class Visitor < SyntaxTree::Visitor
         @namespace.last.class_methods << ClassMethod.new(
           name: method_name,
           target: @namespace.last,
-          node: node,
+          location: node.location,
+          # node: node,
           comments: @comments,
           defined_files: [current_path]
         )
@@ -142,7 +148,8 @@ class Visitor < SyntaxTree::Visitor
         @namespace.last.instance_methods << InstanceMethod.new(
           name: method_name,
           target: @namespace.last,
-          node: node,
+          location: node.location,
+          # node: node,
           comments: @comments,
           defined_files: [current_path]
         )
@@ -152,7 +159,8 @@ class Visitor < SyntaxTree::Visitor
         @analyzer.class_methods << ClassMethod.new(
           name: method_name,
           target: @current_class,
-          node: node,
+          location: node.location,
+          # node: node,
           comments: @comments,
           defined_files: [current_path]
         )
@@ -160,7 +168,8 @@ class Visitor < SyntaxTree::Visitor
         @analyzer.instance_methods << InstanceMethod.new(
           name: method_name,
           target: @current_class,
-          node: node,
+          location: node.location,
+          # node: node,
           comments: @comments,
           defined_files: [current_path]
         )
@@ -194,7 +203,8 @@ class Visitor < SyntaxTree::Visitor
           namespace: module_namespace,
           name: module_name,
           qualified_name: module_qualified_name,
-          node: part,
+          location: node.location,
+          # node: part,
           referenced_files: [reference]
         )
       end
@@ -210,7 +220,8 @@ class Visitor < SyntaxTree::Visitor
           namespace: module_namespace,
           name: module_name,
           qualified_name: module_qualified_name,
-          node: part,
+          location: node.location,
+          # node: part,
           referenced_files: [reference]
         )
       end

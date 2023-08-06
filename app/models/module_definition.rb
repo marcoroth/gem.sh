@@ -4,6 +4,7 @@ class ModuleDefinition < OpenStruct
     name: nil,
     qualified_name: nil,
     node: nil,
+    location: nil,
     instance_methods: [],
     class_methods: [],
     comments: [],

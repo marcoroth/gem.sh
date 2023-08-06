@@ -4,6 +4,7 @@ class ClassDefinition < OpenStruct
     name: nil,
     qualified_name: nil,
     node: nil,
+    location: nil,
     superclass: nil,
     instance_methods: [],
     class_methods: [],

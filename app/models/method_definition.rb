@@ -3,6 +3,7 @@ class MethodDefinition < OpenStruct
     name: nil,
     target: nil,
     node: nil,
+    location: nil,
     comments: [],
     defined_files: []
   )
@@ -38,6 +39,6 @@ class MethodDefinition < OpenStruct
   end
 
   def code
-    @code ||= NodeToContent.new(defined_files.first, node)
+    @code ||= LocationToContent.new(defined_files.first, location)
   end
 end

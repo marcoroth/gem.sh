@@ -1,11 +1,11 @@
-class NodeToContent
-  def initialize(path, node)
+class LocationToContent
+  def initialize(path, location)
     @path = path.to_s
-    @node = node
+    @location = location
   end
 
   def location
-    @node.location
+    @location
   end
 
   def code
