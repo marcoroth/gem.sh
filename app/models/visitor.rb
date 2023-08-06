@@ -29,7 +29,7 @@ class Visitor < SyntaxTree::Visitor
     reopen = NamespaceReopen.new(
       path: current_path,
       location: node.location,
-      gem: @gem
+      gem: @gem,
     )
 
     if node.superclass
@@ -86,7 +86,7 @@ class Visitor < SyntaxTree::Visitor
     reopen = NamespaceReopen.new(
       path: current_path,
       location: node.location,
-      gem: @gem
+      gem: @gem,
     )
 
     if module_definition.nil?
