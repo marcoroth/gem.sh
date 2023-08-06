@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 return unless Rails.env.production?
 
 if (api_key = Rails.application.credentials.dig(:rorvswild, :api_key))
@@ -5,7 +7,7 @@ if (api_key = Rails.application.credentials.dig(:rorvswild, :api_key))
     api_key: api_key,
     ignored_exceptions: [
       "ActionController::RoutingError",
-      "ZeroDivisionError"
-    ]
+      "ZeroDivisionError",
+    ],
   )
 end

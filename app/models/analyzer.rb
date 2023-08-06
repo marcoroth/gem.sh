@@ -44,7 +44,7 @@ class Analyzer
 
     self
   rescue SyntaxTree::Parser::ParseError, NoMethodError => e
-    puts e.inspect
+    Rails.logger.debug e.inspect
 
     self
   end

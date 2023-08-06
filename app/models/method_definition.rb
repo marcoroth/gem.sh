@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MethodDefinition < OpenStruct
   def initialize(
     name: nil,

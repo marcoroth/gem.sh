@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ClassMethod < MethodDefinition
   def url(gem)
     if target.is_a?(ModuleDefinition)

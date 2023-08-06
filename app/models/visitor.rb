@@ -6,6 +6,8 @@ class Visitor < SyntaxTree::Visitor
   attr_accessor :current_path
 
   def initialize(analyzer)
+    super()
+
     @analyzer = analyzer
     @namespace = []
     @comments = []
@@ -16,19 +18,19 @@ class Visitor < SyntaxTree::Visitor
   def visit_class(node)
     namespace = @namespace.map(&:name).compact.join("::")
     name = node.constant.constant.value
-    qualified_name = [namespace, name].reject(&:blank?).join("::")
+    qualified_name = [namespace, name].compact_blank.join("::")
 
     class_definition = @analyzer.classes.find { |m| m.qualified_name == qualified_name }
 
     reopen = NamespaceReopen.new(
       path: current_path,
-      location: node.location
+      location: node.location,
     )
 
     if node.superclass
       superclass_namespace = node.superclass.try(:parent).try(:value).try(:value)
       superclass_name = node.superclass.try(:constant).try(:value) || node.superclass.try(:value).try(:value)
-      superclass_qualified_name = [superclass_namespace, superclass_name].reject(&:blank?).join("::")
+      superclass_qualified_name = [superclass_namespace, superclass_name].compact_blank.join("::")
 
       superclass_definition = ClassDefinition.new(
         namespace: superclass_namespace,
@@ -40,7 +42,7 @@ class Visitor < SyntaxTree::Visitor
     else
       superclass_definition = ClassDefinition.new(
         name: "Object",
-        qualified_name: "Object"
+        qualified_name: "Object",
       )
     end
 
@@ -53,7 +55,7 @@ class Visitor < SyntaxTree::Visitor
         # node: node,
         superclass: superclass_definition,
         comments: @comments,
-        defined_files: [reopen]
+        defined_files: [reopen],
       )
       @analyzer.classes << class_definition
     else
@@ -71,12 +73,12 @@ class Visitor < SyntaxTree::Visitor
   def visit_module(node)
     namespace = @namespace.map(&:name).compact.join("::")
     name = node.constant.constant.value
-    qualified_name = [namespace, name].reject(&:blank?).join("::")
+    qualified_name = [namespace, name].compact_blank.join("::")
 
     module_definition = @analyzer.modules.find { |m| m.qualified_name == qualified_name }
     reopen = NamespaceReopen.new(
       path: current_path,
-      location: node.location
+      location: node.location,
     )
 
     if module_definition.nil?
@@ -87,7 +89,7 @@ class Visitor < SyntaxTree::Visitor
         location: node.location,
         # node: node,
         comments: @comments,
-        defined_files: [reopen]
+        defined_files: [reopen],
       )
       @analyzer.modules << module_definition
     else
@@ -122,7 +124,7 @@ class Visitor < SyntaxTree::Visitor
           location: node.location,
           # node: node,
           comments: @comments,
-          defined_files: [current_path]
+          defined_files: [current_path],
         )
       else
         @current_class.instance_methods << InstanceMethod.new(
@@ -131,7 +133,7 @@ class Visitor < SyntaxTree::Visitor
           location: node.location,
           # node: node,
           comments: @comments,
-          defined_files: [current_path]
+          defined_files: [current_path],
         )
       end
     elsif @namespace.any?
@@ -142,7 +144,7 @@ class Visitor < SyntaxTree::Visitor
           location: node.location,
           # node: node,
           comments: @comments,
-          defined_files: [current_path]
+          defined_files: [current_path],
         )
       else
         @namespace.last.instance_methods << InstanceMethod.new(
@@ -151,29 +153,27 @@ class Visitor < SyntaxTree::Visitor
           location: node.location,
           # node: node,
           comments: @comments,
-          defined_files: [current_path]
+          defined_files: [current_path],
         )
       end
+    elsif target == "self"
+      @analyzer.class_methods << ClassMethod.new(
+        name: method_name,
+        target: @current_class,
+        location: node.location,
+        # node: node,
+        comments: @comments,
+        defined_files: [current_path],
+      )
     else
-      if target == "self"
-        @analyzer.class_methods << ClassMethod.new(
-          name: method_name,
-          target: @current_class,
-          location: node.location,
-          # node: node,
-          comments: @comments,
-          defined_files: [current_path]
-        )
-      else
-        @analyzer.instance_methods << InstanceMethod.new(
-          name: method_name,
-          target: @current_class,
-          location: node.location,
-          # node: node,
-          comments: @comments,
-          defined_files: [current_path]
-        )
-      end
+      @analyzer.instance_methods << InstanceMethod.new(
+        name: method_name,
+        target: @current_class,
+        location: node.location,
+        # node: node,
+        comments: @comments,
+        defined_files: [current_path],
+      )
     end
 
     @comments = []
@@ -190,14 +190,14 @@ class Visitor < SyntaxTree::Visitor
 
     reference = ConstantReference.new(
       path: current_path,
-      location: node.location
+      location: node.location,
     )
 
     if name == "include"
       node.arguments.parts.each do |part|
         module_namespace = part.try(:parent).try(:value).try(:value)
         module_name = part.try(:constant).try(:value) || part.try(:value).try(:value)
-        module_qualified_name = [module_namespace, module_name].reject(&:blank?).join("::")
+        module_qualified_name = [module_namespace, module_name].compact_blank.join("::")
 
         @current_class.included_modules << ModuleDefinition.new(
           namespace: module_namespace,
@@ -205,7 +205,7 @@ class Visitor < SyntaxTree::Visitor
           qualified_name: module_qualified_name,
           location: node.location,
           # node: part,
-          referenced_files: [reference]
+          referenced_files: [reference],
         )
       end
     end
@@ -214,7 +214,7 @@ class Visitor < SyntaxTree::Visitor
       node.arguments.parts.each do |part|
         module_namespace = part.try(:parent).try(:value).try(:value)
         module_name = part.try(:constant).try(:value) || part.try(:value).try(:value)
-        module_qualified_name = [module_namespace, module_name].reject(&:blank?).join("::")
+        module_qualified_name = [module_namespace, module_name].compact_blank.join("::")
 
         @current_class.extended_modules << ModuleDefinition.new(
           namespace: module_namespace,
@@ -222,7 +222,7 @@ class Visitor < SyntaxTree::Visitor
           qualified_name: module_qualified_name,
           location: node.location,
           # node: part,
-          referenced_files: [reference]
+          referenced_files: [reference],
         )
       end
     end

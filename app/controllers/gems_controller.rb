@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GemsController < ApplicationController
   before_action :set_gem, except: [:index, :search]
   before_action :set_target, only: [:instance_method, :class_method]
@@ -48,9 +50,9 @@ class GemsController < ApplicationController
     file = params[:file]
     source_path = "#{@gem.unpack_data_path}/#{file}"
 
-    if file && @gem.files.include?(file) && File.exist?(source_path)
-      @file = OpenStruct.new(path: file, content: File.read(source_path))
-    end
+    content = file && @gem.files.include?(file) && File.exist?(source_path) && File.read(source_path)
+
+    @file = OpenStruct.new(path: file, content: content) if content
   end
 
   private

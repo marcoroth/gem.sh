@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GemSpec
   def self.latest_version_for(name)
     return nil if name.blank?
@@ -66,15 +68,16 @@ class GemSpec
   end
 
   def most_used_constant
-    constant = (modules + classes).map { |const| const.qualified_name.split("::").first }.flatten.tally.sort_by(&:last).last
+    constant = (modules + classes).map { |const| const.qualified_name.split("::").first }.flatten.tally.max_by(&:last)
 
     constant ? constant.first : name.capitalize
   end
 
   def files
-    metadata.files
+    metadata
+      .files
       .select { |file| file.ends_with?(".rb") }
-      .select { |file| file.start_with?("lib/") || file.start_with?("app/") }
+      .select { |file| file.start_with?("lib/", "app/") }
   end
 
   def markdown_files
@@ -138,11 +141,11 @@ class GemSpec
         Gem::Version,
         Gem::Version::Requirement, # TODO: not sure why Psych still complains about DisallowedClass for `Gem::Version::Requirement`
         Time,
-        Symbol
-      ]
+        Symbol,
+      ],
     )
   rescue Psych::DisallowedClass => e
-    puts e.inspect
+    Rails.logger.debug e.inspect
 
     OpenStruct.new(files: [], dependencies: [], authors: [], error: e)
   end

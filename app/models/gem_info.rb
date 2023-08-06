@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GemInfo
   attr_accessor :analyzer
 

@@ -9,11 +9,11 @@ class Layout::Status < ViewComponent::Base
         orange: "text-orange-400",
         green: "text-green-400",
         red: "text-rose-400",
-      }
+      },
     },
     defaults: {
       status: :default,
-    }
+    },
   )
 
   def initialize(status:)

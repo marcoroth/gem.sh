@@ -13,11 +13,11 @@ class Layout::Badge < ViewComponent::Base
         indigo: "bg-indigo-50 text-indigo-700 ring-indigo-700/10",
         purple: "bg-purple-50 text-purple-70 ring-purple-700/100",
         pink: "bg-pink-50 text-pink-700 ring-pink-700/10",
-      }
+      },
     },
     defaults: {
       color: :gray,
-    }
+    },
   )
 
   def initialize(label:, style: :gray)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -40,7 +42,7 @@ gem "redis", "~> 4.0"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -96,9 +98,15 @@ gem "gems", github: "marcoroth/gems", branch: "v2-api"
 # Performances & exceptions monitoring for Ruby on Rails applications
 gem "rorvswild", "~> 1.6"
 
+# A Ruby static code analyzer and formatter, based on the community Ruby style guide.
+gem "rubocop", "~> 1.55"
+
+# A RuboCop extension focused on enforcing Rails best practices and coding conventions.
+gem "rubocop-rails", "~> 2.20"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
