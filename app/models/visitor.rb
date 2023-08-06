@@ -11,12 +11,14 @@ class Visitor < SyntaxTree::Visitor
     @analyzer = analyzer
     @modules = []
     @comments = []
+    @namespace = []
     @classes = []
+
     @current_path = nil
   end
 
   def visit_class(node)
-    namespace = @modules.map(&:name).compact.join("::")
+    namespace = @namespace.map(&:name).compact.join("::")
     name = node.constant.constant.value
     qualified_name = [namespace, name].compact_blank.join("::")
 
@@ -64,14 +66,16 @@ class Visitor < SyntaxTree::Visitor
 
     @comments = []
     @classes << class_definition
+    @namespace << class_definition
 
     super
 
+    @namespace.pop
     @classes.pop
   end
 
   def visit_module(node)
-    namespace = @modules.map(&:name).compact.join("::")
+    namespace = @namespace.map(&:name).compact.join("::")
     name = node.constant.constant.value
     qualified_name = [namespace, name].compact_blank.join("::")
 
@@ -98,9 +102,11 @@ class Visitor < SyntaxTree::Visitor
 
     @comments = []
     @modules << module_definition
+    @namespace << module_definition
 
     super
 
+    @namespace.pop
     @modules.pop
   end
 
@@ -117,12 +123,12 @@ class Visitor < SyntaxTree::Visitor
     super
 
     context = if @classes.any?
-               @classes.last
-             elsif @modules.any?
-               @modules.last
-             else
-               @analyzer
-             end
+                @classes.last
+              elsif @modules.any?
+                @modules.last
+              else
+                @analyzer
+              end
 
     method_definition_args = {
       name: method_name,

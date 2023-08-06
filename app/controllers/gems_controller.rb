@@ -25,13 +25,13 @@ class GemsController < ApplicationController
   end
 
   def namespace
-    @namespace = find_module(params[:module])
-    @classes = @gem.classes.select { |namespace| namespace.namespace == @namespace.qualified_name }
+    @namespace = find_module!(params[:module])
+    @classes = @gem.classes.select { |klass| klass.namespace == @namespace.qualified_name }
   end
 
   def klass
-    @klass = find_class(params[:class])
-    @namespace = find_module(@klass.namespace)
+    @klass = find_class!(params[:class])
+    @namespace = find_namespace!(@klass.namespace)
   end
 
   def instance_method
@@ -58,27 +58,39 @@ class GemsController < ApplicationController
   private
 
   def find_class(name)
-    @gem.classes.find { |klass| klass.qualified_name == name } || raise(GemConstantNotFoundError, "Couldn't find class '#{name}'")
+    @gem.classes.find { |klass| klass.qualified_name == name }
+  end
+
+  def find_class!(name)
+    find_class(name) || raise(GemConstantNotFoundError, "Couldn't find class '#{name}'")
   end
 
   def find_module(name)
-    @gem.modules.find { |namespace| namespace.qualified_name == name } || raise(GemConstantNotFoundError, "Couldn't find module '#{name}'")
+    @gem.modules.find { |namespace| namespace.qualified_name == name }
   end
 
-  def set_namespaces
-    @namespaces = @gem.modules.select { |namespace| namespace.namespace.split("::").count <= 1 }
+  def find_module!(name)
+    find_module(name) || raise(GemConstantNotFoundError, "Couldn't find module '#{name}'")
+  end
+
+  def find_namespace(name)
+    find_class(name) || find_module(name) || raise(GemConstantNotFoundError, "Couldn't find namespace '#{name}'")
   end
 
   def set_gem
     @gem = GemSpec.find(params[:gem], params[:version]) || raise(GemNotFoundError, "Couldn't find gem '#{params[:gem]}' with version '#{params[:version]}'")
   end
 
+  def set_namespaces
+    @namespaces = @gem.modules.select { |namespace| namespace.namespace.split("::").count <= 1 }
+  end
+
   def set_target
     if params[:class]
-      @target = find_class(params[:class])
-      @namespace = find_module(@target.namespace)
+      @target = find_class!(params[:class])
+      @namespace = find_module!(@target.namespace)
     elsif params[:module]
-      @target = find_module(params[:module])
+      @target = find_module!(params[:module])
     else
       @target = @gem.info.analyzer
     end
