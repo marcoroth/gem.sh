@@ -54,6 +54,10 @@ class GemSpec
     Gems.versions(name).uniq { |version| version["number"] }
   end
 
+  def grouped_versions
+    versions.group_by { |version| version["number"].split(".")[0..1].join(".") }
+  end
+
   def classes
     info.analyzer.classes.sort_by(&:qualified_name)
   end
