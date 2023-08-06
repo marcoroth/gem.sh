@@ -117,63 +117,26 @@ class Visitor < SyntaxTree::Visitor
     super
 
     if @current_class
-      if target == "self"
-        @current_class.class_methods << ClassMethod.new(
-          name: method_name,
-          target: @current_class,
-          location: node.location,
-          # node: node,
-          comments: @comments,
-          defined_files: [current_path],
-        )
-      else
-        @current_class.instance_methods << InstanceMethod.new(
-          name: method_name,
-          target: @current_class,
-          location: node.location,
-          # node: node,
-          comments: @comments,
-          defined_files: [current_path],
-        )
-      end
+      parent = @current_class
     elsif @namespace.any?
-      if target == "self"
-        @namespace.last.class_methods << ClassMethod.new(
-          name: method_name,
-          target: @namespace.last,
-          location: node.location,
-          # node: node,
-          comments: @comments,
-          defined_files: [current_path],
-        )
-      else
-        @namespace.last.instance_methods << InstanceMethod.new(
-          name: method_name,
-          target: @namespace.last,
-          location: node.location,
-          # node: node,
-          comments: @comments,
-          defined_files: [current_path],
-        )
-      end
-    elsif target == "self"
-      @analyzer.class_methods << ClassMethod.new(
-        name: method_name,
-        target: @current_class,
-        location: node.location,
-        # node: node,
-        comments: @comments,
-        defined_files: [current_path],
-      )
+      parent = @namespace.last
     else
-      @analyzer.instance_methods << InstanceMethod.new(
-        name: method_name,
-        target: @current_class,
-        location: node.location,
-        # node: node,
-        comments: @comments,
-        defined_files: [current_path],
-      )
+      parent = @analyzer
+    end
+
+    method_definition_args = {
+      name: method_name,
+      target: parent,
+      location: node.location,
+      # node: node,
+      comments: @comments,
+      defined_files: [current_path],
+    }
+
+    if target == "self"
+      parent.class_methods << ClassMethod.new(**method_definition_args)
+    else
+      parent.instance_methods << InstanceMethod.new(**method_definition_args)
     end
 
     @comments = []
