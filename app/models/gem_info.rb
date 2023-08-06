@@ -9,7 +9,7 @@ class GemInfo
 
   def initialize(gemspec)
     @gemspec = gemspec
-    @analyzer = Analyzer.new
+    @analyzer = Analyzer.new(gemspec)
 
     analyze
   end

@@ -5,10 +5,12 @@ require "syntax_tree"
 class Visitor < SyntaxTree::Visitor
   attr_accessor :current_path
 
-  def initialize(analyzer)
+  def initialize(analyzer, gem)
     super()
 
     @analyzer = analyzer
+    @gem = gem
+
     @modules = []
     @comments = []
     @namespace = []
@@ -27,6 +29,7 @@ class Visitor < SyntaxTree::Visitor
     reopen = NamespaceReopen.new(
       path: current_path,
       location: node.location,
+      gem: @gem
     )
 
     if node.superclass
@@ -83,6 +86,7 @@ class Visitor < SyntaxTree::Visitor
     reopen = NamespaceReopen.new(
       path: current_path,
       location: node.location,
+      gem: @gem
     )
 
     if module_definition.nil?

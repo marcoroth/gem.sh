@@ -9,14 +9,16 @@ class Analyzer
     new.analyze(source)
   end
 
-  def initialize
+  def initialize(gem = nil)
+    @gem = gem
+
     @classes = Set.new
     @modules = Set.new
     @consts = Set.new
     @instance_methods = Set.new
     @class_methods = Set.new
 
-    @visitor = Visitor.new(self)
+    @visitor = Visitor.new(self, gem)
   end
 
   def qualified_name

@@ -32,12 +32,16 @@ class MethodDefinition < OpenStruct
     name
   end
 
-  def title
+  def seo_title
     if target
       "#{name} (#{target.qualified_name})"
     else
       name
     end
+  end
+
+  def title
+    to_s
   end
 
   def code

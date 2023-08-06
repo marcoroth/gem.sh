@@ -1,9 +1,0 @@
-<aside class="block truncate col-span-1 mb-6">
-  <h3 class="list-header"> <%= @title %></h3>
-
-  <ul class="list code">
-    <% @modules.each do |m| %>
-      <%= active_link_to m.qualified_name, gem_module_path(@gem.name, @gem.version, m.qualified_name), wrap_tag: :li %>
-    <% end %>
-  </ul>
-</aside>

@@ -4,9 +4,9 @@
   <div class="col-span-3">
     <%= render partial: "breadcrumb" %>
 
-    <%= render Layout::Heading.new(title: @module) %>
+    <div class="mt-6 mb-6">
+      <%= render Layout::Heading.new(title: @module) %>
 
-    <div class="grid">
       <% @module.class_methods.sort_by(&:name).each do |class_method| %>
         <%= render MethodDetails.new(object: class_method, parent: @module, gem: @gem) %>
       <% end %>
@@ -18,11 +18,12 @@
   </div>
 
   <div class="col-span-1">
-    <%= render ClassesList.new(classes: @classes, gem: @gem) if @classes.any? %>
-    <%= render ModulesList.new(modules: @module.included_modules, title: "Included Modules", gem: @gem) if Array.wrap(@module.included_modules).any? %>
-    <%= render ModulesList.new(modules: @module.extended_modules, title: "Extended Modules", gem: @gem) if Array.wrap(@module.extended_modules).any? %>
-    <%= render MethodsList.new(methods: @module.class_methods, gem: @gem, prefix: "Class") if Array.wrap(@module.class_methods).any? %>
-    <%= render MethodsList.new(methods: @module.instance_methods, gem: @gem, prefix: "Instance") if Array.wrap(@module.instance_methods).any? %>
-    <%= render FilesList.new(files: @module.defined_files, gem: @gem, title: "Defined in") if @module.defined_files.any? %>
+    <%= render Layout::CodeList.new(items: @modules, gem: @gem, title: "Modules") if @modules.any? %>
+    <%= render Layout::CodeList.new(items: @classes, gem: @gem, title: "Classes") if @classes.any? %>
+    <%= render Layout::CodeList.new(items: @module.included_modules, title: "Included Modules", gem: @gem) if Array.wrap(@module.included_modules).any? %>
+    <%= render Layout::CodeList.new(items: @module.extended_modules, title: "Extended Modules", gem: @gem) if Array.wrap(@module.extended_modules).any? %>
+    <%= render Layout::CodeList.new(items: @module.class_methods, gem: @gem, title: "Class Methods") if Array.wrap(@module.class_methods).any? %>
+    <%= render Layout::CodeList.new(items: @module.instance_methods, gem: @gem, title: "Instance Methods") if Array.wrap(@module.instance_methods).any? %>
+    <%= render Layout::CodeList.new(items: @module.defined_files, gem: @gem, title: "Defined in") if @module.defined_files.any? %>
   </div>
 </div>

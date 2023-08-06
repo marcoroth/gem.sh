@@ -1,0 +1,9 @@
+<div class="block truncate col-span-1 mb-6">
+  <h3 class="list-header"><%= @title %></h3>
+
+  <ul class="list code">
+    <% @items.each do |item| %>
+      <%= active_link_to item.try(:title) || item.to_s, item.url(@gem), wrap_tag: :li %>
+    <% end %>
+  </ul>
+</div>

@@ -14,13 +14,9 @@
   </div>
 
   <div class="col-span-1">
-    <%= render ModulesList.new(modules: @namespaces, gem: @gem, title: "Top-Level Modules") if @namespaces.any? %>
-    <%= render ClassesList.new(classes: @classes, gem: @gem) if @classes.any? %>
-    <%= render MethodsList.new(methods: @class_methods, gem: @gem, prefix: "Class") if @class_methods.any? %>
-    <%= render MethodsList.new(methods: @instance_methods, gem: @gem, prefix: "Instance") if @instance_methods.any? %>
-
-    <%#= render ConstantDefinition.new(definition: object.superclass, gem: @gem) %>
-    <%#= render ModulesList.new(modules: object.included_modules, title: "Included Modules", gem: @gem) %>
-    <%#= render ModulesList.new(modules: object.extended_modules, title: "Extended Modules", gem: @gem) %>
+    <%= render Layout::CodeList.new(items: @namespaces, gem: @gem, title: "Top-Level Modules") if @namespaces.any? %>
+    <%= render Layout::CodeList.new(items: @classes, gem: @gem, title: "Classes") if @classes.any? %>
+    <%= render Layout::CodeList.new(items: @class_methods, gem: @gem, title: "Class Methods") if @class_methods.any? %>
+    <%= render Layout::CodeList.new(items: @instance_methods, gem: @gem, title: "Instance Methods") if @instance_methods.any? %>
   </div>
 </div>

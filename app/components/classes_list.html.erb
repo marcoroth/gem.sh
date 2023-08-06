@@ -1,9 +1,0 @@
-<aside class="block truncate col-span-1 mb-6">
-  <h3 class="list-header"><%= @title %></h3>
-
-  <ul class="list code">
-    <% @classes.each do |klass| %>
-      <%= active_link_to klass.qualified_name, klass.url(@gem), wrap_tag: :li %>
-    <% end %>
-  </ul>
-</aside>

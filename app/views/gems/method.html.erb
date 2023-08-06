@@ -1,23 +1,23 @@
-<% title @method.title %>
+<% title @method.seo_title %>
 
-<div class="">
-  <%= render partial: "breadcrumb" %>
+<div class="grid grid-cols-4 gap-12">
+  <div class="col-span-3">
+    <%= render partial: "breadcrumb" %>
 
-  <div class="grid grid-cols-4 gap-12">
-    <div class="col-span-3">
+    <div class="mt-6 mb-6">
       <%= render Layout::Heading.new(title: @target) %>
       <%= render MethodDetails.new(object: @method, parent: @target, gem: @gem) %>
     </div>
+  </div>
 
-    <div class="col-span-1">
-      <% if @target.is_a?(ClassDefinition) %>
-        <%= render ConstantDefinition.new(definition: @klass, gem: @gem, title: "Class") if @klass %>
-        <%= render ModulesList.new(modules: @target.included_modules, title: "Included Modules", gem: @gem) if @target.included_modules.any? %>
-        <%= render ModulesList.new(modules: @target.extended_modules, title: "Extended Modules", gem: @gem) if @target.extended_modules.any? %>
-      <% end %>
+  <div class="col-span-1">
+    <% if @target.is_a?(ClassDefinition) %>
+      <%= render Layout::CodeList.new(items: @klass, gem: @gem, title: "Class") if @klass %>
+      <%= render Layout::CodeList.new(items: @target.included_modules, title: "Included Modules", gem: @gem) if @target.included_modules.any? %>
+      <%= render Layout::CodeList.new(items: @target.extended_modules, title: "Extended Modules", gem: @gem) if @target.extended_modules.any? %>
+    <% end %>
 
-      <%= render MethodsList.new(methods: @target.class_methods, gem: @gem, prefix: "Class") if @target.class_methods.any? %>
-      <%= render MethodsList.new(methods: @target.instance_methods, gem: @gem, prefix: "Instance") if @target.instance_methods.any? %>
-    </div>
+    <%= render Layout::CodeList.new(items: @target.class_methods, gem: @gem, title: "Class Methods") if @target.class_methods.any? %>
+    <%= render Layout::CodeList.new(items: @target.instance_methods, gem: @gem, title: "Instance Methods") if @target.instance_methods.any? %>
   </div>
 </div>
