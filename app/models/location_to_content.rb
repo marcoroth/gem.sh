@@ -1,15 +1,17 @@
 class LocationToContent
+  attr_reader :path, :location
+
   def initialize(path, location)
     @path = path.to_s
     @location = location
   end
 
-  def location
-    @location
+  def lines
+    File.exist?(path) ? File.readlines(path) : []
   end
 
   def code
-    (File.exist?(@path) ? File.readlines(@path) : []).map { |line| line[location.start_column..] }
+    lines.map { |line| line[location.start_column..] }
   end
 
   def location_content
