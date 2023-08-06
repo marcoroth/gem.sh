@@ -9,6 +9,9 @@ class GemSpec
 
   def self.find(name, version = latest_version_for(name))
     return nil if name.nil?
+
+    version = latest_version_for(name) if version.nil?
+
     return nil if version.nil?
 
     info = Gems::V2.info(name, version)
