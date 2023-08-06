@@ -74,6 +74,10 @@ class GemSpec
     info.analyzer.class_methods.sort_by(&:name)
   end
 
+  def top_level_modules
+    modules.select { |namespace| namespace.namespace.blank? }
+  end
+
   def most_used_constant
     constant = (modules + classes).map { |const| const.qualified_name.split("::").first }.flatten.tally.max_by(&:last)
 

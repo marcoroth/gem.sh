@@ -3,7 +3,6 @@
 class GemsController < ApplicationController
   before_action :set_gem, except: [:index, :search]
   before_action :set_target, only: [:instance_method, :class_method]
-  before_action :set_namespaces, except: [:index, :search]
 
   rescue_from "GemNotFoundError", "Gems::NotFound" do
     redirect_to gems_path
@@ -79,10 +78,6 @@ class GemsController < ApplicationController
 
   def set_gem
     @gem = GemSpec.find(params[:gem], params[:version]) || raise(GemNotFoundError, "Couldn't find gem '#{params[:gem]}' with version '#{params[:version]}'")
-  end
-
-  def set_namespaces
-    @namespaces = @gem.modules.select { |namespace| namespace.namespace.split("::").count <= 1 }
   end
 
   def set_target
