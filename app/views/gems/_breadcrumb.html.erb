@@ -34,81 +34,15 @@
       </li>
     <% end %>
 
-    <% if @namespace %>
+    <% [@module, @namespace, @target, @klass, @class_method, @instance_method, @method].compact.each do |item| %>
       <li>
         <div class="flex items-center">
           <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
           </svg>
 
-          <%= link_to gem_module_path(@gem.name, @gem.version, @namespace.qualified_name), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" do %>
-            <pre><%= @namespace %></pre>
-          <% end %>
-        </div>
-      </li>
-    <% end %>
-
-    <% if @target %>
-      <li>
-        <div class="flex items-center">
-          <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-          </svg>
-
-          <%= link_to @target.url(@gem), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" do %>
-            <pre><%= @target %></pre>
-          <% end %>
-        </div>
-      </li>
-    <% end %>
-
-    <% if @klass %>
-      <li>
-        <div class="flex items-center">
-          <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-          </svg>
-          <%= link_to gem_class_path(@gem.name, @gem.version, @klass.qualified_name), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" do %>
-            <pre><%= @klass %></pre>
-          <% end %>
-        </div>
-      </li>
-    <% end %>
-
-    <% if @class_method %>
-      <li>
-        <div class="flex items-center">
-          <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-          </svg>
-          <%= link_to @class_method.url(@gem), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" do %>
-            <pre><%= @class_method %></pre>
-          <% end %>
-        </div>
-      </li>
-    <% end %>
-
-    <% if @instance_method %>
-      <li>
-        <div class="flex items-center">
-          <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-          </svg>
-          <%= link_to @instance_method.url(@gem), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" do %>
-            <pre><%= @instance_method %></pre>
-          <% end %>
-        </div>
-      </li>
-    <% end %>
-
-    <% if @method %>
-      <li>
-        <div class="flex items-center">
-          <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-          </svg>
-          <%= link_to @method.url(@gem), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" do %>
-            <pre><%= @method %></pre>
+          <%= link_to item.url(@gem), class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" do %>
+            <pre><%= item %></pre>
           <% end %>
         </div>
       </li>
