@@ -4,12 +4,12 @@ class GemsController < ApplicationController
   before_action :set_gem, except: [:index, :search]
   before_action :set_target, only: [:instance_method, :class_method]
 
-  rescue_from "GemNotFoundError", "Gems::NotFound" do
-    redirect_to gems_path
+  rescue_from "GemNotFoundError", "Gems::NotFound" do |exception|
+    redirect_to gems_path, notice: exception.message
   end
 
-  rescue_from "GemConstantNotFoundError" do
-    redirect_to gem_version_path(@gem.name, @gem.version)
+  rescue_from "GemConstantNotFoundError" do |exception|
+    redirect_to gem_version_path(@gem.name, @gem.version), notice: exception.message
   end
 
   def index
@@ -82,7 +82,7 @@ class GemsController < ApplicationController
   end
 
   def set_gem
-    @gem = GemSpec.find(params[:gem], params[:version]) || raise(GemNotFoundError, "Couldn't find gem '#{params[:gem]}' with version '#{params[:version]}'")
+    @gem = GemSpec.find(params[:gem], params[:version]) || raise(GemNotFoundError.new(params[:gem], params[:version]))
   end
 
   def set_target
