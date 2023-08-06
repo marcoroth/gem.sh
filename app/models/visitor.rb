@@ -20,7 +20,10 @@ class Visitor < SyntaxTree::Visitor
 
     class_definition = @analyzer.classes.find { |m| m.qualified_name == qualified_name }
 
-    reopen = NamespaceReopen.new(path: current_path, location: node.location)
+    reopen = NamespaceReopen.new(
+      path: current_path,
+      location: node.location
+    )
 
     if node.superclass
       superclass_namespace = node.superclass.try(:parent).try(:value).try(:value)
@@ -41,7 +44,15 @@ class Visitor < SyntaxTree::Visitor
     end
 
     if class_definition.nil?
-      class_definition = ClassDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node, superclass: superclass_definition, comments: @comments, defined_files: [reopen])
+      class_definition = ClassDefinition.new(
+        namespace: namespace,
+        name: name,
+        qualified_name: qualified_name,
+        node: node,
+        superclass: superclass_definition,
+        comments: @comments,
+        defined_files: [reopen]
+      )
       @analyzer.classes << class_definition
     else
       class_definition.defined_files << reopen
@@ -61,10 +72,20 @@ class Visitor < SyntaxTree::Visitor
     qualified_name = [namespace, name].reject(&:blank?).join("::")
 
     module_definition = @analyzer.modules.find { |m| m.qualified_name == qualified_name }
-    reopen = NamespaceReopen.new(path: current_path, location: node.location)
+    reopen = NamespaceReopen.new(
+      path: current_path,
+      location: node.location
+    )
 
     if module_definition.nil?
-      module_definition = ModuleDefinition.new(namespace: namespace, name: name, qualified_name: qualified_name, node: node, comments: @comments, defined_files: [reopen])
+      module_definition = ModuleDefinition.new(
+        namespace: namespace,
+        name: name,
+        qualified_name: qualified_name,
+        node: node,
+        comments: @comments,
+        defined_files: [reopen]
+      )
       @analyzer.modules << module_definition
     else
       module_definition.defined_files << reopen
@@ -92,21 +113,57 @@ class Visitor < SyntaxTree::Visitor
 
     if @current_class
       if target == "self"
-        @current_class.class_methods << ClassMethod.new(name: method_name, target: @current_class, node: node, comments: @comments, defined_files: [current_path])
+        @current_class.class_methods << ClassMethod.new(
+          name: method_name,
+          target: @current_class,
+          node: node,
+          comments: @comments,
+          defined_files: [current_path]
+        )
       else
-        @current_class.instance_methods << InstanceMethod.new(name: method_name, target: @current_class, node: node, comments: @comments, defined_files: [current_path])
+        @current_class.instance_methods << InstanceMethod.new(
+          name: method_name,
+          target: @current_class,
+          node: node,
+          comments: @comments,
+          defined_files: [current_path]
+        )
       end
     elsif @namespace.any?
       if target == "self"
-        @namespace.last.class_methods << ClassMethod.new(name: method_name, target: @namespace.last, node: node, comments: @comments, defined_files: [current_path])
+        @namespace.last.class_methods << ClassMethod.new(
+          name: method_name,
+          target: @namespace.last,
+          node: node,
+          comments: @comments,
+          defined_files: [current_path]
+        )
       else
-        @namespace.last.instance_methods << InstanceMethod.new(name: method_name, target: @namespace.last, node: node, comments: @comments, defined_files: [current_path])
+        @namespace.last.instance_methods << InstanceMethod.new(
+          name: method_name,
+          target: @namespace.last,
+          node: node,
+          comments: @comments,
+          defined_files: [current_path]
+        )
       end
     else
       if target == "self"
-        @analyzer.class_methods << ClassMethod.new(name: method_name, target: @current_class, node: node, comments: @comments, defined_files: [current_path])
+        @analyzer.class_methods << ClassMethod.new(
+          name: method_name,
+          target: @current_class,
+          node: node,
+          comments: @comments,
+          defined_files: [current_path]
+        )
       else
-        @analyzer.instance_methods << InstanceMethod.new(name: method_name, target: @current_class, node: node, comments: @comments, defined_files: [current_path])
+        @analyzer.instance_methods << InstanceMethod.new(
+          name: method_name,
+          target: @current_class,
+          node: node,
+          comments: @comments,
+          defined_files: [current_path]
+        )
       end
     end
 
@@ -122,7 +179,10 @@ class Visitor < SyntaxTree::Visitor
 
     return if @current_class.nil?
 
-    reference = ConstantReference.new(path: current_path, location: node.location)
+    reference = ConstantReference.new(
+      path: current_path,
+      location: node.location
+    )
 
     if name == "include"
       node.arguments.parts.each do |part|
@@ -130,7 +190,13 @@ class Visitor < SyntaxTree::Visitor
         module_name = part.try(:constant).try(:value) || part.try(:value).try(:value)
         module_qualified_name = [module_namespace, module_name].reject(&:blank?).join("::")
 
-        @current_class.included_modules << ModuleDefinition.new(namespace: module_namespace, name: module_name, qualified_name: module_qualified_name, node: part, referenced_files: [reference])
+        @current_class.included_modules << ModuleDefinition.new(
+          namespace: module_namespace,
+          name: module_name,
+          qualified_name: module_qualified_name,
+          node: part,
+          referenced_files: [reference]
+        )
       end
     end
 
@@ -140,7 +206,13 @@ class Visitor < SyntaxTree::Visitor
         module_name = part.try(:constant).try(:value) || part.try(:value).try(:value)
         module_qualified_name = [module_namespace, module_name].reject(&:blank?).join("::")
 
-        @current_class.extended_modules << ModuleDefinition.new(namespace: module_namespace, name: module_name, qualified_name: module_qualified_name, node: part, referenced_files: [reference])
+        @current_class.extended_modules << ModuleDefinition.new(
+          namespace: module_namespace,
+          name: module_name,
+          qualified_name: module_qualified_name,
+          node: part,
+          referenced_files: [reference]
+        )
       end
     end
 
