@@ -191,30 +191,27 @@ class Visitor < SyntaxTree::Visitor
     super
   end
 
-
   private
 
   # handle method names like `Skiptrace.current_bindings` where the constant
   # wasn't already visited
+  # rubocop:disable Lint/AssignmentInCondition
   def inferred_context_for(target)
     if existing = @analyzer.modules.detect { |name| name.qualified_name == target }
-      if prev = @modules.find { |mod| mod.qualified_name == existing.qualified_name }
-        return prev
-      else
-        @modules << existing
-        @namespace << existing
-        return existing
-      end
-    elsif existing = @analyzer.classes.detect { |name| name.qualified_name == target }
-      if prev = @classes.find { |klass| klass.qualified_name == existing.qualified_name }
-        return prev
-      else
-        @classes << existing
-        return existing
-      end
-    end
+      return prev if @modules.find { |mod| mod.qualified_name == existing.qualified_name }
 
+      @modules << existing
+      @namespace << existing
+      return existing
+
+    elsif existing = @analyzer.classes.detect { |name| name.qualified_name == target }
+      return prev if @classes.find { |klass| klass.qualified_name == existing.qualified_name }
+
+      @classes << existing
+      return existing
+
+    end
     @analyzer
   end
-
+  # rubocop:enable Lint/AssignmentInCondition
 end
