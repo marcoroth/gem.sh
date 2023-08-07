@@ -94,6 +94,7 @@ GEM
       xpath (~> 3.2)
     class_variants (0.0.6)
     concurrent-ruby (1.2.2)
+    connection_pool (2.4.1)
     crass (1.0.6)
     cssbundling-rails (1.2.0)
       railties (>= 6.0.0)
@@ -203,7 +204,10 @@ GEM
     rdoc (6.5.0)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
-    redis (4.8.1)
+    redis (5.0.6)
+      redis-client (>= 0.9.0)
+    redis-client (0.15.0)
+      connection_pool
     regexp_parser (2.8.1)
     reline (0.3.7)
       io-console (~> 0.5)
@@ -302,7 +306,7 @@ DEPENDENCIES
   rails-html-sanitizer (~> 1.6)
   rdoc
   redcarpet (~> 3.6)
-  redis (~> 4.0)
+  redis (~> 5.0)
   rorvswild (~> 1.6)
   rouge (~> 4.1)
   rubocop (~> 1.55)
