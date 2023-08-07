@@ -52,12 +52,9 @@ class GemsController < ApplicationController
   end
 
   def source
-    file = params[:file]
-    source_path = "#{@gem.unpack_data_path}/#{file}"
-
-    content = file && @gem.files.include?(file) && File.exist?(source_path) && File.read(source_path)
-
-    @file = OpenStruct.new(path: file, content: content) if content
+    SourceFile.new(file: params[:file], gem: @gem).tap do |file|
+      @file = file if file.exist?
+    end
   end
 
   private

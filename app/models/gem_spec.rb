@@ -158,7 +158,7 @@ class GemSpec
   rescue Psych::DisallowedClass => e
     Rails.logger.debug e.inspect
 
-    OpenStruct.new(files: [], dependencies: [], authors: [], error: e)
+    Metadata.new
   end
 
   def download_filename

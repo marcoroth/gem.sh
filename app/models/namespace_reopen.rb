@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class NamespaceReopen < OpenStruct
+NamespaceReopen = Data.define(:path, :gem, :location) do
   def initialize(path:, gem:, location: nil)
     super
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MethodDefinition < OpenStruct
+MethodDefinition = Struct.new(:name, :target, :node, :location, :comments, :defined_files) do
   def initialize(
     name: nil,
     target: nil,

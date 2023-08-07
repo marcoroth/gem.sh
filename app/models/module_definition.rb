@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ModuleDefinition < OpenStruct
+ModuleDefinition = Struct.new(:namespace, :name, :qualified_name, :node, :location, :instance_methods, :class_methods, :included_modules, :extended_modules, :comments, :defined_files, :referenced_files) do
   def initialize(
     namespace: nil,
     name: nil,
@@ -9,6 +9,8 @@ class ModuleDefinition < OpenStruct
     location: nil,
     instance_methods: [],
     class_methods: [],
+    included_modules: [],
+    extended_modules: [],
     comments: [],
     defined_files: [],
     referenced_files: []

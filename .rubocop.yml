@@ -53,9 +53,6 @@ Style/EmptyMethod:
 Style/HashSyntax:
   EnforcedShorthandSyntax: consistent
 
-Style/OpenStructUse:
-  Enabled: false
-
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
