@@ -204,7 +204,7 @@ GEM
     rdoc (6.5.0)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
-    redis (5.0.6)
+    redis (5.0.7)
       redis-client (>= 0.9.0)
     redis-client (0.15.0)
       connection_pool
