@@ -5,6 +5,13 @@ GIT
   specs:
     gems (1.2.0)
 
+GIT
+  remote: https://github.com/marcoroth/type_fusion.git
+  revision: 8c48a68ed546a254ef3110bba6589d9ddf5a5f62
+  specs:
+    type_fusion (0.0.3)
+      litejob
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -123,6 +130,15 @@ GEM
       railties (>= 6.0.0)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
+    litedb (0.2.1)
+      litescheduler (>= 0.2.0)
+      sqlite3 (>= 1.5.0)
+    litejob (0.2.1)
+      litequeue (>= 0.2.0)
+      litescheduler (>= 0.2.1)
+    litequeue (0.2.1)
+      litedb (>= 0.2.1)
+    litescheduler (0.2.1)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -246,6 +262,9 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.6.3-arm64-darwin)
+    sqlite3 (1.6.3-x86_64-darwin)
+    sqlite3 (1.6.3-x86_64-linux)
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     stringio (3.0.7)
@@ -317,6 +336,7 @@ DEPENDENCIES
   stimulus-rails
   syntax_tree (~> 6.1)
   turbo-rails
+  type_fusion!
   tzinfo-data
   view_component (~> 3.5)
   web-console
