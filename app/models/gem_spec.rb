@@ -84,6 +84,30 @@ class GemSpec
     constant ? constant.first : name.capitalize
   end
 
+  def find_class(name)
+    classes.find { |klass| klass.qualified_name == name }
+  end
+
+  def find_class!(name)
+    find_class(name) || raise(GemConstantNotFoundError, "Couldn't find class '#{name}'")
+  end
+
+  def find_module(name)
+    modules.find { |namespace| namespace.qualified_name == name }
+  end
+
+  def find_module!(name)
+    find_module(name) || raise(GemConstantNotFoundError, "Couldn't find module '#{name}'")
+  end
+
+  def find_namespace(name)
+    find_module(name) || find_class(name)
+  end
+
+  def find_namespace!(name)
+    find_namespace(name) || raise(GemConstantNotFoundError, "Couldn't find namespace '#{name}'")
+  end
+
   def files
     metadata
       .files
