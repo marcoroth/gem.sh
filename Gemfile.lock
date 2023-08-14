@@ -162,7 +162,6 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.3)
-    prettier_print (1.2.1)
     psych (5.1.0)
       stringio
     public_suffix (5.0.3)
@@ -251,8 +250,6 @@ GEM
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     stringio (3.0.7)
-    syntax_tree (6.1.1)
-      prettier_print (>= 1.2.0)
     thor (1.2.2)
     timeout (0.4.0)
     turbo-rails (1.4.0)
@@ -282,6 +279,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.34)
+    yarp (0.6.0)
     zeitwerk (2.6.11)
 
 PLATFORMS
@@ -317,13 +315,13 @@ DEPENDENCIES
   sitemap_generator (~> 6.3)
   sprockets-rails
   stimulus-rails
-  syntax_tree (~> 6.1)
   turbo-rails
   tzinfo-data
   view_component (~> 3.5)
   web-console
   webdrivers
   yard (~> 0.9.34)
+  yarp (~> 0.6)
 
 RUBY VERSION
    ruby 3.2.2p53
