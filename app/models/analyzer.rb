@@ -37,8 +37,7 @@ class Analyzer
     "global"
   end
 
-  def analyze(path)
-    code = File.read(path)
+  def analyze_code(path, code)
     program = SyntaxTree.parse(code)
 
     @visitor.current_path = path
@@ -49,5 +48,9 @@ class Analyzer
     Rails.logger.debug e.inspect
 
     self
+  end
+
+  def analyze(path)
+    analyze_code(path, SyntaxTree.read(code))
   end
 end
