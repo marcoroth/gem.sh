@@ -1,0 +1,51 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Ruby
+
+    services:
+      postgres:
+        image: postgres:15.0-alpine
+
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+
+        ports:
+          - 5432:5432
+
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install required apt packages
+        run: sudo apt -y install libpq-dev
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: yarn
+
+      - name: Yarn install
+        run: yarn install --frozen-lockfile
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup Test Database
+        run: bundle exec rails db:setup
+        env:
+          RAILS_ENV: 'test'
+
+      - name: Run Rails tests
+        run: bundle exec rails test
