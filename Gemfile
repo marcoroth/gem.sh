@@ -105,6 +105,8 @@ gem "rubocop", "~> 1.55"
 gem "rubocop-rails", "~> 2.20"
 
 # gem "type_fusion", path: "../type_fusion"
+
+# Collaborative Ruby type sampling
 gem "type_fusion", github: "marcoroth/type_fusion"
 
 group :development, :test do

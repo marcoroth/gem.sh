@@ -7,9 +7,10 @@ GIT
 
 GIT
   remote: https://github.com/marcoroth/type_fusion.git
-  revision: 8c48a68ed546a254ef3110bba6589d9ddf5a5f62
+  revision: 0b3ef7bff702d1af407a1a28385ec41f9c29c5a2
   specs:
     type_fusion (0.0.3)
+      lhc
       litejob
 
 GEM
@@ -110,6 +111,9 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     erubi (1.12.0)
+    ethon (0.16.0)
+      ffi (>= 1.15.0)
+    ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
     httparty (0.21.0)
@@ -130,6 +134,11 @@ GEM
       railties (>= 6.0.0)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
+    lhc (15.2.1)
+      activesupport (>= 5.2)
+      addressable
+      local_uri
+      typhoeus (>= 0.11)
     litedb (0.2.1)
       litescheduler (>= 0.2.0)
       sqlite3 (>= 1.5.0)
@@ -139,6 +148,9 @@ GEM
     litequeue (0.2.1)
       litedb (>= 0.2.1)
     litescheduler (0.2.1)
+    local_uri (1.2.0)
+      activesupport
+      rack
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -276,6 +288,8 @@ GEM
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
+    typhoeus (1.4.0)
+      ethon (>= 0.9.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
