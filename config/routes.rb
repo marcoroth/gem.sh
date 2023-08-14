@@ -51,4 +51,12 @@ Rails.application.routes.draw do
   end
 
   resources :gems, only: [:index]
+
+  namespace :api do
+    namespace :v1 do
+      namespace :types do
+        resources :samples, only: :create
+      end
+    end
+  end
 end

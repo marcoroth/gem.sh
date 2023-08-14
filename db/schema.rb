@@ -10,8 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_13_213022) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "types_samples", force: :cascade do |t|
+    t.string "gem_name"
+    t.string "gem_version"
+    t.string "receiver"
+    t.string "method_name"
+    t.string "location"
+    t.string "type_fusion_version"
+    t.string "application_name"
+    t.string "source_ip"
+    t.jsonb "parameters"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
