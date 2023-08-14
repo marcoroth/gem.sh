@@ -131,7 +131,7 @@ class Visitor < SyntaxTree::Visitor
               elsif @modules.any?
                 @modules.last
               else
-                @analyzer
+                inferred_context_for(target)
               end
 
     method_definition_args = {
@@ -143,10 +143,12 @@ class Visitor < SyntaxTree::Visitor
       defined_files: [current_path],
     }
 
-    if target == "self"
-      context.class_methods << ClassMethod.new(**method_definition_args)
-    else
+    # the method can define itself onto "self", or can have a target of a constant
+    # to define the class there. see #inferred_context_for for more
+    if target.nil?
       context.instance_methods << InstanceMethod.new(**method_definition_args)
+    else
+      context.class_methods << ClassMethod.new(**method_definition_args)
     end
 
     @comments = []
@@ -188,4 +190,28 @@ class Visitor < SyntaxTree::Visitor
 
     super
   end
+
+  private
+
+  # handle method names like `Skiptrace.current_bindings` where the constant
+  # wasn't already visited
+  # rubocop:disable Lint/AssignmentInCondition
+  def inferred_context_for(target)
+    if existing = @analyzer.modules.detect { |name| name.qualified_name == target }
+      return prev if @modules.find { |mod| mod.qualified_name == existing.qualified_name }
+
+      @modules << existing
+      @namespace << existing
+      return existing
+
+    elsif existing = @analyzer.classes.detect { |name| name.qualified_name == target }
+      return prev if @classes.find { |klass| klass.qualified_name == existing.qualified_name }
+
+      @classes << existing
+      return existing
+
+    end
+    @analyzer
+  end
+  # rubocop:enable Lint/AssignmentInCondition
 end
