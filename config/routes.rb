@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/home" => "page#home", as: :home
   get "/docs" => "page#docs", as: :docs
   get "/community" => "page#community", as: :community
+  get "/types" => "page#types", as: :types
 
   get "/search" => "gems#search", as: :gems_search
 

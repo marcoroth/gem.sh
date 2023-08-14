@@ -1,0 +1,17 @@
+<%= render Layout::Subheading.new(title: title("Type-sampled Gems")) %>
+
+<p class="mt-6">Collected samples: <%= number_with_delimiter(::Types::Sample.count) %></p>
+
+<div class="mx-auto mt-6">
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <% ::Types::Sample.group(:gem_name, :gem_version).order(count: :desc).count.each do |(name, version), count| %>
+      <% version = version.split("-").first %>
+
+      <%= link_to gem_types_path(name, version), class: "block w-full" do %>
+        <%= render Layout::Card.new(title: name, description: "#{number_with_delimiter(count)} #{"sample".pluralize(count)}") do |card| %>
+          <%= card.with_badge(label: version) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

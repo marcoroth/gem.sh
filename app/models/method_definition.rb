@@ -47,4 +47,13 @@ MethodDefinition = Struct.new(:name, :target, :node, :location, :comments, :defi
   def code
     @code ||= LocationToContent.new(defined_files.first, location)
   end
+
+  def samples(gem)
+    Types::Sample.where(
+      gem_name: gem.name,
+      # gem_version: gem.version,
+      receiver: target.qualified_name,
+      method_name: name,
+    )
+  end
 end
