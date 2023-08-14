@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 ClassDefinition = Struct.new(:namespace, :name, :qualified_name, :node, :location, :superclass, :instance_methods, :class_methods, :extended_modules, :included_modules, :comments, :defined_files, :referenced_files) do
+  include MethodFinders
+
   def initialize(
     namespace: nil,
     name: nil,
