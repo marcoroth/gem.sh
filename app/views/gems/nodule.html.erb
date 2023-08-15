@@ -24,7 +24,7 @@
           <div class="mt-6 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
             <% @modules.each do |nodule| %>
               <%= link_to nodule.url(@gem) do %>
-                <%= render Layout::Card.new(title: nodule.name, description: "in #{nodule.namespace}") do |card|%>
+                <%= render Layout::Card.new(title: nodule.name, description: "in #{nodule.qualified_namespace}") do |card|%>
                   <% card.with_badge(label: "module") %>
                 <% end %>
               <% end %>
@@ -40,7 +40,7 @@
           <div class="mt-6 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
             <% @classes.each do |klass| %>
               <%= link_to klass.url(@gem) do %>
-                <%= render Layout::Card.new(title: klass.name, description: "in #{klass.namespace}") do |card|%>
+                <%= render Layout::Card.new(title: klass.name, description: "in #{klass.qualified_namespace}") do |card|%>
                   <% card.with_badge(label: "class") %>
                 <% end %>
               <% end %>

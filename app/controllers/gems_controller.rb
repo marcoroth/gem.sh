@@ -25,14 +25,14 @@ class GemsController < ApplicationController
 
   def nodule
     @module = @gem.find_module!(params[:module])
-    @classes = @gem.classes.select { |klass| klass.namespace == @module.qualified_name }
-    @modules = @gem.modules.select { |nodule| nodule.namespace == @module.qualified_name }
+    @classes = @gem.classes.select { |klass| klass.qualified_namespace == @module.qualified_name }
+    @modules = @gem.modules.select { |nodule| nodule.qualified_namespace == @module.qualified_name }
   end
 
   def klass
     @klass = @gem.find_class!(params[:class])
-    @namespace = @gem.find_namespace(@klass.namespace)
-    @classes = @gem.classes.select { |klass| klass.namespace == @klass.qualified_name }
+    @namespace = @gem.find_namespace(@klass.qualified_namespace)
+    @classes = @gem.classes.select { |klass| klass.qualified_namespace == @klass.qualified_name }
   end
 
   def instance_method
@@ -66,7 +66,7 @@ class GemsController < ApplicationController
   def set_target
     if params[:class]
       @target = @gem.find_class!(params[:class])
-      @namespace = @gem.find_namespace(@target.namespace)
+      @namespace = @gem.find_namespace(@target.qualified_namespace)
     elsif params[:module]
       @target = @gem.find_module!(params[:module])
     else

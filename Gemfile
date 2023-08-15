@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.2.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.4", ">= 7.0.4.2"
+gem "rails", "~> 7.0.7"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -60,7 +60,7 @@ gem "httparty", "~> 0.21.0"
 gem "view_component", "~> 3.5"
 
 # Interact with the Ruby syntax tree
-gem "syntax_tree", "~> 6.1"
+gem "yarp", "~> 0.6"
 
 # A pure Ruby code highlighter that is compatible with Pygments
 gem "rouge", "~> 4.1"
@@ -99,7 +99,7 @@ gem "gems", github: "marcoroth/gems", branch: "v2-api"
 gem "rorvswild", "~> 1.6"
 
 # A Ruby static code analyzer and formatter, based on the community Ruby style guide.
-gem "rubocop", "~> 1.55"
+gem "rubocop", "~> 1.56"
 
 # A RuboCop extension focused on enforcing Rails best practices and coding conventions.
 gem "rubocop-rails", "~> 2.20"
@@ -127,7 +127,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
+  # gem "capybara"
+  # gem "selenium-webdriver"
+  # gem "webdrivers"
 end

@@ -44,4 +44,8 @@ ClassDefinition = Struct.new(:namespace, :name, :qualified_name, :node, :locatio
   def title
     qualified_name
   end
+
+  def qualified_namespace
+    namespace.join("::")
+  end
 end

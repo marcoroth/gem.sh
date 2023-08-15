@@ -24,7 +24,7 @@
       </div>
     <% end %>
 
-    <% comment = @object.comments.each.map { |comment| comment.value.strip.gsub("#", "").strip+"<br>" }.join("\n") %>
+    <% comment = @object.comments.each.map { |comment| "#{comment}<br>" }.join("\n") %>
 
     <%#== YARD::Templates::Helpers::Markup::RDocMarkup.new(comment).to_html %>
 

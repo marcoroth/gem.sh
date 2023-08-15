@@ -23,13 +23,13 @@ default: &default
 
 development:
   <<: *default
-  database: web_development
+  database: gemsh_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: web
+  #username: gemsh
 
   # The password associated with the postgres role (username).
   #password:
@@ -57,7 +57,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: web_test
+  database: gemsh_test
+  host: localhost
+  username: postgres
+  password: postgres
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: web_production
-  username: web
-  password: <%= ENV["WEB_DATABASE_PASSWORD"] %>
+  database: gemsh_production
+  username: gemsh
+  password: <%= ENV["GEMSH_DATABASE_PASSWORD"] %>
