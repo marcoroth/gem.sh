@@ -23,10 +23,12 @@ class GemsController < ApplicationController
     @result = GemSearch.search(params[:name])
   end
 
-  def nodule
+  def mod
     @module = find_module!(params[:module])
     @classes = @gem.classes.select { |klass| klass.qualified_namespace == @module.qualified_name }
-    @modules = @gem.modules.select { |nodule| nodule.qualified_namespace == @module.qualified_name }
+    @modules = @gem.modules.select { |mod| mod.qualified_namespace == @module.qualified_name }
+
+    render :module
   end
 
   def klass
@@ -68,7 +70,7 @@ class GemsController < ApplicationController
   end
 
   def find_module(name)
-    @gem.modules.find { |namespace| namespace.qualified_name == name }
+    @gem.modules.find { |mod| mod.qualified_name == name }
   end
 
   def find_module!(name)
