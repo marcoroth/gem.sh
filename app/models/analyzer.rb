@@ -128,6 +128,7 @@ class Analyzer
         end
 
       constant_nesting.with(node.constant_path) do |constant_path|
+        constant_path = Array.wrap(constant_path)
         qualified_name = constant_path.join("::")
         reopen = NamespaceReopen.new(path: path, location: node.location, gem: gem)
 
