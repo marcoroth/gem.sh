@@ -297,7 +297,7 @@ class Analyzer
         end
 
       # Now we'll push on Baz.
-      qualified_names << constant_path.last.join("::")
+      qualified_names << Array.wrap(constant_path.last).join("::")
 
       # Now we'll look for the first one that we find in our list of modules. If
       # we find multiple matches then we'll grab the one with the longest name
