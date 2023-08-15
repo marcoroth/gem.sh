@@ -41,4 +41,8 @@ ModuleDefinition = Struct.new(:namespace, :name, :qualified_name, :node, :locati
   def title
     qualified_name
   end
+
+  def qualified_namespace
+    namespace.join("::")
+  end
 end

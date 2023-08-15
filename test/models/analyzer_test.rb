@@ -13,7 +13,7 @@ class AnalyzerTest < ActiveSupport::TestCase
       end
     RUBY
 
-    assert_equal 1, analyzer.classes.size
+    assert_equal 1, analyzer.classes.length
 
     clazz = analyzer.classes.first
     assert_equal "Foo", clazz.name
@@ -32,7 +32,7 @@ class AnalyzerTest < ActiveSupport::TestCase
       end
     RUBY
 
-    assert_equal 1, analyzer.classes.size
+    assert_equal 1, analyzer.classes.length
 
     clazz = analyzer.classes.first
     assert_not_nil clazz.superclass
@@ -57,6 +57,41 @@ class AnalyzerTest < ActiveSupport::TestCase
     assert_equal 2, analyzer.classes.first.defined_files.length
   end
 
+  test "classes with includes" do
+    analyzer = Analyzer.new
+
+    analyzer.analyze_code("test.rb", <<~RUBY)
+      module Level1
+        module IncludeMe; end
+
+        module Level2
+          module IncludeMe; end
+        end
+      end
+
+      module Level1
+        module Level2::Level3
+          class Level4
+            include IncludeMe
+            include NotFound
+            extend IncludeMe
+          end
+        end
+      end
+    RUBY
+
+    assert_equal 1, analyzer.classes.length
+    clazz = analyzer.classes.first
+
+    assert_equal 2, clazz.included_modules.length
+    assert_equal "IncludeMe", clazz.included_modules.first.name
+    assert_equal "Level1::IncludeMe", clazz.included_modules.first.qualified_name
+
+    assert_equal 1, clazz.extended_modules.length
+    assert_equal "IncludeMe", clazz.extended_modules.first.name
+    assert_equal "Level1::IncludeMe", clazz.extended_modules.first.qualified_name
+  end
+
   test "modules" do
     analyzer = Analyzer.new
 
@@ -67,7 +102,7 @@ class AnalyzerTest < ActiveSupport::TestCase
       end
     RUBY
 
-    assert_equal 1, analyzer.modules.size
+    assert_equal 1, analyzer.modules.length
 
     mod = analyzer.modules.first
     assert_equal "Foo", mod.name
