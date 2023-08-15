@@ -9,7 +9,7 @@
     <%#== YARD::Templates::Helpers::Markup::RDocMarkup.new(comment).to_html %>
 
     <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
-    <%== h.convert(comment) %>
+    <%== h.convert(comment.force_encoding("utf-8")) %>
   </div>
 
   <% if @object.code.location_content %>
