@@ -359,6 +359,6 @@ class Analyzer
   end
 
   def analyze(path)
-    analyze_code(path, File.read(code))
+    analyze_code(path, File.read(path))
   end
 end
