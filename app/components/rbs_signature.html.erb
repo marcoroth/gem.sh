@@ -7,8 +7,8 @@
     </div>
     <div class="ml-3">
       <h3 class="text-sm font-medium text-blue-800">Experimental RBS support (using type sampling data from the <%= link_to "https://github.com/marcoroth/type_fusion", target: :blank do %><code>type_fusion</code><% end %> project)</h3>
-      <div class="mt-2 text-sm text-blue-700">
-        <pre><%= @rbs %></pre>
+      <div class="mt-2 text-sm text-blue-700 mt-3">
+        <%= render Layout::CodeBlock.new.with_content(@rbs.strip) %>
       </div>
     </div>
   </div>
