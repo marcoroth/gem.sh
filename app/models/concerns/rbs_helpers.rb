@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RBSHelpers
-  def rbs_signature(gem, namespace: true)
+  def rbs_signature(gem)
     return nil if samples(gem).empty?
 
     "def #{class_method? ? 'self.' : ''}#{name}: (#{rbs_parameters(gem)}) -> #{rbs_return_value(gem)}"
@@ -41,9 +41,7 @@ module RBSHelpers
       "?#{rbs_type}"
     when "rest"
       "*#{param_name}: #{rbs_type}"
-    when "key"
-      "#{param_name}: #{rbs_type}"
-    when "keyreq"
+    when "key", "keyreq"
       "#{param_name}: #{rbs_type}"
     when "keyopt"
       "?#{param_name}: #{rbs_type}"
