@@ -2,6 +2,7 @@
 
 ModuleDefinition = Struct.new(:namespace, :name, :qualified_name, :node, :location, :instance_methods, :class_methods, :included_modules, :extended_modules, :comments, :defined_files, :referenced_files) do
   include MethodFinders
+  include RBSNamespaceHelpers
 
   def initialize(
     namespace: nil,

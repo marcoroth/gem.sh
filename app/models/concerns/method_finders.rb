@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module MethodFinders
+  def methods
+    class_methods.sort_by(&:name) + instance_methods.sort_by(&:name)
+  end
+
   def find_method(name)
     find_class_method(name) || find_instance_method(name)
   end

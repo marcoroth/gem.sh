@@ -7,6 +7,10 @@
     <div class="mt-6 mb-6">
       <%= render Layout::Heading.new(title: @module) %>
 
+      <% if (rbs = @module.rbs_signature(@gem)) %>
+        <%= render RBSSignature.new(rbs: rbs) %>
+      <% end %>
+
       <% @module.class_methods.sort_by(&:name).each do |class_method| %>
         <%= render MethodDetails.new(object: class_method, parent: @module, gem: @gem) %>
       <% end %>
