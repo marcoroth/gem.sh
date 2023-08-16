@@ -7,6 +7,8 @@ module RBSNamespaceHelpers
     return nil if rbs_method_signatures.empty?
 
     <<~RBS
+      # #{defined_files.first.path.gsub("#{gem.unpack_data_path}/lib/", "sig/")}s
+
       #{object_name} #{qualified_name}
         #{rbs_method_signatures.join("\n  ")}
       end
