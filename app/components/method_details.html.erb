@@ -4,16 +4,11 @@
       <%= render Layout::Subheading.new(title: @object.code.signature) %>
     </div>
 
-    <% if @object.try(:samples, @gem).present? %>
-      <%= render RBSSignature.new(rbs: @object.rbs_signature(@gem)) %>
+    <% if rbs_signature? %>
+      <%= render RBSSignature.new(rbs: rbs_signature) %>
     <% end %>
 
-    <% comment = @object.comments.each.map { |comment| "#{comment}<br>" }.join("\n") %>
-
-    <%#== YARD::Templates::Helpers::Markup::RDocMarkup.new(comment).to_html %>
-
-    <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
-    <%== h.convert(comment.force_encoding("utf-8")) %>
+    <%== rdoc.convert(comments_content) %>
   </div>
 
   <% if @object.code.location_content %>
