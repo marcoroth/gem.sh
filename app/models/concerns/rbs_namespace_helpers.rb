@@ -2,7 +2,7 @@
 
 module RBSNamespaceHelpers
   def rbs_signature(gem)
-    rbs_method_signatures = methods.map { |method| method.rbs_signature(gem, namespace: false) }.compact
+    rbs_method_signatures = methods.map { |method| method.rbs_signature(gem) }.compact
 
     return nil if rbs_method_signatures.empty?
 
