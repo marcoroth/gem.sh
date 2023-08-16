@@ -59,6 +59,12 @@ class GemsController < ApplicationController
     end
   end
 
+  def types
+    @samples = ::Types::Sample.group(:gem_name, :gem_version, :receiver, :method_name).where(gem_name: @gem.name).order(count: :desc).count
+  rescue StandardError
+    @samples = []
+  end
+
   private
 
   def set_gem

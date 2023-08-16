@@ -51,11 +51,15 @@ MethodDefinition = Struct.new(:name, :target, :node, :location, :comments, :defi
   end
 
   def samples(gem)
-    @samples ||= Types::Sample.where(
-      gem_name: gem.name,
-      # gem_version: gem.version,
-      receiver: target.qualified_name,
-      method_name: name,
-    )
+    @samples ||= begin
+      Types::Sample.where(
+        gem_name: gem.name,
+        # gem_version: gem.version,
+        receiver: target.qualified_name,
+        method_name: name,
+      )
+    rescue StandardError
+      []
+    end
   end
 end
