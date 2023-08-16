@@ -16,6 +16,8 @@ module RBSHelpers
   end
 
   def rbs_return_value(gem)
+    return "void" if instance_method? && name == "initialize"
+
     return_values = samples(gem).pluck(:return_value).compact
 
     if return_values.any?
