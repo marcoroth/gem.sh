@@ -93,7 +93,7 @@ module RBSHelpers
       types << "bool"
     end
 
-    # TODO: if number of unique types is greater than (?) then the parameter is probably of type Object
+    # TODO: if number of unique types is greater than (?) then the parameter is probably of type Object
 
     list = types.join(" | ")
 
