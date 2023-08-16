@@ -26,9 +26,9 @@
           <%= render Layout::Subheading.new(title: "Modules in this namespace") %>
 
           <div class="mt-6 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
-            <% @modules.each do |nodule| %>
-              <%= link_to nodule.url(@gem) do %>
-                <%= render Layout::Card.new(title: nodule.name, description: "in #{nodule.qualified_namespace}") do |card|%>
+            <% @modules.each do |mod| %>
+              <%= link_to mod.url(@gem) do %>
+                <%= render Layout::Card.new(title: mod.name, description: "in #{mod.qualified_namespace}") do |card|%>
                   <% card.with_badge(label: "module") %>
                 <% end %>
               <% end %>
