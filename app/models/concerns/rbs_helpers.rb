@@ -61,11 +61,15 @@ module RBSHelpers
     when Array
       first = type.shift
       if first == "Array"
-        "Array[#{type.join(', ')}]"
+        if type.length >= 7
+          "Array"
+        else
+          "Array[#{type.map { |t| type_to_rbs(t) }.join(', ')}]"
+        end
       elsif first == "Hash"
         "Hash<...>"
       else
-        raise "Don't know how to handle #{first.inspect} type"
+        first
       end
     else
       case type
