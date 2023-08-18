@@ -183,7 +183,7 @@ GEM
     psych (5.1.0)
       stringio
     public_suffix (5.0.3)
-    puma (6.3.0)
+    puma (6.3.1)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
@@ -290,7 +290,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     yard (0.9.34)
-    yarp (0.6.0)
+    yarp (0.7.0)
     zeitwerk (2.6.11)
 
 PLATFORMS
@@ -330,7 +330,7 @@ DEPENDENCIES
   view_component (~> 3.5)
   web-console
   yard (~> 0.9.34)
-  yarp (~> 0.6)
+  yarp (~> 0.7)
 
 RUBY VERSION
    ruby 3.2.2p53
