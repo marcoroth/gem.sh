@@ -1,7 +1,7 @@
 <% title @gem.name %>
 
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
-  <div class="grid prose max-w-full">
+  <div class="prose max-w-full border border-gray-500 rounded p-8">
     <% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
         autolink: true,
         tables: true,
