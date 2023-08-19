@@ -151,15 +151,15 @@ class Analyzer
         end
 
         statements =
-          case node.statements
+          case node.body
           when nil
             []
           when YARP::StatementsNode
-            node.statements.body
+            node.body.body
           when YARP::BeginNode
-            node.statements.statements.body
+            node.body.statements.body
           else
-            raise "Unexpected statements node: #{node.statements.inspect}"
+            raise "Unexpected statements node: #{node.body.inspect}"
           end
 
         # Here we're going to look for Kernel#include and Kernel#extend calls.
