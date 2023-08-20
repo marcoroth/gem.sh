@@ -23,6 +23,10 @@ class MethodDetails < ViewComponent::Base
     @object.try(:samples, @gem).present?
   end
 
+  def samples
+    @object.samples(@gem)
+  end
+
   def rbs_signature
     @object.rbs_signature(@gem)
   end

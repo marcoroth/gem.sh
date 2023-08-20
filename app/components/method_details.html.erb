@@ -5,7 +5,7 @@
     </div>
 
     <% if rbs_signature? %>
-      <%= render RBSSignature.new(rbs: rbs_signature) %>
+      <%= render RBSSignature.new(rbs: rbs_signature, samples: samples) %>
     <% end %>
 
     <%== rdoc.convert(comments_content) %>
