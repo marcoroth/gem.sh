@@ -26,13 +26,13 @@ module RBS
         return_value: "Nokogiri::XML::Document",
       )
 
-      assert_equal "def parse: (String, ?nil, ?String, ?Integer) -> Nokogiri::XML::Document", @method.rbs_signature(@gem)
+      assert_equal "def parse: (String string_or_io, ?nil url, ?String encoding, ?Integer options) -> Nokogiri::XML::Document", @method.rbs_signature(@gem)
 
       assert_equal <<~RBS, @module.rbs_signature(@gem)
         # sig/nokogiri/xml/document.rbs
 
         class Nokogiri::XML::Document
-          def parse: (String, ?nil, ?String, ?Integer) -> Nokogiri::XML::Document
+          def parse: (String string_or_io, ?nil url, ?String encoding, ?Integer options) -> Nokogiri::XML::Document
         end
       RBS
 
@@ -56,7 +56,7 @@ module RBS
           def inspect_attributes: () -> untyped
           def name: () -> untyped
           def namespaces: () -> untyped
-          def parse: (String, ?nil, ?String, ?Integer) -> Nokogiri::XML::Document
+          def parse: (String string_or_io, ?nil url, ?String encoding, ?Integer options) -> Nokogiri::XML::Document
           def slop!: () -> untyped
           def validate: () -> untyped
           def xpath_doctype: () -> untyped

@@ -38,9 +38,9 @@ module RBSHelpers
   def param_type_to_rbs_symbol(param_type, param_name, rbs_type)
     case param_type
     when "req"
-      rbs_type.to_s
+      "#{rbs_type} #{param_name}"
     when "opt"
-      "?#{rbs_type}"
+      "?#{rbs_type} #{param_name}"
     when "rest"
       "*#{param_name}: #{rbs_type}"
     when "key", "keyreq"
