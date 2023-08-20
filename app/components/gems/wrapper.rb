@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Layout::GemShow < ViewComponent::Base
+class Gems::Wrapper < ViewComponent::Base
   def initialize(gem:, namespaces:, classes:, class_methods:, instance_methods:)
     @gem = gem
     @namespaces = namespaces

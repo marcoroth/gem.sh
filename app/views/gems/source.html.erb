@@ -1,4 +1,4 @@
-<%= render Layout::GemShow.new(gem: @gem, namespaces: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
+<%= render Gems::Wrapper.new(gem: @gem, namespaces: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
     <%= render Layout::Subheading.new(title: "Source Files") %>
   </div><hr><br>
