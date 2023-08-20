@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RBSHelpers
-  def rbs_signature(gem, require_samples = true)
+  def rbs_signature(gem, require_samples: true)
     return nil if require_samples && samples(gem).empty?
 
     "def #{class_method? ? 'self.' : ''}#{name}: (#{rbs_parameters(gem)}) -> #{rbs_return_value(gem)}"

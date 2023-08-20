@@ -105,6 +105,8 @@ GEM
     erubi (1.12.0)
     ethon (0.16.0)
       ffi (>= 1.15.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -304,6 +306,7 @@ DEPENDENCIES
   class_variants (~> 0.0.6)
   cssbundling-rails
   debug
+  factory_bot (~> 6.2)
   gems!
   httparty (~> 0.21.0)
   inline_svg (~> 1.9)

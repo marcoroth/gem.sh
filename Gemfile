@@ -130,4 +130,7 @@ group :test do
   # gem "capybara"
   # gem "selenium-webdriver"
   # gem "webdrivers"
+
+  # A library for setting up Ruby objects as test data.
+  gem "factory_bot", "~> 6.2"
 end
