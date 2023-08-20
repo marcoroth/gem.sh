@@ -3,8 +3,7 @@
     <%= render partial: "breadcrumb" %>
 
     <%= render Gems::Heading.new(title: @gem.name) %>
-
-    <%= render GemMetadata.new(gem: @gem) %>
+    <%= render Gems::Metadata.new(gem: @gem) %>
 
     <%= render partial: "gem_navigation" %>
 
