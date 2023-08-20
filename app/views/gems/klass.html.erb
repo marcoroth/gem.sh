@@ -5,7 +5,7 @@
     <%= render partial: "breadcrumb" %>
 
     <div class="mt-6 mb-6">
-      <%= render Layout::Heading.new(title: @klass) %>
+      <%= render UI::Heading.new(title: @klass) %>
     </div>
 
     <div class="">
@@ -27,13 +27,13 @@
   </div>
 
   <div class="col-span-1">
-    <%= render Layout::CodeList.new(items: @namespace, gem: @gem, title: "Namespace") if @namespace %>
-    <%= render Layout::CodeList.new(items: @classes, gem: @gem, title: "Classes in this namespace") if @classes.any? %>
-    <%= render Layout::CodeList.new(items: @klass.superclass, gem: @gem, title: "Parent class") if @klass.superclass %>
-    <%= render Layout::CodeList.new(items: @klass.included_modules, title: "Included Modules", gem: @gem) if @klass.included_modules.any? %>
-    <%= render Layout::CodeList.new(items: @klass.extended_modules, title: "Extended Modules", gem: @gem) if @klass.extended_modules.any? %>
-    <%= render Layout::CodeList.new(items: @klass.class_methods, gem: @gem, title: "Class Methods") if @klass.class_methods.any? %>
-    <%= render Layout::CodeList.new(items: @klass.instance_methods, gem: @gem, title: "Instance Methods") if @klass.instance_methods.any? %>
-    <%= render Layout::CodeList.new(items: @klass.defined_files, gem: @gem, title: "Defined in") if @klass.defined_files.any? %>
+    <%= render UI::CodeList.new(items: @namespace, gem: @gem, title: "Namespace") if @namespace %>
+    <%= render UI::CodeList.new(items: @classes, gem: @gem, title: "Classes in this namespace") if @classes.any? %>
+    <%= render UI::CodeList.new(items: @klass.superclass, gem: @gem, title: "Parent class") if @klass.superclass %>
+    <%= render UI::CodeList.new(items: @klass.included_modules, title: "Included Modules", gem: @gem) if @klass.included_modules.any? %>
+    <%= render UI::CodeList.new(items: @klass.extended_modules, title: "Extended Modules", gem: @gem) if @klass.extended_modules.any? %>
+    <%= render UI::CodeList.new(items: @klass.class_methods, gem: @gem, title: "Class Methods") if @klass.class_methods.any? %>
+    <%= render UI::CodeList.new(items: @klass.instance_methods, gem: @gem, title: "Instance Methods") if @klass.instance_methods.any? %>
+    <%= render UI::CodeList.new(items: @klass.defined_files, gem: @gem, title: "Defined in") if @klass.defined_files.any? %>
   </div>
 </div>

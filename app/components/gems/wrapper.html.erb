@@ -13,9 +13,9 @@
   </div>
 
   <div class="col-span-1">
-    <%= render Layout::CodeList.new(items: @modules, gem: @gem, title: "Top-Level Modules") if @modules.any? %>
-    <%= render Layout::CodeList.new(items: @classes, gem: @gem, title: "Classes") if @classes.any? %>
-    <%= render Layout::CodeList.new(items: @class_methods, gem: @gem, title: "Class Methods") if @class_methods.any? %>
-    <%= render Layout::CodeList.new(items: @instance_methods, gem: @gem, title: "Instance Methods") if @instance_methods.any? %>
+    <%= render UI::CodeList.new(items: @modules, gem: @gem, title: "Top-Level Modules") if @modules.any? %>
+    <%= render UI::CodeList.new(items: @classes, gem: @gem, title: "Classes") if @classes.any? %>
+    <%= render UI::CodeList.new(items: @class_methods, gem: @gem, title: "Class Methods") if @class_methods.any? %>
+    <%= render UI::CodeList.new(items: @instance_methods, gem: @gem, title: "Instance Methods") if @instance_methods.any? %>
   </div>
 </div>

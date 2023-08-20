@@ -5,7 +5,7 @@
     <%= render partial: "breadcrumb" %>
 
     <div class="mt-6 mb-6">
-      <%= render Layout::Heading.new(title: @module) %>
+      <%= render UI::Heading.new(title: @module) %>
 
       <% @module.class_methods.sort_by(&:name).each do |class_method| %>
         <%= render MethodDetails.new(object: class_method, parent: @module, gem: @gem) %>
@@ -19,12 +19,12 @@
     <% if @module.class_methods.none? && @module.instance_methods.none? %>
       <% if @modules.any? %>
         <div class="mt-12">
-          <%= render Layout::Subheading.new(title: "Modules in this namespace") %>
+          <%= render UI::Subheading.new(title: "Modules in this namespace") %>
 
           <div class="mt-6 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
             <% @modules.each do |mod| %>
               <%= link_to mod.url(@gem) do %>
-                <%= render Layout::Card.new(title: mod.name, description: "in #{mod.qualified_namespace}") do |card|%>
+                <%= render UI::Card.new(title: mod.name, description: "in #{mod.qualified_namespace}") do |card|%>
                   <% card.with_badge(label: "module") %>
                 <% end %>
               <% end %>
@@ -35,12 +35,12 @@
 
       <% if @classes.any? %>
         <div class="mt-12">
-          <%= render Layout::Subheading.new(title: "Classes in this namespace") %>
+          <%= render UI::Subheading.new(title: "Classes in this namespace") %>
 
           <div class="mt-6 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
             <% @classes.each do |klass| %>
               <%= link_to klass.url(@gem) do %>
-                <%= render Layout::Card.new(title: klass.name, description: "in #{klass.qualified_namespace}") do |card|%>
+                <%= render UI::Card.new(title: klass.name, description: "in #{klass.qualified_namespace}") do |card|%>
                   <% card.with_badge(label: "class") %>
                 <% end %>
               <% end %>
@@ -52,12 +52,12 @@
   </div>
 
   <div class="col-span-1">
-    <%= render Layout::CodeList.new(items: @modules, gem: @gem, title: "Modules") if @modules.any? %>
-    <%= render Layout::CodeList.new(items: @classes, gem: @gem, title: "Classes") if @classes.any? %>
-    <%= render Layout::CodeList.new(items: @module.included_modules, title: "Included Modules", gem: @gem) if Array.wrap(@module.included_modules).any? %>
-    <%= render Layout::CodeList.new(items: @module.extended_modules, title: "Extended Modules", gem: @gem) if Array.wrap(@module.extended_modules).any? %>
-    <%= render Layout::CodeList.new(items: @module.class_methods, gem: @gem, title: "Class Methods") if Array.wrap(@module.class_methods).any? %>
-    <%= render Layout::CodeList.new(items: @module.instance_methods, gem: @gem, title: "Instance Methods") if Array.wrap(@module.instance_methods).any? %>
-    <%= render Layout::CodeList.new(items: @module.defined_files, gem: @gem, title: "Defined in") if @module.defined_files.any? %>
+    <%= render UI::CodeList.new(items: @modules, gem: @gem, title: "Modules") if @modules.any? %>
+    <%= render UI::CodeList.new(items: @classes, gem: @gem, title: "Classes") if @classes.any? %>
+    <%= render UI::CodeList.new(items: @module.included_modules, title: "Included Modules", gem: @gem) if Array.wrap(@module.included_modules).any? %>
+    <%= render UI::CodeList.new(items: @module.extended_modules, title: "Extended Modules", gem: @gem) if Array.wrap(@module.extended_modules).any? %>
+    <%= render UI::CodeList.new(items: @module.class_methods, gem: @gem, title: "Class Methods") if Array.wrap(@module.class_methods).any? %>
+    <%= render UI::CodeList.new(items: @module.instance_methods, gem: @gem, title: "Instance Methods") if Array.wrap(@module.instance_methods).any? %>
+    <%= render UI::CodeList.new(items: @module.defined_files, gem: @gem, title: "Defined in") if @module.defined_files.any? %>
   </div>
 </div>

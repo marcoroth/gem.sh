@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Layout::Status < ViewComponent::Base
+class UI::Status < ViewComponent::Base
   CLASSES = ClassVariants.build(
     "flex-none rounded-full p-1 ",
     variants: {

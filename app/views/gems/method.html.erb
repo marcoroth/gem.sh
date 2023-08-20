@@ -5,19 +5,19 @@
     <%= render partial: "breadcrumb" %>
 
     <div class="mt-6 mb-6">
-      <%= render Layout::Heading.new(title: @target) %>
+      <%= render UI::Heading.new(title: @target) %>
       <%= render MethodDetails.new(object: @method, parent: @target, gem: @gem) %>
     </div>
   </div>
 
   <div class="col-span-1">
     <% if @target.is_a?(ClassDefinition) %>
-      <%= render Layout::CodeList.new(items: @klass, gem: @gem, title: "Class") if @klass %>
-      <%= render Layout::CodeList.new(items: @target.included_modules, title: "Included Modules", gem: @gem) if @target.included_modules.any? %>
-      <%= render Layout::CodeList.new(items: @target.extended_modules, title: "Extended Modules", gem: @gem) if @target.extended_modules.any? %>
+      <%= render UI::CodeList.new(items: @klass, gem: @gem, title: "Class") if @klass %>
+      <%= render UI::CodeList.new(items: @target.included_modules, title: "Included Modules", gem: @gem) if @target.included_modules.any? %>
+      <%= render UI::CodeList.new(items: @target.extended_modules, title: "Extended Modules", gem: @gem) if @target.extended_modules.any? %>
     <% end %>
 
-    <%= render Layout::CodeList.new(items: @target.class_methods, gem: @gem, title: "Class Methods") if @target.class_methods.any? %>
-    <%= render Layout::CodeList.new(items: @target.instance_methods, gem: @gem, title: "Instance Methods") if @target.instance_methods.any? %>
+    <%= render UI::CodeList.new(items: @target.class_methods, gem: @gem, title: "Class Methods") if @target.class_methods.any? %>
+    <%= render UI::CodeList.new(items: @target.instance_methods, gem: @gem, title: "Instance Methods") if @target.instance_methods.any? %>
   </div>
 </div>

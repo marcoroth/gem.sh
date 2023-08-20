@@ -1,15 +1,15 @@
 <%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
-    <%= render Layout::Subheading.new(title: "Source Files") %>
+    <%= render UI::Subheading.new(title: "Source Files") %>
   </div><hr><br>
 
   <div class="grid grid-cols-3 gap-4">
     <div class="col-span-1">
-      <%= render Layout::CodeList.new(items: @gem.files.map { |file| SourceFile.new(file: file, gem: @gem) }, title: "", gem: @gem) %>
+      <%= render UI::CodeList.new(items: @gem.files.map { |file| SourceFile.new(file: file, gem: @gem) }, title: "", gem: @gem) %>
     </div>
     <div class="col-span-2">
       <% if @file %>
-        <%= render Layout::CodeBlock.new.with_content(@file.content.html_safe) %>
+        <%= render UI::CodeBlock.new.with_content(@file.content.html_safe) %>
       <% else %>
         <div class="rouge border border-gray-300 bg-gray-100 rounded h-96"></div>
       <% end %>

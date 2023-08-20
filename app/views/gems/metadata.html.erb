@@ -1,6 +1,6 @@
 <%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
-    <%= render Layout::Subheading.new(title: "Metadata") %>
+    <%= render UI::Subheading.new(title: "Metadata") %>
   </div><hr>
 
   <div class="mt-12 border-t border-gray-100">

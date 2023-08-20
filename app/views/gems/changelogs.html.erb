@@ -1,12 +1,12 @@
 <%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
-    <%= render Layout::Subheading.new(title: "Code changes") %>
-    <%= render Layout::Badge.new(label: "Demo") %>
+    <%= render UI::Subheading.new(title: "Code changes") %>
+    <%= render UI::Badge.new(label: "Demo") %>
   </div><hr>
 
   <% @gem.versions.first(3).each do |version| %>
     <div class="mt-12 mb-24">
-      <%= render Layout::Subheading.new(title: version["number"]) %>
+      <%= render UI::Subheading.new(title: version["number"]) %>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mt-12 gap-4">
         <div class="truncate">
@@ -15,7 +15,7 @@
           <ul role="list" class="mt-6">
             <% @gem.modules.sample((2..7).to_a.sample).each do |m| %>
               <li class="flex gap-x-4 py-1 text-sm font-semibold leading-6 text-gray-900">
-                <%= render Layout::Status.new(status: [:orange, :green, :red].sample) %>
+                <%= render UI::Status.new(status: [:orange, :green, :red].sample) %>
                 <code><%= link_to m.qualified_name, m.url(@gem) %></code>
               </li>
             <% end %>
@@ -28,7 +28,7 @@
           <ul role="list" class="mt-6">
             <% @gem.classes.sample((2..7).to_a.sample).each do |c| %>
               <li class="flex gap-x-4 py-1 text-sm font-semibold leading-6 text-gray-900">
-                <%= render Layout::Status.new(status: [:orange, :green, :red].sample) %>
+                <%= render UI::Status.new(status: [:orange, :green, :red].sample) %>
                 <code><span class="text-gray-400"><%= c.qualified_namespace %>::</span><%= link_to c.name, c.url(@gem) %></code>
 
               </li>
@@ -42,7 +42,7 @@
           <ul role="list" class="mt-6">
             <% @gem.classes.map(&:instance_methods).flatten.compact.sample((2..7).to_a.sample).each do |method| %>
               <li class="flex gap-x-4 py-1 text-sm font-semibold leading-6 text-gray-900">
-                <%= render Layout::Status.new(status: [:orange, :green, :red].sample) %>
+                <%= render UI::Status.new(status: [:orange, :green, :red].sample) %>
                 <code><span class="text-gray-400"><%= method.target.qualified_name %></span>#<%= link_to method.name, method.url(@gem) %></code>
               </li>
             <% end %>

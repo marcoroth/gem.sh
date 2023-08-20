@@ -1,7 +1,7 @@
 <div class="mt-6 overflow-scroll">
   <div class="mt-6 mb-3">
     <div class="border-b border-gray-300 pb-2 mb-4">
-      <%= render Layout::Subheading.new(title: @object.code.signature) %>
+      <%= render UI::Subheading.new(title: @object.code.signature) %>
     </div>
 
     <% comment = @object.comments.each.map { |comment| "#{comment}<br>" }.join("\n") %>
@@ -13,9 +13,9 @@
   </div>
 
   <% if @object.code.location_content %>
-    <%= render Layout::CodeBlock.new.with_content(@object.code.location_content.chomp.chomp) %>
+    <%= render UI::CodeBlock.new.with_content(@object.code.location_content.chomp.chomp) %>
   <% else %>
-    <%= render Layout::CodeBlock.new do %>
+    <%= render UI::CodeBlock.new do %>
       <%- if @parent.is_a?(ClassDefinition) -%>
       <%= @parent.object_name %> <%= @parent.qualified_name %> < <%= @parent.superclass.qualified_name %>
       <%- elsif @parent.is_a?(ModuleDefinition) -%>

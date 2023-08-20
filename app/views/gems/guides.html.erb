@@ -1,7 +1,7 @@
 <%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
-    <%= render Layout::Subheading.new(title: "Guides") %>
-    <%= render Layout::Badge.new(label: "Demo") %>
+    <%= render UI::Subheading.new(title: "Guides") %>
+    <%= render UI::Badge.new(label: "Demo") %>
   </div><hr>
 
   <div class="mt-12 grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-3">

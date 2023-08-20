@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Layout::CodeList < ViewComponent::Base
+class UI::CodeList < ViewComponent::Base
   def initialize(items:, gem:, title: "Items")
     items = items.to_a if items.is_a?(Set)
 
