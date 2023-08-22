@@ -8,7 +8,9 @@ class MethodDetails < ViewComponent::Base
   end
 
   def comments_content
-    @object.comments.join("<br>")
+    @object.comments.join("<br>").force_encoding("UTF-8")
+  rescue StandardError
+    ""
   end
 
   def yard

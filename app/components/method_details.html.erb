@@ -8,7 +8,7 @@
       <%= render RBSSignature.new(rbs: rbs_signature, samples: samples) %>
     <% end %>
 
-    <%== rdoc.convert(comments_content) %>
+    <%== rdoc.convert(comments_content) rescue "" %>
   </div>
 
   <% if @object.code.location_content %>
