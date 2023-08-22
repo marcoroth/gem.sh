@@ -79,8 +79,10 @@ module RBSHelpers
       if first == "Array"
         if type.length >= 7
           "Array"
-        else
+        elsif type.any?
           "Array[#{type.map { |t| type_to_rbs(t) }.join(', ')}]"
+        else
+          "Array"
         end
       elsif first == "Hash"
         hash_types = type.map { |t| t.map { |h| [h.first, type_to_rbs(h.second)].join(": ") }.join(", ") }
