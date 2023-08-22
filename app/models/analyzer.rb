@@ -219,7 +219,8 @@ class Analyzer
     end
 
     def visit_def_node(node)
-      qualified_name = constant_nesting.path.join("::")
+      constant_path = Array.wrap(constant_nesting.path)
+      qualified_name = constant_path.join("::")
 
       # Note that we're using reverse_each here because it's likely that we're
       # finding the most recently inserted class or module.
@@ -253,6 +254,7 @@ class Analyzer
 
     def visit_module_node(node)
       constant_nesting.with(node.constant_path) do |constant_path|
+        constant_path = Array.wrap(constant_path)
         qualified_name = constant_path.join("::")
         reopen = NamespaceReopen.new(path: path, location: node.location, gem: gem)
 
