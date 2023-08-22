@@ -4,7 +4,19 @@ module RBSHelpers
   def rbs_signature(gem, require_samples: true)
     return nil if require_samples && samples(gem).empty?
 
-    "def #{class_method? ? 'self.' : ''}#{name}: (#{rbs_parameters(gem)}) -> #{rbs_return_value(gem)}"
+    signature = "def #{class_method? ? 'self.' : ''}#{name}: (#{rbs_parameters(gem)}) -> #{rbs_return_value(gem)}"
+
+    if custom_types.any?
+      types = custom_types.uniq.map { |name, t| "type #{name} = #{t}" }.join("\n") + "\n\n"
+
+      "\n#{types}#{signature}"
+    else
+      signature
+    end
+  end
+
+  def custom_types
+    @custom_types ||= []
   end
 
   private
@@ -21,7 +33,7 @@ module RBSHelpers
     return_values = samples(gem).pluck(:return_value).compact
 
     if return_values.any?
-      type_list_to_rbs(return_values)
+      type_list_to_rbs(return_values, "return_value")
     else
       "untyped"
     end
@@ -31,7 +43,7 @@ module RBSHelpers
     params.to_h.map do |(param_name, param_type), types|
       type_list = types.map(&:last)
 
-      param_type_to_rbs_symbol(param_type, param_name, type_list_to_rbs(type_list))
+      param_type_to_rbs_symbol(param_type, param_name, type_list_to_rbs(type_list, param_name))
     end
   end
 
@@ -60,6 +72,7 @@ module RBSHelpers
     case type
     when Array
       first = type.shift
+
       if first == "Array"
         if type.length >= 7
           "Array"
@@ -85,7 +98,7 @@ module RBSHelpers
     end
   end
 
-  def type_list_to_rbs(type_list)
+  def type_list_to_rbs(type_list, param_name = nil)
     types = Array.wrap(type_list).map! { |type| type_to_rbs(type) }.uniq.compact
 
     if types.count("true").positive? && types.count("false").positive?
@@ -100,14 +113,20 @@ module RBSHelpers
 
     # TODO: if number of unique types is greater than (?) then the parameter is probably of type Object
 
-    list = types.join(" | ")
+    list = types.sort.join(" | ")
 
     if types.none?
       "untyped"
     elsif types.one?
       list
-    else
+    elsif types.uniq.count <= 3
       "(#{list})"
+    else
+      type_name = [target.qualified_name, name, param_name].compact.map { |t| t.gsub("::", "__") }.join("_")
+
+      custom_types << [type_name, list]
+
+      type_name
     end
   end
 end
