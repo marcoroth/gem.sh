@@ -82,7 +82,7 @@ module RBSHelpers
       elsif first == "Hash"
         hash_types = type.map { |t| t.map { |h| [h.first, type_to_rbs(h.second)].join(": ") }.join(", ") }
         _hash_type = "{ #{hash_types.first} }" if hash_types.uniq.one?
-        
+
         "Hash"
       else
         first
