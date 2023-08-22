@@ -57,7 +57,7 @@ MethodDefinition = Struct.new(:name, :target, :node, :location, :comments, :defi
         # gem_version: gem.version,
         receiver: target.qualified_name,
         method_name: name,
-      )
+      ).to_a
     rescue StandardError
       []
     end

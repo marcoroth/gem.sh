@@ -2,16 +2,18 @@
 
 module RBSHelpers
   def rbs_signature(gem, require_samples: true)
-    return nil if require_samples && samples(gem).empty?
+    @rbs_signature ||= begin
+      return nil if require_samples && samples(gem).empty?
 
-    signature = "def #{class_method? ? 'self.' : ''}#{name}: (#{rbs_parameters(gem)}) -> #{rbs_return_value(gem)}"
+      signature = "def #{class_method? ? 'self.' : ''}#{name}: (#{rbs_parameters(gem)}) -> #{rbs_return_value(gem)}"
 
-    if custom_types.any?
-      types = custom_types.uniq.map { |name, t| "type #{name} = #{t}" }.join("\n") + "\n\n"
+      if custom_types.any?
+        types = custom_types.uniq.map { |name, t| "type #{name} = #{t}" }.join("\n") + "\n\n"
 
-      "\n#{types}#{signature}"
-    else
-      signature
+        "\n#{types}#{signature}"
+      else
+        signature
+      end
     end
   end
 
@@ -22,7 +24,7 @@ module RBSHelpers
   private
 
   def rbs_parameters(gem)
-    parameters = samples(gem).pluck(:parameters).compact.flatten(1).group_by { |p| [p[0], p[1]] }
+    parameters = samples(gem).map(&:parameters).compact.flatten(1).group_by { |p| [p[0], p[1]] }
 
     params_to_rbs(parameters).join(", ")
   end
@@ -30,7 +32,7 @@ module RBSHelpers
   def rbs_return_value(gem)
     return "void" if instance_method? && name == "initialize"
 
-    return_values = samples(gem).pluck(:return_value).compact
+    return_values = samples(gem).map(&:return_value).compact
 
     if return_values.any?
       type_list_to_rbs(return_values, "return_value")
