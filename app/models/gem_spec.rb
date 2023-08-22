@@ -108,6 +108,19 @@ class GemSpec
     find_namespace(name) || raise(GemConstantNotFoundError, "Couldn't find namespace '#{name}'")
   end
 
+  def rbs_signature(require_samples: false)
+    rbs_file = rbs_file_path(require_samples)
+    return File.read(rbs_file) if File.exist?(rbs_file)
+
+    namespaces = modules + classes
+
+    rbs_method_signatures = namespaces.map { |namespace| namespace.rbs_signature(self, require_samples:) }.compact
+
+    rbs_method_signatures.join("\n\n").tap do |content|
+      File.write(rbs_file, content)
+    end
+  end
+
   def files
     metadata
       .files
@@ -163,6 +176,10 @@ class GemSpec
 
   def unpack_metadata_file
     "#{unpack_path}/metadata"
+  end
+
+  def rbs_file_path(require_samples)
+    "#{unpack_path}/#{name}_#{require_samples}.rbs"
   end
 
   def metadata

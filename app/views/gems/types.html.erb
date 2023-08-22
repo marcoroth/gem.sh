@@ -1,6 +1,18 @@
 <%= render Layout::GemShow.new(gem: @gem, namespaces: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
-    <%= render Layout::Subheading.new(title: "Types") %>
+    <%= render Layout::Subheading.new(title: "Generated RBS files") %>
+  </div><hr>
+
+  <div class="mt-6 grid md:grid-cols-2 gap-3 max-w-5xl">
+    <%= link_to "See RBS file (complete)", gem_rbs_path(@gem.name, @gem.version), class: "text-sm font-regular py-3 px-2 bg-red-500 rounded-md text-white hover:bg-red-400" %>
+    <%= link_to "See RBS file (only include methods/constant with samples)", gem_rbs_path(@gem.name, @gem.version, require_samples: 1), class: "text-sm font-regular py-3 px-2 bg-red-500 rounded-md text-white hover:bg-red-400" %>
+
+    <%= link_to "Download RBS file (complete)", gem_rbs_path(@gem.name, @gem.version, download: 1), class: "text-sm font-regular py-3 px-2 bg-red-500 rounded-md text-white hover:bg-red-400" %>
+    <%= link_to "Download RBS file (only include methods/constant with samples)", gem_rbs_path(@gem.name, @gem.version, download: 1, require_samples: 1), class: "text-sm font-regular py-3 px-2 bg-red-500 rounded-md text-white hover:bg-red-400" %>
+  </div>
+
+  <div class="pb-5 flex justify-between mt-12">
+    <%= render Layout::Subheading.new(title: "Methods With Samples") %>
   </div><hr>
 
   <div class="mx-auto mt-6">

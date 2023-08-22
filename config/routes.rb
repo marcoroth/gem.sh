@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       get "/files" => "gems#source", as: :gem_source
       get "/files/:file" => "gems#source", file: /.*/, as: :gem_file
 
+      get "/rbs" => "gems#rbs", as: :gem_rbs
+
       get "/announcements" => "gems#announcements", as: :gem_announcements
       get "/articles" => "gems#articles", as: :gem_articles
       get "/changelogs" => "gems#changelogs", as: :gem_changelogs
