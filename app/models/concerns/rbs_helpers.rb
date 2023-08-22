@@ -2,18 +2,16 @@
 
 module RBSHelpers
   def rbs_signature(gem, require_samples: true)
-    @rbs_signature ||= begin
-      return nil if require_samples && samples(gem).empty?
+    return nil if require_samples && samples(gem).empty?
 
-      signature = "def #{class_method? ? 'self.' : ''}#{name}: (#{rbs_parameters(gem)}) -> #{rbs_return_value(gem)}"
+    signature = "def #{class_method? ? 'self.' : ''}#{name}: (#{rbs_parameters(gem)}) -> #{rbs_return_value(gem)}"
 
-      if custom_types.any?
-        types = custom_types.uniq.map { |name, t| "type #{name} = #{t}" }.join("\n") + "\n\n"
+    if custom_types.any?
+      types = custom_types.uniq.map { |name, t| "type #{name} = #{t}" }.join("\n")
 
-        "\n#{types}#{signature}"
-      else
-        signature
-      end
+      "\n#{types}\n\n#{signature}"
+    else
+      signature
     end
   end
 
@@ -83,13 +81,9 @@ module RBSHelpers
         end
       elsif first == "Hash"
         hash_types = type.map { |t| t.map { |h| [h.first, type_to_rbs(h.second)].join(": ") }.join(", ") }
-
-        if hash_types.uniq.one?
-          # "{ #{hash_types.first} }"
-          "Hash"
-        else
-          "Hash"
-        end
+        _hash_type = "{ #{hash_types.first} }" if hash_types.uniq.one?
+        
+        "Hash"
       else
         first
       end

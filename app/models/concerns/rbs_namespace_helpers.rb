@@ -10,7 +10,7 @@ module RBSNamespaceHelpers
       # #{defined_files.first.path.gsub("#{gem.unpack_data_path}/lib/", 'sig/')}s
 
       #{object_name} #{qualified_name}
-        #{rbs_method_signatures.map {| sig| sig.gsub("\n", "\n  ") }.join("\n  ")}
+        #{rbs_method_signatures.map { |sig| sig.gsub("\n", "\n  ") }.join("\n  ")}
       end
     RBS
   end

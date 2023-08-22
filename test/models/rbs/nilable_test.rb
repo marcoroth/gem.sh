@@ -18,9 +18,9 @@ module RBS
         receiver: "ActiveRecord::ConnectionAdapters::PoolManager",
         method_name: "pool_configs",
         parameters: [
-          ["role", "opt", "NilClass"]
+          ["role", "opt", "NilClass"],
         ],
-        return_value: nil
+        return_value: nil,
       )
 
       assert_equal "def pool_configs: (?nil role) -> untyped", @method.rbs_signature(@gem)
@@ -32,9 +32,9 @@ module RBS
         receiver: "ActiveRecord::ConnectionAdapters::PoolManager",
         method_name: "pool_configs",
         parameters: [
-          ["role", "opt", "String"]
+          ["role", "opt", "String"],
         ],
-        return_value: nil
+        return_value: nil,
       )
 
       assert_equal "def pool_configs: (?String? role) -> untyped", @method.rbs_signature(@gem)
