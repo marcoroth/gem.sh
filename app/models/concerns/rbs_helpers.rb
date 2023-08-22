@@ -54,15 +54,18 @@ module RBSHelpers
     when "opt"
       "?#{rbs_type} #{param_name}"
     when "rest"
-      "*#{param_name}: #{rbs_type}"
+      "*#{rbs_type} #{param_name}"
     when "key", "keyreq"
       "#{param_name}: #{rbs_type}"
     when "keyopt"
       "?#{param_name}: #{rbs_type}"
     when "keyrest"
-      "**#{param_name}: #{rbs_type}"
+      "**#{rbs_type} #{param_name}"
     when "block"
-      "&#{param_name}: #{rbs_type}"
+      # TODO: fix block syntax
+      # Example: def method: () { () -> untyped } -> untyped
+
+      "#{param_name}: #{rbs_type}"
     else
       raise "Don't know about param_type: #{param_type}"
     end
