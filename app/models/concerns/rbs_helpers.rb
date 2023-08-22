@@ -82,7 +82,14 @@ module RBSHelpers
           "Array[#{type.map { |t| type_to_rbs(t) }.join(', ')}]"
         end
       elsif first == "Hash"
-        "Hash<...>"
+        hash_types = type.map { |t| t.map { |h| [h.first, type_to_rbs(h.second)].join(": ") }.join(", ") }
+
+        if hash_types.uniq.one?
+          # "{ #{hash_types.first} }"
+          "Hash"
+        else
+          "Hash"
+        end
       else
         first
       end
