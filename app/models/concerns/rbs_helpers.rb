@@ -93,6 +93,11 @@ module RBSHelpers
       types << "bool"
     end
 
+    if types.count("nil").positive? && types.uniq.count == 2
+      types -= ["nil"]
+      types << "#{types.shift}?"
+    end
+
     # TODO: if number of unique types is greater than (?) then the parameter is probably of type Object
 
     list = types.join(" | ")
