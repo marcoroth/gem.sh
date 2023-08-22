@@ -85,8 +85,8 @@ module RBSHelpers
     end
   end
 
-  def type_list_to_rbs(types)
-    types = Array.wrap(types).map! { |type| type_to_rbs(type) }.uniq.compact
+  def type_list_to_rbs(type_list)
+    types = Array.wrap(type_list).map! { |type| type_to_rbs(type) }.uniq.compact
 
     if types.count("true").positive? && types.count("false").positive?
       types -= ["true", "false"]
