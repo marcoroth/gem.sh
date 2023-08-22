@@ -121,7 +121,7 @@ module RBSHelpers
 
     # TODO: if number of unique types is greater than (?) then the parameter is probably of type Object
 
-    list = types.sort.join(" | ")
+    list = types.join(" | ")
 
     if types.none?
       "untyped"
