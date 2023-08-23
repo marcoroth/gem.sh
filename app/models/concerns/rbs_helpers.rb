@@ -64,8 +64,7 @@ module RBSHelpers
     when "block"
       # TODO: fix block syntax
       # Example: def method: () { () -> untyped } -> untyped
-
-      "#{param_name}: #{rbs_type}"
+      # "#{param_name}: #{rbs_type}"
     else
       raise "Don't know about param_type: #{param_type}"
     end
@@ -77,9 +76,7 @@ module RBSHelpers
       first = type.shift
 
       if first == "Array"
-        if type.length >= 7
-          "Array"
-        elsif type.any?
+        if type.any?
           "Array[#{type.map { |t| type_to_rbs(t) }.join(', ')}]"
         else
           "Array"
