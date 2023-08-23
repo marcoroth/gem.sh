@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/home" => "page#home", as: :home
   get "/docs" => "page#docs", as: :docs
   get "/community" => "page#community", as: :community
+  get "/types" => "page#types", as: :types
 
   get "/search" => "gems#search", as: :gems_search
 
@@ -29,6 +30,8 @@ Rails.application.routes.draw do
       get "/files" => "gems#source", as: :gem_source
       get "/files/:file" => "gems#source", file: /.*/, as: :gem_file
 
+      get "/rbs" => "gems#rbs", as: :gem_rbs
+
       get "/announcements" => "gems#announcements", as: :gem_announcements
       get "/articles" => "gems#articles", as: :gem_articles
       get "/changelogs" => "gems#changelogs", as: :gem_changelogs
@@ -51,4 +54,12 @@ Rails.application.routes.draw do
   end
 
   resources :gems, only: [:index]
+
+  namespace :api do
+    namespace :v1 do
+      namespace :types do
+        resources :samples, only: :create
+      end
+    end
+  end
 end

@@ -24,7 +24,7 @@ class GemsController < ApplicationController
   end
 
   def mod
-    @module = find_module!(params[:module])
+    @module = @gem.find_module!(params[:module])
     @classes = @gem.classes.select { |klass| klass.qualified_namespace == @module.qualified_name }
     @modules = @gem.modules.select { |mod| mod.qualified_namespace == @module.qualified_name }
 
@@ -32,8 +32,8 @@ class GemsController < ApplicationController
   end
 
   def klass
-    @klass = find_class!(params[:class])
-    @namespace = find_namespace(@klass.qualified_namespace)
+    @klass = @gem.find_class!(params[:class])
+    @namespace = @gem.find_namespace(@klass.qualified_namespace)
     @classes = @gem.classes.select { |klass| klass.qualified_namespace == @klass.qualified_name }
 
     render :class
@@ -61,31 +61,26 @@ class GemsController < ApplicationController
     end
   end
 
+  def types
+    @samples = ::Types::Sample.group(:gem_name, :gem_version, :receiver, :method_name).where(gem_name: @gem.name).order(count: :desc).count
+  rescue StandardError
+    @samples = []
+  end
+
+  def rbs
+    require_samples = params[:require_samples].present?
+    signature = @gem.rbs_signature(require_samples:)
+
+    filename = "#{@gem.name}-#{@gem.version}-#{require_samples ? 'only-samples' : 'complete'}.rbs"
+
+    if params[:download].present?
+      send_data signature, type: "application/x-ruby", disposition: "attachment", filename: filename
+    else
+      render plain: signature
+    end
+  end
+
   private
-
-  def find_class(name)
-    @gem.classes.find { |klass| klass.qualified_name == name }
-  end
-
-  def find_class!(name)
-    find_class(name) || raise(GemConstantNotFoundError, "Couldn't find class '#{name}'")
-  end
-
-  def find_module(name)
-    @gem.modules.find { |mod| mod.qualified_name == name }
-  end
-
-  def find_module!(name)
-    find_module(name) || raise(GemConstantNotFoundError, "Couldn't find module '#{name}'")
-  end
-
-  def find_namespace(name)
-    find_module(name) || find_class(name)
-  end
-
-  def find_namespace!(name)
-    find_namespace(name) || raise(GemConstantNotFoundError, "Couldn't find namespace '#{name}'")
-  end
 
   def set_gem
     @gem = GemSpec.find(params[:gem], params[:version]) || raise(GemNotFoundError.new(params[:gem], params[:version]))
@@ -93,10 +88,10 @@ class GemsController < ApplicationController
 
   def set_target
     if params[:class]
-      @target = find_class!(params[:class])
-      @namespace = find_namespace(@target.qualified_namespace)
+      @target = @gem.find_class!(params[:class])
+      @namespace = @gem.find_namespace(@target.qualified_namespace)
     elsif params[:module]
-      @target = find_module!(params[:module])
+      @target = @gem.find_module!(params[:module])
     else
       @target = @gem.info.analyzer
     end

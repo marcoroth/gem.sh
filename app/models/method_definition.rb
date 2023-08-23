@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 MethodDefinition = Struct.new(:name, :target, :node, :location, :comments, :defined_files) do
+  include RBSHelpers
+
   def initialize(
     name: nil,
     target: nil,
@@ -46,5 +48,22 @@ MethodDefinition = Struct.new(:name, :target, :node, :location, :comments, :defi
 
   def code
     @code ||= LocationToContent.new(defined_files.first, location)
+  end
+
+  def samples(gem)
+    @samples ||= begin
+      Types::Sample.where(
+        gem_name: gem.name,
+        # gem_version: gem.version,
+        receiver: target.qualified_name,
+        method_name: name,
+      ).to_a
+    rescue StandardError
+      []
+    end
+  end
+
+  def clear_sample_cache!
+    @samples = nil
   end
 end

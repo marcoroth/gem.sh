@@ -104,6 +104,11 @@ gem "rubocop", "~> 1.56"
 # A RuboCop extension focused on enforcing Rails best practices and coding conventions.
 gem "rubocop-rails", "~> 2.20"
 
+# gem "type_fusion", path: "../type_fusion"
+
+# Collaborative Ruby type sampling
+gem "type_fusion", github: "marcoroth/type_fusion"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: [:mri, :mingw, :x64_mingw]
@@ -125,4 +130,7 @@ group :test do
   # gem "capybara"
   # gem "selenium-webdriver"
   # gem "webdrivers"
+
+  # A library for setting up Ruby objects as test data.
+  gem "factory_bot", "~> 6.2"
 end

@@ -5,6 +5,14 @@ GIT
   specs:
     gems (1.2.0)
 
+GIT
+  remote: https://github.com/marcoroth/type_fusion.git
+  revision: 4cc83999a9465ed83c7402fa8a8c8fc278efb973
+  specs:
+    type_fusion (0.0.4)
+      lhc (~> 15.2)
+      litejob (~> 0.2.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -95,6 +103,11 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     erubi (1.12.0)
+    ethon (0.16.0)
+      ffi (>= 1.15.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
     httparty (0.21.0)
@@ -115,6 +128,23 @@ GEM
       railties (>= 6.0.0)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
+    lhc (15.2.1)
+      activesupport (>= 5.2)
+      addressable
+      local_uri
+      typhoeus (>= 0.11)
+    litedb (0.2.1)
+      litescheduler (>= 0.2.0)
+      sqlite3 (>= 1.5.0)
+    litejob (0.2.3)
+      litequeue (>= 0.2.1)
+      litescheduler (>= 0.2.1)
+    litequeue (0.2.1)
+      litedb (>= 0.2.1)
+    litescheduler (0.2.1)
+    local_uri (1.2.0)
+      activesupport
+      rack
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -232,6 +262,9 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.6.3-arm64-darwin)
+    sqlite3 (1.6.3-x86_64-darwin)
+    sqlite3 (1.6.3-x86_64-linux)
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     stringio (3.0.7)
@@ -241,6 +274,8 @@ GEM
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
+    typhoeus (1.4.0)
+      ethon (>= 0.9.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
@@ -271,6 +306,7 @@ DEPENDENCIES
   class_variants (~> 0.0.6)
   cssbundling-rails
   debug
+  factory_bot (~> 6.2)
   gems!
   httparty (~> 0.21.0)
   inline_svg (~> 1.9)
@@ -292,6 +328,7 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails
   turbo-rails
+  type_fusion!
   tzinfo-data
   view_component (~> 3.5)
   web-console
