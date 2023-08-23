@@ -1,4 +1,4 @@
-<%= render Layout::Subheading.new(title: title("Type-sampled Gems")) %>
+<%= render UI::Subheading.new(title: title("Type-sampled Gems")) %>
 
 <p class="mt-6">Collected samples: <%= number_with_delimiter(@sample_count) %></p>
 
@@ -8,7 +8,7 @@
       <% version = version.to_s.split("-").first %>
 
       <%= link_to gem_types_path(name, version), class: "block w-full" do %>
-        <%= render Layout::Card.new(title: name, description: "#{number_with_delimiter(count)} #{"sample".pluralize(count)}") do |card| %>
+        <%= render UI::Card.new(title: name, description: "#{number_with_delimiter(count)} #{"sample".pluralize(count)}") do |card| %>
           <%= card.with_badge(label: version) %>
         <% end %>
       <% end %>

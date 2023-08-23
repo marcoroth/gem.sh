@@ -1,6 +1,6 @@
 <%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
-    <%= render Layout::Subheading.new(title: "Generated RBS files") %>
+    <%= render UI::Subheading.new(title: "Generated RBS files") %>
   </div><hr>
 
   <div class="mt-6 grid md:grid-cols-2 gap-3 max-w-3xl">
@@ -12,7 +12,7 @@
   </div>
 
   <div class="pb-5 flex justify-between mt-12">
-    <%= render Layout::Subheading.new(title: "Methods With Samples") %>
+    <%= render UI::Subheading.new(title: "Methods With Samples") %>
   </div><hr>
 
   <div class="mx-auto mt-6">
@@ -26,7 +26,7 @@
         <% next if method.nil? %>
 
         <%= link_to method.url(@gem), class: "block w-full" do %>
-          <%= render Layout::Card.new(title: method_name, description: receiver) do |card| %>
+          <%= render UI::Card.new(title: method_name, description: receiver) do |card| %>
             <%= card.with_badge(label: pluralize(count, "sample")) %>
           <% end %>
         <% end %>
