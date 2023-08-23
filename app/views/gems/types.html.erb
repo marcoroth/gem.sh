@@ -18,17 +18,21 @@
   <div class="mx-auto mt-6">
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       <% @samples.each do |(name, version, receiver, method_name), count| %>
-
         <% namespace = @gem.find_namespace(receiver) %>
-        <% next if namespace.nil? %>
+        <% method = namespace ? namespace.find_method(method_name) : nil %>
 
-        <% method = namespace.find_method(method_name) %>
-        <% next if method.nil? %>
-
-        <%= link_to method.url(@gem), class: "block w-full" do %>
+        <% if namespace.nil? || method.nil? %>
           <%= render UI::Card.new(title: method_name, description: receiver) do |card| %>
-            <%= card.with_badge(label: pluralize(count, "sample")) %>
+            <%= card.with_badge(label: pluralize(count, "sample"), style: :red) %>
           <% end %>
+        <% else %>
+
+          <%= link_to method.url(@gem), class: "block w-full" do %>
+            <%= render UI::Card.new(title: method_name, description: receiver) do |card| %>
+              <%= card.with_badge(label: pluralize(count, "sample"), style: :green) %>
+            <% end %>
+          <% end %>
+
         <% end %>
       <% end %>
     </div>
