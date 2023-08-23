@@ -29,8 +29,9 @@
     <%= render UI::Subheading.new(title: "Typing Progress") %>
   </div><hr>
 
+
   <p class="font-md mt-6">
-    We have received <%= pluralize(@gem.samples.count, "type sample") %> for <b><%= @gem.type_sampled_methods_count %></b> out of the <b><%= pluralize(@gem.methods_count, "method") %> (<%= @gem.typing_progress %> %)</b> in the <code class="p-0"><%= @gem.name %></code> gem in version <code class="p-0"><%= @gem.version %></code>.
+    We have received <b><%= pluralize(@gem.samples.count, "type sample") %></b> for the <code class="p-0"><%= @gem.name %>-<%= @gem.version %></code> gem and matched them to <b><%= @gem.type_sampled_methods_count %></b> out of the <b><%= pluralize(@gem.methods_count, "method") %> (<%= @gem.typing_progress %> %)</b>.
   </p>
 
   <div class="pb-5 flex justify-between mt-12">
@@ -39,27 +40,29 @@
 
   <div class="mx-auto mt-6">
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <% @samples.each do |(name, version, receiver, method_name), count| %>
-        <% namespace = @gem.find_namespace(receiver) %>
-        <% method = namespace ? namespace.find_method(method_name) : nil %>
+      <% if @gem.type_sampled_methods_count.zero? %>
+        <div class="col-span-2">No type samples received yet or no matched methods found.</div>
+      <% else %>
+        <% @samples.each do |(name, version, receiver, method_name), count| %>
+          <% namespace = @gem.find_namespace(receiver) %>
+          <% method = namespace ? namespace.find_method(method_name) : nil %>
 
-        <% if namespace.nil? || method.nil? %>
-          <%= render UI::Card.new(title: method_name, description: receiver)  do |card| %>
-            <%= card.with_badge(label: pluralize(count, "sample"), style: :red) %>
-          <% end %>
-        <% else %>
-
-          <%= link_to method.url(@gem), class: "block w-full" do %>
-            <%= render UI::Card.new(title: method_name, description: receiver) do |card| %>
-              <%= card.with_badge(label: pluralize(count, "sample"), style: :green) %>
+          <% if namespace.nil? || method.nil? %>
+            <% if @gem.top_level_modules.any? { |m| receiver.to_s.start_with?(m.qualified_name) } %>
+              <%= render UI::Card.new(title: method_name, description: receiver)  do |card| %>
+                <%= card.with_badge(label: pluralize(count, "sample"), style: :red) %>
+              <% end %>
             <% end %>
+          <% else %>
+
+            <%= link_to method.url(@gem), class: "block w-full" do %>
+              <%= render UI::Card.new(title: method_name, description: receiver) do |card| %>
+                <%= card.with_badge(label: pluralize(count, "sample"), style: :green) %>
+              <% end %>
+            <% end %>
+
           <% end %>
-
         <% end %>
-      <% end %>
-
-      <% if @samples.none? %>
-        No type samples received yet.
       <% end %>
     </div>
   </div>

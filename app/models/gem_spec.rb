@@ -88,8 +88,21 @@ class GemSpec
       .where("gem_version LIKE ?", "#{version.to_s.split('-').first}%")
   end
 
+  def type_sampled_methods
+    samples.group(:receiver, :method_name).count.map { |(receiver, method_name), count|
+      namespace = find_namespace(receiver)
+      method = namespace ? namespace.find_method(method_name) : nil
+
+      if namespace.present? && method.present?
+        [namespace, method, count]
+      else
+        nil
+      end
+    }.compact
+  end
+
   def type_sampled_methods_count
-    samples.group(:method_name, :receiver).count.values.count
+    type_sampled_methods.count
   end
 
   def methods_count
