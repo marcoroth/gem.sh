@@ -31,7 +31,7 @@
 
 
   <p class="font-md mt-6">
-    We have received <b><%= pluralize(@gem.samples.count, "type sample") %></b> for the <code class="p-0"><%= @gem.name %>-<%= @gem.version %></code> gem and matched them to <b><%= @gem.type_sampled_methods_count %></b> out of the <b><%= pluralize(@gem.methods_count, "method") %> (<%= @gem.typing_progress %> %)</b>.
+    We have received <b><%= number_with_delimiter(@gem.samples.count) %> <%= "type sample".pluralize(@gem.samples.count) %></b> for the <code class="p-0"><%= @gem.name %>-<%= @gem.version %></code> gem and matched them to <b><%= @gem.type_sampled_methods_count %></b> out of the <b><%= pluralize(@gem.methods_count, "method") %> (<%= @gem.typing_progress %> %)</b>.
   </p>
 
   <div class="pb-5 flex justify-between mt-12">
