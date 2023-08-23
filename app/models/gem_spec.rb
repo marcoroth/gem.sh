@@ -98,7 +98,7 @@ class GemSpec
   end
 
   def typing_progress
-    ((type_sampled_methods_count.to_f / methods_count.to_f) * 100).round(1)
+    ((type_sampled_methods_count.to_f / methods_count) * 100).round(1)
   end
 
   def top_level_modules
