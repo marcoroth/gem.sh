@@ -25,6 +25,8 @@ module RBS
 
       assert_equal "def pool_configs: (?nil role) -> untyped", @method.rbs_signature(@gem)
 
+      @method.clear_sample_cache!
+
       FactoryBot.create(
         :type_sample,
         gem_name: "activerecord",

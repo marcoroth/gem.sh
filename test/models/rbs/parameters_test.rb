@@ -6,8 +6,8 @@ module RBS
   class ParametersTest < ActiveSupport::TestCase
     def setup
       @gem = GemSpec.find("nokogiri", "1.15.0")
-      @module = @gem.find_class("Nokogiri::XML::Document")
-      @method = @module.find_method("parse")
+      @class = @gem.find_class("Nokogiri::XML::Document")
+      @method = @class.find_method("parse")
     end
 
     test "positional arguments and optional positional arguments" do
@@ -28,18 +28,18 @@ module RBS
 
       assert_equal "def parse: (String string_or_io, ?nil url, ?String encoding, ?Integer options) -> Nokogiri::XML::Document", @method.rbs_signature(@gem)
 
-      assert_equal <<~RBS, @module.rbs_signature(@gem)
+      assert_equal <<~RBS, @class.rbs_signature(@gem)
         # sig/nokogiri/xml/document.rbs
 
-        class Nokogiri::XML::Document
+        class Nokogiri::XML::Document < Nokogiri::XML::Nokogiri::XML::Node
           def parse: (String string_or_io, ?nil url, ?String encoding, ?Integer options) -> Nokogiri::XML::Document
         end
       RBS
 
-      assert_equal <<~RBS, @module.rbs_signature(@gem, require_samples: false)
+      assert_equal <<~RBS, @class.rbs_signature(@gem, require_samples: false)
         # sig/nokogiri/xml/document.rbs
 
-        class Nokogiri::XML::Document
+        class Nokogiri::XML::Document < Nokogiri::XML::Nokogiri::XML::Node
           def add_child: () -> untyped
           def collect_namespaces: () -> untyped
           def create_cdata: () -> untyped

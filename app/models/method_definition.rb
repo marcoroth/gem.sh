@@ -62,4 +62,8 @@ MethodDefinition = Struct.new(:name, :target, :node, :location, :comments, :defi
       []
     end
   end
+
+  def clear_sample_cache!
+    @samples = nil
+  end
 end
