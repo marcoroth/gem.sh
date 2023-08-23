@@ -83,10 +83,9 @@ class GemSpec
   end
 
   def samples
-    Types::Sample.where(
-      gem_name: name,
-      # gem_version: version,
-    )
+    Types::Sample
+      .where(gem_name: name)
+      .where("gem_version LIKE ?", "#{version.to_s.split('-').first}%")
   end
 
   def type_sampled_methods_count

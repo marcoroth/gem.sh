@@ -52,12 +52,14 @@ MethodDefinition = Struct.new(:name, :target, :node, :location, :comments, :defi
 
   def samples(gem)
     @samples ||= begin
-      Types::Sample.where(
-        gem_name: gem.name,
-        # gem_version: gem.version,
-        receiver: target.qualified_name,
-        method_name: name,
-      ).to_a
+      Types::Sample
+        .where(
+          gem_name: gem.name,
+          receiver: target.qualified_name,
+          method_name: name,
+        )
+        .where("gem_version LIKE ?", "#{gem.version.to_s.split('-').first}%")
+        .to_a
     rescue StandardError
       []
     end
