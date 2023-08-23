@@ -35,6 +35,10 @@
 
         <% end %>
       <% end %>
+
+      <% if @samples.none? %>
+        No type samples received yet.
+      <% end %>
     </div>
   </div>
 <% end %>
