@@ -12,17 +12,25 @@
   </div>
 
   <div class="pb-5 flex justify-between mt-12">
+    <%= render UI::Subheading.new(title: "Typing Progress") %>
+  </div><hr>
+
+  <p class="font-md mt-6">
+    We have received <%= pluralize(@gem.samples.count, "type sample") %> for <b><%= @gem.type_sampled_methods_count %></b> out of the <b><%= pluralize(@gem.methods_count, "method") %> (<%= @gem.typing_progress %> %)</b> in the <code class="p-0"><%= @gem.name %></code> gem in version <code class="p-0"><%= @gem.version %></code>.
+  </p>
+
+  <div class="pb-5 flex justify-between mt-12">
     <%= render UI::Subheading.new(title: "Methods With Samples") %>
   </div><hr>
 
   <div class="mx-auto mt-6">
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <% @samples.each do |(name, version, receiver, method_name), count| %>
+      <% @samples.each do |(name, receiver, method_name), count| %>
         <% namespace = @gem.find_namespace(receiver) %>
         <% method = namespace ? namespace.find_method(method_name) : nil %>
 
         <% if namespace.nil? || method.nil? %>
-          <%= render UI::Card.new(title: method_name, description: receiver) do |card| %>
+          <%= render UI::Card.new(title: method_name, description: receiver)  do |card| %>
             <%= card.with_badge(label: pluralize(count, "sample"), style: :red) %>
           <% end %>
         <% else %>

@@ -17,7 +17,12 @@ class PageController < ApplicationController
 
   def types
     @sample_count = ::Types::Sample.count
-    @samples = ::Types::Sample.group(:gem_name, :gem_version).order(count: :desc).count
+    @samples = ::Types::Sample.group(
+      :gem_name,
+      :gem_version
+    )
+      .order(count: :desc)
+      .count
   rescue StandardError
     @sample_count = 0
     @samples = []

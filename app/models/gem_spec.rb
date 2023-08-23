@@ -58,6 +58,10 @@ class GemSpec
     versions.group_by { |version| version["number"].split(".")[0..1].join(".") }
   end
 
+  def namespaces
+    classes + modules
+  end
+
   def classes
     info.analyzer.classes.sort_by(&:qualified_name)
   end
@@ -66,12 +70,35 @@ class GemSpec
     info.analyzer.modules.sort_by(&:qualified_name)
   end
 
+  def methods
+    instance_methods + class_methods
+  end
+
   def instance_methods
     info.analyzer.instance_methods.sort_by(&:name)
   end
 
   def class_methods
     info.analyzer.class_methods.sort_by(&:name)
+  end
+
+  def samples
+    Types::Sample.where(
+      gem_name: name,
+      # gem_version: version,
+    )
+  end
+
+  def type_sampled_methods_count
+    samples.group(:method_name, :receiver).count.values.count
+  end
+
+  def methods_count
+    methods.count + namespaces.sum { |namespace| namespace.methods.count }
+  end
+
+  def typing_progress
+    ((type_sampled_methods_count.to_f / methods_count.to_f) * 100).round(1)
   end
 
   def top_level_modules
