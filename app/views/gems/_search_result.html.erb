@@ -15,7 +15,7 @@
             <li class="cursor-default select-none px-4 py-2 hover:bg-gray-100" role="option" tabindex="-1">
               <%= link_to gem_version_path(gem["name"], gem["version"]), class: "flex justify-between items-center" do %>
                 <code><%= gem["name"] %></code>
-                <%= render Layout::Badge.new(label: gem["version"]) %>
+                <%= render UI::Badge.new(label: gem["version"]) %>
               <% end %>
             </li>
           <% end %>

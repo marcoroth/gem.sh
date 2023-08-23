@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Layout::Card < ViewComponent::Base
-  renders_one :badge, Layout::Badge
+class UI::Card < ViewComponent::Base
+  renders_one :badge, UI::Badge
 
   def initialize(title:, description:)
     @title = title

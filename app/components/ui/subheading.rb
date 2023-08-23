@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Layout::GemHeading < ViewComponent::Base
+class UI::Subheading < ViewComponent::Base
   def initialize(title:)
     @title = title
   end

@@ -12,8 +12,8 @@
       <%= render RBSSignature.new(rbs: rbs) %>
     <% end %>
 
-    <div class="">
-      <% comment = @klass.comments.map { |comment| "#{comment}\n\n" }.join("\n") %>
+    <div>
+      <% comment = @klass.comments.join("<br>").force_encoding("UTF-8") %>
 
       <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
       <%== h.convert(comment) %>

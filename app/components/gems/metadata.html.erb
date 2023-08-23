@@ -1,10 +1,10 @@
 <div class="flex flex-wrap items-center gap-3 mb-6">
-  <%= render Layout::StatusBadge.new(label: "Types", status: types_status, tooltip: types_tooltip) %>
-  <%= render Layout::StatusBadge.new(label: "Docs", status: docs_status, tooltip: docs_tooltip) %>
-  <%= render Layout::StatusBadge.new(label: "Guides", status: guides_status, tooltip: guides_tooltip) %>
-  <%= render Layout::StatusBadge.new(label: "Zeitwerk", status: zeitwerk_status, tooltip: zeitwerk_tooltip) %>
-  <%= render Layout::StatusBadge.new(label: "Namespace", status: namespace_status, tooltip: namespace_tooltip) %>
-  <%= render Layout::StatusBadge.new(label: "Optimized", status: optimized_status, tooltip: optimized_tooltip) %>
+  <%= render UI::StatusBadge.new(label: "Types", status: types_status, tooltip: types_tooltip) %>
+  <%= render UI::StatusBadge.new(label: "Docs", status: docs_status, tooltip: docs_tooltip) %>
+  <%= render UI::StatusBadge.new(label: "Guides", status: guides_status, tooltip: guides_tooltip) %>
+  <%= render UI::StatusBadge.new(label: "Zeitwerk", status: zeitwerk_status, tooltip: zeitwerk_tooltip) %>
+  <%= render UI::StatusBadge.new(label: "Namespace", status: namespace_status, tooltip: namespace_tooltip) %>
+  <%= render UI::StatusBadge.new(label: "Optimized", status: optimized_status, tooltip: optimized_tooltip) %>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-8 mb-6">

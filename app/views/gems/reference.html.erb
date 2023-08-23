@@ -1,13 +1,13 @@
-<%= render Layout::GemShow.new(gem: @gem, namespaces: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
+<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="border-b border-gray-300 pb-2 mb-4 pb-5 flex justify-between">
-    <%= render Layout::Subheading.new(title: "Featured Classes") %>
-    <%= render Layout::Badge.new(label: "Demo") %>
+    <%= render UI::Subheading.new(title: "Featured Classes") %>
+    <%= render UI::Badge.new(label: "Demo") %>
   </div>
 
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
     <% @gem.classes.sample(8).each do |klass| %>
       <%= link_to gem_class_path(@gem.name, @gem.version, klass.qualified_name) do %>
-        <%= render Layout::Card.new(title: klass.name, description: klass.qualified_namespace) do |card| %>
+        <%= render UI::Card.new(title: klass.name, description: klass.qualified_namespace) do |card| %>
           <%= card.with_badge(label: klass.object_name) %>
         <% end %>
       <% end %>
@@ -15,13 +15,13 @@
   </div>
 
   <div class="border-b border-gray-300 pb-2 mb-4">
-    <%= render Layout::Subheading.new(title: "All Classes") %>
+    <%= render UI::Subheading.new(title: "All Classes") %>
   </div>
 
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
     <% @gem.classes.each do |klass| %>
       <%= link_to gem_class_path(@gem.name, @gem.version, klass.qualified_name) do %>
-        <%= render Layout::Card.new(title: klass.name, description: klass.qualified_namespace) do |card| %>
+        <%= render UI::Card.new(title: klass.name, description: klass.qualified_namespace) do |card| %>
           <%= card.with_badge(label: klass.object_name) %>
         <% end %>
       <% end %>
@@ -29,13 +29,13 @@
   </div>
 
   <div class="border-b border-gray-300 pb-2 mb-4">
-    <%= render Layout::Subheading.new(title: "All Modules") %>
+    <%= render UI::Subheading.new(title: "All Modules") %>
   </div>
 
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
     <% @gem.modules.each do |mod| %>
       <%= link_to gem_class_path(@gem.name, @gem.version, mod.qualified_name) do %>
-        <%= render Layout::Card.new(title: mod.name, description: mod.qualified_namespace) do |card| %>
+        <%= render UI::Card.new(title: mod.name, description: mod.qualified_namespace) do |card| %>
           <%= card.with_badge(label: mod.object_name) %>
         <% end %>
       <% end %>

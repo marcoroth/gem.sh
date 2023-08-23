@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Layout::Badge < ViewComponent::Base
+class UI::Badge < ViewComponent::Base
   CLASSES = ClassVariants.build(
     "rounded-md py-1 px-2 fs-step--2 monospace-font-family font-medium ring-1 ring-inset",
     variants: {

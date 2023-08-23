@@ -1,6 +1,6 @@
-<%= render Layout::GemShow.new(gem: @gem, namespaces: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
+<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
-    <%= render Layout::Subheading.new(title: "Statistics") %>
+    <%= render UI::Subheading.new(title: "Statistics") %>
   </div><hr>
 
   <div class="mt-12 mx-auto max-w-2xl lg:max-w-none">

@@ -35,6 +35,8 @@ class GemsController < ApplicationController
     @klass = @gem.find_class!(params[:class])
     @namespace = @gem.find_namespace(@klass.qualified_namespace)
     @classes = @gem.classes.select { |klass| klass.qualified_namespace == @klass.qualified_name }
+
+    render :class
   end
 
   def instance_method

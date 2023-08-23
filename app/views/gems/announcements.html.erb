@@ -1,7 +1,7 @@
-<%= render Layout::GemShow.new(gem: @gem, namespaces: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
+<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
-    <%= render Layout::Subheading.new(title: "Announcements") %>
-    <%= render Layout::Badge.new(label: "Demo") %>
+    <%= render UI::Subheading.new(title: "Announcements") %>
+    <%= render UI::Badge.new(label: "Demo") %>
   </div><hr>
 
   <p class="mt-12 mb-6 text-lg text-slate-600">
