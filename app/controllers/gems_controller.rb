@@ -25,16 +25,16 @@ class GemsController < ApplicationController
 
   def mod
     @module = @gem.find_module!(params[:module])
-    @classes = @gem.classes.select { |klass| klass.qualified_namespace == @module.qualified_name }
     @modules = @gem.modules.select { |mod| mod.qualified_namespace == @module.qualified_name }
+    @classes = @gem.classes.select { |klass| klass.qualified_namespace == @module.qualified_name }
 
     render :module
   end
 
   def klass
-    @klass = @gem.find_class!(params[:class])
-    @namespace = @gem.find_namespace(@klass.qualified_namespace)
-    @classes = @gem.classes.select { |klass| klass.qualified_namespace == @klass.qualified_name }
+    @class = @gem.find_class!(params[:class])
+    @classes = @gem.classes.select { |klass| klass.qualified_namespace == @class.qualified_name }
+    @namespace = @gem.find_namespace(@class.qualified_namespace)
 
     render :class
   end

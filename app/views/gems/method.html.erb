@@ -12,7 +12,7 @@
 
   <div class="col-span-1">
     <% if @target.is_a?(ClassDefinition) %>
-      <%= render UI::CodeList.new(items: @klass, gem: @gem, title: "Class") if @klass %>
+      <%= render UI::CodeList.new(items: @class, gem: @gem, title: "Class") if @class %>
       <%= render UI::CodeList.new(items: @target.included_modules, title: "Included Modules", gem: @gem) if @target.included_modules.any? %>
       <%= render UI::CodeList.new(items: @target.extended_modules, title: "Extended Modules", gem: @gem) if @target.extended_modules.any? %>
     <% end %>
