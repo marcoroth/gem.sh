@@ -8,8 +8,12 @@
       <%= render UI::Heading.new(title: @class) %>
     </div>
 
+    <% if (rbs = @class.rbs_signature(@gem)) %>
+      <%= render RBSSignature.new(rbs: rbs) %>
+    <% end %>
+
     <div class="">
-      <% comment = @class.comments.map { |comment| "#{comment}\n\n" }.join("\n") %>
+      <% comment = @class.comments.join("<br>").force_encoding("UTF-8") %>
 
       <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
       <%== h.convert(comment) %>
