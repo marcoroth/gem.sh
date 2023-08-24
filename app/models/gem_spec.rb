@@ -112,7 +112,7 @@ class GemSpec
   end
 
   def most_used_constant
-    constant = (modules + classes).map { |const| const.qualified_name.split("::").first }.flatten.tally.max_by(&:last)
+    constant = namespaces.map { |const| const.qualified_name.split("::").first }.flatten.tally.max_by(&:last)
 
     constant ? constant.first : name.capitalize
   end
@@ -144,8 +144,6 @@ class GemSpec
   def rbs_signature(require_samples: false)
     rbs_file = rbs_file_path(require_samples)
     return File.read(rbs_file) if File.exist?(rbs_file)
-
-    namespaces = modules + classes
 
     rbs_method_signatures = namespaces.map { |namespace| namespace.rbs_signature(self, require_samples:) }.compact
 
