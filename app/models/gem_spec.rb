@@ -89,21 +89,15 @@ class GemSpec
   end
 
   def type_sampled_methods
-    samples.group(:receiver, :method_name).count.map { |(receiver, method_name), count|
+    samples.group(:receiver, :method_name).count.map do |(receiver, method_name), count|
       namespace = find_namespace(receiver)
-      method = namespace ? namespace.find_method(method_name) : nil
+      method = namespace&.find_method(method_name)
 
-      if namespace.present? && method.present?
-        [namespace, method, count]
-      else
-        nil
-      end
-    }.compact
+      [namespace, method, count] if namespace.present? && method.present?
+    end.compact
   end
 
-  def type_sampled_methods_count
-    type_sampled_methods.count
-  end
+  delegate :count, to: :type_sampled_methods, prefix: true
 
   def methods_count
     methods.count + namespaces.sum { |namespace| namespace.methods.count }
