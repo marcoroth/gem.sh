@@ -230,7 +230,7 @@ class Analyzer
         analyzer
 
       kwargs = {
-        name: node.name,
+        name: node.name.force_encoding("UTF-8"),
         target: context,
         location: node.location,
         comments: comment_set.for(node),
