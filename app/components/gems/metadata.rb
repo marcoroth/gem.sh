@@ -6,7 +6,7 @@ class Gems::Metadata < ViewComponent::Base
   end
 
   def types_status
-    @gem.type_files.any? ? :green : :default
+    @gem.rbs_files.any? ? :green : :default
   end
 
   def types_tooltip

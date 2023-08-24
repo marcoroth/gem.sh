@@ -165,7 +165,7 @@ class GemSpec
     metadata.files.select { |file| file.end_with?(".md") }
   end
 
-  def type_files
+  def rbs_files
     metadata.files.select { |file| file.end_with?(".rbs") }
   end
 
