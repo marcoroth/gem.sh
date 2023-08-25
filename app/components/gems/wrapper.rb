@@ -44,16 +44,16 @@ class Gems::Wrapper < ViewComponent::Base
 
   def titles
     [
-     ["README", gem_readme_path(@gem.name, @gem.version)],
-     *(@gem.documentation_files - [@gem.readme]).sort.map { |file|
-       name = file.split("/").last.split(".").first.humanize
+      ["README", gem_readme_path(@gem.name, @gem.version)],
+      *(@gem.documentation_files - [@gem.readme]).sort.map do |file|
+        name = file.split("/").last.split(".").first.humanize
 
-       [name, gem_guide_path(@gem.name, @gem.version, file)]
-     }
+        [name, gem_guide_path(@gem.name, @gem.version, file)]
+      end,
 
-     # ["Getting Started", gem_guide_path(@gem.name, @gem.version, title)],
-     # ["Installation", gem_guide_path(@gem.name, @gem.version, title)],
-     # ["Upgrade Guide", gem_guide_path(@gem.name, @gem.version, title)],
-   ]
+      # ["Getting Started", gem_guide_path(@gem.name, @gem.version, title)],
+      # ["Installation", gem_guide_path(@gem.name, @gem.version, title)],
+      # ["Upgrade Guide", gem_guide_path(@gem.name, @gem.version, title)],
+    ]
   end
 end

@@ -14,7 +14,7 @@ class Gems::Metadata < ViewComponent::Base
   end
 
   def docs_status
-    (@gem.documentation_files.any?) ? :green : :default
+    @gem.documentation_files.any? ? :green : :default
   end
 
   def docs_tooltip
@@ -22,7 +22,7 @@ class Gems::Metadata < ViewComponent::Base
   end
 
   def guides_status
-    (@gem.guide_files.any?) ? :green : :default
+    @gem.guide_files.any? ? :green : :default
   end
 
   def guides_tooltip
