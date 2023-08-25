@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.4", ">= 7.0.4.2"
+gem "rails", "~> 7.0.7"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -13,7 +15,7 @@ gem "sprockets-rails"
 gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
+gem "puma", "~> 6.3"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
@@ -31,7 +33,7 @@ gem "cssbundling-rails"
 gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0"
+gem "redis", "~> 5.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -40,7 +42,7 @@ gem "redis", "~> 4.0"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -58,7 +60,7 @@ gem "httparty", "~> 0.21.0"
 gem "view_component", "~> 3.5"
 
 # Interact with the Ruby syntax tree
-gem "syntax_tree", "~> 6.1"
+gem "yarp", "~> 0.8"
 
 # A pure Ruby code highlighter that is compatible with Pygments
 gem "rouge", "~> 4.1"
@@ -96,12 +98,23 @@ gem "gems", github: "marcoroth/gems", branch: "v2-api"
 # Performances & exceptions monitoring for Ruby on Rails applications
 gem "rorvswild", "~> 1.6"
 
+# A Ruby static code analyzer and formatter, based on the community Ruby style guide.
+gem "rubocop", "~> 1.56"
+
+# A RuboCop extension focused on enforcing Rails best practices and coding conventions.
+gem "rubocop-rails", "~> 2.20"
+
+# gem "type_fusion", path: "../type_fusion"
+
+# Collaborative Ruby type sampling
+gem "type_fusion", github: "marcoroth/type_fusion"
+
 # View helpers for the beautiful hand-crafted SVG icons, Heroicons.
 gem "heroicon", "~> 1.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
@@ -117,7 +130,10 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
+  # gem "capybara"
+  # gem "selenium-webdriver"
+  # gem "webdrivers"
+
+  # A library for setting up Ruby objects as test data.
+  gem "factory_bot", "~> 6.2"
 end

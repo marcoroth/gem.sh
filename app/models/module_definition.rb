@@ -1,5 +1,23 @@
-class ModuleDefinition < OpenStruct
-  def initialize(namespace: nil, name: nil, qualified_name: nil, node: nil, instance_methods: [], class_methods: [], comments: [], defined_files: [], referenced_files: [])
+# frozen_string_literal: true
+
+ModuleDefinition = Struct.new(:namespace, :name, :qualified_name, :node, :location, :instance_methods, :class_methods, :included_modules, :extended_modules, :comments, :defined_files, :referenced_files) do
+  include MethodFinders
+  include RBSNamespaceHelpers
+
+  def initialize(
+    namespace: nil,
+    name: nil,
+    qualified_name: nil,
+    node: nil,
+    location: nil,
+    instance_methods: [],
+    class_methods: [],
+    included_modules: [],
+    extended_modules: [],
+    comments: [],
+    defined_files: [],
+    referenced_files: []
+  )
     super
   end
 
@@ -25,5 +43,9 @@ class ModuleDefinition < OpenStruct
 
   def title
     qualified_name
+  end
+
+  def qualified_namespace
+    namespace.join("::")
   end
 end

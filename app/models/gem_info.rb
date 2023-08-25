@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GemInfo
   attr_accessor :analyzer
 
@@ -7,7 +9,7 @@ class GemInfo
 
   def initialize(gemspec)
     @gemspec = gemspec
-    @analyzer = Analyzer.new
+    @analyzer = Analyzer.new(gemspec)
 
     analyze
   end

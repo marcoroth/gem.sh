@@ -1,6 +1,69 @@
-<%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
+<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.top_level_classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
-    <%= render Layout::Subheading.new(title: "Types") %>
-    <%= render Layout::Badge.new(label: "Demo") %>
+    <%= render UI::Subheading.new(title: "Generated RBS files") %>
   </div><hr>
+
+  <div class="rounded-md bg-blue-50 p-4 border border-gray-300 mb-6 mt-6 overflow-scroll">
+    <div class="flex">
+      <div class="flex-shrink-0">
+        <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div class="ml-3">
+        <h3 class="text-sm font-medium text-blue-800">Experimental RBS support (using type sampling data from the <%= link_to "https://github.com/marcoroth/type_fusion", target: :blank do %><code>type_fusion</code><% end %> project).
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 grid md:grid-cols-2 gap-3 max-w-3xl">
+    <%= link_to "RBS file (complete)", gem_rbs_path(@gem.name, @gem.version), target: "_blank", class: "text-sm font-regular py-3 px-4 bg-red-500 rounded-md text-white hover:bg-red-400" %>
+    <%= link_to "RBS file (only methods with samples)", gem_rbs_path(@gem.name, @gem.version, require_samples: 1), target: "_blank", class: "text-sm font-regular py-3 px-4 bg-red-500 rounded-md text-white hover:bg-red-400" %>
+
+    <%= link_to "Download RBS file (complete)", gem_rbs_path(@gem.name, @gem.version, download: 1), target: "_blank", class: "text-sm font-regular py-3 px-4 bg-red-500 rounded-md text-white hover:bg-red-400" %>
+    <%= link_to "Download RBS file (only methods with samples)", gem_rbs_path(@gem.name, @gem.version, download: 1, require_samples: 1), target: "_blank", class: "text-sm font-regular py-3 px-4 bg-red-500 rounded-md text-white hover:bg-red-400" %>
+  </div>
+
+  <div class="pb-5 flex justify-between mt-12">
+    <%= render UI::Subheading.new(title: "Typing Progress") %>
+  </div><hr>
+
+
+  <p class="font-md mt-6">
+    We have received <b><%= number_with_delimiter(@gem.samples.count) %> <%= "type sample".pluralize(@gem.samples.count) %></b> for the <code class="p-0"><%= @gem.name %>-<%= @gem.version %></code> gem and matched them to <b><%= @gem.type_sampled_methods_count %></b> out of the <b><%= pluralize(@gem.methods_count, "method") %> (<%= @gem.typing_progress %> %)</b>.
+  </p>
+
+  <div class="pb-5 flex justify-between mt-12">
+    <%= render UI::Subheading.new(title: "Methods With Samples") %>
+  </div><hr>
+
+  <div class="mx-auto mt-6">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <% if @gem.type_sampled_methods_count.zero? %>
+        <div class="col-span-2">No type samples received yet or no matched methods found.</div>
+      <% else %>
+        <% @samples.each do |(name, version, receiver, method_name), count| %>
+          <% namespace = @gem.find_namespace(receiver) %>
+          <% method = namespace ? namespace.find_method(method_name) : nil %>
+
+          <% if namespace.nil? || method.nil? %>
+            <% if @gem.top_level_modules.any? { |m| receiver.to_s.start_with?(m.qualified_name) } %>
+              <%= render UI::Card.new(title: method_name, description: receiver)  do |card| %>
+                <%= card.with_badge(label: pluralize(count, "sample"), style: :red) %>
+              <% end %>
+            <% end %>
+          <% else %>
+
+            <%= link_to method.url(@gem), class: "block w-full" do %>
+              <%= render UI::Card.new(title: method_name, description: receiver) do |card| %>
+                <%= card.with_badge(label: pluralize(count, "sample"), style: :green) %>
+              <% end %>
+            <% end %>
+
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

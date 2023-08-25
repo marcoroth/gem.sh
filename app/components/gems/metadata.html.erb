@@ -1,0 +1,38 @@
+<div class="flex flex-wrap items-center gap-3 mb-6">
+  <%= render UI::StatusBadge.new(label: "Types", status: types_status, tooltip: types_tooltip) %>
+  <%= render UI::StatusBadge.new(label: "Docs", status: docs_status, tooltip: docs_tooltip) %>
+  <%= render UI::StatusBadge.new(label: "Guides", status: guides_status, tooltip: guides_tooltip) %>
+  <%= render UI::StatusBadge.new(label: "Zeitwerk", status: zeitwerk_status, tooltip: zeitwerk_tooltip) %>
+  <%= render UI::StatusBadge.new(label: "Namespace", status: namespace_status, tooltip: namespace_tooltip) %>
+  <%= render UI::StatusBadge.new(label: "Optimized", status: optimized_status, tooltip: optimized_tooltip) %>
+</div>
+
+<div class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-8 mb-6">
+  <div class="bg-gray-50 rounded p-3 text-center border justify-center flex-col flex">
+    <p class="excerpt metadata_headers">Version</p>
+    <p><%= @gem.version %></p>
+  </div>
+
+  <div class="bg-gray-50 rounded p-3 text-center border justify-center flex-col flex">
+    <p class="excerpt metadata_headers">Authors</p>
+    <p><%= helpers.to_short_sentence(@gem.metadata.authors) %></p>
+  </div>
+
+  <div class="bg-gray-50 rounded p-3 text-center border justify-center flex-col flex">
+    <p class="excerpt metadata_headers">Dependencies</p>
+    <p>
+      <% deps = @gem.metadata.dependencies %>
+
+      <% deps.each do |dep| %>
+        <span class="font-mono"><%= link_to(dep.name, gem_path(dep.name)) %></span><% if deps.last != dep %>, <% end %>
+      <% end %>
+
+      <% if deps.none? %>- <% end %>
+    </p>
+  </div>
+
+  <div class="bg-gray-50 rounded p-3 text-center border justify-center flex-col flex">
+    <p class="excerpt metadata_headers">Quick Start</p>
+    <pre class="small-code-thing">bundle add <%= @gem.name %></pre>
+  </div>
+</div>

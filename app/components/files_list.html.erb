@@ -1,9 +1,0 @@
-<aside class="block truncate col-span-1 mb-6">
-  <h3 class="list-header"><%= @title %></h3>
-
-  <ul class="list code">
-    <% @files.each do |file| %>
-      <%= active_link_to file.path.delete_prefix("#{@gem.unpack_data_path}/"), gem_file_path(@gem.name, @gem.version, file.path.delete_prefix("#{@gem.unpack_data_path}/")), wrap_tag: :li %>
-    <% end %>
-  </ul>
-</aside>

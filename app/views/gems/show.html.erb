@@ -1,6 +1,6 @@
 <% title @gem.name %>
 
-<%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
+<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.top_level_classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <%#= render partial: "gem_navigation" %>
 
   <header class="border-b mb-10">
@@ -8,7 +8,7 @@
     <p class="mt-2 text-lg text-gray-800 mb-3"><%= @gem.description || @gem.summary %></p>
   </header>
 
-  <%= render GemMetadata.new(gem: @gem) %>
+  <%= render Gems::Metadata.new(gem: @gem) %>
 
   <hr class="pb-10">
 

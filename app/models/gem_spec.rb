@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GemSpec
   def self.latest_version_for(name)
     return nil if name.blank?
@@ -5,8 +7,11 @@ class GemSpec
     Gem.latest_spec_for(name).try(:version)
   end
 
-  def self.find(name, version = latest_version_for(name))
+  def self.find(name, version = nil)
     return nil if name.nil?
+
+    version ||= latest_version_for(name)
+
     return nil if version.nil?
 
     info = Gems::V2.info(name, version)
@@ -57,12 +62,24 @@ class GemSpec
     Gems.versions(name).uniq { |version| version["number"] }
   end
 
+  def grouped_versions
+    versions.group_by { |version| version["number"].split(".")[0..1].join(".") }
+  end
+
+  def namespaces
+    classes + modules
+  end
+
   def classes
     info.analyzer.classes.sort_by(&:qualified_name)
   end
 
   def modules
     info.analyzer.modules.sort_by(&:qualified_name)
+  end
+
+  def methods
+    instance_methods + class_methods
   end
 
   def instance_methods
@@ -73,23 +90,92 @@ class GemSpec
     info.analyzer.class_methods.sort_by(&:name)
   end
 
+  def samples
+    Types::Sample
+      .where(gem_name: name)
+      .where("gem_version LIKE ?", "#{version.to_s.split('-').first}%")
+  end
+
+  def type_sampled_methods
+    samples.group(:receiver, :method_name).count.map do |(receiver, method_name), count|
+      namespace = find_namespace(receiver)
+      method = namespace&.find_method(method_name)
+
+      [namespace, method, count] if namespace.present? && method.present?
+    end.compact
+  end
+
+  delegate :count, to: :type_sampled_methods, prefix: true
+
+  def methods_count
+    methods.count + namespaces.sum { |namespace| namespace.methods.count }
+  end
+
+  def typing_progress
+    ((type_sampled_methods_count.to_f / methods_count) * 100).round(1)
+  end
+
+  def top_level_modules
+    modules.select { |mod| mod.namespace.blank? }
+  end
+
+  def top_level_classes
+    classes.select { |klass| klass.namespace.blank? }
+  end
+
   def most_used_constant
-    constant = (modules + classes).map { |const| const.qualified_name.split("::").first }.flatten.tally.sort_by(&:last).last
+    constant = namespaces.map { |const| const.qualified_name.split("::").first }.flatten.tally.max_by(&:last)
 
     constant ? constant.first : name.capitalize
   end
 
+  def find_class(name)
+    classes.find { |klass| klass.qualified_name == name }
+  end
+
+  def find_class!(name)
+    find_class(name) || raise(GemConstantNotFoundError, "Couldn't find class '#{name}'")
+  end
+
+  def find_module(name)
+    modules.find { |namespace| namespace.qualified_name == name }
+  end
+
+  def find_module!(name)
+    find_module(name) || raise(GemConstantNotFoundError, "Couldn't find module '#{name}'")
+  end
+
+  def find_namespace(name)
+    find_module(name) || find_class(name)
+  end
+
+  def find_namespace!(name)
+    find_namespace(name) || raise(GemConstantNotFoundError, "Couldn't find namespace '#{name}'")
+  end
+
+  def rbs_signature(require_samples: false)
+    rbs_file = rbs_file_path(require_samples)
+    return File.read(rbs_file) if File.exist?(rbs_file)
+
+    rbs_method_signatures = namespaces.map { |namespace| namespace.rbs_signature(self, require_samples:) }.compact
+
+    rbs_method_signatures.join("\n\n").tap do |content|
+      File.write(rbs_file, content)
+    end
+  end
+
   def files
-    metadata.files
+    metadata
+      .files
       .select { |file| file.ends_with?(".rb") }
-      .select { |file| file.start_with?("lib/") || file.start_with?("app/") }
+      .select { |file| file.start_with?("lib/", "app/") }
   end
 
   def markdown_files
     metadata.files.select { |file| file.end_with?(".md") }
   end
 
-  def type_files
+  def rbs_files
     metadata.files.select { |file| file.end_with?(".rbs") }
   end
 
@@ -137,6 +223,10 @@ class GemSpec
     "#{unpack_path}/metadata"
   end
 
+  def rbs_file_path(require_samples)
+    "#{unpack_path}/#{name}_#{require_samples}.rbs"
+  end
+
   def metadata
     @metadata ||= YAML.load_file(
       unpack_metadata_file,
@@ -148,13 +238,13 @@ class GemSpec
         Gem::Version,
         Gem::Version::Requirement, # TODO: not sure why Psych still complains about DisallowedClass for `Gem::Version::Requirement`
         Time,
-        Symbol
-      ]
+        Symbol,
+      ],
     )
   rescue Psych::DisallowedClass => e
-    puts e.inspect
+    Rails.logger.debug e.inspect
 
-    OpenStruct.new(files: [], dependencies: [], authors: [], error: e)
+    Metadata.new
   end
 
   def download_filename

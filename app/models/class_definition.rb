@@ -1,5 +1,24 @@
-class ClassDefinition < OpenStruct
-  def initialize(namespace: nil, name: nil, qualified_name: nil, node: nil, superclass: nil, instance_methods: [], class_methods: [], extended_modules: [], included_modules: [], comments: [], defined_files: [], referenced_files: [])
+# frozen_string_literal: true
+
+ClassDefinition = Struct.new(:namespace, :name, :qualified_name, :node, :location, :superclass, :instance_methods, :class_methods, :extended_modules, :included_modules, :comments, :defined_files, :referenced_files) do
+  include MethodFinders
+  include RBSNamespaceHelpers
+
+  def initialize(
+    namespace: nil,
+    name: nil,
+    qualified_name: nil,
+    node: nil,
+    location: nil,
+    superclass: nil,
+    instance_methods: [],
+    class_methods: [],
+    extended_modules: [],
+    included_modules: [],
+    comments: [],
+    defined_files: [],
+    referenced_files: []
+  )
     super
   end
 
@@ -25,5 +44,9 @@ class ClassDefinition < OpenStruct
 
   def title
     qualified_name
+  end
+
+  def qualified_namespace
+    namespace.join("::")
   end
 end

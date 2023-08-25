@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root "page#home"
 
   get "/home" => "page#home", as: :home
   get "/docs" => "page#docs", as: :docs
   get "/community" => "page#community", as: :community
+  get "/types" => "page#types", as: :types
 
   get "/search" => "gems#search", as: :gems_search
 
@@ -18,7 +21,7 @@ Rails.application.routes.draw do
       scope "/module/:module" do
         get "/instance_method/:name" => "gems#instance_method", as: :gem_module_instance_method
         get "/class_method/:name" => "gems#class_method", as: :gem_module_class_method
-        get "/" => "gems#namespace", as: :gem_module
+        get "/" => "gems#mod", as: :gem_module
       end
 
       scope "/guides" do
@@ -31,6 +34,8 @@ Rails.application.routes.draw do
 
       get "/files" => "gems#source", as: :gem_source
       get "/files/:file" => "gems#source", file: /.*/, as: :gem_file
+
+      get "/rbs" => "gems#rbs", as: :gem_rbs
 
       get "/announcements" => "gems#announcements", as: :gem_announcements
       get "/articles" => "gems#articles", as: :gem_articles
@@ -54,4 +59,12 @@ Rails.application.routes.draw do
   end
 
   resources :gems, only: [:index]
+
+  namespace :api do
+    namespace :v1 do
+      namespace :types do
+        resources :samples, only: :create
+      end
+    end
+  end
 end

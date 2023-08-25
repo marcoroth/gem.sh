@@ -1,0 +1,39 @@
+<% title @class.title %>
+
+<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do |wrapper| %>
+  <div class="col-span-1 md:col-span-3">
+    <%= render UI::Heading.new(title: @class) %>
+
+    <% if (rbs = @class.rbs_signature(@gem)) %>
+      <%= render RBSSignature.new(rbs: rbs) %>
+    <% end %>
+
+    <div class="">
+      <% comment = @class.comments.join("<br>").force_encoding("UTF-8") %>
+
+      <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
+      <%== h.convert(comment) %>
+    </div>
+
+    <div class="grid">
+      <% @class.class_methods.sort_by(&:name).each do |class_method| %>
+        <%= render MethodDetails.new(object: class_method, parent: @namespace, gem: @gem) %>
+      <% end %>
+
+      <% @class.instance_methods.sort_by(&:name).each do |instance_method| %>
+        <%= render MethodDetails.new(object: instance_method, parent: @namespace, gem: @gem) %>
+      <% end %>
+    </div>
+  </div>
+
+  <% wrapper.with_sidebar do %>
+    <%= render UI::CodeList.new(items: @namespace, gem: @gem, title: "Namespace") if @namespace %>
+    <%= render UI::CodeList.new(items: @classes, gem: @gem, title: "Classes in this namespace") if @classes.any? %>
+    <%= render UI::CodeList.new(items: @class.superclass, gem: @gem, title: "Parent class") if @class.superclass %>
+    <%= render UI::CodeList.new(items: @class.included_modules, title: "Included Modules", gem: @gem) if @class.included_modules.any? %>
+    <%= render UI::CodeList.new(items: @class.extended_modules, title: "Extended Modules", gem: @gem) if @class.extended_modules.any? %>
+    <%= render UI::CodeList.new(items: @class.class_methods, gem: @gem, title: "Class Methods") if @class.class_methods.any? %>
+    <%= render UI::CodeList.new(items: @class.instance_methods, gem: @gem, title: "Instance Methods") if @class.instance_methods.any? %>
+    <%= render UI::CodeList.new(items: @class.defined_files, gem: @gem, title: "Defined in") if @class.defined_files.any? %>
+  <% end %>
+<% end %>

@@ -1,29 +1,35 @@
-<%= render Layout::GemShow.new(gem: @gem, namespaces: @namespaces, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
+<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.top_level_classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
-    <%= render Layout::Subheading.new(title: "Versions") %>
+    <%= render UI::Subheading.new(title: "Versions") %>
   </div><hr>
 
-  <div class="mt-12 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-    <% @gem.versions.each do |version| %>
-      <%= link_to gem_version_path(@gem.name, version["number"]), class: "#{@gem.version == version["number"] ? "bg-gray-100 rounded-md" : nil}" do %>
-        <%= render Layout::Card.new(title: version["number"], description: "Released on: #{DateTime.parse(version["created_at"]).to_date.to_fs(:long) }") do |card| %>
-          <% if GemSpec.latest_version_for(@gem.name) == version["number"] %>
-            <%= card.with_badge(label: "Latest", style: :gray) %>
-          <% end %>
+  <% @gem.grouped_versions.each do |series, versions| %>
+    <h4 class="font-bold mt-6"><%= series %> Series</h4>
 
-          <% if version["number"].include?("rc") %>
-            <%= card.with_badge(label: "RC", style: :purple) %>
-          <% end %>
+    <div class="mt-3 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12">
+      <% versions.each do |version| %>
+        <%= link_to gem_version_path(@gem.name, version["number"]), class: "#{@gem.version == version["number"] ? "bg-gray-100 rounded-md" : nil}" do %>
+          <%= render UI::Card.new(title: version["number"], description: "Released on: #{DateTime.parse(version["created_at"]).to_date.to_fs(:long) }") do |card| %>
+            <% if GemSpec.latest_version_for(@gem.name) == version["number"] %>
+              <%= card.with_badge(label: "Latest", style: :gray) %>
+            <% end %>
 
-          <% if version["number"].include?("pre") %>
-            <%= card.with_badge(label: "Pre", style: :green) %>
-          <% end %>
+            <% if version["number"].include?("rc") %>
+              <%= card.with_badge(label: "RC", style: :purple) %>
+            <% end %>
 
-          <% if version["number"].include?("beta") %>
-            <%= card.with_badge(label: "Beta", style: :yellow) %>
+            <% if version["number"].include?("pre") %>
+              <%= card.with_badge(label: "Pre", style: :green) %>
+            <% end %>
+
+            <% if version["number"].include?("beta") %>
+              <%= card.with_badge(label: "Beta", style: :yellow) %>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+
+    <hr/>
+  <% end %>
 <% end %>

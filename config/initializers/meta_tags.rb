@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 MetaTags.config do |config|
   # Default title methods to be checked for title
   #

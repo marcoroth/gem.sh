@@ -1,5 +1,16 @@
-class MethodDefinition < OpenStruct
-  def initialize(name: nil, target: nil, node: nil, comments: [], defined_files: [])
+# frozen_string_literal: true
+
+MethodDefinition = Struct.new(:name, :target, :node, :location, :comments, :defined_files) do
+  include RBSHelpers
+
+  def initialize(
+    name: nil,
+    target: nil,
+    node: nil,
+    location: nil,
+    comments: [],
+    defined_files: []
+  )
     super
   end
 
@@ -23,7 +34,7 @@ class MethodDefinition < OpenStruct
     name
   end
 
-  def title
+  def seo_title
     if target
       "#{name} (#{target.qualified_name})"
     else
@@ -31,7 +42,30 @@ class MethodDefinition < OpenStruct
     end
   end
 
+  def title
+    to_s
+  end
+
   def code
-    @code ||= NodeToContent.new(defined_files.first, node)
+    @code ||= LocationToContent.new(defined_files.first, location)
+  end
+
+  def samples(gem)
+    @samples ||= begin
+      Types::Sample
+        .where(
+          gem_name: gem.name,
+          receiver: target.qualified_name,
+          method_name: name,
+        )
+        .where("gem_version LIKE ?", "#{gem.version.to_s.split('-').first}%")
+        .to_a
+    rescue StandardError
+      []
+    end
+  end
+
+  def clear_sample_cache!
+    @samples = nil
   end
 end

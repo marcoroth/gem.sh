@@ -1,5 +1,5 @@
-<%= render Layout::Container.new do %>
-  <%= render Layout::Subheading.new(title: title("Gems")) %>
+<%= render UI::Container.new do %>
+  <%= render UI::Subheading.new(title: title("Gems")) %>
 
   <%= render partial: "gems/search" %>
 
@@ -7,7 +7,7 @@
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       <% @gems.each do |gem| %>
         <%= link_to gem_version_path(gem.name, gem.version), class: "block w-full" do %>
-          <%= render Layout::Card.new(title: gem.name, description: gem.description.to_s.truncate(50)) do |card| %>
+          <%= render UI::Card.new(title: gem.name, description: gem.description.to_s.truncate(50)) do |card| %>
             <%= card.with_badge(label: gem.version) %>
           <% end %>
         <% end %>

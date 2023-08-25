@@ -1,0 +1,161 @@
+<% title @gem.name %>
+
+<div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col pt-12">
+  <div class="flex grow flex-col overflow-y-auto border-r border-gray-200 bg-gray-50 px-6">
+
+    <nav id="nav" class="lg:text-sm lg:leading-6 relative mb-24">
+      <div class="sticky top-0 -ml-0.5 pointer-events-none">
+        <div class="h-10 bg-gray-50 dark:bg-slate-900"></div>
+
+        <div class="bg-gray-50 dark:bg-slate-900 relative pointer-events-auto">
+          <button type="button" class="hidden w-full lg:flex items-center text-sm leading-6 text-slate-400 rounded-md ring-1 ring-slate-900/10 shadow-sm py-1.5 pl-2 pr-3 hover:ring-slate-300 dark:bg-slate-800 dark:highlight-white/5 dark:hover:bg-slate-700">
+            <svg width="24" height="24" fill="none" aria-hidden="true" class="mr-3 flex-none">
+              <path d="m19 19-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle>
+            </svg>
+            Quick search...
+          </button>
+        </div>
+
+        <div class="h-8 bg-gradient-to-b from-gray-50 dark:from-slate-900"></div>
+      </div>
+
+      <% documentation_tabs = [
+        ["Home", gem_version_path(@gem.name, @gem.version)],
+        ["Guides", gem_guides_path(@gem.name, @gem.version)],
+        ["Reference", gem_reference_path(@gem.name, @gem.version)],
+        ["Types", gem_types_path(@gem.name, @gem.version)],
+        ["Changelogs", gem_changelogs_path(@gem.name, @gem.version)],
+      ] %>
+
+      <% tabs = [
+        # ["Metadata", gem_metadata_path(@gem.name, @gem.version)],
+        ["Source", gem_source_path(@gem.name, @gem.version)],
+        # ["Versions", gem_versions_path(@gem.name, @gem.version)],
+        # ["Wiki", gem_wiki_path(@gem.name, @gem.version)],
+        ["Playground", gem_playground_path(@gem.name, @gem.version)],
+        ["Stats", gem_stats_path(@gem.name, @gem.version)],
+        ["Announcements", gem_announcements_path(@gem.name, @gem.version)],
+      ] %>
+
+      <% community_tabs = [
+        ["Articles", gem_articles_path(@gem.name, @gem.version)],
+        ["Tutorials", gem_tutorials_path(@gem.name, @gem.version)],
+        ["Videos", gem_videos_path(@gem.name, @gem.version)],
+        ["Community", gem_community_path(@gem.name, @gem.version)],
+      ] %>
+
+      <ul>
+        <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Documentation</h5>
+
+        <% documentation_tabs.each do |tab, url| %>
+          <%= active_link_to url, active: :exclusive, class_active: "group flex items-center lg:text-sm lg:leading-6 mb-4 font-semibold text-sky-500 dark:text-sky-400", class_inactive: "group flex items-center lg:text-sm lg:leading-6 mb-4 font-medium text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+            <div class="mr-4 h-6 w-6 items-center justify-center flex rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-sky-200 dark:group-hover:bg-sky-500 dark:bg-sky-500 dark:highlight-white/10">
+            <%= tab[0] %>
+            </div>
+            <%= tab %>
+          <% end %>
+        <% end %>
+
+        <li class="mt-12 lg:mt-8">
+          <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Documentation</h5>
+
+          <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
+            <% titles = [
+              ["README", gem_readme_path(@gem.name, @gem.version)],
+              ["Getting Started", gem_guide_path(@gem.name, @gem.version, title)],
+              ["Installation", gem_guide_path(@gem.name, @gem.version, title)],
+              ["Upgrade Guide", gem_guide_path(@gem.name, @gem.version, title)],
+            ].each do |title, url| %>
+              <li>
+                <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-sky-500 border-current font-semibold dark:text-sky-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+                  <%= title %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+
+        <li class="mt-12 lg:mt-8">
+          <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Guides</h5>
+
+          <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
+            <% titles = [
+              "Migrations",
+              "Validations",
+              "Callbacks",
+              "Authentication",
+              "Persistence",
+              "Patterns",
+              "Deployment",
+              "Troubleshooting",
+            ].each do |title| %>
+              <li>
+                <%= active_link_to gem_guide_path(@gem.name, @gem.version, title), active: :exact, class_active: "block border-l pl-4 -ml-px text-sky-500 border-current font-semibold dark:text-sky-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+                  <%= title %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+
+        <h5 class="mt-12 mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Community</h5>
+
+        <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
+          <% community_tabs.each do |title, url| %>
+            <li>
+              <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-sky-500 border-current font-semibold dark:text-sky-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+                <%= title %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+
+        <h5 class="mt-12 mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">More</h5>
+
+        <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
+          <% tabs.each do |title, url| %>
+            <li>
+              <%= active_link_to url, active: :exclusive, class_active: "block border-l pl-4 -ml-px text-sky-500 border-current font-semibold dark:text-sky-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+                <%= title %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<main class="lg:pl-72">
+  <div class="px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-[3fr_1fr]">
+      <div class="px-3 py-6 overflow-scroll">
+        <%= render partial: "breadcrumb" %>
+
+        <%#= render Gems::Heading.new(title: @gem.name) %>
+
+        <main class="">
+          <div class="3xl:max-w-3xl 3xl:mx-auto max-w-none pr-16">
+            <%= content %>
+          </div>
+        </main>
+      </div>
+
+      <div class="overflow-hidden mt-6">
+        <% if sidebar? %>
+          <%= sidebar %>
+        <% else %>
+          <%= render UI::CodeList.new(items: @modules, gem: @gem, title: "Top-Level Modules") if @modules.any? %>
+          <%= render UI::CodeList.new(items: @classes, gem: @gem, title: "Top-Level Classes") if @classes.any? %>
+          <%= render UI::CodeList.new(items: @class_methods, gem: @gem, title: "Top-Level Class Methods") if @class_methods.any? %>
+          <%= render UI::CodeList.new(items: @instance_methods, gem: @gem, title: "Top-Level Instance Methods") if @instance_methods.any? %>
+
+          <%#= render Superclass.new(superclass: object.superclass, gem: @gem) %>
+          <%#= render ModulesList.new(modules: object.included_modules, title: "Included Modules", gem: @gem) %>
+          <%#= render ModulesList.new(modules: object.extended_modules, title: "Extended Modules", gem: @gem) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
