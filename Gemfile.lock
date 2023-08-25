@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/marcoroth/type_fusion.git
-  revision: 8373ea4505a7c6668414485507d005cf2846eee1
+  revision: f48607b5d13ced0d3a27c8369499fec1e5cf9014
   specs:
     type_fusion (0.0.5)
       lhc (~> 15.2)
