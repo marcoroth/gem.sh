@@ -17,6 +17,7 @@ module API
         def sample_params
           params.require(:sample).permit(:gem_name, :gem_version, :receiver, :method_name, :application_name, :type_fusion_version, :location, :return_value, parameters: []).tap do |whitelisted|
             whitelisted[:parameters] = params.dig(:sample, :parameters)
+            whitelisted[:return_value] = params.dig(:sample, :return_value)
           end
         end
       end
