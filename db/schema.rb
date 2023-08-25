@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_15_223413) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_25_163543) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_223413) do
     t.jsonb "parameters"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "return_value"
+    t.jsonb "return_value"
   end
 
 end
