@@ -1,10 +1,17 @@
 <%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.top_level_classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
-    <%= render UI::Subheading.new(title: "#{params[:guide]} Guide") %>
-    <%= render UI::Badge.new(label: "Demo") %>
-  </div><hr>
+    <%= render UI::Subheading.new(title: params[:guide]) %>
+  </div>
 
-  <div class="mt-12">
-    Learn more about <%= params[:guide] %> in <%= @gem.name %>.
+  <div class="prose max-w-full border border-gray-200 rounded p-8 mt-6">
+    <% markdown = Redcarpet::Markdown.new(
+        Redcarpet::Render::HTML,
+        autolink: true,
+        tables: true,
+        fenced_code_blocks: true,
+        lax_spacing: true
+      ) %>
+
+    <%== markdown.render(@gem.content_for_markdown(params[:guide])) %>
   </div>
 <% end %>

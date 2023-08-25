@@ -175,6 +175,24 @@ class GemSpec
     metadata.files.select { |file| file.end_with?(".md") }
   end
 
+  def documentation_files
+    metadata.files.select { |file| (file.include?("doc/") || file.include?("docs/")) && file.end_with?(".md") }
+  end
+
+  def guide_files
+    metadata.files.select { |file| (file.include?("guide/") || file.include?("guides/")) && file.end_with?(".md") }
+  end
+
+  def content_for_markdown(file)
+    file = "#{file}.md"
+
+    if markdown_files.include?(file)
+      sanitize(File.read("#{unpack_data_path}/#{file}"))
+    else
+      %(File "#{file}" not found)
+    end
+  end
+
   def rbs_files
     metadata.files.select { |file| file.end_with?(".rbs") }
   end
@@ -183,11 +201,13 @@ class GemSpec
     markdown_files.find { |file| file.downcase.include?("readme") } || markdown_files.first
   end
 
+  def sanitize(content)
+    Rails::HTML5::FullSanitizer.new.sanitize(content)
+  end
+
   def readme_content
     if readme
-      content = File.read("#{unpack_data_path}/#{readme}")
-
-      Rails::HTML5::FullSanitizer.new.sanitize(content)
+      sanitize(File.read("#{unpack_data_path}/#{readme}"))
     else
       "No README"
     end

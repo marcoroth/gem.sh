@@ -20,38 +20,13 @@
         <div class="h-8 bg-gradient-to-b from-gray-50 dark:from-slate-900"></div>
       </div>
 
-      <% documentation_tabs = [
-        ["Home", gem_version_path(@gem.name, @gem.version)],
-        ["Guides", gem_guides_path(@gem.name, @gem.version)],
-        ["Reference", gem_reference_path(@gem.name, @gem.version)],
-        ["Types", gem_types_path(@gem.name, @gem.version)],
-        ["Changelogs", gem_changelogs_path(@gem.name, @gem.version)],
-      ] %>
-
-      <% tabs = [
-        # ["Metadata", gem_metadata_path(@gem.name, @gem.version)],
-        ["Source", gem_source_path(@gem.name, @gem.version)],
-        # ["Versions", gem_versions_path(@gem.name, @gem.version)],
-        # ["Wiki", gem_wiki_path(@gem.name, @gem.version)],
-        ["Playground", gem_playground_path(@gem.name, @gem.version)],
-        ["Stats", gem_stats_path(@gem.name, @gem.version)],
-        ["Announcements", gem_announcements_path(@gem.name, @gem.version)],
-      ] %>
-
-      <% community_tabs = [
-        ["Articles", gem_articles_path(@gem.name, @gem.version)],
-        ["Tutorials", gem_tutorials_path(@gem.name, @gem.version)],
-        ["Videos", gem_videos_path(@gem.name, @gem.version)],
-        ["Community", gem_community_path(@gem.name, @gem.version)],
-      ] %>
-
       <ul>
-        <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Documentation</h5>
+        <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Overview</h5>
 
-        <% documentation_tabs.each do |tab, url| %>
+        <% overview_tabs.each do |tab, url| %>
           <%= active_link_to url, active: :exclusive, class_active: "group flex items-center lg:text-sm lg:leading-6 mb-4 font-semibold text-red-500 dark:text-red-400", class_inactive: "group flex items-center lg:text-sm lg:leading-6 mb-4 font-medium text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
             <div class="mr-4 h-6 w-6 items-center justify-center flex rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-red-200 dark:group-hover:bg-red-500 dark:bg-red-500 dark:highlight-white/10">
-            <%= tab[0] %>
+              <%= tab[0] %>
             </div>
             <%= tab %>
           <% end %>
@@ -61,12 +36,7 @@
           <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Documentation</h5>
 
           <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
-            <% titles = [
-              ["README", gem_readme_path(@gem.name, @gem.version)],
-              ["Getting Started", gem_guide_path(@gem.name, @gem.version, title)],
-              ["Installation", gem_guide_path(@gem.name, @gem.version, title)],
-              ["Upgrade Guide", gem_guide_path(@gem.name, @gem.version, title)],
-            ].each do |title, url| %>
+            <% titles.each do |title, url| %>
               <li>
                 <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
                   <%= title %>
@@ -76,47 +46,40 @@
           </ul>
         </li>
 
-        <li class="mt-12 lg:mt-8">
-          <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Guides</h5>
+        <% if @gem.guide_files.any? %>
+          <li class="mt-8 lg:mt-8">
+            <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Guides</h5>
 
-          <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
-            <% titles = [
-              "Migrations",
-              "Validations",
-              "Callbacks",
-              "Authentication",
-              "Persistence",
-              "Patterns",
-              "Deployment",
-              "Troubleshooting",
-            ].each do |title| %>
-              <li>
-                <%= active_link_to gem_guide_path(@gem.name, @gem.version, title), active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
-                  <%= title %>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </li>
+            <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
+              <% @gem.documentation_files.each do |title| %>
+                <li>
+                  <%= active_link_to gem_guide_path(@gem.name, @gem.version, title), active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+                    <%= title %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
 
-        <h5 class="mt-12 mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Community</h5>
+        <h5 class="mt-8 mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">More</h5>
 
         <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
-          <% community_tabs.each do |title, url| %>
+          <% tabs.each do |title, url| %>
             <li>
-              <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+              <%= active_link_to url, active: :exclusive, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
                 <%= title %>
               <% end %>
             </li>
           <% end %>
         </ul>
 
-        <h5 class="mt-12 mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">More</h5>
+        <h5 class="mt-8 mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Community</h5>
 
         <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
-          <% tabs.each do |title, url| %>
+          <% community_tabs.each do |title, url| %>
             <li>
-              <%= active_link_to url, active: :exclusive, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+              <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
                 <%= title %>
               <% end %>
             </li>
@@ -132,8 +95,6 @@
     <div class="grid grid-cols-1 lg:grid-cols-[3fr_1fr]">
       <div class="px-3 py-6 overflow-scroll">
         <%= render partial: "breadcrumb" %>
-
-        <%#= render Gems::Heading.new(title: @gem.name) %>
 
         <main class="">
           <div class="3xl:max-w-3xl 3xl:mx-auto max-w-none pr-16">
