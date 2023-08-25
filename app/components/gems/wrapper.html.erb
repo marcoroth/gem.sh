@@ -49,8 +49,8 @@
         <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Documentation</h5>
 
         <% documentation_tabs.each do |tab, url| %>
-          <%= active_link_to url, active: :exclusive, class_active: "group flex items-center lg:text-sm lg:leading-6 mb-4 font-semibold text-sky-500 dark:text-sky-400", class_inactive: "group flex items-center lg:text-sm lg:leading-6 mb-4 font-medium text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
-            <div class="mr-4 h-6 w-6 items-center justify-center flex rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-sky-200 dark:group-hover:bg-sky-500 dark:bg-sky-500 dark:highlight-white/10">
+          <%= active_link_to url, active: :exclusive, class_active: "group flex items-center lg:text-sm lg:leading-6 mb-4 font-semibold text-red-500 dark:text-red-400", class_inactive: "group flex items-center lg:text-sm lg:leading-6 mb-4 font-medium text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+            <div class="mr-4 h-6 w-6 items-center justify-center flex rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-red-200 dark:group-hover:bg-red-500 dark:bg-red-500 dark:highlight-white/10">
             <%= tab[0] %>
             </div>
             <%= tab %>
@@ -68,7 +68,7 @@
               ["Upgrade Guide", gem_guide_path(@gem.name, @gem.version, title)],
             ].each do |title, url| %>
               <li>
-                <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-sky-500 border-current font-semibold dark:text-sky-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+                <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
                   <%= title %>
                 <% end %>
               </li>
@@ -91,7 +91,7 @@
               "Troubleshooting",
             ].each do |title| %>
               <li>
-                <%= active_link_to gem_guide_path(@gem.name, @gem.version, title), active: :exact, class_active: "block border-l pl-4 -ml-px text-sky-500 border-current font-semibold dark:text-sky-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+                <%= active_link_to gem_guide_path(@gem.name, @gem.version, title), active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
                   <%= title %>
                 <% end %>
               </li>
@@ -104,7 +104,7 @@
         <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
           <% community_tabs.each do |title, url| %>
             <li>
-              <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-sky-500 border-current font-semibold dark:text-sky-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+              <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
                 <%= title %>
               <% end %>
             </li>
@@ -116,7 +116,7 @@
         <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
           <% tabs.each do |title, url| %>
             <li>
-              <%= active_link_to url, active: :exclusive, class_active: "block border-l pl-4 -ml-px text-sky-500 border-current font-semibold dark:text-sky-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+              <%= active_link_to url, active: :exclusive, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
                 <%= title %>
               <% end %>
             </li>
