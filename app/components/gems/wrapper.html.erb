@@ -5,10 +5,10 @@
 
     <nav id="nav" class="lg:text-sm lg:leading-6 relative mb-24">
       <div class="sticky top-0 -ml-0.5 pointer-events-none">
-        <div class="h-10 bg-gray-50 dark:bg-slate-900"></div>
+        <div class="h-10 bg-gray-50"></div>
 
-        <div class="bg-gray-50 dark:bg-slate-900 relative pointer-events-auto">
-          <button type="button" class="hidden w-full lg:flex items-center text-sm leading-6 text-slate-400 rounded-md ring-1 ring-slate-900/10 shadow-sm py-1.5 pl-2 pr-3 hover:ring-slate-300 dark:bg-slate-800 dark:highlight-white/5 dark:hover:bg-slate-700">
+        <div class="bg-gray-50  relative pointer-events-auto">
+          <button type="button" class="hidden w-full lg:flex items-center text-sm leading-6 text-slate-400 rounded-md ring-1 ring-slate-900/10 shadow-sm py-1.5 pl-2 pr-3 hover:ring-slate-300">
             <svg width="24" height="24" fill="none" aria-hidden="true" class="mr-3 flex-none">
               <path d="m19 19-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
               <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle>
@@ -17,15 +17,15 @@
           </button>
         </div>
 
-        <div class="h-8 bg-gradient-to-b from-gray-50 dark:from-slate-900"></div>
+        <div class="h-8 bg-gradient-to-b from-gray-50"></div>
       </div>
 
       <ul>
-        <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Overview</h5>
+        <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900">Overview</h5>
 
         <% overview_tabs.each do |tab, url| %>
-          <%= active_link_to url, active: :exclusive, class_active: "group flex items-center lg:text-sm lg:leading-6 mb-4 font-semibold text-red-500 dark:text-red-400", class_inactive: "group flex items-center lg:text-sm lg:leading-6 mb-4 font-medium text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
-            <div class="mr-4 h-6 w-6 items-center justify-center flex rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10 dark:ring-0 dark:shadow-none dark:group-hover:shadow-none dark:group-hover:highlight-white/10 group-hover:shadow-red-200 dark:group-hover:bg-red-500 dark:bg-red-500 dark:highlight-white/10">
+          <%= active_link_to url, active: :exclusive, class_active: "group flex items-center lg:text-sm lg:leading-6 mb-4 font-semibold text-red-500", class_inactive: "group flex items-center lg:text-sm lg:leading-6 mb-4 font-medium text-slate-700 hover:text-slate-900" do %>
+            <div class="mr-4 h-6 w-6 items-center justify-center flex rounded-md ring-1 ring-slate-900/5 shadow-sm group-hover:shadow group-hover:ring-slate-900/10   :shadow-none :highlight-white/10 group-hover:shadow-red-200 :bg-red-500  /10">
               <%= tab[0] %>
             </div>
             <%= tab %>
@@ -33,12 +33,12 @@
         <% end %>
 
         <li class="mt-12 lg:mt-8">
-          <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Documentation</h5>
+          <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900">Documentation</h5>
 
-          <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
+          <ul class="space-y-6 lg:space-y-2 border-l border-slate-300">
             <% titles.each do |title, url| %>
               <li>
-                <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+                <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 :hover:border-slate-500 text-slate-700 hover:text-slate-900" do %>
                   <%= title %>
                 <% end %>
               </li>
@@ -48,12 +48,12 @@
 
         <% if @gem.guide_files.any? %>
           <li class="mt-8 lg:mt-8">
-            <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Guides</h5>
+            <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900">Guides</h5>
 
-            <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
+            <ul class="space-y-6 lg:space-y-2 border-l border-slate-300">
               <% @gem.documentation_files.each do |title| %>
                 <li>
-                  <%= active_link_to gem_guide_path(@gem.name, @gem.version, title), active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+                  <%= active_link_to gem_guide_path(@gem.name, @gem.version, title), active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 text-slate-700 hover:text-slate-900" do %>
                     <%= title %>
                   <% end %>
                 </li>
@@ -62,24 +62,24 @@
           </li>
         <% end %>
 
-        <h5 class="mt-8 mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">More</h5>
+        <h5 class="mt-8 mb-8 lg:mb-3 font-semibold text-slate-900">More</h5>
 
-        <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
+        <ul class="space-y-6 lg:space-y-2 border-l border-slate-300">
           <% tabs.each do |title, url| %>
             <li>
-              <%= active_link_to url, active: :exclusive, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+              <%= active_link_to url, active: :exclusive, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 text-slate-700 hover:text-slate-900" do %>
                 <%= title %>
               <% end %>
             </li>
           <% end %>
         </ul>
 
-        <h5 class="mt-8 mb-8 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200">Community</h5>
+        <h5 class="mt-8 mb-8 lg:mb-3 font-semibold text-slate-900">Community</h5>
 
-        <ul class="space-y-6 lg:space-y-2 border-l border-slate-300 dark:border-slate-800">
+        <ul class="space-y-6 lg:space-y-2 border-l border-slate-300">
           <% community_tabs.each do |title, url| %>
             <li>
-              <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold dark:text-red-400", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300" do %>
+              <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 text-slate-700 hover:text-slate-900" do %>
                 <%= title %>
               <% end %>
             </li>

@@ -1,25 +1,25 @@
 <div>
   <h2 id="connect-and-contribute" class="scroll-mt-24">
-    <a class="group relative text-xl font-bold text-gray-800 dark:text-white" href="#connect-and-contribute">
+    <a class="group relative text-xl font-bold text-gray-800" href="#connect-and-contribute">
       Getting Started
     </a>
   </h2>
 
-  <p class="mt-1 text-gray-600 dark:text-gray-400">Learn more about the <%= @gem.name.capitalize %> gem.</p>
+  <p class="mt-1 text-gray-600">Learn more about the <%= @gem.name.capitalize %> gem.</p>
 
   <div class="mt-5 grid gap-4 sm:grid-cols-2 sm:gap-6">
 
     <% @getting_started.each do |object| %>
-      <a class="bg-white border rounded-xl p-4 hover:bg-gray-50 hover:shadow-sm transition sm:p-6 dark:bg-slate-900 dark:border-gray-800" href="<%= object.url %>">
+      <a class="bg-white border rounded-xl p-4 hover:bg-gray-50 hover:shadow-sm transition sm:p-6" href="<%= object.url %>">
         <div class="flex items-start gap-x-4">
-          <span class="flex-shrink-0 inline-flex flex-shrink-0 justify-center items-center gap-2 h-12 w-12 border border-[3px] border-white text-black rounded-full shadow dark:text-white">
+          <span class="flex-shrink-0 inline-flex flex-shrink-0 justify-center items-center gap-2 h-12 w-12 border border-[3px] border-white text-black rounded-full shadow">
             <%= heroicon object.icon, options: { class: "w-5 h-5" }, variant: :outline %>
           </span>
           <div>
-            <h3 class="font-semibold dark:text-gray-200">
+            <h3 class="font-semibold">
               <%= object.title %>
             </h3>
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            <p class="mt-1 text-sm text-gray-600">
               <%= object.description %>
             </p>
           </div>
