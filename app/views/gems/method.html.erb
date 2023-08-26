@@ -1,16 +1,14 @@
 <% title @method.seo_title %>
 
-<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do |wrapper| %>
   <div class="col-span-1 md:col-span-3">
-    <%= render partial: "breadcrumb" %>
-
     <div class="mt-6 mb-6">
       <%= render UI::Heading.new(title: @target) %>
       <%= render MethodDetails.new(object: @method, parent: @target, gem: @gem) %>
     </div>
   </div>
 
-  <div class="col-span-1">
+  <% wrapper.with_sidebar do %>
     <% if @target.is_a?(ClassDefinition) %>
       <%= render UI::CodeList.new(items: @class, gem: @gem, title: "Class") if @class %>
       <%= render UI::CodeList.new(items: @target.included_modules, title: "Included Modules", gem: @gem) if @target.included_modules.any? %>
@@ -19,5 +17,5 @@
 
     <%= render UI::CodeList.new(items: @target.class_methods, gem: @gem, title: "Class Methods") if @target.class_methods.any? %>
     <%= render UI::CodeList.new(items: @target.instance_methods, gem: @gem, title: "Instance Methods") if @target.instance_methods.any? %>
-  </div>
-</div>
+  <% end %>
+<% end %>

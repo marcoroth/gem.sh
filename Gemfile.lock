@@ -110,6 +110,8 @@ GEM
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    heroicon (1.0.0)
+      rails (>= 5.2)
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
@@ -308,6 +310,7 @@ DEPENDENCIES
   debug
   factory_bot (~> 6.2)
   gems!
+  heroicon (~> 1.0)
   httparty (~> 0.21.0)
   inline_svg (~> 1.9)
   jbuilder

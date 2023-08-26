@@ -3,6 +3,8 @@
 class GemsController < ApplicationController
   before_action :set_gem, except: [:index, :search]
   before_action :set_target, only: [:instance_method, :class_method]
+  # before_action :set_namespaces, except: [:index, :search]
+  # before_action :set_guides
 
   rescue_from "GemNotFoundError", "Gems::NotFound" do |exception|
     redirect_to gems_path, notice: exception.message
@@ -16,7 +18,15 @@ class GemsController < ApplicationController
     @gems = Gem::Specification.all.sort_by(&:name)
   end
 
+  Entry = Struct.new(:title, :url, :description, :icon)
+
   def show
+    @getting_started = [
+      Entry.new(title: "Installation", url: Router.gem_readme_path(@gem.name, @gem.version), description: "Learn more about how to install and configure the gem", icon: "arrow-down-tray"),
+      Entry.new(title: "Documentation", url: Router.gem_readme_path(@gem.name, @gem.version), description: "Learn more about the details", icon: "book-open"),
+      Entry.new(title: "Guides", url: Router.gem_guides_path(@gem.name, @gem.version), description: "Learn more about the gem in the written guides", icon: "document-text"),
+      Entry.new(title: "Reference", url: Router.gem_reference_path(@gem.name, @gem.version), description: "Learn more about the classes and modules", icon: "code-bracket"),
+    ]
   end
 
   def search
@@ -101,4 +111,18 @@ class GemsController < ApplicationController
       @target = @gem.info.analyzer
     end
   end
+
+  # def set_guides
+  #   @guides = [
+  #     "Basics",
+  #     "Migrations",
+  #     "Validations",
+  #     "Callbacks",
+  #     "Authentication",
+  #     "Persistence",
+  #     "Patterns",
+  #     "Deployment",
+  #     "Troubleshooting",
+  #   ]
+  # end
 end

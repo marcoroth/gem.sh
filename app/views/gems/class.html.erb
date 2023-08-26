@@ -1,12 +1,8 @@
 <% title @class.title %>
 
-<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do |wrapper| %>
   <div class="col-span-1 md:col-span-3">
-    <%= render partial: "breadcrumb" %>
-
-    <div class="mt-6 mb-6">
-      <%= render UI::Heading.new(title: @class) %>
-    </div>
+    <%= render UI::Heading.new(title: @class) %>
 
     <% if (rbs = @class.rbs_signature(@gem)) %>
       <%= render RBSSignature.new(rbs: rbs) %>
@@ -30,7 +26,7 @@
     </div>
   </div>
 
-  <div class="col-span-1">
+  <% wrapper.with_sidebar do %>
     <%= render UI::CodeList.new(items: @namespace, gem: @gem, title: "Namespace") if @namespace %>
     <%= render UI::CodeList.new(items: @classes, gem: @gem, title: "Classes in this namespace") if @classes.any? %>
     <%= render UI::CodeList.new(items: @class.superclass, gem: @gem, title: "Parent class") if @class.superclass %>
@@ -39,5 +35,5 @@
     <%= render UI::CodeList.new(items: @class.class_methods, gem: @gem, title: "Class Methods") if @class.class_methods.any? %>
     <%= render UI::CodeList.new(items: @class.instance_methods, gem: @gem, title: "Instance Methods") if @class.instance_methods.any? %>
     <%= render UI::CodeList.new(items: @class.defined_files, gem: @gem, title: "Defined in") if @class.defined_files.any? %>
-  </div>
-</div>
+  <% end %>
+<% end %>

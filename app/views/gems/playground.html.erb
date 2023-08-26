@@ -1,15 +1,15 @@
-<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
+<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.top_level_classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="pb-5 flex justify-between">
     <%= render UI::Subheading.new(title: "Playground") %>
     <%= render UI::Badge.new(label: "Demo") %>
   </div><hr>
 
-  <p class="mt-12 mb-6 text-lg text-slate-600">
-    Here's a Ruby playground with gem <code><%= @gem.name %></code> version <code><%= @gem.version %></code> installed, ready for you to play.
+  <p class="mt-6 mb-6 text-lg text-slate-600">
+    Here's a Ruby playground with gem <code class="p-0"><%= @gem.name %></code> version <code class="p-0"><%= @gem.version %></code> installed, ready for you to play.
   </p>
 
-  <div class="ml-2 mb-3">
-    <select class="appearance-none bg-white hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded-lg shadow py-2 mx-2 -ml-2">
+  <div class="mb-3 flex">
+    <select class="appearance-none bg-white hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded-lg shadow py-2 mx-2 ml-0">
       <option value="mri" selected="selected">Ruby 3.2</option>
       <option value="dev">Ruby Dev</option>
       <option value="jruby">jruby</option>
@@ -19,34 +19,26 @@
     </select>
 
     <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded-lg shadow py-2">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
       </svg>
     </button>
   </div>
 
-  <div class="pt-2 grid xl:grid-cols-3 gap-6">
+  <div class="pt-2 gap-6">
     <div class="xl:col-span-2 pr-4">
-      <%= render UI::CodeBlock.new do %>
-puts "Hello from #{RUBY_ENGINE} #{RUBY_VERSION} 👋"
+      <%= render UI::CodeBlock.new do %>puts "Hello from #{RUBY_ENGINE} #{RUBY_VERSION} 👋"
 puts <%= @gem.most_used_constant %>::VERSION
-
-
-
-
 
 
 
       <% end %>
     </div>
 
-    <div class="col-span-1">
+    <div class="col-span-1 mt-6">
       <pre class="mr-2 p-4 rounded-lg font-mono whitespace-pre-wrap break-word bg-black text-white dark:bg-gray-900">
 "<%= "Hello from #{RUBY_ENGINE} #{RUBY_VERSION} 👋" %>"
 "<%= @gem.version %>"
-
-
-
 
 
 

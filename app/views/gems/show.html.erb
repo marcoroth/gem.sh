@@ -1,13 +1,22 @@
 <% title @gem.name %>
 
-<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
-  <div class="prose max-w-full border border-gray-200 rounded p-8">
-    <% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
-        autolink: true,
-        tables: true,
-        fenced_code_blocks: true,
-        lax_spacing: true) %>
+<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.top_level_classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
+  <%#= render partial: "gem_navigation" %>
 
-    <%== markdown.render(@gem.readme_content) %>
+  <header class="border-b mb-10">
+    <h1 class="block text-2xl font-bold text-gray-800 sm:text-3xl"><%= @gem.name %></h1>
+    <p class="mt-2 text-lg text-gray-800 mb-3"><%= @gem.description || @gem.summary %></p>
+  </header>
+
+  <%= render Gems::Metadata.new(gem: @gem) %>
+
+  <hr class="pb-10">
+
+  <div>
+    <div class="space-y-10 md:space-y-16">
+      <%= render partial: "gems/getting_started" %>
+      <%= render partial: "gems/guides" %>
+      <%= render partial: "gems/playground" %>
+    </div>
   </div>
 <% end %>

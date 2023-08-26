@@ -24,6 +24,11 @@ Rails.application.routes.draw do
         get "/" => "gems#mod", as: :gem_module
       end
 
+      scope "/guides" do
+        get "/:guide" => "gems#guide", as: :gem_guide
+        get "/" => "gems#guides", as: :gem_guides
+      end
+
       get "/instance_method/:name" => "gems#instance_method", as: :gem_instance_method
       get "/class_method/:name" => "gems#class_method", as: :gem_class_method
 
@@ -36,9 +41,9 @@ Rails.application.routes.draw do
       get "/articles" => "gems#articles", as: :gem_articles
       get "/changelogs" => "gems#changelogs", as: :gem_changelogs
       get "/community" => "gems#community", as: :gem_community
-      get "/guides" => "gems#guides", as: :gem_guides
       get "/metadata" => "gems#metadata", as: :gem_metadata
       get "/playground" => "gems#playground", as: :gem_playground
+      get "/readme" => "gems#readme", as: :gem_readme
       get "/reference" => "gems#reference", as: :gem_reference
       get "/stats" => "gems#stats", as: :gem_stats
       get "/tutorials" => "gems#tutorials", as: :gem_tutorials

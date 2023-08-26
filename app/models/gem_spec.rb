@@ -38,6 +38,14 @@ class GemSpec
     @version_info["version"]
   end
 
+  def summary
+    @version_info["summary"]
+  end
+
+  def description
+    @version_info["description"]
+  end
+
   def released_at
     Date.parse(@version_info["version_created_at"])
   end
@@ -108,7 +116,11 @@ class GemSpec
   end
 
   def top_level_modules
-    modules.select { |namespace| namespace.namespace.blank? }
+    modules.select { |mod| mod.namespace.blank? }
+  end
+
+  def top_level_classes
+    classes.select { |klass| klass.namespace.blank? }
   end
 
   def most_used_constant
@@ -163,6 +175,24 @@ class GemSpec
     metadata.files.select { |file| file.end_with?(".md") }
   end
 
+  def documentation_files
+    metadata.files.select { |file| (file.include?("doc/") || file.include?("docs/")) && file.end_with?(".md") }
+  end
+
+  def guide_files
+    metadata.files.select { |file| (file.include?("guide/") || file.include?("guides/")) && file.end_with?(".md") }
+  end
+
+  def content_for_markdown(file)
+    file = "#{file}.md"
+
+    if markdown_files.include?(file)
+      sanitize(File.read("#{unpack_data_path}/#{file}"))
+    else
+      %(File "#{file}" not found)
+    end
+  end
+
   def rbs_files
     metadata.files.select { |file| file.end_with?(".rbs") }
   end
@@ -171,9 +201,13 @@ class GemSpec
     markdown_files.find { |file| file.downcase.include?("readme") } || markdown_files.first
   end
 
+  def sanitize(content)
+    Rails::HTML5::FullSanitizer.new.sanitize(content)
+  end
+
   def readme_content
     if readme
-      Rails::HTML5::FullSanitizer.new.sanitize(File.read("#{unpack_data_path}/#{readme}"))
+      sanitize(File.read("#{unpack_data_path}/#{readme}"))
     else
       "No README"
     end

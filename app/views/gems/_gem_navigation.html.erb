@@ -1,4 +1,4 @@
-<div class="my-12" data-controller="tabs">
+<div class="my-6" data-controller="tabs">
   <div class="lg:hidden">
     <label for="tabs" class="sr-only">Select a tab</label>
     <select data-action="change->tabs#change" id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
@@ -19,28 +19,5 @@
       <%= tag.option("Stats", value: gem_stats_path(@gem.name, @gem.version), selected: current_page?(gem_stats_path(@gem.name, @gem.version))) %>
       <%= tag.option("Announcements", value: gem_announcements_path(@gem.name, @gem.version), selected: current_page?(gem_announcements_path(@gem.name, @gem.version))) %>
     </select>
-  </div>
-
-  <div class="hidden lg:block">
-    <div class="border-b border-gray-200">
-      <nav class="-mb-px grid-cols-6 grid md:flex text-center gap-x-8 overflow-hidden" aria-label="Tabs">
-        <%= active_link_to "README", gem_version_path(@gem.name, @gem.version), active: :exclusive, class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%= active_link_to "Metadata", gem_metadata_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%= active_link_to "Source", gem_source_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%= active_link_to "Versions", gem_versions_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%= active_link_to "Changelogs", gem_changelogs_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%= active_link_to "Guides", gem_guides_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%= active_link_to "Articles", gem_articles_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%# active_link_to "Tutorials", gem_tutorials_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%# active_link_to "Wiki", gem_wiki_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%= active_link_to "Reference", gem_reference_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%= active_link_to "Playground", gem_playground_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%= active_link_to "Videos", gem_videos_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%= active_link_to "Types", gem_types_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%= active_link_to "Community", gem_community_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%= active_link_to "Stats", gem_stats_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-        <%= active_link_to "Announcements", gem_announcements_path(@gem.name, @gem.version), class_active: "border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium", class_inactive: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" %>
-      </nav>
-    </div>
   </div>
 </div>
