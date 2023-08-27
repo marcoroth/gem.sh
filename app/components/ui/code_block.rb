@@ -10,6 +10,12 @@ class UI::CodeBlock < ViewComponent::Base
   end
 
   def lexer
-    @lexer ||= Rouge::Lexers::Ruby.new
+    "Rouge::Lexers::#{@language.camelize}".constantize.new
+  rescue StandardError
+    Rouge::Lexers::PlainText.new
+  end
+
+  def id
+    @id ||= "code-block-#{rand(10_000)}"
   end
 end

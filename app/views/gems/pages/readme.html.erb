@@ -2,14 +2,6 @@
 
 <%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.top_level_classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
   <div class="prose max-w-full border border-gray-200 rounded p-8 mt-6">
-    <% markdown = Redcarpet::Markdown.new(
-        Redcarpet::Render::HTML,
-        autolink: true,
-        tables: true,
-        fenced_code_blocks: true,
-        lax_spacing: true
-      ) %>
-
-    <%== markdown.render(@gem.readme_content) %>
+    <%== render_markdown(@gem.readme_content) %>
   </div>
 <% end %>
