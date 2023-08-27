@@ -1,7 +1,5 @@
-<pre class="rouge border border-gray-300 rounded overflow-scroll">
-<%== formatter.format(lexer.lex(content)) %>
-</pre>
+<pre id="<%= id %>" class="rouge border border-gray-300 rounded overflow-scroll px-4 py-2"><%== formatter.format(lexer.lex(content)) %></pre>
 
 <style type="text/css">
-  <%= Rouge::Themes::Github.render(scope: 'pre.rouge') %>
+  <%= Rouge::Themes::Github.render(scope: "pre##{id}.rouge") %>
 </style>
