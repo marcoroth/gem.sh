@@ -5,7 +5,7 @@
       <a href="<%= gems_path %>" class="text-sm font-semibold leading-6 text-red-600 hover:text-red-500">View all<span class="sr-only">, clients</span></a>
     </div>
 
-    <%= render partial: "gems/search" %>
+    <%= render partial: "search/search" %>
 
     <ul role="list" class="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
       <% @featured_gems.each_with_index do |gem, index| %>
