@@ -10,17 +10,17 @@
   <div class="mt-5 grid gap-4 sm:grid-cols-2 sm:gap-6">
 
     <% @getting_started.each do |object| %>
-      <a class="bg-white border rounded-xl p-4 hover:bg-gray-50 hover:shadow-sm transition sm:p-6" href="<%= object.url %>">
+      <a class="bg-white border rounded-xl p-4 hover:bg-gray-50 hover:shadow-sm transition sm:p-6" href="<%= object[:url] %>">
         <div class="flex items-start gap-x-4">
           <span class="flex-shrink-0 inline-flex flex-shrink-0 justify-center items-center gap-2 h-12 w-12 border border-[3px] border-white text-black rounded-full shadow">
-            <%= heroicon object.icon, options: { class: "w-5 h-5" }, variant: :outline %>
+            <%= heroicon object[:icon], options: { class: "w-5 h-5" }, variant: :outline %>
           </span>
           <div>
             <h3 class="font-semibold">
-              <%= object.title %>
+              <%= object[:title] %>
             </h3>
             <p class="mt-1 text-sm text-gray-600">
-              <%= object.description %>
+              <%= object[:description] %>
             </p>
           </div>
         </div>

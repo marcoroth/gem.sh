@@ -36,7 +36,7 @@
           <h5 class="mb-8 lg:mb-3 font-semibold text-slate-900">Documentation</h5>
 
           <ul class="space-y-6 lg:space-y-2 border-l border-slate-300">
-            <% titles.each do |title, url| %>
+            <% docs_tabs.each do |title, url| %>
               <li>
                 <%= active_link_to url, active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 :hover:border-slate-500 text-slate-700 hover:text-slate-900" do %>
                   <%= title %>
@@ -94,11 +94,11 @@
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-[3fr_1fr]">
       <div class="px-3 py-6 overflow-scroll">
-        <%= render partial: "breadcrumb" %>
+        <%= render partial: "gems/breadcrumb" %>
 
         <main class="">
           <div class="3xl:max-w-3xl 3xl:mx-auto max-w-none lg:pr-16">
-            <%= render partial: "gem_navigation" %>
+            <%= render partial: "gems/gem_navigation" %>
 
             <%= content %>
           </div>

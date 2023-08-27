@@ -1,0 +1,15 @@
+<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.top_level_classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
+  <div class="pb-5 flex justify-between">
+    <%= render UI::Subheading.new(title: title("All Modules")) %>
+  </div><hr>
+
+  <div class="mt-6 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+    <% @gem.modules.each do |mod| %>
+      <%= link_to gem_module_path(@gem.name, @gem.version, mod.qualified_name) do %>
+        <%= render UI::Card.new(title: mod.name, description: mod.qualified_namespace) do |card| %>
+          <%= card.with_badge(label: mod.object_name) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

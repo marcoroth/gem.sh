@@ -24,7 +24,7 @@ class Gems::Wrapper < ViewComponent::Base
   def tabs
     [
       ["Versions", gem_versions_path(@gem.name, @gem.version)],
-      ["Source", gem_source_path(@gem.name, @gem.version)],
+      ["Source", gem_files_path(@gem.name, @gem.version)],
       ["Playground", gem_playground_path(@gem.name, @gem.version)],
       ["Stats", gem_stats_path(@gem.name, @gem.version)],
       ["Metadata", gem_metadata_path(@gem.name, @gem.version)],
@@ -42,13 +42,13 @@ class Gems::Wrapper < ViewComponent::Base
     ]
   end
 
-  def titles
+  def docs_tabs
     [
       ["README", gem_readme_path(@gem.name, @gem.version)],
       *(@gem.documentation_files - [@gem.readme]).sort.map do |file|
         name = file.split("/").last.split(".").first.humanize
 
-        [name, gem_guide_path(@gem.name, @gem.version, file)]
+        [name, gem_doc_path(@gem.name, @gem.version, file)]
       end,
 
       # ["Getting Started", gem_guide_path(@gem.name, @gem.version, title)],

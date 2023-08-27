@@ -1,0 +1,4 @@
+<%= turbo_stream.replace(
+  "search-result",
+  render(partial: "search/result", locals: { result: @result })
+) %>
