@@ -1,15 +1,11 @@
 <%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.top_level_classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do |wrapper| %>
   <div class="pb-5 flex justify-between">
-    <%= render UI::Subheading.new(title: params[:file] || "Source") %>
+    <%= render UI::Subheading.new(title: params[:id]) %>
   </div><hr><br>
 
-    <div class="w-inherit overflow-scroll">
-      <% if @file %>
-        <%= render UI::CodeBlock.new.with_content(@file.content.html_safe) %>
-      <% else %>
-        <div class="rouge border border-gray-300 bg-gray-100 rounded h-96 font-mono p-4">Select a file from the right</div>
-      <% end %>
-    </div>
+  <div class="w-inherit overflow-scroll">
+    <%= render UI::CodeBlock.new.with_content(@file.content.html_safe) %>
+  </div>
 
   <% wrapper.with_sidebar do %>
     <%= render UI::CodeList.new(items: @gem.files.map { |file| SourceFile.new(file: file, gem: @gem) }, title: "Source Files", gem: @gem) %>

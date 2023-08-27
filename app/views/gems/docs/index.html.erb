@@ -1,0 +1,19 @@
+<%= render Gems::Wrapper.new(gem: @gem, modules: @gem.top_level_modules, classes: @gem.top_level_classes, class_methods: @gem.class_methods, instance_methods: @gem.instance_methods) do %>
+  <div class="pb-5 flex justify-between">
+    <%= render UI::Subheading.new(title: "Docs") %>
+  </div><hr>
+
+  <div class="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
+    <% @gem.documentation_files.each do |title| %>
+      <%= link_to gem_doc_path(@gem.name, @gem.version, title) do %>
+        <%= render UI::Card.new(title: title, description: "Learn more about #{title} in #{@gem.name}") do |card| %>
+          <%= card.with_badge(label: "Doc") %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% if @gem.documentation_files.none? %>
+      No docs found
+    <% end %>
+  </div>
+<% end %>

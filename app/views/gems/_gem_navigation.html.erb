@@ -4,7 +4,7 @@
     <select data-action="change->tabs#change" id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
       <%= tag.option("README", value: gem_version_path(@gem.name, @gem.version), selected: current_page?(gem_version_path(@gem.name, @gem.version))) %>
       <%= tag.option("Metadata", value: gem_metadata_path(@gem.name, @gem.version), selected: current_page?(gem_metadata_path(@gem.name, @gem.version))) %>
-      <%= tag.option("Source", value: gem_source_path(@gem.name, @gem.version), selected: current_page?(gem_source_path(@gem.name, @gem.version))) %>
+      <%= tag.option("Source", value: gem_files_path(@gem.name, @gem.version), selected: current_page?(gem_files_path(@gem.name, @gem.version))) %>
       <%= tag.option("Versions", value: gem_versions_path(@gem.name, @gem.version), selected: current_page?(gem_versions_path(@gem.name, @gem.version))) %>
       <%= tag.option("Changelogs", value: gem_changelogs_path(@gem.name, @gem.version), selected: current_page?(gem_versions_path(@gem.name, @gem.version))) %>
       <%= tag.option("Guides", value: gem_guides_path(@gem.name, @gem.version), selected: current_page?(gem_guides_path(@gem.name, @gem.version))) %>
