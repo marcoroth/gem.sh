@@ -3,9 +3,9 @@
     <%= render UI::Subheading.new(title: params[:id]) %>
   </div><hr><br>
 
-    <div class="w-inherit overflow-scroll">
-      <%= render UI::CodeBlock.new.with_content(@file.content.html_safe) %>
-    </div>
+  <div class="w-inherit overflow-scroll">
+    <%= render UI::CodeBlock.new.with_content(@file.content.html_safe) %>
+  </div>
 
   <% wrapper.with_sidebar do %>
     <%= render UI::CodeList.new(items: @gem.files.map { |file| SourceFile.new(file: file, gem: @gem) }, title: "Source Files", gem: @gem) %>
