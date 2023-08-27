@@ -17,6 +17,7 @@ export default class extends Controller {
 
   open() {
     this.backdropElement.classList.remove("hidden")
+    this.element.querySelector("input").focus()
   }
 
   submit() {

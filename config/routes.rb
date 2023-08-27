@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         resources :class_methods, only: :show
 
         resources :guides, only: [:index, :show]
+        resources :search, only: [:index]
         resources :docs, only: [:index, :show]
         resources :files, only: [:index, :show], constraints: { id: /.*/ }
         resources :types, only: :index

@@ -1,0 +1,79 @@
+<% modules ||= @gem.modules %>
+<% classes ||= @gem.classes %>
+<% methods ||= [] %>
+
+<div id="gem-search-result" class="max-h-[80vh] overflow-y-auto">
+  <% if modules.any? %>
+    <ul class="scroll-pb-2 scroll-pt-11 space-y-2 pb-2" id="modules" role="listbox">
+      <li>
+        <h2 class="bg-gray-100 px-4 py-2.5 text-xs font-semibold text-gray-900 sticky">Modules</h2>
+        <ul class="mt-2 text-sm text-gray-800">
+          <% modules.each do |mod| %>
+            <li class="group flex cursor-default select-none items-center rounded-md px-3 py-2 hover:bg-gray-100">
+              <%= link_to mod.url(@gem), class: "flex justify-between items-center" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 flex-none text-gray-400">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                </svg>
+
+                <span class="ml-3 flex-auto truncate"><code class="p-0"><b><%= highlight(mod.to_s, params[:q]) %></b></code></span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  <% end %>
+
+  <% if classes.any? %>
+    <ul class="scroll-pb-2 scroll-pt-11 space-y-2 pb-2" id="classes" role="listbox">
+      <li>
+        <h2 class="bg-gray-100 px-4 py-2.5 text-xs font-semibold text-gray-900 sticky">Classes</h2>
+        <ul class="mt-2 text-sm text-gray-800">
+          <% classes.each do |klass| %>
+            <li class="group flex cursor-default select-none items-center rounded-md px-3 py-2 hover:bg-gray-100">
+              <%= link_to klass.url(@gem), class: "flex justify-between items-center" do %>
+                <svg class="h-6 w-6 flex-none text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25" />
+                </svg>
+
+                <span class="ml-3 flex-auto truncate"><code class="p-0"><b><%= highlight(klass.to_s, params[:q]) %></b></code></span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  <% end %>
+
+
+  <% if methods.any? %>
+    <ul class="scroll-pb-2 scroll-pt-11 space-y-2 pb-2" id="instance-methods" role="listbox">
+      <li>
+        <h2 class="bg-gray-100 px-4 py-2.5 text-xs font-semibold text-gray-900">Methods</h2>
+        <ul class="mt-2 text-sm text-gray-800">
+          <% methods.each do |method| %>
+            <li class="group flex cursor-default select-none items-center rounded-md px-3 py-2 hover:bg-gray-100">
+              <%= link_to method.url(@gem), class: "flex justify-between items-center" do %>
+                <svg class="h-6 w-6 flex-none text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                </svg>
+
+                <span class="ml-3 flex-auto truncate"><code class="p-0"><span class="text-gray-500"><%= method.target.qualified_name %></span><b><%= highlight(method.to_s.gsub(" ", ""), params[:q]) %></b></code></span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  <% end %>
+
+  <% if modules.none? && classes.none? && methods.none? %>
+    <div class="border-t border-gray-100 px-6 py-14 text-center text-sm sm:px-14">
+      <svg class="mx-auto h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 16.318A4.486 4.486 0 0012.016 15a4.486 4.486 0 00-3.198 1.318M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+      </svg>
+      <p class="mt-4 font-semibold text-gray-900">No result found</p>
+      <p class="mt-2 text-gray-500">We couldn’t find anything with the term "<%= params[:q] %>". Please try a different term.</p>
+    </div>
+  <% end %>
+</div>

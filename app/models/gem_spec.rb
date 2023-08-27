@@ -107,6 +107,10 @@ class GemSpec
 
   delegate :count, to: :type_sampled_methods, prefix: true
 
+  def all_methods
+    methods + namespaces.flat_map(&:methods)
+  end
+
   def methods_count
     methods.count + namespaces.sum { |namespace| namespace.methods.count }
   end

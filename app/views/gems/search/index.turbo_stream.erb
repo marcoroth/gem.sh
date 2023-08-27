@@ -1,0 +1,5 @@
+<%= turbo_stream.replace("gem-search-result", render(partial: "gems/search/result", locals: {
+  modules: @modules,
+  classes: @classes,
+  methods: @methods,
+})) %>
