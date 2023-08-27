@@ -330,6 +330,11 @@ current.js@^0.2.0:
   resolved "https://registry.yarnpkg.com/current.js/-/current.js-0.2.0.tgz#2caa7ccf9d76c3071270e420ad88f7159b8ef68e"
   integrity sha512-WIKjQe6U9mPix/NFFDiYZjJ4xl96fPfu0UPIcjO0J24KT6eyeneyPlnY5Mu4wJhXQWA7BSEk2Bw5/4X80D+rWQ==
 
+debounced@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/debounced/-/debounced-0.0.5.tgz#e540b6eebfe703d93462711b4f3562ffd101b87f"
+  integrity sha512-8Bgheu1YxQB7ocqYmK2enbLGVoo4nCtu/V6UD/SMDOeV3g2LocG2CrA5oxudlyl79Ja07UiqGdp9pWZoJn52EQ==
+
 didyoumean@^1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/didyoumean/-/didyoumean-1.2.2.tgz"
