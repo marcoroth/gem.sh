@@ -4,7 +4,7 @@
   <p class="mt-6">Collected samples: <%= number_with_delimiter(@sample_count) %></p>
 
   <div class="mx-auto mt-6">
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
       <% @samples.each do |(name, version), count| %>
         <% version = version.to_s.split("-").first %>
 

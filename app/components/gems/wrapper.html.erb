@@ -92,12 +92,12 @@
 
 <main class="lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-[3fr_1fr]">
+    <div class="grid grid-cols-1 xl:grid-cols-[3fr_1fr]">
       <div class="px-3 py-6 overflow-scroll">
         <%= render partial: "gems/breadcrumb" %>
 
         <main class="">
-          <div class="3xl:max-w-3xl 3xl:mx-auto max-w-none lg:pr-16">
+          <div class="3xl:max-w-3xl 3xl:mx-auto max-w-none xl:pr-16">
             <%= render partial: "gems/gem_navigation" %>
 
             <%= content %>
@@ -105,7 +105,7 @@
         </main>
       </div>
 
-      <div class="overflow-hidden mt-6 hidden lg:block">
+      <div class="overflow-hidden mt-6 hidden xl:block">
         <% if sidebar? %>
           <%= sidebar %>
         <% else %>

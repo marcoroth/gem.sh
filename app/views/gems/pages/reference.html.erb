@@ -4,7 +4,7 @@
     <%= render UI::Badge.new(label: "Demo") %>
   </div>
 
-  <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+  <div class="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-12">
     <% @gem.classes.sample(6).each do |klass| %>
       <%= link_to gem_class_path(@gem.name, @gem.version, klass.qualified_name) do %>
         <%= render UI::Card.new(title: klass.name, description: klass.qualified_namespace) do |card| %>
@@ -18,7 +18,7 @@
     <%= render UI::Subheading.new(title: "All Classes") %>
   </div>
 
-  <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+  <div class="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-12">
     <% @gem.classes.each do |klass| %>
       <%= link_to gem_class_path(@gem.name, @gem.version, klass.qualified_name) do %>
         <%= render UI::Card.new(title: klass.name, description: klass.qualified_namespace) do |card| %>
@@ -32,7 +32,7 @@
     <%= render UI::Subheading.new(title: "All Modules") %>
   </div>
 
-  <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+  <div class="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-12">
     <% @gem.modules.each do |mod| %>
       <%= link_to gem_module_path(@gem.name, @gem.version, mod.qualified_name) do %>
         <%= render UI::Card.new(title: mod.name, description: mod.qualified_namespace) do |card| %>
