@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: https://github.com/marcoroth/type_fusion.git
-  revision: 8373ea4505a7c6668414485507d005cf2846eee1
+  revision: 5b05c6b299ee70fcf458763148fddef4803edc06
   specs:
-    type_fusion (0.0.5)
+    type_fusion (0.0.6)
       lhc (~> 15.2)
       litejob (~> 0.2.3)
 
@@ -264,9 +264,9 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.6.3-arm64-darwin)
-    sqlite3 (1.6.3-x86_64-darwin)
-    sqlite3 (1.6.3-x86_64-linux)
+    sqlite3 (1.6.4-arm64-darwin)
+    sqlite3 (1.6.4-x86_64-darwin)
+    sqlite3 (1.6.4-x86_64-linux)
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     stringio (3.0.7)
