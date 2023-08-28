@@ -60,7 +60,7 @@ gem "httparty", "~> 0.21.0"
 gem "view_component", "~> 3.5"
 
 # Interact with the Ruby syntax tree
-gem "yarp", "~> 0.8"
+gem "yarp", "~> 0.9"
 
 # A pure Ruby code highlighter that is compatible with Pygments
 gem "rouge", "~> 4.1"
