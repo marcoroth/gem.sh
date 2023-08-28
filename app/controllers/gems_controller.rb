@@ -6,7 +6,7 @@ class GemsController < ApplicationController
   before_action :set_gem, except: :index
 
   def index
-    @gems = Gem::Specification.all.sort_by(&:name)
+    @gems = Gems.just_updated
   end
 
   def show
