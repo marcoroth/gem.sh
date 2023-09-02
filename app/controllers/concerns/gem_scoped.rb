@@ -21,9 +21,10 @@ module GemScoped
     if params[:version]
       @gem = GemSpec.find(params[:gem], params[:version]) || raise(GemNotFoundError.new(params[:gem], params[:version]))
     else
-      version = Gem.latest_spec_for(params[:gem]).version.to_s
+      version = GemSpec.latest_version_for(params[:gem])
+      gem = version ? GemSpec.find(params[:gem], version) : nil
 
-      @gem = GemSpec.find(params[:gem], version) || raise(GemNotFoundError.new(params[:gem], version))
+      @gem = gem || raise(GemNotFoundError.new(params[:gem], version))
     end
   end
 end
