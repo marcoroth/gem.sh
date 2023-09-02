@@ -37,7 +37,7 @@ SitemapGenerator::Sitemap.create do
     spec = GemSpec.find(gem.name, gem.version)
 
     spec.classes.each do |klass|
-      add(gem_vertsion_class_path(spec.name, spec.version, klass.qualified_name), changefreq: "weekly", lastmod: gem.date)
+      add(gem_version_class_path(spec.name, spec.version, klass.qualified_name), changefreq: "weekly", lastmod: gem.date)
 
       # spec.instance_methods.each do |method|
       #   add(gem_version_class_instance_method_path(spec.name, spec.version, klass.qualified_name, method.name), changefreq: "weekly", lastmod: gem.date)
