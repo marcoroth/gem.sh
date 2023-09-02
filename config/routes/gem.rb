@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# get "/" => "gems#show"
-
 resources :classes, only: [:index, :show] do
   draw :methods
 end
