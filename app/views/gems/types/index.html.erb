@@ -18,11 +18,11 @@
   </div>
 
   <div class="mt-6 grid md:grid-cols-2 gap-3 max-w-3xl">
-    <%= link_to "RBS file (complete)", gem_rbs_path(@gem.name, @gem.version), target: "_blank", class: "text-sm font-regular py-3 px-4 bg-red-500 rounded-md text-white hover:bg-red-400" %>
-    <%= link_to "RBS file (only methods with samples)", gem_rbs_path(@gem.name, @gem.version, require_samples: 1), target: "_blank", class: "text-sm font-regular py-3 px-4 bg-red-500 rounded-md text-white hover:bg-red-400" %>
+    <%= link_to "RBS file (complete)", gem_version_rbs_path(@gem.name, @gem.version), target: "_blank", class: "text-sm font-regular py-3 px-4 bg-red-500 rounded-md text-white hover:bg-red-400" %>
+    <%= link_to "RBS file (only methods with samples)", gem_version_rbs_path(@gem.name, @gem.version, require_samples: 1), target: "_blank", class: "text-sm font-regular py-3 px-4 bg-red-500 rounded-md text-white hover:bg-red-400" %>
 
-    <%= link_to "Download RBS file (complete)", gem_rbs_path(@gem.name, @gem.version, download: 1), target: "_blank", class: "text-sm font-regular py-3 px-4 bg-red-500 rounded-md text-white hover:bg-red-400" %>
-    <%= link_to "Download RBS file (only methods with samples)", gem_rbs_path(@gem.name, @gem.version, download: 1, require_samples: 1), target: "_blank", class: "text-sm font-regular py-3 px-4 bg-red-500 rounded-md text-white hover:bg-red-400" %>
+    <%= link_to "Download RBS file (complete)", gem_version_rbs_path(@gem.name, @gem.version, download: 1), target: "_blank", class: "text-sm font-regular py-3 px-4 bg-red-500 rounded-md text-white hover:bg-red-400" %>
+    <%= link_to "Download RBS file (only methods with samples)", gem_version_rbs_path(@gem.name, @gem.version, download: 1, require_samples: 1), target: "_blank", class: "text-sm font-regular py-3 px-4 bg-red-500 rounded-md text-white hover:bg-red-400" %>
   </div>
 
   <div class="pb-5 flex justify-between mt-12">

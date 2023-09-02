@@ -8,7 +8,7 @@
 
     <div class="not-prose grid grid-cols-1 gap-4 border-gray-900/5 pt-4 sm:grid-cols-2 xl:grid-cols-2">
       <% (@gem.guide_files + @gem.documentation_files).take(4).each do |title| %>
-        <%= link_to gem_guide_path(@gem.name, @gem.version, title) do %>
+        <%= link_to gem_version_guide_path(@gem.name, @gem.version, title) do %>
           <div class="border rounded p-4 hover:bg-gray-50">
             <h3 class="text-sm font-semibold text-gray-900"><%= title %></h3>
             <p class="mt-1 text-sm text-gray-600">Read about "<%= title.split("/").last.split(".").first.humanize %>" in <%= @gem.name %></p>

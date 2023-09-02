@@ -39,7 +39,7 @@
             <ul class="space-y-6 lg:space-y-2 border-l border-slate-300">
               <% @gem.documentation_files.each do |title| %>
                 <li>
-                  <%= active_link_to gem_guide_path(@gem.name, @gem.version, title), active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 text-slate-700 hover:text-slate-900" do %>
+                  <%= active_link_to gem_version_guide_path(@gem.name, @gem.version, title), active: :exact, class_active: "block border-l pl-4 -ml-px text-red-500 border-current font-semibold", class_inactive: "block border-l pl-4 -ml-px border-transparent hover:border-slate-400 text-slate-700 hover:text-slate-900" do %>
                     <%= title %>
                   <% end %>
                 </li>

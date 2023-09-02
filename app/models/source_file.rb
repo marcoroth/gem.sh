@@ -6,7 +6,7 @@ SourceFile = Data.define(:file, :gem) do
   end
 
   def url(gem)
-    Router.gem_file_path(gem.name, gem.version, file)
+    Router.gem_version_file_path(gem.name, gem.version, file)
   end
 
   def source_path

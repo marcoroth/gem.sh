@@ -1,4 +1,4 @@
-<%= form_tag(gem_search_index_path(@gem.name, @gem.version), method: :get, data: { controller: "search", action: "debounced:keyup->search#submit", turbo_stream: "true" }) do %>
+<%= form_tag(gem_version_search_index_path(@gem.name, @gem.version), method: :get, data: { controller: "search", action: "debounced:keyup->search#submit", turbo_stream: "true" }) do %>
   <div class="sticky top-0 -ml-0.5 pointer-events-none">
     <div class="h-10 bg-gray-50"></div>
 

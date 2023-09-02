@@ -11,13 +11,19 @@ module GemScoped
     end
 
     rescue_from "GemConstantNotFoundError" do |exception|
-      redirect_to gem_version_path(@gem.name, @gem.version), notice: exception.message
+      redirect_to gem_version_gem_path(@gem.name, @gem.version), notice: exception.message
     end
   end
 
   private
 
   def set_gem
-    @gem = GemSpec.find(params[:gem], params[:version]) || raise(GemNotFoundError.new(params[:gem], params[:version]))
+    if params[:version]
+      @gem = GemSpec.find(params[:gem], params[:version]) || raise(GemNotFoundError.new(params[:gem], params[:version]))
+    else
+      version = Gem.latest_spec_for(params[:gem]).version.to_s
+
+      @gem = GemSpec.find(params[:gem], version) || raise(GemNotFoundError.new(params[:gem], version))
+    end
   end
 end

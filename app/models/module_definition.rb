@@ -22,7 +22,7 @@ ModuleDefinition = Struct.new(:namespace, :name, :qualified_name, :node, :locati
   end
 
   def url(gem)
-    Router.gem_module_path(gem.name, gem.version, self)
+    Router.gem_version_module_path(gem.name, gem.version, self)
   end
 
   def eql?(other)

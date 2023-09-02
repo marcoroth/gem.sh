@@ -32,40 +32,40 @@ SitemapGenerator::Sitemap.create do
   add community_path, changefreq: "weekly"
 
   Gem::Specification.all.each do |gem|
-    add(gem_version_path(gem.name, gem.version), changefreq: "weekly", lastmod: gem.date)
+    add(gem_version_gem_path(gem.name, gem.version), changefreq: "weekly", lastmod: gem.date)
 
     spec = GemSpec.find(gem.name, gem.version)
 
     spec.classes.each do |klass|
-      add(gem_class_path(spec.name, spec.version, klass.qualified_name), changefreq: "weekly", lastmod: gem.date)
+      add(gem_version_class_path(spec.name, spec.version, klass.qualified_name), changefreq: "weekly", lastmod: gem.date)
 
       # spec.instance_methods.each do |method|
-      #   add(gem_class_instance_method_path(spec.name, spec.version, klass.qualified_name, method.name), changefreq: "weekly", lastmod: gem.date)
+      #   add(gem_version_class_instance_method_path(spec.name, spec.version, klass.qualified_name, method.name), changefreq: "weekly", lastmod: gem.date)
       # end
 
       # spec.class_methods.each do |method|
-      #   add(gem_class_class_method_path(spec.name, spec.version, klass.qualified_name, method.name), changefreq: "weekly", lastmod: gem.date)
+      #   add(gem_version_class_class_method_path(spec.name, spec.version, klass.qualified_name, method.name), changefreq: "weekly", lastmod: gem.date)
       # end
     end
 
     spec.modules.each do |mod|
-      add(gem_module_path(spec.name, spec.version, mod.qualified_name), changefreq: "weekly", lastmod: gem.date)
+      add(gem_version_module_path(spec.name, spec.version, mod.qualified_name), changefreq: "weekly", lastmod: gem.date)
 
       # spec.instance_methods.each do |method|
-      #   add(gem_module_instance_method_path(spec.name, spec.version, mod.qualified_name, method.name), changefreq: "weekly", lastmod: gem.date)
+      #   add(gem_version_module_instance_method_path(spec.name, spec.version, mod.qualified_name, method.name), changefreq: "weekly", lastmod: gem.date)
       # end
 
       # spec.class_methods.each do |method|
-      #   add(gem_module_class_method_path(spec.name, spec.version, mod.qualified_name, method.name), changefreq: "weekly", lastmod: gem.date)
+      #   add(gem_version_module_class_method_path(spec.name, spec.version, mod.qualified_name, method.name), changefreq: "weekly", lastmod: gem.date)
       # end
     end
 
     spec.instance_methods.each do |method|
-      add(gem_instance_method_path(spec.name, spec.version, method.name), changefreq: "weekly", lastmod: gem.date)
+      add(gem_version_instance_method_path(spec.name, spec.version, method.name), changefreq: "weekly", lastmod: gem.date)
     end
 
     spec.class_methods.each do |method|
-      add(gem_class_method_path(spec.name, spec.version, method.name), changefreq: "weekly", lastmod: gem.date)
+      add(gem_version_class_method_path(spec.name, spec.version, method.name), changefreq: "weekly", lastmod: gem.date)
     end
   end
 end

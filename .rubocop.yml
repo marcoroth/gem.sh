@@ -13,6 +13,9 @@ AllCops:
   SuggestExtensions: false
   NewCops: enable
 
+Bundler/GemFilename:
+  Enabled: false
+
 Layout/LineLength:
   Enabled: false
 
