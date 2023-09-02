@@ -12,7 +12,7 @@
     <ul role="list" class="mt-6 grid grid-cols-1 gap-x-6 gap-y-4 lg:grid-cols-3 xl:gap-x-8">
       <% @featured_gems.each_with_index do |gem, index| %>
         <li class="overflow-hidden rounded-xl border border-gray-200 hover:border-gray-400">
-          <%= link_to gem_version_path(gem.name, gem.version) do %>
+          <%= link_to gem_version_gem_path(gem.name, gem.version) do %>
             <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-4 md:p-6">
               <img src="<%= @images[index] %>" alt="<%= gem.name %> logo" class="p-2 h-10 w-10 md:h-12 md:w-12 flex-none rounded md:rounded-lg bg-white bg-cover ring-1 ring-gray-900/10">
               <div class="text-sm font-medium leading-6 text-gray-900"><%= gem.name.humanize %></div>

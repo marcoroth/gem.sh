@@ -11,7 +11,7 @@ class Gems::SearchController < ApplicationController
     @methods = @gem.all_methods.select { |method| method.name.downcase.include?(query) }
 
     respond_to do |format|
-      format.html { redirect_to gem_version_path(@gem.name, @gem.version) }
+      format.html { redirect_to gem_version_gem_path(@gem.name, @gem.version) }
       format.turbo_stream
     end
   end

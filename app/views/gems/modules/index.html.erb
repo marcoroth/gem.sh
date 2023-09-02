@@ -5,7 +5,7 @@
 
   <div class="mt-6 grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-12">
     <% @gem.modules.each do |mod| %>
-      <%= link_to gem_module_path(@gem.name, @gem.version, mod.qualified_name) do %>
+      <%= link_to gem_version_module_path(@gem.name, @gem.version, mod.qualified_name) do %>
         <%= render UI::Card.new(title: mod.name, description: mod.qualified_namespace) do |card| %>
           <%= card.with_badge(label: mod.object_name) %>
         <% end %>

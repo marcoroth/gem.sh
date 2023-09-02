@@ -13,7 +13,7 @@
         <ul class="mt-2 text-sm text-gray-800">
           <% result.each do |gem| %>
             <li class="cursor-default select-none px-4 py-2 hover:bg-gray-100" role="option" tabindex="-1">
-              <%= link_to gem_version_path(gem["name"], gem["version"]), class: "flex justify-between items-center" do %>
+              <%= link_to gem_version_gem_path(gem["name"], gem["version"]), class: "flex justify-between items-center" do %>
                 <code><%= gem["name"] %></code>
                 <%= render UI::Badge.new(label: gem["version"]) %>
               <% end %>

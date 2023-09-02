@@ -348,7 +348,7 @@ class Analyzer
   end
 
   def url(gem)
-    Router.gem_version_path(gem.name, gem.version)
+    Router.gem_version_gem_path(gem.name, gem.version)
   end
 
   def to_s

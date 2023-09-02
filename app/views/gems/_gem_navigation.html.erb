@@ -2,22 +2,22 @@
   <div class="lg:hidden">
     <label for="tabs" class="sr-only">Select a tab</label>
     <select data-action="change->tabs#change" id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-      <%= tag.option("README", value: gem_version_path(@gem.name, @gem.version), selected: current_page?(gem_version_path(@gem.name, @gem.version))) %>
-      <%= tag.option("Metadata", value: gem_metadata_path(@gem.name, @gem.version), selected: current_page?(gem_metadata_path(@gem.name, @gem.version))) %>
-      <%= tag.option("Source", value: gem_files_path(@gem.name, @gem.version), selected: current_page?(gem_files_path(@gem.name, @gem.version))) %>
+      <%= tag.option("README", value: gem_version_gem_path(@gem.name, @gem.version), selected: current_page?(gem_version_gem_path(@gem.name, @gem.version))) %>
+      <%= tag.option("Metadata", value: metadata_gem_version_gem_path(@gem.name, @gem.version), selected: current_page?(metadata_gem_version_gem_path(@gem.name, @gem.version))) %>
+      <%= tag.option("Source", value: gem_version_files_path(@gem.name, @gem.version), selected: current_page?(gem_version_files_path(@gem.name, @gem.version))) %>
       <%= tag.option("Versions", value: gem_versions_path(@gem.name, @gem.version), selected: current_page?(gem_versions_path(@gem.name, @gem.version))) %>
-      <%= tag.option("Changelogs", value: gem_changelogs_path(@gem.name, @gem.version), selected: current_page?(gem_versions_path(@gem.name, @gem.version))) %>
-      <%= tag.option("Guides", value: gem_guides_path(@gem.name, @gem.version), selected: current_page?(gem_guides_path(@gem.name, @gem.version))) %>
-      <%= tag.option("Articles", value: gem_articles_path(@gem.name, @gem.version), selected: current_page?(gem_articles_path(@gem.name, @gem.version))) %>
-      <%# tag.option("Tutorials", value: gem_tutorials_path(@gem.name, @gem.version), selected: current_page?(gem_tutorials_path(@gem.name, @gem.version))) %>
-      <%# tag.option("Wiki", value: gem_wiki_path(@gem.name, @gem.version), selected: current_page?(gem_wiki_path(@gem.name, @gem.version))) %>
-      <%= tag.option("Reference", value: gem_reference_path(@gem.name, @gem.version), selected: current_page?(gem_reference_path(@gem.name, @gem.version))) %>
-      <%= tag.option("Playground", value: gem_playground_path(@gem.name, @gem.version), selected: current_page?(gem_reference_path(@gem.name, @gem.version))) %>
-      <%= tag.option("Videos", value: gem_videos_path(@gem.name, @gem.version), selected: current_page?(gem_videos_path(@gem.name, @gem.version))) %>
-      <%= tag.option("Types", value: gem_types_path(@gem.name, @gem.version), selected: current_page?(gem_types_path(@gem.name, @gem.version))) %>
-      <%= tag.option("Community", value: gem_community_path(@gem.name, @gem.version), selected: current_page?(gem_community_path(@gem.name, @gem.version))) %>
-      <%= tag.option("Stats", value: gem_stats_path(@gem.name, @gem.version), selected: current_page?(gem_stats_path(@gem.name, @gem.version))) %>
-      <%= tag.option("Announcements", value: gem_announcements_path(@gem.name, @gem.version), selected: current_page?(gem_announcements_path(@gem.name, @gem.version))) %>
+      <%= tag.option("Changelogs", value: changelogs_gem_version_gem_path(@gem.name, @gem.version), selected: current_page?(gem_versions_path(@gem.name, @gem.version))) %>
+      <%= tag.option("Guides", value: gem_version_guides_path(@gem.name, @gem.version), selected: current_page?(gem_version_guides_path(@gem.name, @gem.version))) %>
+      <%= tag.option("Articles", value: articles_gem_version_gem_path(@gem.name, @gem.version), selected: current_page?(articles_gem_version_gem_path(@gem.name, @gem.version))) %>
+      <%# tag.option("Tutorials", value: tutorials_gem_version_gem_path(@gem.name, @gem.version), selected: current_page?(tutorials_gem_version_gem_path(@gem.name, @gem.version))) %>
+      <%# tag.option("Wiki", value: wiki_gem_version_gem_path(@gem.name, @gem.version), selected: current_page?(wiki_gem_version_gem_path(@gem.name, @gem.version))) %>
+      <%= tag.option("Reference", value: reference_gem_version_gem_path(@gem.name, @gem.version), selected: current_page?(reference_gem_version_gem_path(@gem.name, @gem.version))) %>
+      <%= tag.option("Playground", value: playground_gem_version_gem_path(@gem.name, @gem.version), selected: current_page?(reference_gem_version_gem_path(@gem.name, @gem.version))) %>
+      <%= tag.option("Videos", value: videos_gem_version_gem_path(@gem.name, @gem.version), selected: current_page?(videos_gem_version_gem_path(@gem.name, @gem.version))) %>
+      <%= tag.option("Types", value: gem_version_types_path(@gem.name, @gem.version), selected: current_page?(gem_version_types_path(@gem.name, @gem.version))) %>
+      <%= tag.option("Community", value: community_gem_version_gem_path(@gem.name, @gem.version), selected: current_page?(community_gem_version_gem_path(@gem.name, @gem.version))) %>
+      <%= tag.option("Stats", value: stats_gem_version_gem_path(@gem.name, @gem.version), selected: current_page?(stats_gem_version_gem_path(@gem.name, @gem.version))) %>
+      <%= tag.option("Announcements", value: announcements_gem_version_gem_path(@gem.name, @gem.version), selected: current_page?(announcements_gem_version_gem_path(@gem.name, @gem.version))) %>
     </select>
   </div>
 </div>

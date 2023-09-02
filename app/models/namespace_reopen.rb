@@ -10,7 +10,7 @@ NamespaceReopen = Data.define(:path, :gem, :location) do
   end
 
   def url(gem = nil)
-    Router.gem_file_path(gem.name, gem.version, relative_path)
+    Router.gem_version_file_path(gem.name, gem.version, relative_path)
   end
 
   def title
