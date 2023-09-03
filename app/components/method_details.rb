@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class MethodDetails < ViewComponent::Base
+  include YARDHelpers
+
   def initialize(object:, parent:, gem:)
     @object = object
     @parent = parent

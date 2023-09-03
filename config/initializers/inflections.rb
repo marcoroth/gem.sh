@@ -17,4 +17,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym "API"
   inflect.acronym "RBS"
   inflect.acronym "UI"
+  inflect.acronym "YARD"
 end
