@@ -183,7 +183,7 @@ GEM
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
-    pg (1.5.3)
+    pg (1.5.4)
     psych (5.1.0)
       stringio
     public_suffix (5.0.3)
@@ -316,7 +316,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   meta-tags
-  pg (~> 1.1)
+  pg (~> 1.5)
   puma (~> 6.3)
   rails (~> 7.0.7)
   rails-html-sanitizer (~> 1.6)
