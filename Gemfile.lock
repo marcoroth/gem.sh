@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/marcoroth/type_fusion.git
-  revision: af9336515cc3d0d28063b7f57ae7cc9ee7a85a3b
+  revision: 2e8b20ef7d53e234abfa71986b77890c4933ad44
   specs:
     type_fusion (0.0.6)
       lhc (~> 15.2)
@@ -160,7 +160,7 @@ GEM
       actionpack (>= 3.2.0, < 7.1)
     method_source (1.0.0)
     mini_mime (1.1.5)
-    minitest (5.19.0)
+    minitest (5.20.0)
     msgpack (1.7.2)
     multi_xml (0.6.0)
     net-imap (0.3.7)
