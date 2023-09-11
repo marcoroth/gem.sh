@@ -250,7 +250,7 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.29.0)
       parser (>= 3.2.1.0)
-    rubocop-rails (2.20.2)
+    rubocop-rails (2.21.0)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
@@ -326,7 +326,7 @@ DEPENDENCIES
   rorvswild (~> 1.6)
   rouge (~> 4.1)
   rubocop (~> 1.56)
-  rubocop-rails (~> 2.20)
+  rubocop-rails (~> 2.21)
   sitemap_generator (~> 6.3)
   sprockets-rails
   stimulus-rails
