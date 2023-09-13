@@ -211,7 +211,7 @@ class Analyzer
     end
 
     def visit_constant_write_node(node)
-      constant_nesting.with(YARP::ConstantReadNode.new(node.name_loc)) do |constant_path|
+      constant_nesting.with(YARP::ConstantReadNode.new(node.name, node.name_loc)) do |constant_path|
         analyzer.consts << constant_path.join("::")
 
         super
@@ -230,7 +230,7 @@ class Analyzer
         analyzer
 
       kwargs = {
-        name: node.name.force_encoding("UTF-8"),
+        name: node.name.to_s,
         target: context,
         location: node.location,
         comments: comment_set.for(node),
