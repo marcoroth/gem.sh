@@ -3,7 +3,7 @@
 scope "/", as: :gem do
   resources :gems, only: [], param: :gem, as: :gem, module: :gems do
     member do
-      scope "/v:version", as: :version, version: /.*/ do
+      scope "/v:version", as: :version, version: %r{[^/]*} do
         draw :gem
         get "/" => "/gems#show"
       end
