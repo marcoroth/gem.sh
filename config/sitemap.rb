@@ -31,7 +31,7 @@ SitemapGenerator::Sitemap.create do
   add docs_path, changefreq: "weekly"
   add community_path, changefreq: "weekly"
 
-  Gem::Specification.all.each do |gem|
+  Gem::Specification.find_each do |gem|
     add(gem_version_gem_path(gem.name, gem.version), changefreq: "weekly", lastmod: gem.date)
 
     spec = GemSpec.find(gem.name, gem.version)
