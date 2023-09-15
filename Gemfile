@@ -54,7 +54,7 @@ gem "bootsnap", require: false
 gem "httparty", "~> 0.21.0"
 
 # A framework for creating reusable, testable & encapsulated view components
-gem "view_component", "~> 3.5"
+gem "view_component", "~> 3.6"
 
 # Interact with the Ruby syntax tree
 gem "yarp", "~> 0.11"

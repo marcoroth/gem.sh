@@ -301,7 +301,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
-    view_component (3.5.0)
+    view_component (3.6.0)
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
@@ -354,7 +354,7 @@ DEPENDENCIES
   turbo-rails
   type_fusion!
   tzinfo-data
-  view_component (~> 3.5)
+  view_component (~> 3.6)
   web-console
   yard (~> 0.9.34)
   yarp (~> 0.11)
