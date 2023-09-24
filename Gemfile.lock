@@ -200,7 +200,7 @@ GEM
     psych (5.1.0)
       stringio
     public_suffix (5.0.3)
-    puma (6.3.1)
+    puma (6.4.0)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (3.0.8)
@@ -338,7 +338,7 @@ DEPENDENCIES
   jsbundling-rails
   meta-tags
   pg (~> 1.5)
-  puma (~> 6.3)
+  puma (~> 6.4)
   rails (~> 7.1.0.beta1)
   rails-html-sanitizer (~> 1.6)
   rdoc
