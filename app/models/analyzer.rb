@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Analyzer
-  class Visitor < YARP::Visitor
+  class Visitor < Prism::Visitor
     # This object represents a set of comments being returned from the parser
     # for a given file. It can be used to quickly access a set of comments at
     # a given line number.
@@ -79,14 +79,14 @@ class Analyzer
 
       # Returns the components of the constant path for the given node.
       def path_for(node)
-        case node
-        when YARP::ConstantPathNode
+        case node.type
+        when :constant_path_node
           if node.parent
             path_for(node.parent).concat(path_for(node.child))
           else
             [ROOT].concat(path_for(node.child))
           end
-        when YARP::ConstantReadNode
+        when :constant_read_node
           [node.location.slice]
         else
           :unprocessable
@@ -151,12 +151,12 @@ class Analyzer
         end
 
         statements =
-          case node.body
+          case node.body&.type
           when nil
             []
-          when YARP::StatementsNode
+          when :statements_node
             node.body.body
-          when YARP::BeginNode
+          when :begin_node
             node.body.statements.body
           else
             raise "Unexpected statements node: #{node.body.inspect}"
@@ -169,13 +169,13 @@ class Analyzer
         # being called as a top-level statement inside of a class definition.
         statements.each do |statement|
           # Only looking at calls.
-          next unless statement.is_a?(YARP::CallNode)
+          next unless statement.is_a?(Prism::CallNode)
 
           # Only looking at #include and #extend.
           next unless ["include", "extend"].include?(statement.message)
 
           # Only looking for calls that have arguments.
-          next unless statement.arguments.is_a?(YARP::ArgumentsNode)
+          next unless statement.arguments.is_a?(Prism::ArgumentsNode)
 
           target =
             if statement.message == "include"
@@ -211,7 +211,7 @@ class Analyzer
     end
 
     def visit_constant_write_node(node)
-      constant_nesting.with(YARP::ConstantReadNode.new(node.name, node.name_loc)) do |constant_path|
+      constant_nesting.with(Prism::ConstantReadNode.new(node.name, node.name_loc)) do |constant_path|
         analyzer.consts << constant_path.join("::")
 
         super
@@ -240,7 +240,7 @@ class Analyzer
       case node.receiver
       when nil
         context.instance_methods << InstanceMethod.new(**kwargs)
-      when YARP::SelfNode
+      when Prism::SelfNode
         context.class_methods << ClassMethod.new(**kwargs)
       else # rubocop:disable Style/EmptyElse
         # In this case, we don't actually know what to do. The receiver of the
@@ -356,7 +356,7 @@ class Analyzer
   end
 
   def analyze_code(path, code)
-    result = YARP.parse(code)
+    result = Prism.parse(code)
     result.value.accept(Visitor.new(self, @gem, path, result.comments))
     self
   end
