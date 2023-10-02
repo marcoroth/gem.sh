@@ -203,10 +203,10 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.0.8.tgz#f44e7517f2d1570f1eabeea457dbeb17ed3a2d12"
   integrity sha512-GjYQv89ZOOfbFw8VMNUOG33GXzyAA/TCVoD+742Ob4svm1XXUkd+w+ewqUXd+7VHQtV35y1/O78AGIPeJDTy/g==
 
-"@rails/actioncable@^7.1.0-beta1":
-  version "7.1.0-beta1"
-  resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.1.0-beta1.tgz#95349e1dab3f71280e133ee971b6370a376c48e5"
-  integrity sha512-lroaRYTIqmYBUVRkKV8FCt2LBsExjHFSJSrmu8mBpZxL8Q1GPaeSvA80ded4qTlG066NVo8TxSP49OtyzxEN8A==
+"@rails/actioncable@^7.1.0-rc2":
+  version "7.1.0-rc2"
+  resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.1.0-rc2.tgz#6e2207639e6fb1020c285e83e6b802bc2226fd3f"
+  integrity sha512-y4fpfLGXFrcce1NFtGqqv11tzQQi/vr71T01NUqE7sHmPHoDwf4knpaOA0uc6VhCM8YAFsiqrAcSmmbKeH++/A==
 
 "@tailwindcss/forms@^0.5.6":
   version "0.5.6"
