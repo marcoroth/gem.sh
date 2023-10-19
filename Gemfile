@@ -104,7 +104,7 @@ gem "rubocop-rails", "~> 2.21"
 # gem "type_fusion", path: "../type_fusion"
 
 # Collaborative Ruby type sampling
-gem "type_fusion", github: "marcoroth/type_fusion"
+gem "type_fusion", "0.0.6"
 
 # View helpers for the beautiful hand-crafted SVG icons, Heroicons.
 gem "heroicon", "~> 1.0"
