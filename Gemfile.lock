@@ -189,7 +189,7 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.4)
-    prism (0.15.1)
+    prism (0.16.0)
     psych (5.1.1)
       stringio
     public_suffix (5.0.3)
@@ -332,7 +332,7 @@ DEPENDENCIES
   jsbundling-rails
   meta-tags
   pg (~> 1.5)
-  prism (~> 0.15)
+  prism (~> 0.16)
   puma (~> 6.4)
   rails (~> 7.1.0.rc2)
   rails-html-sanitizer (~> 1.6)
