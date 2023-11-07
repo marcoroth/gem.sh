@@ -190,7 +190,7 @@ GEM
       racc
     pg (1.5.4)
     prism (0.16.0)
-    psych (5.1.1)
+    psych (5.1.1.1)
       stringio
     public_suffix (5.0.3)
     puma (6.4.0)
@@ -235,7 +235,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.0.6)
-    rdoc (6.5.0)
+    rdoc (6.6.0)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
     redis (5.0.8)
