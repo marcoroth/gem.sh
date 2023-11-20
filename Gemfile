@@ -132,5 +132,5 @@ group :test do
   # gem "webdrivers"
 
   # A library for setting up Ruby objects as test data.
-  gem "factory_bot", "~> 6.3"
+  gem "factory_bot", "~> 6.4"
 end
