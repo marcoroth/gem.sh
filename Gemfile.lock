@@ -87,7 +87,7 @@ GEM
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
-    base64 (0.1.1)
+    base64 (0.2.0)
     bigdecimal (3.1.4)
     bindex (0.8.1)
     bootsnap (1.17.0)
@@ -103,12 +103,12 @@ GEM
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
-    drb (2.1.1)
+    drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
     ethon (0.16.0)
       ffi (>= 1.15.0)
-    factory_bot (6.3.0)
+    factory_bot (6.4.0)
       activesupport (>= 5.0.0)
     ffi (1.15.5)
     globalid (1.2.1)
@@ -167,7 +167,7 @@ GEM
     minitest (5.20.0)
     msgpack (1.7.2)
     multi_xml (0.6.0)
-    mutex_m (0.1.2)
+    mutex_m (0.2.0)
     net-imap (0.3.7)
       date
       net-protocol
@@ -323,7 +323,7 @@ DEPENDENCIES
   class_variants (~> 0.0.6)
   cssbundling-rails
   debug
-  factory_bot (~> 6.3)
+  factory_bot (~> 6.4)
   gems!
   heroicon (~> 1.0)
   httparty (~> 0.21.0)
