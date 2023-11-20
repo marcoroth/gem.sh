@@ -246,7 +246,7 @@ GEM
     reline (0.3.9)
       io-console (~> 0.5)
     rexml (3.2.6)
-    rorvswild (1.6.2)
+    rorvswild (1.6.3)
     rouge (4.2.0)
     rubocop (1.57.2)
       json (~> 2.3)
