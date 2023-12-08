@@ -93,7 +93,7 @@ GEM
     bootsnap (1.17.0)
       msgpack (~> 1.2)
     builder (3.2.4)
-    class_variants (0.0.6)
+    class_variants (0.0.7)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -321,7 +321,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to (~> 1.0)
   bootsnap
-  class_variants (~> 0.0.6)
+  class_variants (~> 0.0.7)
   cssbundling-rails
   debug
   factory_bot (~> 6.4)
