@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/marcoroth/gems.git
-  revision: db467a645d5be09f7353aadc86168e1eec0f88fc
+  revision: 6cf1ad213950cf4f15b5582c14169af56aab7692
   branch: v2-api
   specs:
     gems (1.2.0)
