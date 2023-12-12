@@ -109,6 +109,9 @@ gem "type_fusion", "0.0.6"
 # View helpers for the beautiful hand-crafted SVG icons, Heroicons.
 gem "heroicon", "~> 1.0"
 
+# Tool to interactively execute Ruby expressions read from the standard input.
+gem "irb", "~> 1.8"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: [:mri, :mswin, :mswin64, :mingw, :x64_mingw]

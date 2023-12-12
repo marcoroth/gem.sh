@@ -329,6 +329,7 @@ DEPENDENCIES
   heroicon (~> 1.0)
   httparty (~> 0.21.0)
   inline_svg (~> 1.9)
+  irb (~> 1.8)
   jbuilder
   jsbundling-rails
   meta-tags
