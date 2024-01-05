@@ -13,7 +13,7 @@
     "debounced": "^0.0.5",
     "esbuild": "0.19.11",
     "esbuild-rails": "^1.0.7",
-    "postcss": "^8.4.32",
+    "postcss": "^8.4.33",
     "stimulus-use": "^0.52.2",
     "tailwindcss": "^3.4.0",
     "tippy.js": "^6.3.7",
