@@ -140,6 +140,11 @@
   resolved "https://registry.npmjs.org/@hotwired/turbo/-/turbo-7.3.0.tgz"
   integrity sha512-Dcu+NaSvHLT7EjrDrkEmH4qET2ZJZ5IcCWmNXxNQTBwlnE5tBZfN6WxZ842n5cHV52DH/AKNirbPBtcEXDLW4g==
 
+"@hotwired/turbo@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-8.0.2.tgz#c31cdadfe66b98983066a94073b26fc7e15835f0"
+  integrity sha512-3K6QZkwWfosAV8zuM5bY+kKF02jp1lMQGsWfSE6wXdZBRBP3ah+Vj26YNqYtkEomBwRWA0QKhZgyJP7xOQkVEg==
+
 "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
   resolved "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.3.tgz"
