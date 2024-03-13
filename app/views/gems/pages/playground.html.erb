@@ -5,47 +5,19 @@
   </div><hr>
 
   <p class="mt-6 mb-6 text-lg text-slate-600">
-    Here's a Ruby playground with gem <code class="p-0"><%= @gem.name %></code> version <code class="p-0"><%= @gem.version %></code> installed, ready for you to play.
+    Here's a Ruby.wasm playground with gem <code class="p-0"><%= @gem.name %></code> version
+    <code class="p-0"><%= @gem.version %></code> specified in the <code class="p-0">Gemfile</code>. Run bundle install and it's ready for you to play.
   </p>
 
-  <div class="mb-3 flex">
-    <select class="appearance-none bg-white hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded-lg shadow py-2 mx-2 ml-0">
-      <option value="mri" selected="selected">Ruby 3.2</option>
-      <option value="dev">Ruby Dev</option>
-      <option value="jruby">jruby</option>
-      <option value="mruby">mruby</option>
-      <option value="truffleruby">truffleruby</option>
-      <option value="artichokeruby">artichokeruby</option>
-    </select>
-
-    <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded-lg shadow py-2">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
-      </svg>
-    </button>
-  </div>
-
   <div class="pt-2 gap-6">
-    <div class="xl:col-span-2 pr-4">
-      <%= render UI::CodeBlock.new do %>puts "Hello from #{RUBY_ENGINE} #{RUBY_VERSION} 👋"
-puts <%= @gem.most_used_constant %>::VERSION
-
-
-
-      <% end %>
-    </div>
-
-    <div class="col-span-1 mt-6">
-      <pre class="mr-2 p-4 rounded-lg font-mono whitespace-pre-wrap break-word bg-black text-white">
-"<%= "Hello from #{RUBY_ENGINE} #{RUBY_VERSION} 👋" %>"
-"<%= @gem.version %>"
-
-
-
-
-      </pre>
+    <div class="xl:col-span-2 border border-gray-200 rounded-lg shadow">
+      <iframe src="<%= ENV.fetch("PLAYGROUND_URL", "https://runruby.dev") %>?embed=1&theme=light&gem=<%= @gem.name %>@<%= @gem.version %>&code=<%=Base64.urlsafe_encode64(ERB::Util.url_encode(<<~CODE), padding: false)
+        puts "Hello from \#{RUBY_ENGINE} \#{RUBY_VERSION} 👋"
+        puts "#{@gem.name} version: \#{#{@gem.most_used_constant}::VERSION}"
+      CODE
+      %>" class="w-full h-[75vh] border-0 rounded-lg overflow-hidden"></iframe>
     </div>
   </div>
 
-  <p class="mt-6 text-xs leading-5 text-gray-500">To be powered by something like the <a href="https://rubyapi.org/repl" target="_blank">Ruby API Repl</a></p>
+  <p class="mt-6 text-xs leading-5 text-gray-500">Powered by <a href="https://runruby.dev" target="_blank">RunRuby.dev</a></p>
 <% end %>
