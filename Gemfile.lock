@@ -247,7 +247,7 @@ GEM
     reline (0.4.2)
       io-console (~> 0.5)
     rexml (3.2.6)
-    rorvswild (1.6.4)
+    rorvswild (1.7.0)
     rouge (4.2.0)
     rubocop (1.63.3)
       json (~> 2.3)
@@ -343,7 +343,7 @@ DEPENDENCIES
   rdoc
   redcarpet (~> 3.6)
   redis (~> 5.1)
-  rorvswild (~> 1.6)
+  rorvswild (~> 1.7)
   rouge (~> 4.2)
   rubocop (~> 1.63)
   rubocop-rails (~> 2.23)
