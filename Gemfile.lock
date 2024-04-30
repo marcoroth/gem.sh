@@ -160,7 +160,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.2)
-    meta-tags (2.20.0)
+    meta-tags (2.21.0)
       actionpack (>= 6.0.0, < 7.2)
     method_source (1.1.0)
     mini_mime (1.1.5)
