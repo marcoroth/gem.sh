@@ -101,7 +101,7 @@ GEM
     cssbundling-rails (1.4.0)
       railties (>= 6.0.0)
     date (3.3.4)
-    debug (1.9.1)
+    debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
     drb (2.2.1)
@@ -243,7 +243,7 @@ GEM
     redis-client (0.19.1)
       connection_pool
     regexp_parser (2.9.0)
-    reline (0.5.3)
+    reline (0.5.4)
       io-console (~> 0.5)
     rexml (3.2.6)
     rorvswild (1.7.0)
