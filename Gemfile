@@ -51,7 +51,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # Makes http fun again! Ain't no party like a httparty, because a httparty don't stop.
-gem "httparty", "~> 0.21.0"
+gem "httparty", "~> 0.22.0"
 
 # A framework for creating reusable, testable & encapsulated view components
 gem "view_component", "~> 3.12"
