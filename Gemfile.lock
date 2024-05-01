@@ -124,7 +124,7 @@ GEM
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
     io-console (0.7.2)
-    irb (1.11.2)
+    irb (1.12.0)
       rdoc
       reline (>= 0.4.2)
     jbuilder (2.11.5)
@@ -243,7 +243,7 @@ GEM
     redis-client (0.19.1)
       connection_pool
     regexp_parser (2.9.0)
-    reline (0.5.3)
+    reline (0.5.4)
       io-console (~> 0.5)
     rexml (3.2.6)
     rorvswild (1.7.0)
@@ -329,7 +329,7 @@ DEPENDENCIES
   heroicon (~> 1.0)
   httparty (~> 0.21.0)
   inline_svg (~> 1.9)
-  irb (~> 1.11)
+  irb (~> 1.12)
   jbuilder
   jsbundling-rails
   meta-tags
