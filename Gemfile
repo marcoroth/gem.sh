@@ -99,7 +99,7 @@ gem "rorvswild", "~> 1.7"
 gem "rubocop", "~> 1.63"
 
 # A RuboCop extension focused on enforcing Rails best practices and coding conventions.
-gem "rubocop-rails", "~> 2.23"
+gem "rubocop-rails", "~> 2.24"
 
 # gem "type_fusion", path: "../type_fusion"
 
