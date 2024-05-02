@@ -241,9 +241,9 @@ GEM
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
-    redis (5.1.0)
-      redis-client (>= 0.17.0)
-    redis-client (0.19.1)
+    redis (5.2.0)
+      redis-client (>= 0.22.0)
+    redis-client (0.22.1)
       connection_pool
     regexp_parser (2.9.0)
     reline (0.5.4)
@@ -343,7 +343,7 @@ DEPENDENCIES
   rails-html-sanitizer (~> 1.6)
   rdoc
   redcarpet (~> 3.6)
-  redis (~> 5.1)
+  redis (~> 5.2)
   rorvswild (~> 1.7)
   rouge (~> 4.2)
   rubocop (~> 1.63)
