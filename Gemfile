@@ -96,7 +96,7 @@ gem "gems", github: "marcoroth/gems", branch: "v2-api"
 gem "rorvswild", "~> 1.7"
 
 # A Ruby static code analyzer and formatter, based on the community Ruby style guide.
-gem "rubocop", "~> 1.63"
+gem "rubocop", "~> 1.64"
 
 # A RuboCop extension focused on enforcing Rails best practices and coding conventions.
 gem "rubocop-rails", "~> 2.25"
