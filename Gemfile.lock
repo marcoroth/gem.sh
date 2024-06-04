@@ -250,7 +250,7 @@ GEM
       io-console (~> 0.5)
     rexml (3.2.8)
       strscan (>= 3.0.9)
-    rorvswild (1.7.0)
+    rorvswild (1.7.1)
     rouge (4.2.1)
     rubocop (1.64.0)
       json (~> 2.3)
