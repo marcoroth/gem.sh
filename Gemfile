@@ -60,7 +60,7 @@ gem "view_component", "~> 3.12"
 gem "prism", "~> 0.22"
 
 # A pure Ruby code highlighter that is compatible with Pygments
-gem "rouge", "~> 4.2"
+gem "rouge", "~> 4.3"
 
 # Embed SVG documents in your Rails views and style them with CSS
 gem "inline_svg", "~> 1.9"
