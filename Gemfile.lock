@@ -250,7 +250,7 @@ GEM
       io-console (~> 0.5)
     rexml (3.2.8)
       strscan (>= 3.0.9)
-    rorvswild (1.7.1)
+    rorvswild (1.8.0)
     rouge (4.2.1)
     rubocop (1.64.1)
       json (~> 2.3)
@@ -346,7 +346,7 @@ DEPENDENCIES
   rdoc
   redcarpet (~> 3.6)
   redis (~> 5.2)
-  rorvswild (~> 1.7)
+  rorvswild (~> 1.8)
   rouge (~> 4.2)
   rubocop (~> 1.64)
   rubocop-rails (~> 2.25)
