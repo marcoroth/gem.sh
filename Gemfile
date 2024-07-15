@@ -93,7 +93,7 @@ gem "meta-tags"
 gem "gems", github: "marcoroth/gems", branch: "v2-api"
 
 # Performances & exceptions monitoring for Ruby on Rails applications
-gem "rorvswild", "~> 1.7"
+gem "rorvswild", "~> 1.8"
 
 # A Ruby static code analyzer and formatter, based on the community Ruby style guide.
 gem "rubocop", "~> 1.64"
