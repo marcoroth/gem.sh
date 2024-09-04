@@ -63,7 +63,7 @@ gem "prism", "~> 0.22"
 gem "rouge", "~> 4.3"
 
 # Embed SVG documents in your Rails views and style them with CSS
-gem "inline_svg", "~> 1.9"
+gem "inline_svg", "~> 1.10"
 
 # A documentation generation tool for the Ruby programming language
 gem "yard", "~> 0.9.36"
