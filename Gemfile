@@ -66,7 +66,7 @@ gem "rouge", "~> 4.3"
 gem "inline_svg", "~> 1.9"
 
 # A documentation generation tool for the Ruby programming language
-gem "yard", "~> 0.9.36"
+gem "yard", "~> 0.9.37"
 
 # Embedded documentation generator for the Ruby
 gem "rdoc"
