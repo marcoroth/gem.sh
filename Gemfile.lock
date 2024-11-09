@@ -171,7 +171,7 @@ GEM
     multi_xml (0.7.0)
       bigdecimal (~> 3.1)
     mutex_m (0.2.0)
-    net-imap (0.4.13)
+    net-imap (0.4.17)
       date
       net-protocol
     net-pop (0.1.2)
