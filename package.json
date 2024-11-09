@@ -10,7 +10,7 @@
     "@tailwindcss/typography": "^0.5.15",
     "autoprefixer": "^10.4.20",
     "current.js": "^0.2.1",
-    "debounced": "^1.0.0",
+    "debounced": "^1.0.2",
     "esbuild": "0.23.1",
     "esbuild-rails": "^1.0.7",
     "postcss": "^8.4.47",
