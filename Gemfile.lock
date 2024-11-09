@@ -122,7 +122,7 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
-    inline_svg (1.9.0)
+    inline_svg (1.10.0)
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
     io-console (0.7.2)
@@ -329,7 +329,7 @@ DEPENDENCIES
   gems!
   heroicon (~> 1.0)
   httparty (~> 0.22.0)
-  inline_svg (~> 1.9)
+  inline_svg (~> 1.10)
   irb (~> 1.14)
   jbuilder
   jsbundling-rails
