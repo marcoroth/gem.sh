@@ -57,7 +57,7 @@ gem "httparty", "~> 0.22.0"
 gem "view_component", "~> 3.14"
 
 # Interact with the Ruby syntax tree
-gem "prism", "~> 0.22"
+gem "prism", "~> 1.2"
 
 # A pure Ruby code highlighter that is compatible with Pygments
 gem "rouge", "~> 4.3"
