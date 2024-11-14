@@ -81,7 +81,7 @@ gem "redcarpet", "~> 3.6"
 gem "rails-html-sanitizer", "~> 1.6"
 
 # Easily configure styles and apply them as classes.
-gem "class_variants", "~> 0.0.7"
+gem "class_variants", "~> 1.0.0"
 
 # Framework-agnostic XML Sitemap generator
 gem "sitemap_generator", "~> 6.3"
