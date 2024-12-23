@@ -166,11 +166,11 @@ GEM
       actionpack (>= 6.0.0, < 8.1)
     method_source (1.1.0)
     mini_mime (1.1.5)
-    minitest (5.25.1)
+    minitest (5.25.4)
     msgpack (1.7.2)
     multi_xml (0.7.0)
       bigdecimal (~> 3.1)
-    mutex_m (0.2.0)
+    mutex_m (0.3.0)
     net-imap (0.4.17)
       date
       net-protocol
@@ -297,8 +297,8 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
-    view_component (3.14.0)
-      activesupport (>= 5.2.0, < 8.0)
+    view_component (3.21.0)
+      activesupport (>= 5.2.0, < 8.1)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
     web-console (4.2.1)
@@ -352,7 +352,7 @@ DEPENDENCIES
   turbo-rails
   type_fusion (= 0.0.6)
   tzinfo-data
-  view_component (~> 3.14)
+  view_component (~> 3.21)
   web-console
   yard (~> 0.9.37)
 
