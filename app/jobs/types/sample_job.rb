@@ -6,7 +6,7 @@ class Types::SampleJob < ApplicationJob
   queue_as :default
 
   def perform(sample, source_ip)
-    sample = ::Types::Sample.create(**sample.merge(source_ip:))
+    sample = ::Types::Sample.create(**sample, source_ip:)
 
     Rails.logger.debug sample.inspect
 
