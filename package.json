@@ -14,7 +14,7 @@
     "esbuild": "0.24.2",
     "esbuild-rails": "^1.0.7",
     "postcss": "^8.4.49",
-    "stimulus-use": "^0.52.2",
+    "stimulus-use": "^0.52.3",
     "tailwindcss": "^3.4.14",
     "tippy.js": "^6.3.7",
     "yarn": "^1.22.22"
