@@ -145,10 +145,10 @@
     "@hotwired/turbo" "^8.0.5"
     "@rails/actioncable" "^7.0"
 
-"@hotwired/turbo@^8.0.4", "@hotwired/turbo@^8.0.5":
-  version "8.0.5"
-  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-8.0.5.tgz#abae6dad018a891e4286e87fa0959217e3866d5a"
-  integrity sha512-TdZDA7fxVQ2ZycygvpnzjGPmFq4sO/E2QVg+2em/sJ3YTSsIWVEis8HmWlumz+c9DjWcUkcCuB+muF08TInpAQ==
+"@hotwired/turbo@^8.0.13", "@hotwired/turbo@^8.0.5":
+  version "8.0.13"
+  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-8.0.13.tgz#ab35fda9d358432c8a872a833844b38cccb8c25b"
+  integrity sha512-M7qXUqcGab6G5PKOiwhgbByTtrPgKPFCTMNQ52QhzUEXEqmp0/ApEguUesh/FPiUjrmFec+3lq98KsWnYY2C7g==
 
 "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
