@@ -2,7 +2,7 @@
 
 class UI::Badge < ViewComponent::Base
   CLASSES = ClassVariants.build(
-    "rounded-md py-1 px-2 fs-step--2 monospace-font-family font-medium ring-1 ring-inset",
+    "rounded-md py-1 px-2 fs-step--2 monospace-font-family font-medium ring-1 ring-inset self-end",
     variants: {
       color: {
         gray: "bg-gray-50 text-gray-600 ring-gray-600/10",
