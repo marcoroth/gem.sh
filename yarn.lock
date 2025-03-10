@@ -767,10 +767,10 @@ source-map-js@^1.2.1:
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.1.tgz#1ce5650fddd87abc099eda37dcff024c2667ae46"
   integrity sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==
 
-stimulus-use@^0.52.2:
-  version "0.52.2"
-  resolved "https://registry.yarnpkg.com/stimulus-use/-/stimulus-use-0.52.2.tgz#fc992fababe03f8d8bc2d9470c8cdb40bd075917"
-  integrity sha512-413+tIw9n6Jnb0OFiQE1i3aP01i0hhGgAnPp1P6cNuBbhhqG2IOp8t1O/4s5Tw2lTvSYrFeLNdaY8sYlDaULeg==
+stimulus-use@^0.52.3:
+  version "0.52.3"
+  resolved "https://registry.yarnpkg.com/stimulus-use/-/stimulus-use-0.52.3.tgz#d6f35fa93277274957a2ed98a7b04b4d702cb1d6"
+  integrity sha512-stZ5dID6FUrGCR/ChWUa0FT5Z8iqkzT6lputOAb50eF+Ayg7RzJj4U/HoRlp2NV333QfvoRidru9HLbom4hZVw==
 
 sucrase@^3.32.0:
   version "3.34.0"
