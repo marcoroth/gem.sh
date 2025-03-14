@@ -11,7 +11,7 @@
     "autoprefixer": "^10.4.21",
     "current.js": "^0.2.1",
     "debounced": "^1.0.2",
-    "esbuild": "0.25.0",
+    "esbuild": "0.25.1",
     "esbuild-rails": "^1.0.7",
     "postcss": "^8.4.49",
     "stimulus-use": "^0.52.3",
