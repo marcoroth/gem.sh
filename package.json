@@ -9,7 +9,7 @@
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "^10.4.21",
-    "current.js": "^0.2.1",
+    "current.js": "^0.2.2",
     "debounced": "^1.0.2",
     "esbuild": "0.25.4",
     "esbuild-rails": "^1.0.7",

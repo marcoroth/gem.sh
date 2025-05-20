@@ -340,10 +340,10 @@ cssesc@^3.0.0:
   resolved "https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
 
-current.js@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/current.js/-/current.js-0.2.1.tgz#d2cfd8bd0ff12401d7784cbed3af535b7bf0a9e8"
-  integrity sha512-uPHFKYJgANcxcyUDPNkvas4ehST7A4kZqC4h8S4ZPBhdCW2np5PQyYK6dsopj2Z52VGADDSTOnfSZstjCp3Z6g==
+current.js@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/current.js/-/current.js-0.2.2.tgz#69a4cf793be93f736292bff6b326a72c742166d9"
+  integrity sha512-tfBkslJOODUAf1O1KsUZO3ejdyAAn7yy1YVamb9PuSv69EPNpRkuHQhtPHpizsHjbsGNAK/Gz3V0T4Q+bf+Itw==
 
 debounced@^1.0.2:
   version "1.0.2"
