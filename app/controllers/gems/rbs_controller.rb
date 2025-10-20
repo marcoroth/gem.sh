@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Gems::RBSController < ApplicationController
-  include GemScoped
-
+class Gems::RBSController < Gems::BaseController
   def index
     require_samples = params[:require_samples].present?
     signature = @gem.rbs_signature(require_samples:)

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Gems::SearchController < ApplicationController
-  include GemScoped
-
+class Gems::SearchController < Gems::BaseController
   def index
     query = params[:q].to_s.downcase
 

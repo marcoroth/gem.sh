@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-class Gems::ClassMethodsController < ApplicationController
-  include GemScoped
-  include GemTargetScoped
+class Gems::ClassMethodsController < Gems::BaseController
+  set_target
 
   def show
     @method = @target.class_methods.find { |class_method| class_method.name == params[:id] }

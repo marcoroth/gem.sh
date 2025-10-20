@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Gems::TypesController < ApplicationController
-  include GemScoped
-
+class Gems::TypesController < Gems::BaseController
   def index
     @samples = Types::Sample
                .group(:gem_name, :gem_version, :receiver, :method_name)
