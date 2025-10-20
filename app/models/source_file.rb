@@ -13,6 +13,10 @@ SourceFile = Data.define(:file, :gem) do
     "#{gem.unpack_data_path}/#{file}"
   end
 
+  def existent
+    self if exist?
+  end
+
   def exist?
     file && gem.files.include?(file) && File.exist?(source_path)
   end
