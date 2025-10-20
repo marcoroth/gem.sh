@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-class GemsController < ApplicationController
-  include GemScoped
-
-  before_action :set_gem, except: :index
-
+class GemsController < Gems::BaseController
   def index
     @gems = Gems.just_updated
   end

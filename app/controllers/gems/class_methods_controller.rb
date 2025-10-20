@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class Gems::ClassMethodsController < ApplicationController
-  include GemScoped
+class Gems::ClassMethodsController < Gems::BaseController
   include GemTargetScoped
 
   def show

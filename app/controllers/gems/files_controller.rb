@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class Gems::FilesController < ApplicationController
-  include GemScoped
+class Gems::FilesController < Gems::BaseController
   include GemFileScoped
 
   def index
