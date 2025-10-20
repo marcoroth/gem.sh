@@ -7,6 +7,8 @@ class Gems::ClassesController < Gems::BaseController
   end
 
   def show
+    @class = @gem.find_class!(params[:id])
+
     @classes = @gem.classes.select { |klass| klass.qualified_namespace == @class.qualified_name }
     @namespace = @gem.find_namespace(@class.qualified_namespace)
   end
