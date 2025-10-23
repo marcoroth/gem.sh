@@ -112,6 +112,12 @@ gem "heroicon", "~> 1.0"
 # Tool to interactively execute Ruby expressions read from the standard input.
 gem "irb", "~> 1.15"
 
+# Powerful and seamless HTML-aware ERB parsing and tooling.
+gem "herb", "~> 0.7.5"
+
+# A new ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
+gem "reactionview", "~> 0.1.5"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: [:mri, :windows]
