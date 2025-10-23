@@ -1,10 +1,3 @@
-GIT
-  remote: https://github.com/marcoroth/gems.git
-  revision: 6cf1ad213950cf4f15b5582c14169af56aab7692
-  branch: v2-api
-  specs:
-    gems (1.2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -116,6 +109,7 @@ GEM
     factory_bot (6.4.6)
       activesupport (>= 5.0.0)
     ffi (1.15.5)
+    gems (1.3.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     herb (0.7.5-arm64-darwin)
@@ -348,7 +342,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   factory_bot (~> 6.4)
-  gems!
+  gems
   herb (~> 0.7.5)
   heroicon (~> 1.0)
   httparty (~> 0.22.0)

@@ -90,7 +90,7 @@ gem "sitemap_generator", "~> 6.3"
 gem "meta-tags"
 
 # Ruby wrapper for the RubyGems.org API
-gem "gems", github: "marcoroth/gems", branch: "v2-api"
+gem "gems"
 
 # Performances & exceptions monitoring for Ruby on Rails applications
 gem "rorvswild", "~> 1.8"
