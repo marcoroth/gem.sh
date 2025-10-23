@@ -8,7 +8,7 @@
       <%= render RBSSignature.new(rbs: rbs) %>
     <% end %>
 
-    <div class="">
+    <div>
       <% comment = @class.comments.join("<br>").force_encoding("UTF-8") %>
 
       <% h = RDoc::Markup::ToHtml.new(RDoc::Options.new) %>
