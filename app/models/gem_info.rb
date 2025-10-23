@@ -14,9 +14,7 @@ class GemInfo
     analyze
   end
 
-  def classes
-    @analyzer.classes
-  end
+  delegate :classes, to: :@analyzer
 
   def analyze
     @gemspec.files.each do |file|
