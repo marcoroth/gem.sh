@@ -2,7 +2,7 @@
 
 class UI::StatusBadge < ViewComponent::Base
   CLASSES = ClassVariants.build(
-    "rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 flex",
+    base: "rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 flex",
     variants: {},
     defaults: {},
   )
