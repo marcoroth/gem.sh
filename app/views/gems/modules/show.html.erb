@@ -24,7 +24,7 @@
           <div class="mt-6 grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4">
             <% @modules.each do |mod| %>
               <%= link_to mod.url(@gem) do %>
-                <%= render UI::Card.new(title: mod.name, description: "in #{mod.qualified_namespace}") do |card|%>
+                <%= render UI::Card.new(title: mod.name, description: "in #{mod.qualified_namespace}") do |card| %>
                   <% card.with_badge(label: "module") %>
                 <% end %>
               <% end %>
@@ -40,7 +40,7 @@
           <div class="mt-6 grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4">
             <% @classes.each do |klass| %>
               <%= link_to klass.url(@gem) do %>
-                <%= render UI::Card.new(title: klass.name, description: "in #{klass.qualified_namespace}") do |card|%>
+                <%= render UI::Card.new(title: klass.name, description: "in #{klass.qualified_namespace}") do |card| %>
                   <% card.with_badge(label: "class") %>
                 <% end %>
               <% end %>

@@ -1,10 +1,10 @@
-name: RuboCop
+name: Lint
 on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: RuboCop
+    name: Lint
 
     steps:
       - name: Checkout
@@ -17,3 +17,6 @@ jobs:
 
       - name: Run RuboCop
         run: bundle exec rubocop
+
+      - name: Run Herb Linter
+        run: npx @herb-tools/linter app/views/

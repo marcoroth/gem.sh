@@ -14,7 +14,7 @@
         <li class="overflow-hidden rounded-xl border border-gray-200 hover:border-gray-400">
           <%= link_to gem_version_gem_path(gem.name, gem.version) do %>
             <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-4 md:p-6">
-              <img src="<%= @images[index] %>" alt="<%= gem.name %> logo" class="p-2 h-10 w-10 md:h-12 md:w-12 flex-none rounded md:rounded-lg bg-white bg-cover ring-1 ring-gray-900/10">
+              <%= image_tag @images[index], alt: "#{gem.name} logo", class: "p-2 h-10 w-10 md:h-12 md:w-12 flex-none rounded md:rounded-lg bg-white bg-cover ring-1 ring-gray-900/10" %>
               <div class="text-sm font-medium leading-6 text-gray-900"><%= gem.name.humanize %></div>
               <div class="relative ml-auto block md:hidden">
                 <dd class="text-gray-700"><time datetime="<%= gem.released_at.iso8601 %>"><%= gem.released_at.to_fs(:long) %></time></dd>
