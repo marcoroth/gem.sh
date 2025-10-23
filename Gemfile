@@ -42,7 +42,7 @@ gem "redis", "~> 5.3"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: [:mswin, :mswin64, :mingw, :x64_mingw, :jruby]
+gem "tzinfo-data", platforms: :windows
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -90,7 +90,7 @@ gem "sitemap_generator", "~> 6.3"
 gem "meta-tags"
 
 # Ruby wrapper for the RubyGems.org API
-gem "gems", github: "marcoroth/gems", branch: "v2-api"
+gem "gems"
 
 # Performances & exceptions monitoring for Ruby on Rails applications
 gem "rorvswild", "~> 1.8"
@@ -99,7 +99,7 @@ gem "rorvswild", "~> 1.8"
 gem "rubocop", "~> 1.69"
 
 # A RuboCop extension focused on enforcing Rails best practices and coding conventions.
-gem "rubocop-rails", "~> 2.26"
+gem "rubocop-rails", "~> 2.30"
 
 # gem "type_fusion", path: "../type_fusion"
 
@@ -110,11 +110,17 @@ gem "type_fusion", "0.0.6"
 gem "heroicon", "~> 1.0"
 
 # Tool to interactively execute Ruby expressions read from the standard input.
-gem "irb", "~> 1.14"
+gem "irb", "~> 1.15"
+
+# Powerful and seamless HTML-aware ERB parsing and tooling.
+gem "herb", "~> 0.7.5"
+
+# A new ActionView-compatible ERB engine with modern DX - re-imagined with Herb.
+gem "reactionview", "~> 0.1.5"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: [:mri, :mswin, :mswin64, :mingw, :x64_mingw]
+  gem "debug", platforms: [:mri, :windows]
 end
 
 group :development do
