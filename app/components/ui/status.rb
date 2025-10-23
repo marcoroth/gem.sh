@@ -2,7 +2,7 @@
 
 class UI::Status < ViewComponent::Base
   CLASSES = ClassVariants.build(
-    "flex-none rounded-full p-1 ",
+    base: "flex-none rounded-full p-1 ",
     variants: {
       status: {
         default: "text-gray-500",
