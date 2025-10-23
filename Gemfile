@@ -42,7 +42,7 @@ gem "redis", "~> 5.3"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: [:mswin, :mswin64, :mingw, :x64_mingw, :jruby]
+gem "tzinfo-data", platforms: :windows
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -99,7 +99,7 @@ gem "rorvswild", "~> 1.8"
 gem "rubocop", "~> 1.69"
 
 # A RuboCop extension focused on enforcing Rails best practices and coding conventions.
-gem "rubocop-rails", "~> 2.26"
+gem "rubocop-rails", "~> 2.30"
 
 # gem "type_fusion", path: "../type_fusion"
 
@@ -114,7 +114,7 @@ gem "irb", "~> 1.15"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: [:mri, :mswin, :mswin64, :mingw, :x64_mingw]
+  gem "debug", platforms: [:mri, :windows]
 end
 
 group :development do
