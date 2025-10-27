@@ -254,9 +254,9 @@ GEM
       actionview (>= 7.0)
       herb (>= 0.7.5, < 1.0.0)
     redcarpet (3.6.0)
-    redis (5.3.0)
+    redis (5.4.1)
       redis-client (>= 0.22.0)
-    redis-client (0.22.2)
+    redis-client (0.26.1)
       connection_pool
     regexp_parser (2.10.0)
     reline (0.6.2)
@@ -359,7 +359,7 @@ DEPENDENCIES
   rdoc
   reactionview (~> 0.1.5)
   redcarpet (~> 3.6)
-  redis (~> 5.3)
+  redis (~> 5.4)
   rorvswild (~> 1.8)
   rouge (~> 4.3)
   rubocop (~> 1.69)
