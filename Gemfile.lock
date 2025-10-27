@@ -200,7 +200,7 @@ GEM
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
-    prism (0.22.0)
+    prism (1.6.0)
     psych (5.2.6)
       date
       stringio
@@ -352,7 +352,7 @@ DEPENDENCIES
   jsbundling-rails
   meta-tags
   pg (~> 1.5)
-  prism (~> 0.22)
+  prism (~> 1.6)
   puma (~> 6.4)
   rails (~> 7.1.3)
   rails-html-sanitizer (~> 1.6)
