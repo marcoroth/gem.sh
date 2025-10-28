@@ -97,7 +97,7 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.4.1)
       railties (>= 6.0.0)
-    csv (3.3.0)
+    csv (3.3.5)
     date (3.4.1)
     debug (1.10.0)
       irb (~> 1.10)
@@ -117,7 +117,7 @@ GEM
     herb (0.7.5-x86_64-linux-gnu)
     heroicon (1.0.0)
       rails (>= 5.2)
-    httparty (0.22.0)
+    httparty (0.23.2)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
@@ -173,7 +173,7 @@ GEM
     mini_portile2 (2.8.9)
     minitest (5.26.0)
     msgpack (1.7.2)
-    multi_xml (0.7.0)
+    multi_xml (0.7.2)
       bigdecimal (~> 3.1)
     mutex_m (0.3.0)
     net-imap (0.4.20)
@@ -345,7 +345,7 @@ DEPENDENCIES
   gems
   herb (~> 0.7.5)
   heroicon (~> 1.0)
-  httparty (~> 0.22.0)
+  httparty (~> 0.23.2)
   inline_svg (~> 1.10)
   irb (~> 1.15)
   jbuilder
