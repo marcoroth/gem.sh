@@ -190,10 +190,10 @@
     "@hotwired/turbo" "^8.0.18"
     "@rails/actioncable" ">=7.0"
 
-"@hotwired/turbo@^8.0.18":
-  version "8.0.18"
-  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-8.0.18.tgz#10ae3de450b955862f89e30c50d96d676813744e"
-  integrity sha512-dG0N7khQsP8sujclodQE3DYkI4Lq7uKA04fhT0DCC/DwMgn4T4WM3aji6EC6+iCfABQeJncY0SraXqVeOq0vvQ==
+"@hotwired/turbo@^8.0.18", "@hotwired/turbo@^8.0.20":
+  version "8.0.20"
+  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-8.0.20.tgz#068ede648c4db09fed4cf0ac0266788056673f2f"
+  integrity sha512-IilkH/+h92BRLeY/rMMR3MUh1gshIfdra/qZzp/Bl5FmiALD/6sQZK/ecxSbumeyOYiWr/JRI+Au1YQmkJGnoA==
 
 "@isaacs/balanced-match@^4.0.1":
   version "4.0.1"
