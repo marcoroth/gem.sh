@@ -84,5 +84,5 @@ Rails/LexicallyScopedActionFilter:
   Exclude:
     - app/controllers/concerns/**/*
 
-require:
+plugins:
   - rubocop-rails
